@@ -1,0 +1,213 @@
+/* ================= header ================= */
+.header {
+  background-color: #4f4f4f;
+  color: white;
+  padding: 10px;
+  margin: 0 !important;
+  height: 60px;
+}
+
+.header-logo {
+  height: 40px;
+  padding: 0 !important;
+}
+
+.bg-lightcolor {
+  background-image: url('../images/bg.jpg');
+  /* height: auto; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten;
+  background-attachment: fixed;
+  min-height: 100%;
+}
+
+.bg-withImage {
+  background-image: url('../images/bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten;
+  min-height: 100%;
+}
+
+.vertical-center > * {
+  position: relative;
+  top: 40%;
+  transform: translate(0, -50%);
+}
+
+.clearBackground, .clearBackground:focus {
+  background: transparent;
+  border: none;
+  outline: 0;
+  box-shadow: none!important;
+}
+
+/* ================= placeholder ================= */
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ababab !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #ababab !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #ababab !important;
+}
+
+/* ================= footer ================= */
+.footer {
+  background-color: #4f4f4f;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  margin: 0 !important;
+}
+
+/* ================= color and text align================= */
+.color-gray {
+  color: rgb(155, 155, 155);
+}
+
+.greyBG {
+  background: #EAEAEA;
+  color: black;
+}
+
+.redColor {
+  color: red;
+  font-weight: bold;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.normalLineHeight {
+  line-height: 50%;
+}
+
+.wide-100 {
+  width: 100% !important;
+}
+
+.pb-50px {
+  padding-bottom: 50px;
+}
+
+.darkblueColor {
+  color: #2c3ea4;
+}
+
+.whiteBlue {
+  color: white;
+}
+
+.whiteBlue:hover {
+  color: #68b4ee;
+  font-weight: bold;
+}
+
+.errorMessage {
+  margin-left: 5px;
+  font-size: 13px;
+  color: red;
+}
+
+.errorInput {
+  /* border-color: red !important;
+  border-style: solid; */
+  outline: 2px solid red !important;
+}
+
+.logoutBtn {
+  color: white;
+}
+
+.logoutBtn:hover {
+  color: black;
+  font-weight: bold;
+}
+
+.z99 {
+  z-index: 99;
+}
+
+.z0 {
+  z-index: 0;
+}
+
+.lineHeight90 {
+  line-height: normal;
+}
+
+.pbottom0Imp {
+  padding-bottom: 0 !important;
+}
+
+.mbottom0Imp {
+  padding-bottom: 0 !important;
+}
+
+.h4m0p10 {
+  margin: 0 !important;
+  padding-bottom: 10px !important;
+}
+
+.clickDownload a {
+  color: blue !important;
+  font-style: italic !important;
+}
+
+.clickDownload a:hover {
+  color: white !important;
+}
+
+.grayBorder {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+
+/* section 1 ====================== */
+.s1q1 {
+  width:100% !important;
+}
+
+.s1q1 textarea {
+  -webkit-box-sizing: border-box !important;
+     -moz-box-sizing: border-box !important;
+        box-sizing: border-box !important;
+     width: inherit !important;
+}
+
+
+/* for intership section 5 ================= */
+#placements td, #placements th {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#placements tr:nth-child(even){background-color: #f2f2f2;}
+
+#placements tr:hover {background-color: #ddd;}
+
+#placements th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(181, 217, 249);
+  color: black;
+}
+
+.downloadFile {
+  background-color: rgb(181, 217, 249);
+  color: black;
+}

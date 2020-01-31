@@ -1,0 +1,54 @@
+.form-all > label {
+  width: 100% !important;
+}
+
+.regularsize {
+  font-size: 12px !important;
+}
+
+.md-form {
+  margin: 0 !important;
+}
+
+.boardingTable {
+  text-align: left !important;
+}
+
+.FixedHeightContainer
+{
+  float:right;
+  height: 250px; 
+  padding:3px; 
+  /* background:#f00; */
+  border: 1px solid #cfd5db;
+  border-radius: 5px;
+}
+
+.Content
+{
+  height:244px;
+   overflow:auto;
+    background:#fff;
+}
+
+/* table, th, td {
+  border: 1px solid black;
+} */
+
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(198, 198, 198);
+  color: black;
+}

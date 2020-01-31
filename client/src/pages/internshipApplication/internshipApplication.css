@@ -1,0 +1,6 @@
+.sticky-div {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 50px;
+  /* background: red; */
+}

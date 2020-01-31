@@ -1,0 +1,78 @@
+.form-elegant .font-small {
+    font-size: 0.8rem; }
+  
+.form-elegant .z-depth-1a {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+  box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); 
+}
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+}
+/* 
+.btn-block {
+  opacity: 80%;
+}
+
+.btn-block:hover {
+  opacity: 100%;
+} */
+
+.clusalogo {
+  width: 300px;
+}
+
+.bg-lightcolor {
+  background-image: url('../../images/bg.jpg');
+  /* height: auto; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten; */
+  background-attachment: fixed;
+  min-height: 100%;
+}
+
+.vertical-center > * {
+  position: relative;
+  top: 40%;
+  transform: translate(0, -50%);
+}
+
+.instruction-link {
+  font-size: 20px;
+  text-decoration: underline !important;
+  color:black;
+}
+
+.instruction-link:hover {
+  color: #2c98f0 !important;
+  /* color: red !important; */
+  background: white !important;
+}
+
+.transcolor {
+  background: transparent;
+}
+
+.disabledInstruction-link {
+  font-size: 16px;
+  color: #a1a1a1;
+}
+
+
+
+/* =============== CLUSA Reviewer account info =================== */
+.orgList {
+  min-height: 600px;
+  height: auto !important; /* real browsers */
+}
+
+.errorImage {
+  width: 300px;
+  height: auto;
+  text-align: center;
+}
