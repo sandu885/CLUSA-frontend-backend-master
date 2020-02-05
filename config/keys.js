@@ -1,0 +1,5 @@
+module.exports = {
+    sendGridKey : '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',
+    signupText : 'Thank you for completing your organization’s registration on our website. Please check and keep your organization information updated whenever you log in. Now you may start applying for CLUSA grants. We are looking forward to help you build a strong APIA community.',
+    submitText : 'Thank you for submitting CLUSA 2020 Internship Grant Application！You need one more step to complete your application. Please fill out the mandatory leader training webinar attendees information below and send back to grant@clusa.org. Then your application will be taken as completed. CLUSA Grant Review Committee will review all the applications and announce awards on 3/31/2020. If you have any questions, please feel free to contact us.'
+}

@@ -1,0 +1,39 @@
+{
+  "name": "parse-server-example",
+  "version": "1.4.0",
+  "description": "An example Parse API server using the parse-server module",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ParsePlatform/parse-server-example"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "console-stamp": "^3.0.0-rc2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs-extra": "^8.1.0",
+    "kerberos": "~0.0.x",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.3.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "parse": "~1.8.0",
+    "parse-server": "*"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node .",
+    "devstart": "nodemon .",
+    "posttest": "npm run lint"
+  },
+  "engines": {
+    "node": ">=4.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
+  }
+}
