@@ -29,6 +29,7 @@ const applicationController = require("../../controllers/service/application");
 router.post('/signup', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), userController.signup);
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
+router.post('/forgetPassword', userController.forgetPassword);
 router.post('/checkSessionToken', userController.checkSessionToken);
 
 // update org info

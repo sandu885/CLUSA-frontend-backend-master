@@ -128,6 +128,40 @@ const login = async(username, password) => {
     return await Parse.User.logIn(username, password);
 }
 
+// User forget password
+const forgetPassword = async({ emailAddress, organizationName }) => {
+    if (!emailAddress && !organizationName)
+        throw new Error("Pass email address or organization name2");
+
+    Parse.User.enableUnsafeCurrentUser();
+    let queryUser = new Parse.Query(Parse.User);
+    let queryOrganization = new Parse.Query("Organization");
+    if (emailAddress) {
+        queryUser.equalTo("email", emailAddress);
+        let userRecord = await queryUser.first({useMasterKey: true});
+        if (!userRecord)
+            throw new Error("forget: Invalid email");
+        console.log('userRecord.get email', userRecord.get("email"));
+
+        await TOOL.forgetPassword(emailAddress, userRecord.get("username"));
+    }
+    if (organizationName) {
+        queryOrganization.equalTo("name", organizationName);
+        let orgRecord = await queryOrganization.first({useMasterKey: true});
+        if (!orgRecord)
+            throw new Error("Invalid organization name");
+
+        queryUser.equalTo("orgId", orgRecord.id);
+        let userRecord = await queryUser.first({useMasterKey: true});
+        if (!userRecord)
+            throw new Error("forget: Invalid organization name user not found");
+
+        await TOOL.forgetPassword(userRecord.get("email"), userRecord.get("username"));
+    }
+
+    return "Reset link send successfully"
+}
+
 // User logout
 const logout = async (sessionToken) => {
     if (!sessionToken)
@@ -181,5 +215,6 @@ module.exports = {
     logout,
     logger,
     findUserByUserIdAndOrgId,
+    forgetPassword,
     findAllUsersByOrgId
 }

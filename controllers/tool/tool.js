@@ -46,6 +46,41 @@ const sendEmail = async(emailAddress, username, password, type) => {
     }
 }
 
+const forgetPassword = async(emailAddress, username) => {
+  try {
+    if (!emailAddress)
+      throw new Error("No email");
+    let options = {
+      auth: {
+        api_key: keys.sendGridKey,
+      }
+    }
+    let client = nodemailer.createTransport(sgTransport(options));
+    let mailContent = {
+      from: {
+        name: 'CLUSA',
+        address: 'grant@clusa.org'
+      },
+      to: emailAddress,
+      subject: 'Reset password request',
+      text: `Dear ${username}, \n ${keys.signupText} 
+                \n Below is your account information: \n username: ${username} \n
+                \n This is your reset password link \n
+                \n LINK \n 
+                \n Best Regards, \n CLUSA`,
+      attachments: null
+    };
+    await client.sendMail(mailContent);
+    const message = 'Your message has been successfully sent.';
+    console.log("Your message has been successfully sent.");
+    return message;
+  } catch(err) {
+    console.log(err.message);
+    throw new Error(err.message);
+  }
+}
+
 module.exports = {
     sendEmail,
+    forgetPassword,
 }
