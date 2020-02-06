@@ -128,6 +128,7 @@ const login = async(username, password) => {
     return await Parse.User.logIn(username, password);
 }
 
+<<<<<<< HEAD
 // User forget password
 const forgetPassword = async({ emailAddress, organizationName }) => {
     if (!emailAddress && !organizationName)
@@ -162,6 +163,8 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
     return "Reset link send successfully"
 }
 
+=======
+>>>>>>> 2ad42567dec29b84b0adf7b24fd6e92910ee9b4f
 // User logout
 const logout = async (sessionToken) => {
     if (!sessionToken)
@@ -215,6 +218,9 @@ module.exports = {
     logout,
     logger,
     findUserByUserIdAndOrgId,
+<<<<<<< HEAD
     forgetPassword,
+=======
+>>>>>>> 2ad42567dec29b84b0adf7b24fd6e92910ee9b4f
     findAllUsersByOrgId
 }
