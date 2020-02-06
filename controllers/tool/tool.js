@@ -46,7 +46,6 @@ const sendEmail = async(emailAddress, username, password, type) => {
     }
 }
 
-<<<<<<< HEAD
 const forgetPassword = async(emailAddress, username) => {
   try {
     if (!emailAddress)
@@ -84,8 +83,4 @@ const forgetPassword = async(emailAddress, username) => {
 module.exports = {
     sendEmail,
     forgetPassword,
-=======
-module.exports = {
-    sendEmail,
->>>>>>> 2ad42567dec29b84b0adf7b24fd6e92910ee9b4f
 }
