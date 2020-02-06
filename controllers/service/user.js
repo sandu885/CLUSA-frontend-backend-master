@@ -57,6 +57,7 @@ const logout = async (req, res) => {
     });
   }
 }
+<<<<<<< HEAD
 
 // User forgetPassword
 const forgetPassword = async (req, res) => {
@@ -72,6 +73,8 @@ const forgetPassword = async (req, res) => {
     });
   }
 }
+=======
+>>>>>>> 2ad42567dec29b84b0adf7b24fd6e92910ee9b4f
   
 // User login with a sessionToken
 const logger = async(req, res, next) => {
@@ -108,6 +111,9 @@ module.exports = {
     login,
     logout,
     logger,
+<<<<<<< HEAD
     forgetPassword,
+=======
+>>>>>>> 2ad42567dec29b84b0adf7b24fd6e92910ee9b4f
     checkSessionToken
 }
