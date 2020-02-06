@@ -30,6 +30,7 @@ router.post('/signup', upload.fields([{ name: 'certificate', maxCount: 1 }, { na
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 router.post('/forgetPassword', userController.forgetPassword);
+router.post('/resetPassword', userController.resetPassword);
 router.post('/checkSessionToken', userController.checkSessionToken);
 
 // update org info

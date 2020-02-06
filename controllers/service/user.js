@@ -72,6 +72,21 @@ const forgetPassword = async (req, res) => {
     });
   }
 }
+
+// User forgetPassword
+const resetPassword = async (req, res) => {
+  try {
+    await USER.resetPassword(req.body);
+    res.status(200).json({
+      message: "Password updated successfully."
+    });
+  } catch(error) {
+    console.log(error.message);
+    res.status(500).json({
+      message: error.message
+    });
+  }
+}
   
 // User login with a sessionToken
 const logger = async(req, res, next) => {
@@ -109,5 +124,6 @@ module.exports = {
     logout,
     logger,
     forgetPassword,
+    resetPassword,
     checkSessionToken
 }

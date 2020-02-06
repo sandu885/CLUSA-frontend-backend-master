@@ -1,6 +1,7 @@
 const ORG = require("../db/organization");
 const TOOL = require('../tool/tool');
-
+const jwt = require('jwt-simple');
+const jwtSecret = 'fe1a1915a379f3be5394b64d14794932';
 // find user by username
 const findUserByUsername = async (username) => {
     let queryUser = new Parse.Query(Parse.User);
@@ -137,13 +138,14 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
     let queryUser = new Parse.Query(Parse.User);
     let queryOrganization = new Parse.Query("Organization");
     if (emailAddress) {
-        queryUser.equalTo("email", emailAddress);
+        queryUser.equalTo("emailAddress", emailAddress);
         let userRecord = await queryUser.first({useMasterKey: true});
         if (!userRecord)
-            throw new Error("forget: Invalid email");
-        console.log('userRecord.get email', userRecord.get("email"));
+            throw new Error("Invalid email");
 
-        await TOOL.forgetPassword(emailAddress, userRecord.get("username"));
+        const payload = { email: userRecord.get("email"), username: userRecord.get("username") };
+        const token = jwt.encode(payload, jwtSecret);
+        await TOOL.forgetPassword(emailAddress, userRecord.get("username"), token);
     }
     if (organizationName) {
         queryOrganization.equalTo("name", organizationName);
@@ -156,10 +158,34 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
         if (!userRecord)
             throw new Error("forget: Invalid organization name user not found");
 
-        await TOOL.forgetPassword(userRecord.get("email"), userRecord.get("username"));
+        const payload = { email: userRecord.get("email"), username: userRecord.get("username") };
+        const token = jwt.encode(payload, jwtSecret);
+
+        await TOOL.forgetPassword(userRecord.get("email"), userRecord.get("username"), token);
     }
 
     return "Reset link send successfully"
+}
+
+// User forget password
+const resetPassword = async({ newPassword, resetPasswordToken }) => {
+    if (!newPassword)
+        throw new Error("Pass email address or organization name2");
+
+    const tokenPayload = jwt.decode(resetPasswordToken, jwtSecret);
+
+    Parse.User.enableUnsafeCurrentUser();
+    let queryUser = new Parse.Query(Parse.User);
+    queryUser.equalTo("email", tokenPayload.email);
+    queryUser.equalTo("username", tokenPayload.username);
+    let userRecord = await queryUser.first({ useMasterKey: true });
+    if (!userRecord)
+        throw new Error("Reset password token is not valid.");
+
+    userRecord.set("password", newPassword);
+    await userRecord.save(null, { useMasterKey: true });
+
+    return "Password updated successfully "
 }
 
 // User logout
@@ -216,5 +242,6 @@ module.exports = {
     logger,
     findUserByUserIdAndOrgId,
     forgetPassword,
+    resetPassword,
     findAllUsersByOrgId
 }

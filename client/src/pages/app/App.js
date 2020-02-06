@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Login from '../login/Login';
 import Register from '../login/Register';
+import ForgetPassword from '../login/ForgetPassword';
 import UserAccount from '../userAccount/Account';
 import CLUSAAccount from '../userAccount/CLUSAAccount';
 
@@ -24,9 +25,15 @@ import InternApp11 from '../internshipApplication/Section11';
 import InternApp12 from '../internshipApplication/Section12';
 import InternApp13 from '../internshipApplication/Section13';
 
+import UserOrganizationManagement from '../UserOrganizationManagement/UserOrganizationManagement';
+
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
+
 import './App.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 class App extends Component {
   render() {
@@ -47,6 +54,11 @@ class App extends Component {
           <Route
             path="/register/"
             component={Register}
+          />
+
+          <Route
+            path="/forget-password/"
+            component={ForgetPassword}
           />
 
           <Route
@@ -142,6 +154,14 @@ class App extends Component {
             component={InternApp13}
           />
           {/* ------------------ application section end------------------ */}
+
+          {/* ------------------ User and Organization management------------------ */}
+          <Route
+            path="/user-organization-management/"
+            component={UserOrganizationManagement}
+          />
+          {/* ------------------ User and Organization management------------------ */}
+
         </div>
       </Router>
     );

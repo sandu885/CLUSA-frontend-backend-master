@@ -46,7 +46,7 @@ const sendEmail = async(emailAddress, username, password, type) => {
     }
 }
 
-const forgetPassword = async(emailAddress, username) => {
+const forgetPassword = async(emailAddress, username, token) => {
   try {
     if (!emailAddress)
       throw new Error("No email");
@@ -67,6 +67,8 @@ const forgetPassword = async(emailAddress, username) => {
                 \n Below is your account information: \n username: ${username} \n
                 \n This is your reset password link \n
                 \n LINK \n 
+                \n http://localhost:1337/forget-password?token=${token} \n
+                \n ${token} \n
                 \n Best Regards, \n CLUSA`,
       attachments: null
     };
