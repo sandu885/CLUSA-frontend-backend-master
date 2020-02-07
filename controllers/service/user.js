@@ -118,6 +118,23 @@ const checkSessionToken = async(req, res) => {
   }
 }
 
+const fetchAllUsers = async(req, res) => {
+  console.log("Fetching users start");
+  try {
+    let user = await USER.fetchAllUsers(req.body.user);
+    console.log("Successfully fetch all Users");
+    res.status(200).json({
+      message: 'Successfully fetch all Users',
+      users: user,
+    });
+  } catch(error) {
+    console.log("fetchAllUsers: " + error.message);
+    res.status(400).json({
+      message: error.message
+    });
+  }
+}
+
 module.exports = {
     signup,
     login,
@@ -125,5 +142,6 @@ module.exports = {
     logger,
     forgetPassword,
     resetPassword,
-    checkSessionToken
+    fetchAllUsers,
+    checkSessionToken,
 }

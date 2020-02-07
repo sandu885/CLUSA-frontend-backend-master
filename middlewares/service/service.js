@@ -40,6 +40,9 @@ router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 
 router.post('/saveApplicationContent', upload.array('budget'), applicationController.saveApplicationContent);
 router.use(userController.logger);
 
+//User Table
+router.post('/fetchAllUsers', userController.fetchAllUsers);
+
 // Organization Table
 router.post('/findOrgById', orgController.findOrgById);
 router.post('/findOrgByName', orgController.findOrgByName);

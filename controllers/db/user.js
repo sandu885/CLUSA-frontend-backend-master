@@ -232,6 +232,37 @@ const findAllUsersByOrgId = async(orgId) => {
     return await queryUser.find({useMasterKey: true});
 }
 
+// get all Users stored in the database
+const fetchAllUsers = async(user) => {
+    if (user.get("userType") != "0")
+        throw new Error("No permission to fetch all Users");
+    let queryUser = new Parse.Query("User");
+    queryUser.limit(10000);
+    let orgRecords = await queryUser.find({useMasterKey: true});
+    console.log("fetchAllUsers: successfully stored all Users data");
+    let userList = await Promise.all(orgRecords.map(async u => {
+        let ele = {};
+        ele["username"] = u.get("username");
+        ele["firstName"] = u.get("firstName");
+        ele["lastName"] = u.get("lastName");
+        ele["title"] = u.get("title");
+        ele["phone"] = u.get("phone");
+        if (u.get("emailAddress"))
+            ele["email"] = u.get("emailAddress");
+        else
+            ele["email"] = u.get("email");
+        ele["year"] = u.get("year");
+        ele["programInfo"] = u.get("programInfo");
+        ele["note"] = u.get("note");
+        ele["orgId"] = u.get("orgId");
+        ele["orgName"] = u.get("orgName");
+        ele["status"] = u.get("status");
+        ele["objectId"] = u.id;
+        return ele;
+    }));
+    return userList;
+}
+
 module.exports = {
     findUserByUsername,
     findUserByUserId,
@@ -243,5 +274,6 @@ module.exports = {
     findUserByUserIdAndOrgId,
     forgetPassword,
     resetPassword,
-    findAllUsersByOrgId
+    findAllUsersByOrgId,
+    fetchAllUsers,
 }

@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: transparent !important;
+}
+
+.custom-table {
+
+}
+
+.custom-table th {
+  font-weight: 700!important;
+  font-size: 17px;
+}

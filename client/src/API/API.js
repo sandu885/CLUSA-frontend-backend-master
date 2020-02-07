@@ -5,6 +5,7 @@ const API = {
   orgInfoByIdAPI: '/api/getOrgInfo',
   updateOrgInfoAPI: '/api/updateOrgInfo',
   createNewProgramAPI: '/api/createNewProgram',
+  fetchAllUsersAPI: '/api/fetchAllUsers',
   fetchAllProgramsByUserIdAPI: '/api/fetchAllProgramsByUserId',
   fetchAllProgramsByOrgIdAPI: '/api/fetchAllProgramsByOrgId',
   fetchAllOrgsAPI: '/api/fetchAllOrgs',
@@ -78,6 +79,14 @@ const API = {
    */
   getFetchAllOrgsAPI() {
     return this.fetchAllOrgsAPI;
+  },
+
+  /**
+   * Get the all organizations info API
+   * @returns {String} API
+   */
+  getFetchAllUsersAPI() {
+    return this.fetchAllUsersAPI;
   },
 
   /**
