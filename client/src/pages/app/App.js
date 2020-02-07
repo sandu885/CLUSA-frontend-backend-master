@@ -30,6 +30,9 @@ import UserOrganizationManagement from '../UserOrganizationManagement/UserOrgani
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
 
+// Router
+import { PrivateRoute } from "./router";
+
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -155,12 +158,8 @@ class App extends Component {
           />
           {/* ------------------ application section end------------------ */}
 
-          {/* ------------------ User and Organization management------------------ */}
-          <Route
-            path="/user-organization-management/"
-            component={UserOrganizationManagement}
-          />
-          {/* ------------------ User and Organization management------------------ */}
+
+          <PrivateRoute component={UserOrganizationManagement} path="/user-organization-management" exact roles={['it-admin', 'reviewer']} />
 
         </div>
       </Router>
