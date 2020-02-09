@@ -25,7 +25,7 @@ const programController = require("../../controllers/service/program");
 const sectionController = require("../../controllers/service/section");
 const applicationController = require("../../controllers/service/application");
 
-//User Table
+// User Table Public
 router.post('/signup', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), userController.signup);
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
@@ -40,8 +40,11 @@ router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 
 router.post('/saveApplicationContent', upload.array('budget'), applicationController.saveApplicationContent);
 router.use(userController.logger);
 
-//User Table
+// User Table
 router.post('/fetchAllUsers', userController.fetchAllUsers);
+router.post('/findUserById', userController.findUserById);
+router.post('/updateUserById', userController.updateUserById);
+router.post('/createUserByAdmin', userController.createUserByAdmin);
 
 // Organization Table
 router.post('/findOrgById', orgController.findOrgById);
