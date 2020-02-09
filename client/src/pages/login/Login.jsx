@@ -84,6 +84,9 @@ class Login extends Component {
     ).then((response) => {
       console.warn('login button response', response.data);
       // ======================== success, to organization account , userType === 1 ========================
+
+      localStorage.setItem('clusa-user-id', response.data.userId);
+      localStorage.setItem('clusa-role', response.data.userType);
       if (response.data.userType === '1') {
         console.warn('This is an opganizer applicant');
         this.setState({

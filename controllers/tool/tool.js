@@ -46,6 +46,39 @@ const sendEmail = async(emailAddress, username, password, type) => {
     }
 }
 
+const sendUserAddEmail = async(emailAddress, username, token) => {
+  try {
+    console.log("send email request received.");
+    if (!emailAddress)
+      throw new Error("No email");
+    console.log("Receiver email address is " + emailAddress);
+    let options = {
+      auth: {
+        api_key: keys.sendGridKey,
+      }
+    }
+    let client = nodemailer.createTransport(sgTransport(options));
+    let mailContent = {
+      from: {
+        name: 'CLUSA',
+        address: 'grant@clusa.org'
+      },
+      to: emailAddress,
+      subject: 'Confirmation of signup',
+      text: `Dear ${username}, \n ${keys.signupText} 
+                \n Below is your account information: \n username: ${username} \n Set Password Link password:  http://localhost:1337/forget-password?token=${token}
+                \n Best Regards, \n CLUSA`,
+    };
+    await client.sendMail(mailContent);
+    const message = 'Your message has been successfully sent.';
+    console.log("Your message has been successfully sent.");
+    return message;
+  } catch(err) {
+    console.log(err.message);
+    throw new Error(err.message);
+  }
+}
+
 const forgetPassword = async(emailAddress, username, token) => {
   try {
     if (!emailAddress)
@@ -68,7 +101,6 @@ const forgetPassword = async(emailAddress, username, token) => {
                 \n This is your reset password link \n
                 \n LINK \n 
                 \n http://localhost:1337/forget-password?token=${token} \n
-                \n ${token} \n
                 \n Best Regards, \n CLUSA`,
       attachments: null
     };
@@ -85,4 +117,5 @@ const forgetPassword = async(emailAddress, username, token) => {
 module.exports = {
     sendEmail,
     forgetPassword,
+    sendUserAddEmail,
 }

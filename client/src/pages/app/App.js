@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from '../login/Login';
 import Register from '../login/Register';
@@ -25,7 +25,10 @@ import InternApp11 from '../internshipApplication/Section11';
 import InternApp12 from '../internshipApplication/Section12';
 import InternApp13 from '../internshipApplication/Section13';
 
+// User Management
 import UserOrganizationManagement from '../UserOrganizationManagement/UserOrganizationManagement';
+import UserAccountManagement from '../userAccount/UserAccountManagement/UserAccountManagement';
+import MyAccount from '../userAccount/MyAccount/MyAccount';
 
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
@@ -157,9 +160,16 @@ class App extends Component {
             component={InternApp13}
           />
           {/* ------------------ application section end------------------ */}
+          <Switch>
+            <PrivateRoute component={UserOrganizationManagement} path="/user-organization-management" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={UserAccountManagement} path="/user-account/:userId" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={UserAccountManagement} path="/user-account" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={MyAccount} path="/my-account" exact roles={['it-admin', 'reviewer']} />
 
 
-          <PrivateRoute component={UserOrganizationManagement} path="/user-organization-management" exact roles={['it-admin', 'reviewer']} />
+          </Switch>
+
+
 
         </div>
       </Router>

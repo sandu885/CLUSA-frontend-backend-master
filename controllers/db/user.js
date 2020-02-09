@@ -143,7 +143,7 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
         if (!userRecord)
             throw new Error("Invalid email");
 
-        const payload = { email: userRecord.get("email"), username: userRecord.get("username") };
+        const payload = { email: userRecord.get("emailAddress"), username: userRecord.get("username") };
         const token = jwt.encode(payload, jwtSecret);
         await TOOL.forgetPassword(emailAddress, userRecord.get("username"), token);
     }
@@ -158,10 +158,10 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
         if (!userRecord)
             throw new Error("forget: Invalid organization name user not found");
 
-        const payload = { email: userRecord.get("email"), username: userRecord.get("username") };
+        const payload = { email: userRecord.get("emailAddress"), username: userRecord.get("username") };
         const token = jwt.encode(payload, jwtSecret);
 
-        await TOOL.forgetPassword(userRecord.get("email"), userRecord.get("username"), token);
+        await TOOL.forgetPassword(userRecord.get("emailAddress"), userRecord.get("username"), token);
     }
 
     return "Reset link send successfully"
@@ -176,7 +176,7 @@ const resetPassword = async({ newPassword, resetPasswordToken }) => {
 
     Parse.User.enableUnsafeCurrentUser();
     let queryUser = new Parse.Query(Parse.User);
-    queryUser.equalTo("email", tokenPayload.email);
+    queryUser.equalTo("emailAddress", tokenPayload.email);
     queryUser.equalTo("username", tokenPayload.username);
     let userRecord = await queryUser.first({ useMasterKey: true });
     if (!userRecord)
@@ -263,6 +263,49 @@ const fetchAllUsers = async(user) => {
     return userList;
 }
 
+const findUserById = async ({ sessionToken, userId }) => {
+    if (!sessionToken)
+        throw new Error("No sessionToken");
+    let queryUser = new Parse.Query("User");
+    queryUser.equalTo("objectId", userId);
+    return await queryUser.first({useMasterKey: true});
+}
+
+const updateUserById = async (meta) => {
+    if (!meta.sessionToken)
+        throw new Error("No sessionToken");
+    let queryUser = new Parse.Query(Parse.User);
+
+    let userRecord = await queryUser.first({ useMasterKey: true });
+    queryUser.equalTo("objectId", meta.userId);
+    meta.username && userRecord.set("username", meta.username);
+    meta.firstName && userRecord.set("firstName", meta.firstName);
+    meta.lastName && userRecord.set("lastName", meta.lastName);
+    meta.email && userRecord.set("email", meta.email);
+    meta.userType && userRecord.set("userType", meta.userType);
+    meta.password && userRecord.set("userType", meta.password);
+
+    return userRecord.save(null,{ useMasterKey: true });
+}
+
+const createUserByAdmin = async (meta) => {
+    if (!meta.sessionToken)
+        throw new Error("No sessionToken");
+    let User = Parse.Object.extend("User"), user = new User();
+    meta.username && user.set("username", meta.username);
+    meta.firstName && user.set("firstName", meta.firstName);
+    meta.lastName && user.set("lastName", meta.lastName);
+    meta.emailAddress && user.set("emailAddress", meta.email);
+    meta.userType && user.set("userType", meta.userType);
+    meta.password ? user.set("userType", meta.password) : user.set("password", 'test');
+
+    const payload = { email: meta.emailAddress, username: meta.username };
+    const token = jwt.encode(payload, jwtSecret);
+    await TOOL.sendUserAddEmail(meta.emailAddress, meta.username, token);
+
+    return user.save(null,{ useMasterKey: true });
+}
+
 module.exports = {
     findUserByUsername,
     findUserByUserId,
@@ -276,4 +319,7 @@ module.exports = {
     resetPassword,
     findAllUsersByOrgId,
     fetchAllUsers,
+    findUserById,
+    updateUserById,
+    createUserByAdmin,
 }

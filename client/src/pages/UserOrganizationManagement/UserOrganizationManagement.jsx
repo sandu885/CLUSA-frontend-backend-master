@@ -20,13 +20,14 @@ class UserOrganizationManagement extends Component {
 
     this.state = {
       orgAll: [],
+      dataReceived: false,
       sessionToken: localStorage.getItem('sessionToken'),
     };
   }
 
 
   render() {
-    const { orgAll, userAll = [] } = this.state;
+    const { orgAll, userAll = [], dataReceived } = this.state;
 
     const orgTableData = {
       columns: [
@@ -114,49 +115,81 @@ class UserOrganizationManagement extends Component {
       <div className="bg-withImage">
         <HeaderComponent />
 
-        <MDBContainer className="pt-5 mb-5">
-          <MDBRow>
-            <MDBCol md="12">
-              <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    User Management
-                  </MDBCol>
-                </MDBRow>
-                <MDBCardBody>
-                  <MDBDataTable
-                    className="custom-table"
-                    striped
-                    borderless
-                    data={userTableData}
-                    searching={true}
-                    noBottomColumns
-                    info={false}
-                  />
-                </MDBCardBody>
-                <br />
+        {dataReceived ? <div/> :
+          <MDBContainer className="pt-5 mb-5">
+            <MDBRow>
+              <MDBCol md="12">
+                <MDBCard>
+                  <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
+                    <MDBCol
+                      md="2"
+                    >
+                      <MDBBtn
+                        rounded
+                        size={"sm"}
+                        className="second-action-button btn-block z-depth-1a"
+                        onClick={() => {
+                          this.props.history.push(`/user-account`);
+                        }}
+                      >
+                        Add New User
+                      </MDBBtn>
+                    </MDBCol>
+                    <MDBCol
+                      md="8"
+                    >
+                      User Management
+                    </MDBCol>
+                    <MDBCol
+                      md="2"
+                    >
+                      <MDBBtn
+                        rounded
+                        size={"sm"}
+                        className="second-action-button btn-block z-depth-1a"
+                        onClick={() => {
+                          this.props.history.push(`/my-account`);
+                        }}
+                      >
+                        My Account
+                      </MDBBtn>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBCardBody>
+                    <MDBDataTable
+                      className="custom-table"
+                      striped
+                      borderless
+                      data={userTableData}
+                      searching={true}
+                      noBottomColumns
+                      info={false}
+                    />
+                  </MDBCardBody>
+                  <br />
 
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    Organization Management
-                  </MDBCol>
-                </MDBRow>
-                <MDBCardBody>
-                  <MDBDataTable
-                    className="custom-table"
-                    striped
-                    borderless
-                    data={orgTableData}
-                    searching={true}
-                    noBottomColumns
-                    info={false}
-                  />
-                </MDBCardBody>
-                <br />
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+                  <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
+                    <MDBCol>
+                      Organization Management
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBCardBody>
+                    <MDBDataTable
+                      className="custom-table"
+                      striped
+                      borderless
+                      data={orgTableData}
+                      searching={true}
+                      noBottomColumns
+                      info={false}
+                    />
+                  </MDBCardBody>
+                  <br />
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        }
 
         <FooterComponent className="mt-5 pt-5" />
       </div>
@@ -248,7 +281,7 @@ class UserOrganizationManagement extends Component {
                     className="first-action-button btn-block z-depth-1a"
                     onClick={() => {
                       // localStorage.setItem('orgId', [u.objectId]);
-                      // this.props.history.push('/organization-information/');
+                      this.props.history.push(`/user-account/${u.objectId}`);
                     }}
                   >
                     Edit
@@ -286,6 +319,7 @@ class UserOrganizationManagement extends Component {
         this.setState({
           orgAll,
           userAll: usersData,
+          dataReceived: false,
         });
       }
     }).catch((error) => {
@@ -298,9 +332,11 @@ class UserOrganizationManagement extends Component {
           }
         }
       }
+      this.setState({
+        dataReceived: false,
+      });
     });
   }
-
 
   getData = (key, defaultValue = '') => {
     const data = this.state.responseMessage;

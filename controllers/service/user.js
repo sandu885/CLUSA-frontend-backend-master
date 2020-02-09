@@ -135,6 +135,54 @@ const fetchAllUsers = async(req, res) => {
   }
 }
 
+const findUserById = async(req, res) => {
+  try {
+    let user = await USER.findUserById(req.body);
+    console.log("Successfully fetch User");
+    res.status(200).json({
+      message: 'Successfully fetch User',
+      user,
+    });
+  } catch(error) {
+    console.log("fetchUser: " + error.message);
+    res.status(400).json({
+      message: error.message
+    });
+  }
+}
+
+const updateUserById = async(req, res) => {
+  try {
+    let user = await USER.updateUserById(req.body);
+    console.log("Successfully updated User");
+    res.status(200).json({
+      message: 'Successfully updated User',
+      user,
+    });
+  } catch(error) {
+    console.log("fetchUser: " + error.message);
+    res.status(400).json({
+      message: error.message
+    });
+  }
+};
+
+const createUserByAdmin = async(req, res) => {
+  try {
+    let user = await USER.createUserByAdmin(req.body);
+    console.log("Successfully updated User");
+    res.status(200).json({
+      message: 'Successfully updated User',
+      user,
+    });
+  } catch(error) {
+    console.log("fetchUser: " + error.message);
+    res.status(400).json({
+      message: error.message
+    });
+  }
+};
+
 module.exports = {
     signup,
     login,
@@ -144,4 +192,7 @@ module.exports = {
     resetPassword,
     fetchAllUsers,
     checkSessionToken,
+    findUserById,
+    updateUserById,
+    createUserByAdmin,
 }
