@@ -49,8 +49,25 @@ const fetchAllProgramsByOrgId = async(req, res) => {
     }
 }
 
+const fetchAllPrograms = async(req, res) => {
+    try {
+        let programs = await PROGRAM.fetchAllPrograms(req.body);
+        console.log("Successfully fetch all programs");
+        res.status(200).json({
+            message: "Successfully fetch all programs",
+            programs: programs,
+        });
+    } catch(error) {
+        console.log(error.message);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
 module.exports = {
     createNewProgram,
     fetchAllProgramsByUserId,
-    fetchAllProgramsByOrgId
+    fetchAllProgramsByOrgId,
+    fetchAllPrograms,
 }

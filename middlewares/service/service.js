@@ -57,6 +57,7 @@ router.post('/getCertificateFile', orgController.getCertificateFile);
 router.post('/createNewProgram', programController.createNewProgram);
 router.post('/fetchAllProgramsByUserId', programController.fetchAllProgramsByUserId);
 router.post('/fetchAllProgramsByOrgId', programController.fetchAllProgramsByOrgId);
+router.post('/fetchAllPrograms', programController.fetchAllPrograms);
 
 // Section Table
 router.post('/createNewSection', sectionController.createNewSection);

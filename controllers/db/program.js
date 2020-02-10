@@ -33,11 +33,51 @@ const fetchAllProgramsByOrgId = async(orgId) => {
     return await queryProgram.find({useMasterKey: true});
 }
 
-const fetchAllPrograms = async() => {
+const fetchAllPrograms = async(meta) => {
     let queryProgram = new Parse.Query("Program");
+    if (meta.programType) {
+        queryProgram.equalTo("programType", meta.programType);
+    }
+    if (meta.status) {
+        queryProgram.equalTo("status", meta.status);
+    }
+    if (meta.year && meta.year.length === 4) {
+        queryProgram.equalTo("year", meta.year);
+    }
     queryProgram.limit(10000);
-    return await queryProgram.find({useMasterKey: true});
-}
+    const programRecords = await queryProgram.find({useMasterKey: true});
+    let programs = [];
+
+    for (let i in programRecords) {
+        let ele = {};
+        let queryOrg = new Parse.Query("Organization");
+        queryOrg.limit(1);
+        queryOrg.equalTo("objectId", programRecords[i].get("orgId"));
+        let orgRecord = await queryOrg.first({useMasterKey: true});
+        ele["userId"] = programRecords[i].get("userId");
+        ele["type"] = programRecords[i].get("type");
+        ele["status"] = programRecords[i].get("status");
+        ele["objectId"] = programRecords[i].id;
+        ele["programType"] = programRecords[i].get("programType");
+        ele["awardAmount"] = 45;
+        ele["amount"] = 45;
+        ele["org"] = orgRecord;
+        ele["orgName"] = orgRecord.get('name');
+
+        ele["createdAt"] = programRecords[i].get("createdAt");
+        ele["updatedAt"] = programRecords[i].get("updatedAt");
+
+        if ((meta.organizationName || '').trim()) {
+            const orgName = orgRecord.get('name') || '';
+            if (orgName.includes((meta.organizationName || '').trim())) {
+                return programs.push(ele);
+            }
+        } else {
+            programs.push(ele);
+        }
+    };
+    return programs;
+};
 
 const findProgramById = async(programId) => {
     let queryProgram = new Parse.Query("Program");

@@ -140,20 +140,7 @@ class UserOrganizationManagement extends Component {
                     >
                       User Management
                     </MDBCol>
-                    <MDBCol
-                      md="2"
-                    >
-                      <MDBBtn
-                        rounded
-                        size={"sm"}
-                        className="second-action-button btn-block z-depth-1a"
-                        onClick={() => {
-                          this.props.history.push(`/my-account`);
-                        }}
-                      >
-                        My Account
-                      </MDBBtn>
-                    </MDBCol>
+                    <MDBCol md="2"/>
                   </MDBRow>
                   <MDBCardBody>
                     <MDBDataTable
