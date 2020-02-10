@@ -1,8 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn, MDBModalFooter, MDBModal, MDBModalHeader, MDBModalBody } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBModalFooter, MDBModal, MDBModalHeader, MDBModalBody } from 'mdbreact';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 
 import './ForgetPassword.css';
 
