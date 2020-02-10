@@ -11,12 +11,13 @@ import axios from 'axios';
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 
-class UserAccountManagement extends Component {
+class MyAccount extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
+      userId: localStorage.getItem('clusa-user-id'),
       formData: {},
     };
   }
@@ -54,10 +55,20 @@ class UserAccountManagement extends Component {
       return true
     }
 
-    if (!formData.role) {
-      alert('Please select any role for the user.');
+    if (!formData.password) {
+      return false
+    } else if (formData.password.length > 6) {
+      alert('Min. password length should be 6');
       return true
     }
+
+    if (!formData.newPassword) {
+      return false
+    } else if (formData.newPassword !== formData.password) {
+      alert('Password does not match');
+      return true
+    }
+
     return false
   };
 
@@ -77,21 +88,13 @@ class UserAccountManagement extends Component {
       lastName: fullName.join(' '),
       userType: postData.role,
     };
-    let postUser, passId;
 
-    if (this.props.match && this.props.match.params.userId) {
-      passId = true;
-      postUser = '/api/updateUserById';
-    } else {
-      passId = false;
-      postUser = '/api/createUserByAdmin';
-    }
-
+    const updateUserByAdmin = '/api/updateUserById';
     try {
       await axios({
         method: 'post',
-        url: postUser,
-        data: { ...postData, sessionToken, userId: passId ? this.props.match.params.userId : '' },
+        url: updateUserByAdmin,
+        data: { ...postData, sessionToken, userId: this.state.userId },
       });
       console.warn('console User finish');
       history.push('/user-organization-management');
@@ -113,9 +116,7 @@ class UserAccountManagement extends Component {
   };
 
   render() {
-    const { formData: { username = '', name = '', email = '' } } = this.state;
-    console.log('this.state  ', this.state);
-
+    const { formData: { username = '', name = '', email = '', password = '', newPassword = '' } } = this.state;
 
     return (
       <div className="bg-withImage">
@@ -127,15 +128,12 @@ class UserAccountManagement extends Component {
               <MDBCard>
                 <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
                   <MDBCol>
-                    Add New Account Information
+                    My Account Information
                   </MDBCol>
                 </MDBRow>
                 <MDBCardBody>
-
                   <MDBRow>
-
                     <MDBCol md="1" />
-
                     <MDBCol md="10">
                       <div className="pt-4 text-left">
                         <span className="redColor">* </span>
@@ -150,8 +148,6 @@ class UserAccountManagement extends Component {
                         </label>
                         <input className="form-control mt-2" name="username" value={username} onChange={this.handleChange} />
                       </div>
-
-
                       <div className="pt-4 text-left">
                         <span className="redColor">* </span>
                         <label
@@ -179,7 +175,6 @@ class UserAccountManagement extends Component {
                         </label>
                         <input className="form-control mt-2" name="email" value={email} onChange={this.handleChange} />
                       </div>
-
                       <div className="pt-4 text-left">
                         <span className="redColor">* </span>
                         <label
@@ -189,17 +184,23 @@ class UserAccountManagement extends Component {
                             fontSize: 'larger'
                           }}
                         >
-                          Role
+                          Password
                         </label>
-                        <select name="role" className="browser-default custom-select" onChange={this.handleChange}>
-                          <option>Choose Role</option>
-                          <option value="3">IT Admin</option>
-                          <option value="0">Grant Reviewer</option>
-                          <option value="1">Organization</option>
-                          <option value="2">Grant Manager</option>
-                        </select>
+                        <input className="form-control mt-2" name="password" value={password} onChange={this.handleChange} />
                       </div>
-
+                      <div className="pt-4 text-left">
+                        <span className="redColor">* </span>
+                        <label
+                          htmlFor="internship-s4-q1"
+                          className="font-weight-bold text-justify"
+                          style={{
+                            fontSize: 'larger'
+                          }}
+                        >
+                          New Password
+                        </label>
+                        <input className="form-control mt-2" name="newPassword" value={newPassword} onChange={this.handleChange} />
+                      </div>
                       <div className="pt-4 text-center">
                         <MDBRow>
                           <MDBCol md="2"/>
@@ -225,17 +226,10 @@ class UserAccountManagement extends Component {
                           <MDBCol md="2"/>
                         </MDBRow>
                       </div>
-
                     </MDBCol>
                     <MDBCol md="1" />
-
                   </MDBRow>
-
-
-                  
-                  
                 </MDBCardBody>
-
                 <br />
 
                 <br />
@@ -243,7 +237,6 @@ class UserAccountManagement extends Component {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );
@@ -252,29 +245,29 @@ class UserAccountManagement extends Component {
   componentDidMount() {
     const getFindUserById = '/api/findUserById';
 
-    if (this.props.match && this.props.match.params.userId) {
+    if (this.state.userId) {
       axios.post(
         getFindUserById,
         {
           sessionToken: this.state.sessionToken,
-          userId: this.props.match.params.userId
+          userId: this.state.userId,
         },
       ).then((response) => {
-
         console.warn('clusa response', response.data.user);
-        // ======================== success ========================
 
         const formData = {
           username: response.data.user.username,
           email: response.data.user.emailAddress || response.data.user.email,
-          name: response.data.user.firstName + ' ' + response.data.user.lastName,
+          name: (response.data.user.firstName || '') + ' ' + (response.data.user.lastName || ''),
           role: response.data.user.userType,
+          password: response.data.user.password,
+          newPassword: response.data.user.password,
         }
-          // console.warn('organizations in CLUSA', this.getData('organizations'));
-          this.setState({
-            formData,
-          });
-          // console.warn('orgAll', this.state.orgAll);
+        // console.warn('organizations in CLUSA', this.getData('organizations'));
+        this.setState({
+          formData,
+        });
+        // console.warn('orgAll', this.state.orgAll);
 
       }).catch((error) => {
         if(error.response !== null && error.response !== undefined) {
@@ -290,11 +283,7 @@ class UserAccountManagement extends Component {
         }
       });
     }
-
-
   }
-
-
 }
 
-export default UserAccountManagement;
+export default MyAccount;
