@@ -4,7 +4,6 @@ import {
   MDBContainer,
   MDBCardBody,
   MDBBtn,
-  MDBDataTable,
   MDBRow, MDBCol, MDBCard
 } from 'mdbreact';
 import axios from 'axios';
@@ -264,11 +263,11 @@ class MyAccount extends Component {
           password: response.data.user.password,
           newPassword: response.data.user.password,
         }
-          // console.warn('organizations in CLUSA', this.getData('organizations'));
-          this.setState({
-            formData,
-          });
-          // console.warn('orgAll', this.state.orgAll);
+        // console.warn('organizations in CLUSA', this.getData('organizations'));
+        this.setState({
+          formData,
+        });
+        // console.warn('orgAll', this.state.orgAll);
 
       }).catch((error) => {
         if(error.response !== null && error.response !== undefined) {

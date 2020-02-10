@@ -4,7 +4,6 @@ import {
   MDBContainer,
   MDBCardBody,
   MDBBtn,
-  MDBDataTable,
   MDBRow, MDBCol, MDBCard
 } from 'mdbreact';
 import axios from 'axios';
