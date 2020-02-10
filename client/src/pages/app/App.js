@@ -30,6 +30,9 @@ import UserOrganizationManagement from '../UserOrganizationManagement/UserOrgani
 import UserAccountManagement from '../userAccount/UserAccountManagement/UserAccountManagement';
 import MyAccount from '../userAccount/MyAccount/MyAccount';
 
+// Program
+import Program from '../program/Program.jsx';
+
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
 
@@ -165,7 +168,7 @@ class App extends Component {
             <PrivateRoute component={UserAccountManagement} path="/user-account/:userId" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={UserAccountManagement} path="/user-account" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={MyAccount} path="/my-account" exact roles={['it-admin', 'reviewer']} />
-
+            <PrivateRoute component={Program} path="/view-program" exact roles={['it-admin', 'reviewer']} />
 
           </Switch>
 
