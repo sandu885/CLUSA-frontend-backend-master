@@ -121,16 +121,7 @@ class ForgetPassword extends Component {
                         <input type="email" name="emailAddress" onChange={this.handleChange} className="form-control mt-2" value={emailAddress} />
                       </MDBCol>
                     </MDBRow>
-                    <MDBRow>
-                      <MDBCol
-                        md="4"
-                        className="pt-3 font-weight-bold"
-                      >Or Organization Name:
-                      </MDBCol>
-                      <MDBCol md="8">
-                        <input name="organization" onChange={this.handleChange} className="form-control mt-2" value={organization} />
-                      </MDBCol>
-                    </MDBRow>
+
 
                     <br />
 

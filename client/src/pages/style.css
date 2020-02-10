@@ -211,3 +211,13 @@
   background-color: rgb(181, 217, 249);
   color: black;
 }
+
+.user-name-header {
+  color: #fff;
+}
+
+.user-name-header:hover {
+  color: #fff !important;
+  transition: all 0.2s ease-in-out;
+  text-decoration: underline !important;
+}
