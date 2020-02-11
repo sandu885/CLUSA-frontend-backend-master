@@ -116,6 +116,24 @@ class Login extends Component {
           redirectCLUSAVerifier: true,
         });
         // console.warn('getAuth from auth in Login Page=====', Auth.getAuth());
+      } else if (response.data.userType === '2') {
+        // ======================== success, to reviewer account, userType === 2 && manager========================
+        this.setState({
+          sessionToken: response.data.sessionToken,
+        });
+        localStorage.setItem('sessionToken', this.state.sessionToken);
+        localStorage.setItem('userName', this.state.username);
+        localStorage.setItem('isAuthenticated', true);
+        this.props.history.push('/view-program')
+      } else if (response.data.userType === '3') {
+        // ======================== success, to reviewer account, userType === 3 && Admin========================
+        this.setState({
+          sessionToken: response.data.sessionToken,
+        });
+        localStorage.setItem('sessionToken', this.state.sessionToken);
+        localStorage.setItem('userName', this.state.username);
+        localStorage.setItem('isAuthenticated', true);
+        this.props.history.push('/user-organization-management')
       }
     }).catch((error) => {
       console.warn(error.response);

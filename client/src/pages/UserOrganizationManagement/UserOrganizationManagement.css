@@ -19,3 +19,7 @@
     font-size: 1rem !important;
 }
 
+.add-new-user {
+    align-items: center;
+    display: inherit;
+}

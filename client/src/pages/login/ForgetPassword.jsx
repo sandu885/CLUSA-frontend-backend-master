@@ -277,7 +277,6 @@ class ForgetPassword extends Component {
                 </MDBCol>
               </MDBRow>
             </MDBModalBody>
-
           </MDBModal>
           <MDBModal isOpen={this.state.linkSend && this.state.token} toggle={this.toggle}>
             <MDBModalHeader>Success!</MDBModalHeader>
