@@ -237,8 +237,16 @@ const fetchAllUsers = async(user) => {
     if (user.get("userType") != "0")
         throw new Error("No permission to fetch all Users");
     let queryUser = new Parse.Query("User");
-    queryUser.limit(10000);
-    let orgRecords = await queryUser.find({useMasterKey: true});
+    queryUser.doesNotExist('isDeleted');
+
+    const deletedQuery = new Parse.Query("User");
+    deletedQuery.equalTo('isDeleted', false);
+
+    const query = Parse.Query.or(queryUser, deletedQuery);
+    // query.descending("createdAt");
+    query.limit(10000);
+
+    let orgRecords = await query.find({useMasterKey: true});
     console.log("fetchAllUsers: successfully stored all Users data");
     let userList = await Promise.all(orgRecords.map(async u => {
         let ele = {};
@@ -288,6 +296,19 @@ const updateUserById = async (meta) => {
     return userRecord.save(null,{ useMasterKey: true });
 }
 
+const deleteUserById = async (meta) => {
+    if (!meta.sessionToken)
+        throw new Error("No sessionToken");
+    console.log('Entered in the delete the user');
+    let queryUser = new Parse.Query(Parse.User);
+
+    queryUser.equalTo("objectId", meta.userId);
+    let userRecord = await queryUser.first({ useMasterKey: true });
+
+    userRecord.set("isDeleted", true);
+    return userRecord.save(null,{ useMasterKey: true });
+}
+
 const createUserByAdmin = async (meta) => {
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
@@ -322,4 +343,5 @@ module.exports = {
     findUserById,
     updateUserById,
     createUserByAdmin,
+    deleteUserById,
 }

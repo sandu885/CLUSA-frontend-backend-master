@@ -45,6 +45,7 @@ router.post('/fetchAllUsers', userController.fetchAllUsers);
 router.post('/findUserById', userController.findUserById);
 router.post('/updateUserById', userController.updateUserById);
 router.post('/createUserByAdmin', userController.createUserByAdmin);
+router.post('/deleteUserById', userController.deleteUserById);
 
 // Organization Table
 router.post('/findOrgById', orgController.findOrgById);
