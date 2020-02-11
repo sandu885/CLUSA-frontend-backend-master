@@ -5,7 +5,7 @@ import {
   MDBCardBody,
   MDBBtn,
   MDBDataTable,
-  MDBRow, MDBCol, MDBCard
+  MDBRow, MDBCol, MDBCard, MDBModalHeader, MDBModalBody, MDBModal
 } from 'mdbreact';
 import axios from 'axios';
 
@@ -25,6 +25,33 @@ class UserOrganizationManagement extends Component {
     };
   }
 
+  toggle = (e, userData) => {
+    this.setState({
+      open: !this.state.open,
+      selectedUserData: userData,
+    })
+  };
+
+  deleteUser = () => {
+    const deleteUserAPI = '/api/deleteUserById';
+    const { selectedUserData, userAll } = this.state;
+
+    try {
+      axios.post(
+        deleteUserAPI,
+        { ...selectedUserData, userId: selectedUserData.objectId, sessionToken: this.state.sessionToken },
+      ).then(async (response) => {
+        const userIndex = userAll.findIndex(e => e.objectId === selectedUserData.objectId);
+        userAll.splice(userIndex, 1);
+        this.toggle();
+        this.setState({
+          userAll: [ ...userAll ]
+        })
+      })
+    } catch (e) {
+      this.toggle()
+    }
+  };
 
   render() {
     const { orgAll, userAll = [], dataReceived } = this.state;
@@ -127,7 +154,7 @@ class UserOrganizationManagement extends Component {
                       <MDBBtn
                         rounded
                         size={"sm"}
-                        className="second-action-button btn-block z-depth-1a"
+                        className="second-action-button btn-block z-depth-1a add-new-user"
                         onClick={() => {
                           this.props.history.push(`/user-account`);
                         }}
@@ -142,18 +169,7 @@ class UserOrganizationManagement extends Component {
                     </MDBCol>
                     <MDBCol
                       md="2"
-                    >
-                      <MDBBtn
-                        rounded
-                        size={"sm"}
-                        className="second-action-button btn-block z-depth-1a"
-                        onClick={() => {
-                          this.props.history.push(`/my-account`);
-                        }}
-                      >
-                        My Account
-                      </MDBBtn>
-                    </MDBCol>
+                    />
                   </MDBRow>
                   <MDBCardBody>
                     <MDBDataTable
@@ -188,6 +204,20 @@ class UserOrganizationManagement extends Component {
                 </MDBCard>
               </MDBCol>
             </MDBRow>
+            <MDBModal isOpen={this.state.open} toggle={this.toggle}>
+              <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
+              <MDBModalBody className="text-center">
+                {this.state.selectedUserData && this.state.selectedUserData.username}
+                <MDBRow className="mt-4">
+                  <MDBCol md="6" className="text-center">
+                    <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
+                  </MDBCol>
+                  <MDBCol md="6" className="text-center">
+                    <MDBBtn className="modal-cancel-button" color="red" onClick={this.toggle}>Cancel</MDBBtn>
+                  </MDBCol>
+                </MDBRow>
+              </MDBModalBody>
+            </MDBModal>
           </MDBContainer>
         }
 
@@ -306,7 +336,7 @@ class UserOrganizationManagement extends Component {
                     rounded
                     size={"sm"}
                     className="third-action-button btn-block z-depth-1a"
-                    onClick={() => {}}
+                    onClick={(e) => this.toggle(e, u)}
                   >
                     Deleted
                   </MDBBtn>

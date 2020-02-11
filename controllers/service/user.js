@@ -167,6 +167,22 @@ const updateUserById = async(req, res) => {
   }
 };
 
+const deleteUserById = async(req, res) => {
+  try {
+    let user = await USER.deleteUserById(req.body);
+    console.log("Successfully updated User");
+    res.status(200).json({
+      message: 'Successfully updated User',
+      user,
+    });
+  } catch(error) {
+    console.log("fetchUser: " + error.message);
+    res.status(400).json({
+      message: error.message
+    });
+  }
+};
+
 const createUserByAdmin = async(req, res) => {
   try {
     let user = await USER.createUserByAdmin(req.body);
@@ -195,4 +211,5 @@ module.exports = {
     findUserById,
     updateUserById,
     createUserByAdmin,
+    deleteUserById,
 }
