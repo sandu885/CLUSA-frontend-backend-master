@@ -78,7 +78,7 @@ class Program extends Component {
         return {
           ...row,
           orgName: row.orgName && <Link to={`/org/${row.org.objectId}`}> {row.orgName} </Link>,
-          programType: <Link to={'/'}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
+          programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
         }
       });
 
@@ -295,7 +295,7 @@ class Program extends Component {
           return {
             ...row,
             orgName: row.orgName && <Link to={`/org/${row.org.objectId}`}> {row.orgName} </Link>,
-            programType: <Link to={'/'}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
+            programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
           }
         })
         this.setState({
