@@ -134,10 +134,10 @@ class Program extends Component {
                   </MDBCol>
                 </MDBRow>
                 <MDBCardBody>
-                  <MDBRow>
+                  <MDBRow className="header-section">
                     <MDBCol md="1" />
                     <MDBCol md="10">
-                      <MDBRow>
+                      <MDBRow className="pt-4">
                         <MDBCol
                           md="2"
                           className="pt-3 font-weight-bold"
@@ -194,7 +194,7 @@ class Program extends Component {
                           <input type="number" name="year" onChange={this.handleChange} className="form-control mt-2" value={year} />
                         </MDBCol>
                       </MDBRow>
-                      <div className="pt-4 text-center">
+                      <div className="pt-4 pb-4 text-center">
                         <MDBRow>
                           <MDBCol md="2"/>
                           <MDBCol md="10">
