@@ -33,6 +33,22 @@ const fetchAllProgramsByUserId = async(req, res) => {
     }
 }
 
+const fetchProgramDetailById = async(req, res) => {
+    try {
+        let program = await PROGRAM.fetchProgramDetailById(req.body.programId);
+        console.log("Successfully fetch all programs by user id \n", program);
+        res.status(200).json({
+            message: "Successfully fetch all programs by user id",
+            program: program,
+        });
+    } catch(error) {
+        console.log(error.message);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
 const fetchAllProgramsByOrgId = async(req, res) => {
     try {
         let programs = await PROGRAM.fetchAllProgramsByOrgId(req.body.orgId);
@@ -49,7 +65,7 @@ const fetchAllProgramsByOrgId = async(req, res) => {
     }
 }
 
-const fetchAllPrograms = async(req, res) => {
+const fetchAllPrograms = async (req, res) => {
     try {
         let programs = await PROGRAM.fetchAllPrograms(req.body);
         console.log("Successfully fetch all programs");
@@ -70,4 +86,5 @@ module.exports = {
     fetchAllProgramsByUserId,
     fetchAllProgramsByOrgId,
     fetchAllPrograms,
+    fetchProgramDetailById,
 }

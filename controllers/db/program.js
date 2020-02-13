@@ -24,6 +24,24 @@ const fetchAllProgramsByUserId = async(userId) => {
     return await queryProgram.find({useMasterKey: true});
 }
 
+const fetchProgramDetailById = async(programId) => {
+    if (!programId)
+        throw new Error("No Program id");
+
+    let queryProgram = new Parse.Query("Program");
+    queryProgram.limit(10000);
+    queryProgram.equalTo("objectId", programId);
+
+    let queryApplication = new Parse.Query("Application");
+    queryApplication.limit(10000);
+    queryApplication.equalTo("programId", programId);
+
+    let element = {};
+    element['program'] = await queryProgram.first({useMasterKey: true});
+    element['application'] = await queryApplication.find({useMasterKey: true});
+    return element;
+}
+
 const fetchAllProgramsByOrgId = async(orgId) => {
     if (!orgId)
         throw new Error("No organization id");
@@ -54,16 +72,28 @@ const fetchAllPrograms = async(meta) => {
         queryOrg.limit(1);
         queryOrg.equalTo("objectId", programRecords[i].get("orgId"));
         let orgRecord = await queryOrg.first({useMasterKey: true});
+
+        let queryApplication = new Parse.Query("Application");
+        queryApplication.equalTo("programId", programRecords[i].id);
+        let appRecord = await queryApplication.find({useMasterKey: true});
+
+        appRecord.forEach((app) => {
+            if (app.get('sectionIndex') === '1') {
+                ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
+            }
+            if (app.get('sectionIndex') === '10') {
+                ele["awardedAmount"] = app.get('content') ? app.get('content')['2'] : '0';
+                ele["actualAmount"] = app.get('content') ? app.get('content')['1'] ? [0]['budget'] : '' : '0';
+            }
+        });
+
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
         ele["status"] = programRecords[i].get("status");
         ele["objectId"] = programRecords[i].id;
         ele["programType"] = programRecords[i].get("programType");
-        ele["awardAmount"] = 45;
-        ele["amount"] = 45;
         ele["org"] = orgRecord;
         ele["orgName"] = orgRecord.get('name');
-
         ele["createdAt"] = programRecords[i].get("createdAt");
         ele["updatedAt"] = programRecords[i].get("updatedAt");
 
@@ -109,5 +139,6 @@ module.exports = {
     fetchAllPrograms,
     findProgramById,
     findProgramByUserIdAndProgramType,
-    findProgramByOrgIdAndProgramType
+    findProgramByOrgIdAndProgramType,
+    fetchProgramDetailById,
 }

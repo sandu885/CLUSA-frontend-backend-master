@@ -275,87 +275,74 @@ class ProgramDetail extends Component {
   }
 
   componentDidMount() {
-    // const fetchProgramDetailById = '/api/fetchProgramDetailById';
-    // debugger
-    // const { programType } = this.state
-    //
-    // if (this.state.sessionToken) {
-    //   axios.post(
-    //     fetchProgramDetailById,
-    //     {
-    //       sessionToken: this.state.sessionToken,
-    //     },
-    //   ).then((response) => {
-    //     console.warn('clusa response', response.data.programs);
-    //
-    //     const columns = [
-    //       {
-    //         label: 'Organization Name',
-    //         field: 'orgName',
-    //         sort: 'asc',
-    //         width: 150
-    //       },
-    //       {
-    //         label: 'Program',
-    //         field: 'programType',
-    //         sort: 'asc',
-    //         width: 270
-    //       },
-    //       {
-    //         label: 'Year',
-    //         field: 'year',
-    //         sort: 'asc',
-    //         width: 200
-    //       },
-    //       {
-    //         label: 'Awarded Amount',
-    //         field: 'awardedAmount',
-    //         sort: 'asc',
-    //         width: 200
-    //       },
-    //       {
-    //         label: 'Actual Amount',
-    //         field: 'awardedAmount',
-    //         sort: 'asc',
-    //         width: 200
-    //       },
-    //       {
-    //         label: 'Status',
-    //         field: 'status',
-    //         sort: 'asc',
-    //         width: 200
-    //       },
-    //     ];
-    //
-    //     const rows = (response.data.programs || []).map(row => {
-    //       return {
-    //         ...row,
-    //         orgName: row.orgName && <Link to={`/org/${row.org.objectId}`}> {row.orgName} </Link>,
-    //         programType: <Link to={'/'}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
-    //       }
-    //     })
-    //     this.setState({
-    //       programData: {
-    //         columns: [ ...columns ],
-    //         rows: [ ...rows ]
-    //       },
-    //       columns,
-    //     });
-    //
-    //   }).catch((error) => {
-    //     if(error.response !== null && error.response !== undefined) {
-    //       if( error.response.data !== null && error.response.data !== undefined ) {
-    //         if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
-    //           localStorage.clear();
-    //           alert('Your login status was expired. Please login again.');
-    //           this.props.history.push('/')
-    //         } else {
-    //           alert(error.response.data.message);
-    //         }
-    //       }
-    //     }
-    //   });
-    // }
+    const fetchProgramDetailById = '/api/fetchProgramDetailById';
+
+    if (this.state.sessionToken) {
+      axios.post(
+        fetchProgramDetailById,
+        {
+          sessionToken: this.state.sessionToken,
+          programId: this.props.match.params ? this.props.match.params.id : ''
+        },
+      ).then((response) => {
+        const columns = [
+          {
+            label: 'Organization Name',
+            field: 'orgName',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: 'Program',
+            field: 'programType',
+            sort: 'asc',
+            width: 270
+          },
+          {
+            label: 'Year',
+            field: 'year',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Awarded Amount',
+            field: 'awardedAmount',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Actual Amount',
+            field: 'awardedAmount',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Status',
+            field: 'status',
+            sort: 'asc',
+            width: 200
+          },
+        ];
+
+        this.setState({
+          programData: { ...response.data.program },
+          columns,
+        });
+
+      }).catch((error) => {
+        if(error.response !== null && error.response !== undefined) {
+          if( error.response.data !== null && error.response.data !== undefined ) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              this.props.history.push('/')
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    }
   }
 }
 
