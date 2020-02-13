@@ -176,6 +176,7 @@ class Program extends Component {
                             <option value="applied">Applied</option>
                             <option value="approved">Approved</option>
                             <option value="review">Review</option>
+                            <option value="close">Close</option>
                             <option value="preparingAgreement">Preparing Agreement</option>
                             <option value="turnDown">Turn Down</option>
                             <option value="report submitted">Report Submitted</option>
