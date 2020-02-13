@@ -4,10 +4,10 @@ import {
   MDBContainer,
   MDBCardBody,
   MDBBtn,
-  MDBRow, MDBCol, MDBCard
+  MDBRow, MDBCol, MDBCard,
 } from 'mdbreact';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import moment from 'moment';
 
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
@@ -40,8 +40,8 @@ class ProgramDetail extends Component {
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
       dataReceived: false,
-      formData: {},
       programType,
+      programData: {},
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
     };
@@ -57,13 +57,13 @@ class ProgramDetail extends Component {
     });
   };
 
-  handleSearchPost = async () => {
-
-  };
-
   render() {
-    const { formData: { organizationName = '', programType = '', status = '', year = '' }, role  } = this.state;
+    const { programData: { program = {}, application = [] }, programType, dataReceived } = this.state;
+    const programName = programType.find(pT => pT.value === program.programType);
 
+    const fifthSection = application.find(app => app.sectionIndex === "5");
+    const firstSection = application.find(app => app.sectionIndex === "1");
+    const tenthSection = application.find(app => app.sectionIndex === "10");
     let heading = 'Program Detail Page';
 
     return (
@@ -71,203 +71,206 @@ class ProgramDetail extends Component {
         <HeaderComponent />
 
         <MDBContainer className="pt-5 mb-5">
-          <MDBRow>
-            <MDBCol md="12">
-              <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    {heading}
-                  </MDBCol>
-                </MDBRow>
-                <MDBCardBody>
-                  <MDBRow className="header-section">
-                    <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                      Program Info
+          {dataReceived &&
+            <MDBRow>
+              <MDBCol md="12">
+                <MDBCard>
+                  <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
+                    <MDBCol>
+                      {heading}
                     </MDBCol>
-                    <MDBCol md="12">
-                      <hr/>
-                    </MDBCol>
-                    <MDBCol md="1" />
-                    <MDBCol md="10">
-                      <MDBRow>
-                        <MDBCol md="5" className="program-detail-sub-header font-weight-bold">
-                          <MDBRow>
-                            Program:- <span> Internship </span>
-                          </MDBRow>
-                          <MDBRow>
-                            Applied Date:- <span> 12/10/2019 </span>
-                          </MDBRow>
-                          <MDBRow>
-                            1st Check Date:- <span> 12/10/2019 </span>
-                          </MDBRow>
-                          <MDBRow>
-                            Inter Placement #:- <span> 123485 </span>
-                          </MDBRow>
-                        </MDBCol>
-                        <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
-                          <MDBRow>
-                            Year:- <span> 2019 </span>
-                          </MDBRow>
-                          <MDBRow>
-                            Award Date:- <span> 12/10/2019 </span>
-                          </MDBRow>
-                          <MDBRow>
-                            2nd Check Date:- <span> 12/10/2019 </span>
-                          </MDBRow>
-                          <MDBRow>
-                            Actual Award Amount:- <span> 4020 </span>
-                          </MDBRow>
-                        </MDBCol>
-                        <MDBCol md="3" className="program-detail-sub-header font-weight-bold">
-                          <MDBRow>
-                            Status:- <span> Applied </span>
-                          </MDBRow>
-                          <MDBRow>
-                            Actual Award:- <span> 4020 </span>
-                          </MDBRow>
-                        </MDBCol>
-                      </MDBRow>
-                    </MDBCol>
-                    <MDBCol md="1" />
                   </MDBRow>
-                  <br />
+                  <MDBCardBody>
+                    <MDBRow className="header-section">
+                      <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
+                        Program Info
+                      </MDBCol>
+                      <MDBCol md="12">
+                        <hr/>
+                      </MDBCol>
+                      <MDBCol md="1" />
+                      <MDBCol md="10">
+                        <MDBRow>
+                          <MDBCol md="5" className="program-detail-sub-header font-weight-bold">
+                            <MDBRow>
+                              Program:- <span> {programName && programName.name} </span>
+                            </MDBRow>
+                            <MDBRow>
+                              Applied Date:- <span> {moment(program.createdAt).format('DD/MM/YYYY')} </span>
+                            </MDBRow>
+                            <MDBRow>
+                              1st Check Date:- <span> 12/10/2019 </span>
+                            </MDBRow>
+                            <MDBRow>
+                              Inter Placement #:- <span> {fifthSection && fifthSection.content['2'] || ''} </span>
+                            </MDBRow>
+                          </MDBCol>
+                          <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
+                            <MDBRow>
+                              Year:- <span> {firstSection && firstSection.content['1'] && firstSection.content['1'].programs && firstSection.content['1'].programs[0].startYear} </span>
+                            </MDBRow>
+                            <MDBRow>
+                              Award Date:- <span> 12/10/2019 </span>
+                            </MDBRow>
+                            <MDBRow>
+                              2nd Check Date:- <span> 12/10/2019 </span>
+                            </MDBRow>
+                            <MDBRow>
+                              Actual Award Amount:- <span> {tenthSection.content['1'] && tenthSection.content['1'][0].budget || ''} </span>
+                            </MDBRow>
+                          </MDBCol>
+                          <MDBCol md="3" className="program-detail-sub-header font-weight-bold">
+                            <MDBRow>
+                              Status:- <span style={{ textTransform: 'capitalize' }}> {program.status} </span>
+                            </MDBRow>
+                            <MDBRow>
+                              Actual Award:- <span> {tenthSection.content['2'] && tenthSection.content['2']} </span>
+                            </MDBRow>
+                          </MDBCol>
+                        </MDBRow>
+                      </MDBCol>
+                      <MDBCol md="1" />
+                    </MDBRow>
+                    <br />
 
-                  <MDBRow>
-                    <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                      Application Info
-                    </MDBCol>
-                    <MDBCol md="12">
-                      <hr/>
-                    </MDBCol>
+                    <MDBRow>
+                      <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
+                        Application Info
+                      </MDBCol>
+                      <MDBCol md="12">
+                        <hr/>
+                      </MDBCol>
 
-                    <MDBCol md="2" />
-                    <MDBCol md="8" className="program-detail-sub-header font-weight-bold app-info">
+                      <MDBCol md="2" />
+                      <MDBCol md="8" className="program-detail-sub-header font-weight-bold app-info">
 
-                      <MDBRow>
-                        <MDBCol md="7">
-                          Application Information
-                        </MDBCol>
-                        <MDBCol md="5">
-                          <MDBBtn
-                            rounded
-                            size={"sm"}
-                            className="application-info-button second-action-button btn-block z-depth-1a"
-                          >
-                            Review
-                          </MDBBtn>
-                        </MDBCol>
+                        <MDBRow>
+                          <MDBCol md="7">
+                            Application Information
+                          </MDBCol>
+                          <MDBCol md="5">
+                            <MDBBtn
+                              rounded
+                              size={"sm"}
+                              className="application-info-button second-action-button btn-block z-depth-1a"
+                            >
+                              Review
+                            </MDBBtn>
+                          </MDBCol>
 
-                      </MDBRow>
+                        </MDBRow>
 
-                      <MDBRow>
-                        <MDBCol md="7">
-                          Agreement & Placement
-                        </MDBCol>
-                        <MDBCol md="5">
-                          <MDBBtn
-                            rounded
-                            size={"sm"}
-                            className="application-info-button second-action-button btn-block z-depth-1a"
-                          >
-                            Review
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="7">
+                            Agreement & Placement
+                          </MDBCol>
+                          <MDBCol md="5">
+                            <MDBBtn
+                              rounded
+                              size={"sm"}
+                              className="application-info-button second-action-button btn-block z-depth-1a"
+                            >
+                              Review
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
 
-                      <MDBRow>
-                        <MDBCol md="7">
-                          Send 1st Check
-                        </MDBCol>
-                        <MDBCol md="5">
-                          <MDBBtn
-                            rounded
-                            size={"sm"}
-                            className="application-info-button second-action-button btn-block z-depth-1a"
-                          >
-                            Review
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="7">
+                            Send 1st Check
+                          </MDBCol>
+                          <MDBCol md="5">
+                            <MDBBtn
+                              rounded
+                              size={"sm"}
+                              className="application-info-button second-action-button btn-block z-depth-1a"
+                            >
+                              Review
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
 
-                      <MDBRow>
-                        <MDBCol md="7">
-                          Program Report
-                        </MDBCol>
-                        <MDBCol md="5">
-                          <MDBBtn
-                            rounded
-                            size={"sm"}
-                            className="application-info-button second-action-button btn-block z-depth-1a"
-                          >
-                            Review
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="7">
+                            Program Report
+                          </MDBCol>
+                          <MDBCol md="5">
+                            <MDBBtn
+                              rounded
+                              size={"sm"}
+                              className="application-info-button second-action-button btn-block z-depth-1a"
+                            >
+                              Review
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
 
-                      <MDBRow>
-                        <MDBCol md="7">
-                          Final Report
-                        </MDBCol>
-                        <MDBCol md="5">
-                          <MDBBtn
-                            rounded
-                            size={"sm"}
-                            className="application-info-button second-action-button btn-block z-depth-1a"
-                          >
-                            Review
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="7">
+                            Final Report
+                          </MDBCol>
+                          <MDBCol md="5">
+                            <MDBBtn
+                              rounded
+                              size={"sm"}
+                              className="application-info-button second-action-button btn-block z-depth-1a"
+                            >
+                              Review
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
 
-                      <MDBRow>
-                        <MDBCol md="7">
-                          Send final check
-                        </MDBCol>
-                        <MDBCol md="5">
-                          <MDBBtn
-                            rounded
-                            size={"sm"}
-                            className="application-info-button second-action-button btn-block z-depth-1a"
-                          >
-                            Review
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="7">
+                            Send final check
+                          </MDBCol>
+                          <MDBCol md="5">
+                            <MDBBtn
+                              rounded
+                              size={"sm"}
+                              className="application-info-button second-action-button btn-block z-depth-1a"
+                            >
+                              Review
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
 
 
-                    </MDBCol>
-                    <MDBCol md="2" />
-                    <MDBCol md="12">
-                      <hr/>
-                    </MDBCol>
+                      </MDBCol>
+                      <MDBCol md="2" />
+                      <MDBCol md="12">
+                        <hr/>
+                      </MDBCol>
 
-                    <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                      Program Closing Report
-                    </MDBCol>
-                    <MDBCol md="1" />
-                    <MDBCol md="10">
+                      <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
+                        Program Closing Report
+                      </MDBCol>
+                      <MDBCol md="1" />
+                      <MDBCol md="10">
 
                       <textarea name="desc" className="form-control mt-2 mb-4" rows="8">
                       </textarea>
-                      <div style={{
-                        justifyContent: 'center',
-                        display: 'flex',
-                      }}>
-                        <MDBBtn
-                          rounded
-                          size={"sm"}
-                          className="application-close-button second-action-button  btn-block z-depth-1a"
-                        >
-                          Back
-                        </MDBBtn>
-                      </div>
-                    </MDBCol>
-                    <MDBCol md="1" />
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
+                        <div style={{
+                          justifyContent: 'center',
+                          display: 'flex',
+                        }}>
+                          <MDBBtn
+                            rounded
+                            size={"sm"}
+                            className="application-close-button second-action-button  btn-block z-depth-1a"
+                          >
+                            Back
+                          </MDBBtn>
+                        </div>
+                      </MDBCol>
+                      <MDBCol md="1" />
+                    </MDBRow>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          }
+
         </MDBContainer>
         <FooterComponent className="mt-5 pt-5" />
       </div>
@@ -323,13 +326,17 @@ class ProgramDetail extends Component {
             width: 200
           },
         ];
-
+        console.log('response.data', response.data);
         this.setState({
           programData: { ...response.data.program },
           columns,
+          dataReceived: true,
         });
 
       }).catch((error) => {
+        this.setState({
+          dataReceived: true,
+        });
         if(error.response !== null && error.response !== undefined) {
           if( error.response.data !== null && error.response.data !== undefined ) {
             if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {

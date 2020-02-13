@@ -60,6 +60,7 @@ router.post('/fetchAllProgramsByUserId', programController.fetchAllProgramsByUse
 router.post('/fetchAllProgramsByOrgId', programController.fetchAllProgramsByOrgId);
 router.post('/fetchProgramDetailById', programController.fetchProgramDetailById);
 router.post('/fetchAllPrograms', programController.fetchAllPrograms);
+router.post('/updateProgramCloseStatusById', programController.updateProgramCloseStatusById);
 
 // Section Table
 router.post('/createNewSection', sectionController.createNewSection);

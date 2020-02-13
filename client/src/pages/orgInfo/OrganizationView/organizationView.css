@@ -1,0 +1,33 @@
+.organization-sub-header > div {
+    padding: unset !important;
+}
+
+.organization-sub-header-item {
+    width: 50%;
+    text-align: right;
+}
+
+.green-button {
+    background-color: #55c36e;
+}
+
+.org-custom-card {
+    border: 1px solid #c4c4c4;
+}
+
+.gray-button {
+    background-color: #c4c4c4 !important;
+    font-size: 1rem !important;
+    color: #000000;
+}
+
+.org-custom-card-button {
+    padding-top: 2.1rem !important;
+}
+
+.org-view-sub-header-button {
+    background-color: #56c36f !important;
+    /* padding: unset !important; */
+    font-size: 1rem !important;
+}
+

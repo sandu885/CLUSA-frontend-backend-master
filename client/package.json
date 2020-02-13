@@ -12,6 +12,7 @@
     "material-design-icons": "^3.0.1",
     "material-table": "^1.54.1",
     "mdbreact": "^4.22.0",
+    "moment": "^2.24.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router": "^5.1.2",
