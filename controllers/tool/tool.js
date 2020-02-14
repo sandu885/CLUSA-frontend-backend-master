@@ -57,6 +57,7 @@ const sendUserAddEmail = async(emailAddress, username, token) => {
         api_key: keys.sendGridKey,
       }
     }
+    const linkGeneration  = `<a href='http://localhost:1337/forget-password?token=${token}'>click here. </a>`;
     let client = nodemailer.createTransport(sgTransport(options));
     let mailContent = {
       from: {
@@ -65,9 +66,9 @@ const sendUserAddEmail = async(emailAddress, username, token) => {
       },
       to: emailAddress,
       subject: 'Confirmation of signup',
-      text: `Dear ${username}, \n ${keys.signupText} 
-                \n Below is your account information: \n username: ${username} \n Set Password Link password:  http://localhost:1337/forget-password?token=${token}
-                \n Best Regards, \n CLUSA`,
+      html: `Dear ${username}, <br > ${keys.signupText} 
+                <br > Below is your account information: <br > username: ${username} <br > Set Password Link: ${linkGeneration}
+                <br > Best Regards, <br > CLUSA`,
     };
     await client.sendMail(mailContent);
     const message = 'Your message has been successfully sent.';
@@ -89,6 +90,7 @@ const forgetPassword = async(emailAddress, username, token) => {
       }
     }
     let client = nodemailer.createTransport(sgTransport(options));
+    const linkGeneration  = `<a href='http://localhost:1337/forget-password?token=${token}'>click here. </a>`
     let mailContent = {
       from: {
         name: 'CLUSA',
@@ -96,12 +98,11 @@ const forgetPassword = async(emailAddress, username, token) => {
       },
       to: emailAddress,
       subject: 'Reset password request',
-      text: `Dear ${username}, \n ${keys.signupText} 
-                \n Below is your account information: \n username: ${username} \n
-                \n This is your reset password link \n
-                \n LINK \n 
-                \n http://localhost:1337/forget-password?token=${token} \n
-                \n Best Regards, \n CLUSA`,
+      html: `Dear ${username}, \n<br /> ${keys.signupText} 
+                \n<br /> Below is your account information: <br />\n username: ${username} \n<br />
+                \n<br /> This is your reset password link ${linkGeneration} \n<br />
+                \n<br /> To reset password \n<br /> 
+                \n<br /> Best Regards, \n<br /> CLUSA`,
       attachments: null
     };
     await client.sendMail(mailContent);
