@@ -46,6 +46,7 @@ import { PrivateRoute } from "./router";
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import 'mdbreact/dist/css/mdb.css';
 
 class App extends Component {

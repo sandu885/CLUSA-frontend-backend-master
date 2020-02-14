@@ -18,6 +18,7 @@ class MyAccount extends Component {
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
       userId: localStorage.getItem('clusa-user-id'),
+      role: localStorage.getItem('clusa-role'),
       formData: {},
     };
   }
@@ -34,7 +35,7 @@ class MyAccount extends Component {
 
   clickCancel = () => {
     const { history } = this.props;
-    history.push('/user-organization-management');
+    history.goBack();
   }
 
   validate = (formData) => {
@@ -97,7 +98,7 @@ class MyAccount extends Component {
         data: { ...postData, sessionToken, userId: this.state.userId },
       });
       console.warn('console User finish');
-      history.push('/user-organization-management');
+      history.goBack();
     } catch (error) {
       if(error.response !== null && error.response !== undefined) {
         if (error.response.data !== null && error.response.data !== undefined) {
