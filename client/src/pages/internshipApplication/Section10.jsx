@@ -189,7 +189,7 @@ class Section10 extends Component {
           disableSaveButton: true,
         });
         document.getElementById('internship-s10').reset();
-        window.location.reload();
+        // window.location.reload();
       } else if (response.data.message === '') {
         console.warn(' part ======', response.data);
         this.setState({
@@ -198,7 +198,7 @@ class Section10 extends Component {
           disableSaveButton: true,
         });
         document.getElementById('internship-s10').reset();
-        window.location.reload();
+        // window.location.reload();
       } else {
         console.warn('section 10 Failed to save');
         alert('section 10 Failed to save, please try again');
