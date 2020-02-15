@@ -93,7 +93,7 @@ class Login extends Component {
           sessionToken: response.data.sessionToken,
           status: response.data.status,
         });
-        localStorage.setItem('sessionToken', this.state.sessionToken);
+        localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('status', this.state.status);
         localStorage.setItem('orgName', response.data.orgName);
@@ -109,7 +109,7 @@ class Login extends Component {
         this.setState({
           sessionToken: response.data.sessionToken,
         });
-        localStorage.setItem('sessionToken', this.state.sessionToken);
+        localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);
         this.setState({
@@ -121,7 +121,7 @@ class Login extends Component {
         this.setState({
           sessionToken: response.data.sessionToken,
         });
-        localStorage.setItem('sessionToken', this.state.sessionToken);
+        localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);
         this.props.history.push('/view-program')
@@ -130,7 +130,7 @@ class Login extends Component {
         this.setState({
           sessionToken: response.data.sessionToken,
         });
-        localStorage.setItem('sessionToken', this.state.sessionToken);
+        localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);
         this.props.history.push('/user-organization-management')
@@ -204,12 +204,6 @@ class Login extends Component {
                     containerClass="mb-0"
                     onChange={(e) => this.setState({ password: e.target.value })}
                   />
-                  <p className="font-small blue-text d-flex justify-content-end pb-3">
-                    Forgot
-                    <Link to="/forget-password" className="blue-text ml-1">
-                      Password?
-                    </Link>
-                  </p>
                   {username}
                   <br />
                   {password}
@@ -226,6 +220,12 @@ class Login extends Component {
                   </div>
                 </MDBCardBody>
                 <MDBModalFooter className="mx-5 pt-3 mb-1">
+                  <div className="font-small blue-text justify-content forget-password">
+                    Forgot
+                    <Link to="/forget-password" className="blue-text ml-1">
+                      Password?
+                    </Link>
+                  </div>
                   <p className="font-small grey-text d-flex justify-content-end">
                 Don&apos;t have an account?
                     <a
