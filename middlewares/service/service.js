@@ -22,6 +22,7 @@ const upload = multer({ storage });
 const userController = require("../../controllers/service/user");
 const orgController = require("../../controllers/service/organization");
 const programController = require("../../controllers/service/program");
+const checkController = require("../../controllers/service/check");
 const sectionController = require("../../controllers/service/section");
 const applicationController = require("../../controllers/service/application");
 
@@ -61,6 +62,12 @@ router.post('/fetchAllProgramsByOrgId', programController.fetchAllProgramsByOrgI
 router.post('/fetchProgramDetailById', programController.fetchProgramDetailById);
 router.post('/fetchAllPrograms', programController.fetchAllPrograms);
 router.post('/updateProgramCloseStatusById', programController.updateProgramCloseStatusById);
+
+// Check Table
+router.post('/createNewCheck', checkController.createNewCheck);
+router.post('/fetchAllChecks', checkController.fetchAllChecks);
+router.post('/fetchAllChecksByOrgIdProgId', checkController.fetchAllChecksByOrgIdProgId);
+router.post('/updateCheckById', checkController.updateCheckById);
 
 // Section Table
 router.post('/createNewSection', sectionController.createNewSection);

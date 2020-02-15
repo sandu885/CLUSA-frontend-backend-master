@@ -116,7 +116,7 @@ class ProgramDetail extends Component {
                               2nd Check Date:- <span> 12/10/2019 </span>
                             </MDBRow>
                             <MDBRow>
-                              Actual Award Amount:- <span> {tenthSection.content['1'] && tenthSection.content['1'][0].budget || ''} </span>
+                              Actual Award Amount:- <span> {tenthSection && tenthSection.content['1'] && tenthSection.content['1'][0].budget || ''} </span>
                             </MDBRow>
                           </MDBCol>
                           <MDBCol md="3" className="program-detail-sub-header font-weight-bold">
@@ -124,7 +124,7 @@ class ProgramDetail extends Component {
                               Status:- <span style={{ textTransform: 'capitalize' }}> {program.status} </span>
                             </MDBRow>
                             <MDBRow>
-                              Actual Award:- <span> {tenthSection.content['2'] && tenthSection.content['2']} </span>
+                              Actual Award:- <span> {tenthSection && tenthSection.content['2'] && tenthSection.content['2']} </span>
                             </MDBRow>
                           </MDBCol>
                         </MDBRow>
