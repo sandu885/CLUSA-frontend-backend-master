@@ -7,6 +7,7 @@ import {
   MDBDataTable,
   MDBRow, MDBCol, MDBCard, MDBModalHeader, MDBModalBody, MDBModal
 } from 'mdbreact';
+import Loader from 'react-loader-spinner'
 import axios from 'axios';
 
 import './UserOrganizationManagement.css';
@@ -20,7 +21,7 @@ class UserOrganizationManagement extends Component {
 
     this.state = {
       orgAll: [],
-      dataReceived: false,
+      dataReceived: true,
       sessionToken: localStorage.getItem('sessionToken'),
     };
   }
@@ -104,7 +105,7 @@ class UserOrganizationManagement extends Component {
         },
         {
           label: 'Name',
-          field: 'firstName',
+          field: 'name',
           sort: 'asc',
           width: 150
         },
@@ -142,33 +143,37 @@ class UserOrganizationManagement extends Component {
       <div className="bg-withImage">
         <HeaderComponent />
 
-        {dataReceived ? <div/> :
-          <MDBContainer className="pt-5 mb-5">
-            <MDBRow>
-              <MDBCol md="12">
-                <MDBCard>
-                  <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                    <MDBCol
-                      md="2"
+        <MDBContainer className="pt-5 mb-5">
+          <MDBRow>
+            <MDBCol md="12">
+              <MDBCard>
+                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
+                  <MDBCol
+                    md="2"
+                  >
+                    <MDBBtn
+                      rounded
+                      size={"sm"}
+                      className="second-action-button btn-block z-depth-1a add-new-user"
+                      onClick={() => {
+                        this.props.history.push(`/user-account`);
+                      }}
                     >
-                      <MDBBtn
-                        rounded
-                        size={"sm"}
-                        className="second-action-button btn-block z-depth-1a add-new-user"
-                        onClick={() => {
-                          this.props.history.push(`/user-account`);
-                        }}
-                      >
-                        Add New User
-                      </MDBBtn>
-                    </MDBCol>
-                    <MDBCol
-                      md="8"
-                    >
-                      User Management
-                    </MDBCol>
-                    <MDBCol md="2"/>
-                  </MDBRow>
+                      Add New User
+                    </MDBBtn>
+                  </MDBCol>
+                  <MDBCol
+                    md="8"
+                  >
+                    User Management
+                  </MDBCol>
+                  <MDBCol md="2"/>
+                </MDBRow>
+                {dataReceived ?
+                  <div style={{ textAlign: 'center' }}>
+                    <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
+                  </div>
+                  :
                   <MDBCardBody>
                     <MDBDataTable
                       className="custom-table"
@@ -180,13 +185,19 @@ class UserOrganizationManagement extends Component {
                       info={false}
                     />
                   </MDBCardBody>
-                  <br />
+                }
+                <br />
 
-                  <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                    <MDBCol>
-                      Organization Management
-                    </MDBCol>
-                  </MDBRow>
+                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
+                  <MDBCol>
+                    Organization Management
+                  </MDBCol>
+                </MDBRow>
+                {dataReceived ?
+                  <div style={{ textAlign: 'center' }}>
+                    <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
+                  </div>
+                  :
                   <MDBCardBody>
                     <MDBDataTable
                       className="custom-table"
@@ -198,26 +209,28 @@ class UserOrganizationManagement extends Component {
                       info={false}
                     />
                   </MDBCardBody>
-                  <br />
-                </MDBCard>
-              </MDBCol>
-            </MDBRow>
-            <MDBModal isOpen={this.state.open} toggle={this.toggle}>
-              <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
-              <MDBModalBody className="text-center">
-                {this.state.selectedUserData && this.state.selectedUserData.username}
-                <MDBRow className="mt-4">
-                  <MDBCol md="6" className="text-center">
-                    <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
-                  </MDBCol>
-                  <MDBCol md="6" className="text-center">
-                    <MDBBtn className="modal-cancel-button" color="red" onClick={this.toggle}>Cancel</MDBBtn>
-                  </MDBCol>
-                </MDBRow>
-              </MDBModalBody>
-            </MDBModal>
-          </MDBContainer>
-        }
+                }
+
+                <br />
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+          <MDBModal isOpen={this.state.open} toggle={this.toggle}>
+            <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
+            <MDBModalBody className="text-center">
+              {this.state.selectedUserData && this.state.selectedUserData.username}
+              <MDBRow className="mt-4">
+                <MDBCol md="6" className="text-center">
+                  <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
+                </MDBCol>
+                <MDBCol md="6" className="text-center">
+                  <MDBBtn className="modal-cancel-button" color="red" onClick={this.toggle}>Cancel</MDBBtn>
+                </MDBCol>
+              </MDBRow>
+            </MDBModalBody>
+          </MDBModal>
+        </MDBContainer>
+
 
         <FooterComponent className="mt-5 pt-5" />
       </div>
