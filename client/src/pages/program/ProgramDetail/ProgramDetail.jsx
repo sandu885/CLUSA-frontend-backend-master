@@ -184,6 +184,13 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
+                              onClick={() => {
+                                const { history } = this.props;
+                                const { programData: { program } } = this.state;
+                                if (program) {
+                                  history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                }
+                              }}
                             >
                               Review
                             </MDBBtn>
@@ -214,6 +221,13 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
+                              onClick={() => {
+                                const { history } = this.props;
+                                const { programData: { program } } = this.state;
+                                if (program) {
+                                  history.push(`/final-check?orgId=${program.orgId}&programId=${program.objectId}`);
+                                }
+                              }}
                             >
                               Review
                             </MDBBtn>

@@ -9,6 +9,7 @@ import {
 import axios from 'axios';
 import moment from 'moment';
 
+import { queryStringToJSON } from '../../../utils/util'
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 import './checks.css'
@@ -25,6 +26,21 @@ class Checks extends Component {
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
     };
+  }
+
+  componentWillMount() {
+    const { location, history } = this.props;
+    // props.location.search
+    const queryData = queryStringToJSON(location.search);
+    if (!queryData.orgId && !queryData.programId) {
+      alert('Not having proper data to access this route')
+      history.goBack();
+    }
+    this.setState({
+      ...queryData,
+    });
+
+    console.log('First this called');
   }
 
   handleFileClick = (name) => {
@@ -47,6 +63,133 @@ class Checks extends Component {
     });
   };
 
+  validate = (data) => {
+    if (!data) {
+      alert('Please fill the form first');
+      return true
+    }
+    if (!data.checkAmount) {
+      alert('Please enter check Amount');
+      return true
+    }
+    if (!data.checkId) {
+      alert('Please enter check#');
+      return true
+    }
+    if (!data.checkDate) {
+      alert('Please enter check date.');
+      return true
+    }
+    return false
+  };
+
+  saveFirstCheck = () => {
+    const { formData: { first }, orgId, programId } = this.state;
+    const formData = new FormData();
+    if (this.validate(first)) {
+      return
+    }
+
+    let postProgram = '/api/createNewCheck';
+
+    if (first.objectId) {
+      postProgram = '/api/updateCheckById';
+      // delete first.checkFile
+      formData.append('objectId', first.objectId);
+    } else {
+      postProgram = '/api/createNewCheck';
+    }
+
+    formData.append('sessionToken', this.state.sessionToken);
+    formData.append('checkAmount', first.checkAmount);
+    formData.append('checkId', first.checkId); //
+    formData.append('checkDate', first.checkDate);
+    formData.append('orgId', orgId);
+    formData.append('programId', programId);
+    formData.append('checkType', '1');
+
+    if (first.checkFile) {
+      formData.append('checkFile', first.checkFile);
+    }
+
+    axios.post(
+      postProgram,
+      formData,
+    ).then((response) => {
+      this.fetchCheckData()
+      console.warn('reponse message', response.data);
+
+    }).catch((error) => {
+      console.warn('error.response', error.response);
+      if(error.response !== null && error.response !== undefined) {
+        if( error.response.data !== null && error.response.data !== undefined ) {
+          if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+            localStorage.clear();
+            alert('Your login status was expired. Please login again.');
+            this.setState({
+              redirectToLogin: true,
+            });
+          } else {
+            alert(error.response.data.message);
+          }
+        }
+      }
+    });
+  };
+
+  saveSecondCheck = () => {
+    const { formData: { second }, orgId, programId } = this.state;
+    const formData = new FormData();
+    if (this.validate(second)) {
+      return
+    }
+
+    let postProgram = '/api/createNewCheck';
+
+    if (second.objectId) {
+      postProgram = '/api/updateCheckById';
+      formData.append('objectId', second.objectId);
+    } else {
+      postProgram = '/api/createNewCheck';
+    }
+    // formData.append('sessionToken', this.state.sessionToken);
+    formData.append('checkAmount', second.checkAmount);
+    formData.append('checkId', second.checkId); //
+    formData.append('checkDate', second.checkDate);
+    formData.append('orgId', orgId);
+    formData.append('programId', programId);
+    formData.append('checkType', '2');
+
+    if (second.checkFile) {
+      formData.append('checkFile', second.checkFile);
+    }
+
+    axios.post(
+      postProgram,
+      formData,
+    ).then((response) => {
+
+      this.fetchCheckData()
+      console.warn('reponse message', response.data);
+
+    }).catch((error) => {
+      console.warn('error.response', error.response);
+      if(error.response !== null && error.response !== undefined) {
+        if( error.response.data !== null && error.response.data !== undefined ) {
+          if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+            localStorage.clear();
+            alert('Your login status was expired. Please login again.');
+            this.setState({
+              redirectToLogin: true,
+            });
+          } else {
+            alert(error.response.data.message);
+          }
+        }
+      }
+    });
+  };
+
   handleChange = (e) => {
     const { formData } = this.state;
     const fieldName = e.target.name.split('-');
@@ -63,8 +206,7 @@ class Checks extends Component {
   };
 
   render() {
-    const { formData: { first = {}, second = {}}, programType, dataReceived, formData } = this.state;
-    console.log(formData);
+    const { formData: { first = {}, second = {}}, formData } = this.state;
 
     let heading = 'Send Check';
 
@@ -136,12 +278,13 @@ class Checks extends Component {
                       <MDBRow className="form-group font-weight-bold">
                         <MDBCol sm="3"/>
                         <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"} className="send-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="send-button second-action-button btn-block z-depth-1a check-file-upload" onClick={this.saveFirstCheck}>
                             Send
                           </MDBBtn>
                         </MDBCol>
                         <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"} className="cancel-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  onClick={event => {this.props.history.goBack();}}>
                             Cancel
                           </MDBBtn>
                         </MDBCol>
@@ -207,13 +350,15 @@ class Checks extends Component {
                         <MDBCol sm="3"/>
                         <MDBCol sm="3">
                           <MDBBtn rounded size={"sm"}
-                                  className="send-button second-action-button btn-block z-depth-1a check-file-upload">
+                                  className="send-button second-action-button btn-block z-depth-1a check-file-upload" onClick={this.saveSecondCheck}>
                             Send
                           </MDBBtn>
                         </MDBCol>
                         <MDBCol sm="3">
                           <MDBBtn rounded size={"sm"}
-                                  className="cancel-button second-action-button btn-block z-depth-1a check-file-upload">
+                                  className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  onClick={event => {this.props.history.goBack();}}
+                          >
                             Cancel
                           </MDBBtn>
                         </MDBCol>
@@ -236,80 +381,51 @@ class Checks extends Component {
     );
   }
 
-  // componentDidMount() {
-  //   const fetchProgramDetailById = '/api/fetchProgramDetailById';
-  //
-  //   if (this.state.sessionToken) {
-  //     axios.post(
-  //       fetchProgramDetailById,
-  //       {
-  //         sessionToken: this.state.sessionToken,
-  //         programId: this.props.match.params ? this.props.match.params.id : ''
-  //       },
-  //     ).then((response) => {
-  //       const columns = [
-  //         {
-  //           label: 'Organization Name',
-  //           field: 'orgName',
-  //           sort: 'asc',
-  //           width: 150
-  //         },
-  //         {
-  //           label: 'Program',
-  //           field: 'programType',
-  //           sort: 'asc',
-  //           width: 270
-  //         },
-  //         {
-  //           label: 'Year',
-  //           field: 'year',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //         {
-  //           label: 'Awarded Amount',
-  //           field: 'awardedAmount',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //         {
-  //           label: 'Actual Amount',
-  //           field: 'awardedAmount',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //         {
-  //           label: 'Status',
-  //           field: 'status',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //       ];
-  //       console.log('response.data', response.data);
-  //       this.setState({
-  //         programData: { ...response.data.program },
-  //         columns,
-  //         dataReceived: true,
-  //       });
-  //
-  //     }).catch((error) => {
-  //       this.setState({
-  //         dataReceived: true,
-  //       });
-  //       if(error.response !== null && error.response !== undefined) {
-  //         if( error.response.data !== null && error.response.data !== undefined ) {
-  //           if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
-  //             localStorage.clear();
-  //             alert('Your login status was expired. Please login again.');
-  //             this.props.history.push('/')
-  //           } else {
-  //             alert(error.response.data.message);
-  //           }
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
+  fetchCheckData = () => {
+    const fetchAllChecksByOrgIdProgId = '/api/fetchAllChecksByOrgIdProgId';
+    const { orgId, programId } = this.state;
+
+    if (this.state.sessionToken) {
+      axios.post(
+        fetchAllChecksByOrgIdProgId,
+        {
+          sessionToken: this.state.sessionToken,
+          orgId,
+          programId,
+        },
+      ).then((response) => {
+        const first = response.data.checks.find(e => e.type === '1') || {};
+        const second = response.data.checks.find(e => e.type === '2') || {};
+
+        this.setState({
+          formData: {
+            first: { ...first, checkAmount: first.amount, checkFile: '', checkDate: first.date },
+            second: { ...second, checkAmount: second.amount, checkFile: '', checkDate: second.date },
+          },
+        })
+
+      }).catch((error) => {
+        this.setState({
+          dataReceived: true,
+        });
+        if(error.response !== null && error.response !== undefined) {
+          if( error.response.data !== null && error.response.data !== undefined ) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              this.props.history.push('/')
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    }
+  };
+
+  componentDidMount() {
+    this.fetchCheckData()
+  }
 }
 
 export default Checks;

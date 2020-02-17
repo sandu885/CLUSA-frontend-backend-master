@@ -67,6 +67,7 @@ const fetchAllProgramsByOrgId = async(req, res) => {
 
 const fetchAllPrograms = async (req, res) => {
     try {
+        console.log("Start fetching all programs");
         let programs = await PROGRAM.fetchAllPrograms(req.body);
         console.log("Successfully fetch all programs");
         res.status(200).json({
