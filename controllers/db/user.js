@@ -289,9 +289,9 @@ const updateUserById = async (meta) => {
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
     let queryUser = new Parse.Query(Parse.User);
-
-    let userRecord = await queryUser.first({ useMasterKey: true });
     queryUser.equalTo("objectId", meta.userId);
+    let userRecord = await queryUser.first({ useMasterKey: true });
+
     meta.username && userRecord.set("username", meta.username);
     meta.firstName && userRecord.set("firstName", meta.firstName);
     meta.lastName && userRecord.set("lastName", meta.lastName);

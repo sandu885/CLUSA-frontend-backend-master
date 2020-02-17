@@ -1,9 +1,9 @@
 const CHECK = require("../db/check");
 
 const createNewCheck = async (req, res) => {
-  console.log("createNewCheck: start");
+  console.log("createNewCheck: start", req.body, '\n\n');
   try {
-    let check = await CHECK.createNewCheck(req.body, "0");
+    let check = await CHECK.createNewCheck(req.body, req.file);
     console.log("create new check success");
     res.status(200).json({
       message: "Check successfully creates",
@@ -54,7 +54,7 @@ const fetchAllChecksByOrgIdProgId = async (req, res) => {
 const updateCheckById = async (req, res) => {
   console.log("fetchAllChecks: start");
   try {
-    let checks = await CHECK.fetchAllChecksByOrgIdProgId(req.body);
+    let checks = await CHECK.updateCheckById(req.body, req.file);
     console.log("Successfully fetch all checks");
     res.status(200).json({
       message: 'Successfully fetch all checks',

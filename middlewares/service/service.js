@@ -16,8 +16,20 @@ const storage = multer.diskStorage({
       callback(null, file.originalname);
     },
 });
-  
+
+const storage1 = multer.diskStorage({
+  destination: function (req, file, cb) {
+    let path = `./uploads/checks`;
+    fs.mkdirsSync(path);
+    cb(null, path)
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+
 const upload = multer({ storage });
+const upload1 = multer({ storage: storage1 });
 
 const userController = require("../../controllers/service/user");
 const orgController = require("../../controllers/service/organization");
@@ -33,6 +45,8 @@ router.post('/logout', userController.logout);
 router.post('/forgetPassword', userController.forgetPassword);
 router.post('/resetPassword', userController.resetPassword);
 router.post('/checkSessionToken', userController.checkSessionToken);
+router.post('/createNewCheck', upload1.single('checkFile'), checkController.createNewCheck);
+router.post('/updateCheckById', upload1.single('checkFile'), checkController.updateCheckById);
 
 // update org info
 router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
@@ -64,10 +78,10 @@ router.post('/fetchAllPrograms', programController.fetchAllPrograms);
 router.post('/updateProgramCloseStatusById', programController.updateProgramCloseStatusById);
 
 // Check Table
-router.post('/createNewCheck', checkController.createNewCheck);
+// router.post('/createNewCheck', checkController.createNewCheck);
 router.post('/fetchAllChecks', checkController.fetchAllChecks);
 router.post('/fetchAllChecksByOrgIdProgId', checkController.fetchAllChecksByOrgIdProgId);
-router.post('/updateCheckById', checkController.updateCheckById);
+// router.post('/updateCheckById', checkController.updateCheckById);
 
 // Section Table
 router.post('/createNewSection', sectionController.createNewSection);

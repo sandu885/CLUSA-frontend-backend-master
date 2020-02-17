@@ -12,6 +12,7 @@ import moment from 'moment';
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 import './checks.css'
+import {queryStringToJSON} from "../../../utils/util";
 
 class FinalCheck extends Component {
   constructor(props) {
@@ -32,6 +33,18 @@ class FinalCheck extends Component {
     fileUpload.click();
   };
 
+  componentWillMount() {
+    const { location, history } = this.props;
+    const queryData = queryStringToJSON(location.search);
+    if (!queryData.orgId && !queryData.programId) {
+      alert('Not having proper data to access this route')
+      history.goBack();
+    }
+    this.setState({
+      ...queryData,
+    });
+  }
+
   handleFileChange = (e) => {
     const { formData } = this.state;
 
@@ -41,6 +54,80 @@ class FinalCheck extends Component {
         [e.target.name]: e.target.files[0],
       }
     });
+  };
+
+  validate = (data) => {
+    if (!data) {
+      alert('Please fill the form first');
+      return true
+    }
+    if (!data.checkAmount) {
+      alert('Please enter check Amount');
+      return true
+    }
+    if (!data.checkId) {
+      alert('Please enter check#');
+      return true
+    }
+    if (!data.checkDate) {
+      alert('Please enter check date.');
+      return true
+    }
+    return false
+  };
+
+  postFinalCheck = () => {
+    const { formData: postData, orgId, programId } = this.state;
+    const formData = new FormData();
+    if (this.validate(postData)) {
+      return
+    }
+    let postProgram = '/api/createNewCheck';
+
+    if (postData.objectId) {
+      postProgram = '/api/updateCheckById';
+      // delete first.checkFile
+      formData.append('objectId', postData.objectId);
+    } else {
+      postProgram = '/api/createNewCheck';
+    }
+
+    formData.append('sessionToken', this.state.sessionToken);
+    formData.append('checkAmount', postData.checkAmount);
+    formData.append('checkId', postData.checkId); //
+    formData.append('checkDate', postData.checkDate);
+    formData.append('orgId', orgId);
+    formData.append('programId', programId);
+    formData.append('checkType', '3');
+
+    if (postData.checkFile) {
+      formData.append('checkFile', postData.checkFile);
+    }
+
+    axios.post(
+      postProgram,
+      formData,
+    ).then((response) => {
+      this.fetchCheckData()
+      console.warn('reponse message', response.data);
+
+    }).catch((error) => {
+      console.warn('error.response', error.response);
+      if(error.response !== null && error.response !== undefined) {
+        if( error.response.data !== null && error.response.data !== undefined ) {
+          if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+            localStorage.clear();
+            alert('Your login status was expired. Please login again.');
+            this.setState({
+              redirectToLogin: true,
+            });
+          } else {
+            alert(error.response.data.message);
+          }
+        }
+      }
+    });
+
   };
 
   handleChange = (e) => {
@@ -123,12 +210,16 @@ class FinalCheck extends Component {
                       <MDBRow className="form-group font-weight-bold">
                         <MDBCol sm="3"/>
                         <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"} className="send-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="send-button second-action-button btn-block z-depth-1a check-file-upload"
+                          onClick={this.postFinalCheck}
+                          >
                             Send
                           </MDBBtn>
                         </MDBCol>
                         <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"} className="cancel-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  onClick={event => {this.props.history.goBack();}}
+                          >
                             Cancel
                           </MDBBtn>
                         </MDBCol>
@@ -142,88 +233,54 @@ class FinalCheck extends Component {
               </MDBCard>
             </MDBCol>
           </MDBRow>
-
-
         </MDBContainer>
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );
   }
 
-  // componentDidMount() {
-  //   const fetchProgramDetailById = '/api/fetchProgramDetailById';
-  //
-  //   if (this.state.sessionToken) {
-  //     axios.post(
-  //       fetchProgramDetailById,
-  //       {
-  //         sessionToken: this.state.sessionToken,
-  //         programId: this.props.match.params ? this.props.match.params.id : ''
-  //       },
-  //     ).then((response) => {
-  //       const columns = [
-  //         {
-  //           label: 'Organization Name',
-  //           field: 'orgName',
-  //           sort: 'asc',
-  //           width: 150
-  //         },
-  //         {
-  //           label: 'Program',
-  //           field: 'programType',
-  //           sort: 'asc',
-  //           width: 270
-  //         },
-  //         {
-  //           label: 'Year',
-  //           field: 'year',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //         {
-  //           label: 'Awarded Amount',
-  //           field: 'awardedAmount',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //         {
-  //           label: 'Actual Amount',
-  //           field: 'awardedAmount',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //         {
-  //           label: 'Status',
-  //           field: 'status',
-  //           sort: 'asc',
-  //           width: 200
-  //         },
-  //       ];
-  //       console.log('response.data', response.data);
-  //       this.setState({
-  //         programData: { ...response.data.program },
-  //         columns,
-  //         dataReceived: true,
-  //       });
-  //
-  //     }).catch((error) => {
-  //       this.setState({
-  //         dataReceived: true,
-  //       });
-  //       if(error.response !== null && error.response !== undefined) {
-  //         if( error.response.data !== null && error.response.data !== undefined ) {
-  //           if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
-  //             localStorage.clear();
-  //             alert('Your login status was expired. Please login again.');
-  //             this.props.history.push('/')
-  //           } else {
-  //             alert(error.response.data.message);
-  //           }
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
+  fetchCheckData = () => {
+    const fetchAllChecksByOrgIdProgId = '/api/fetchAllChecksByOrgIdProgId';
+    const { orgId, programId } = this.state;
+
+    if (this.state.sessionToken) {
+      axios.post(
+        fetchAllChecksByOrgIdProgId,
+        {
+          sessionToken: this.state.sessionToken,
+          orgId,
+          programId,
+        },
+      ).then((response) => {
+        const formData = response.data.checks.find(e => e.type === '3') || {};
+
+        this.setState({
+          formData: {
+            ...formData, checkAmount: formData.amount, checkFile: '', checkDate: formData.date
+          },
+        })
+      }).catch((error) => {
+        this.setState({
+          dataReceived: true,
+        });
+        if(error.response !== null && error.response !== undefined) {
+          if( error.response.data !== null && error.response.data !== undefined ) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              this.props.history.push('/')
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    }
+  };
+
+  componentDidMount() {
+    this.fetchCheckData()
+  }
 }
 
 export default FinalCheck;

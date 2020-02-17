@@ -105,7 +105,6 @@ const fetchAllPrograms = async(meta) => {
         let queryApplication = new Parse.Query("Application");
         queryApplication.equalTo("programId", programRecords[i].id);
         let appRecord = await queryApplication.find({useMasterKey: true});
-
         appRecord.forEach((app) => {
             if (app.get('sectionIndex') === '1') {
                 ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
@@ -122,7 +121,7 @@ const fetchAllPrograms = async(meta) => {
         ele["objectId"] = programRecords[i].id;
         ele["programType"] = programRecords[i].get("programType");
         ele["org"] = orgRecord;
-        ele["orgName"] = orgRecord.get('name');
+        ele["orgName"] = orgRecord ? orgRecord.get('name') : '';
         ele["createdAt"] = programRecords[i].get("createdAt");
         ele["updatedAt"] = programRecords[i].get("updatedAt");
 
