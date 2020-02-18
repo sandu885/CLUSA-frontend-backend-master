@@ -39,6 +39,7 @@ import ProgramDetail from '../program/ProgramDetail/ProgramDetail';
 
 import Checks from '../AppInfo/Check/Checks';
 import FinalCheck from '../AppInfo/Check/FinalCheck';
+import AgreementPlacement from '../AppInfo/AgreementPlacement/AgreementPlacement';
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
 
@@ -181,7 +182,8 @@ class App extends Component {
             <PrivateRoute component={OrganizationView} path="/org/:id" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={Checks} path="/checks" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalCheck} path="/final-check" exact roles={['it-admin', 'reviewer']} />
-            
+            <PrivateRoute component={AgreementPlacement} path="/agreement-placement" exact roles={['it-admin', 'reviewer']} />
+
           </Switch>
 
 

@@ -1,0 +1,25 @@
+.sub-management-header {
+    font-size: 1.25rem;
+}
+
+.block-header {
+    font-weight: 700;
+}
+
+.align-item-center {
+    align-items: center;
+    display: flex;
+}
+
+.light-green-color {
+    background-color: #55c36e;
+    color: black;
+}
+
+
+.red-color {
+    background-color: #55c36e;
+    color: black;
+}
+
+
