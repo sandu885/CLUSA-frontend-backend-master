@@ -347,7 +347,6 @@ class ProgramDetail extends Component {
             width: 200
           },
         ];
-        console.log('response.data', response.data);
         this.setState({
           programData: { ...response.data.program },
           columns,

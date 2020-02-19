@@ -39,8 +39,6 @@ class Checks extends Component {
     this.setState({
       ...queryData,
     });
-
-    console.log('First this called');
   }
 
   handleFileClick = (name) => {

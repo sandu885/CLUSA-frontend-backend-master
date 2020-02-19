@@ -30,22 +30,17 @@ class AgreementPlacement extends Component {
   }
 
   handleFileClick = (name) => {
-    debugger
     const fileUpload = document.getElementsByName(name)[0];
     fileUpload.click();
   };
 
   componentWillMount() {
     const { location, history } = this.props;
-    debugger
     const queryData = queryStringToJSON(location.search);
-    debugger
     if (!queryData.orgId && !queryData.programId) {
-      debugger
       alert('Not having proper data to access this route');
       history.goBack();
     }
-    debugger
     this.setState({
       ...queryData,
     });
@@ -92,7 +87,6 @@ class AgreementPlacement extends Component {
     }
     let postProgram = '/api/createNewAgreementPlacement';
 
-    debugger
     if (postData.objectId) {
       postProgram = '/api/updateAgreementPlacementById';
       // delete first.checkFile
@@ -106,7 +100,6 @@ class AgreementPlacement extends Component {
 
     } else {
       postProgram = '/api/createNewAgreementPlacement';
-      debugger
 
       formData.append('agreementTemplate', postData.agreementTemplate);
       formData.append('placementTemplate', postData.placementTemplate);
@@ -123,9 +116,7 @@ class AgreementPlacement extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      debugger
       this.fetchAgreementPlacementData();
-      debugger
       console.warn('reponse message', response.data);
 
     }).catch((error) => {
@@ -161,8 +152,6 @@ class AgreementPlacement extends Component {
 
   render() {
     const { formData, role } = this.state;
-    console.log('this.state', this.state);
-    console.log('formData.agreementTemplate', formData && formData.agreementTemplate, formData && formData.agreementTemplate && formData.agreementTemplate.name);
 
     let heading = 'Agreement and Placement';
 
@@ -296,12 +285,12 @@ class AgreementPlacement extends Component {
                     <MDBCol md="2" />
                     <MDBCol md="10">
                       <MDBRow className="pt-3">
-                        <MDBCol sm="12" className="block-header">
+                        <MDBCol sm="2" className="block-header align-item-center">
                           Uploaded Date:-
                         </MDBCol>
-                        <MDBCol sm="12" className="pt-2">
-                          02/02/2020
-                        </MDBCol>
+                        <div style={{ color: '#2e8ab8' }}>
+                          {formData.placementUploadDate && formData.placementUploadDate}
+                        </div>
                       </MDBRow>
                     </MDBCol>
                   </MDBRow>
@@ -385,10 +374,8 @@ class AgreementPlacement extends Component {
   fetchAgreementPlacementData = () => {
     const fetchAllAgreementPlacementsByOrgIdProgId = '/api/fetchAllAgreementPlacementsByOrgIdProgId';
     const { orgId, programId } = this.state;
-    debugger
 
     if (this.state.sessionToken) {
-      debugger
       axios.post(
         fetchAllAgreementPlacementsByOrgIdProgId,
         {
@@ -397,8 +384,6 @@ class AgreementPlacement extends Component {
           programId,
         },
       ).then((response) => {
-        debugger
-
         if (response.data.agreementPlacement.length) {
           this.setState({
             formData: {
