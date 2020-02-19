@@ -28,13 +28,26 @@ const storage1 = multer.diskStorage({
   }
 });
 
+const storage2 = multer.diskStorage({
+  destination: function (req, file, cb) {
+    let path = `./uploads/agreement`;
+    fs.mkdirsSync(path);
+    cb(null, path)
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+
 const upload = multer({ storage });
 const upload1 = multer({ storage: storage1 });
+const upload2 = multer({ storage: storage2 });
 
 const userController = require("../../controllers/service/user");
 const orgController = require("../../controllers/service/organization");
 const programController = require("../../controllers/service/program");
 const checkController = require("../../controllers/service/check");
+const agreementPlacementController = require("../../controllers/service/agreementPlacement");
 const sectionController = require("../../controllers/service/section");
 const applicationController = require("../../controllers/service/application");
 
@@ -53,6 +66,10 @@ router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 
 
 // save application
 router.post('/saveApplicationContent', upload.array('budget'), applicationController.saveApplicationContent);
+
+// save application Agreement Placement
+router.post('/createNewAgreementPlacement', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.createNewAgreementPlacement);
+router.post('/updateAgreementPlacementById', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.updateAgreementPlacementById);
 router.use(userController.logger);
 
 // User Table
@@ -76,6 +93,11 @@ router.post('/fetchAllProgramsByOrgId', programController.fetchAllProgramsByOrgI
 router.post('/fetchProgramDetailById', programController.fetchProgramDetailById);
 router.post('/fetchAllPrograms', programController.fetchAllPrograms);
 router.post('/updateProgramCloseStatusById', programController.updateProgramCloseStatusById);
+
+// Placement and agreement
+router.post('/fetchAllAgreementPlacements', agreementPlacementController.fetchAllAgreementPlacements);
+router.post('/fetchAllAgreementPlacementsByOrgIdProgId', agreementPlacementController.fetchAllAgreementPlacementsByOrgIdProgId);
+// router.post('/updateCheckById', checkController.updateCheckById);
 
 // Check Table
 // router.post('/createNewCheck', checkController.createNewCheck);
