@@ -143,7 +143,6 @@ class FinalCheck extends Component {
 
   render() {
     const { formData } = this.state;
-    console.log(formData);
 
     let heading = 'Final Check';
 
