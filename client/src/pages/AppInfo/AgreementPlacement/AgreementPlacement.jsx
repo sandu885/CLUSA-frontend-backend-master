@@ -30,20 +30,25 @@ class AgreementPlacement extends Component {
   }
 
   handleFileClick = (name) => {
+    debugger
     const fileUpload = document.getElementsByName(name)[0];
     fileUpload.click();
   };
 
   componentWillMount() {
-    // const { location, history } = this.props;
-    // const queryData = queryStringToJSON(location.search);
-    // if (!queryData.orgId && !queryData.programId) {
-    //   alert('Not having proper data to access this route')
-    //   history.goBack();
-    // }
-    // this.setState({
-    //   ...queryData,
-    // });
+    const { location, history } = this.props;
+    debugger
+    const queryData = queryStringToJSON(location.search);
+    debugger
+    if (!queryData.orgId && !queryData.programId) {
+      debugger
+      alert('Not having proper data to access this route');
+      history.goBack();
+    }
+    debugger
+    this.setState({
+      ...queryData,
+    });
   }
 
   handleFileChange = (e) => {
@@ -62,19 +67,85 @@ class AgreementPlacement extends Component {
       alert('Please fill the form first');
       return true
     }
-    if (!data.checkAmount) {
+    if (!data.awardAmount) {
       alert('Please enter check Amount');
       return true
     }
-    if (!data.checkId) {
-      alert('Please enter check#');
+
+    if (!data.agreementTemplate) {
+      alert('Please pass agreement template file');
       return true
     }
-    if (!data.checkDate) {
-      alert('Please enter check date.');
+    if (!data.placementTemplate) {
+      alert('Please pass placement template file');
       return true
     }
     return false
+  };
+
+  handlePostAgreementPlacementClick = () => {
+    const { formData: postData, orgId, programId, role } = this.state;
+
+    const formData = new FormData();
+    if (!postData.objectId && this.validate(postData)) {
+      return
+    }
+    let postProgram = '/api/createNewAgreementPlacement';
+
+    debugger
+    if (postData.objectId) {
+      postProgram = '/api/updateAgreementPlacementById';
+      // delete first.checkFile
+      formData.append('objectId', postData.objectId);
+      formData.append('agreementTemplate', postData.agreementTemplate);
+      formData.append('placementTemplate', postData.placementTemplate);
+      formData.append('placementTemplate', postData.awardAmount);
+
+      formData.append('status', postData.status);
+      formData.append('role', role);
+
+    } else {
+      postProgram = '/api/createNewAgreementPlacement';
+      debugger
+
+      formData.append('agreementTemplate', postData.agreementTemplate);
+      formData.append('placementTemplate', postData.placementTemplate);
+      formData.append('awardAmount', postData.awardAmount);
+
+      formData.append('status', postData.status);
+    }
+    formData.append('orgId', orgId);
+    formData.append('programId', programId);
+    formData.append('sessionToken', this.state.sessionToken);
+    formData.append('role', role);
+
+    axios.post(
+      postProgram,
+      formData,
+    ).then((response) => {
+      debugger
+      this.fetchAgreementPlacementData();
+      debugger
+      console.warn('reponse message', response.data);
+
+    }).catch((error) => {
+      console.warn('error.response', error.response);
+      if(error.response !== null && error.response !== undefined) {
+        if( error.response.data !== null && error.response.data !== undefined ) {
+          if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+            localStorage.clear();
+            alert('Your login status was expired. Please login again.');
+            this.setState({
+              redirectToLogin: true,
+            });
+          } else {
+            alert(error.response.data.message);
+          }
+        }
+      }
+    });
+
+
   };
 
   handleChange = (e) => {
@@ -89,7 +160,9 @@ class AgreementPlacement extends Component {
   };
 
   render() {
-    const { formData } = this.state;
+    const { formData, role } = this.state;
+    console.log('this.state', this.state);
+    console.log('formData.agreementTemplate', formData && formData.agreementTemplate, formData && formData.agreementTemplate && formData.agreementTemplate.name);
 
     let heading = 'Agreement and Placement';
 
@@ -135,12 +208,15 @@ class AgreementPlacement extends Component {
                     <MDBCol md="10">
                       <MDBRow>
                         <MDBCol sm="5">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('checkFile')}>
+                          <input type="file" className="form-control" style={{ display: 'none' }} name="agreementTemplate" onChange={this.handleFileChange}/>
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('agreementTemplate')}>
                             Click here to Upload/Replace Image
                           </MDBBtn>
                         </MDBCol>
                         <MDBCol sm="7" className="align-item-center">
-                          Image file details over here
+                          {
+                            formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ? formData.agreementTemplateLink : 'Image file details over here'
+                          }
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -170,7 +246,7 @@ class AgreementPlacement extends Component {
                           Award amount :-
                         </MDBCol>
                         <MDBCol sm="5" className="block-header">
-                          <input type="text" className="form-control" name="checkDate" value={formData.awardAmount} onChange={this.handleChange} />
+                          <input type="number" className="form-control" name="awardAmount" value={formData.awardAmount} onChange={this.handleChange} />
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -192,7 +268,11 @@ class AgreementPlacement extends Component {
                           Placement
                         </MDBCol>
                         <MDBCol sm="12" className="pt-2">
-                          Placement template file name shows here, Click here to download
+                          {
+                            formData.placementTemplate ? formData.placementTemplate.name : formData.placementTemplateLink ? formData.placementTemplateLink : 'Placement template file name shows here, '
+                          }
+                          {/*Placement template file name shows here, Click here to download*/}
+                          Click here to download
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -244,7 +324,8 @@ class AgreementPlacement extends Component {
                             Result
                           </MDBCol>
                           <MDBCol sm="5" className="pt-2">
-                            <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('checkFile')}>
+                            <input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>
+                            <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>
                               Click here to Upload/Replace Image
                             </MDBBtn>
                           </MDBCol>
@@ -254,13 +335,16 @@ class AgreementPlacement extends Component {
 
                           <MDBCol sm="5" className="pt-3">
 
-                            <select name="role" className="browser-default custom-select" onChange={this.handleChange}>
-                              <option>Choose Role</option>
-                              <option value="3">IT Admin</option>
-                              <option value="0">Grant Reviewer</option>
-                              <option value="1">Organization</option>
-                              <option value="2">Grant Manager</option>
-                            </select>
+                            {
+                              (role === '3' || role === '2') &&
+                                <select name="status" className="browser-default custom-select" onChange={this.handleChange}>
+                                  <option>Choose Role</option>
+                                  <option value="0">Pending</option>
+                                  <option value="1">Active</option>
+                                </select>
+                            }
+
+
 
                           </MDBCol>
 
@@ -271,8 +355,16 @@ class AgreementPlacement extends Component {
                   <MDBRow className="text-center pt-4">
                     <MDBCol md="3" />
                     <MDBCol md="3" >
-                      <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload light-green-color" onClick={() => this.handleFileClick('checkFile')}>
+                      <MDBBtn
+                        rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload light-green-color"
+                        onClick={this.handlePostAgreementPlacementClick}
+                      >
                         Save
+                      </MDBBtn>
+                    </MDBCol>
+                    <MDBCol md="3">
+                      <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color" onClick={() => this.handleFileClick('checkFile')}>
+                        Cancel
                       </MDBBtn>
                     </MDBCol>
                     <MDBCol md="3" />
@@ -291,25 +383,36 @@ class AgreementPlacement extends Component {
   }
 
   fetchAgreementPlacementData = () => {
-    const fetchAllChecksByOrgIdProgId = '/api/fetchAllChecksByOrgIdProgId';
+    const fetchAllAgreementPlacementsByOrgIdProgId = '/api/fetchAllAgreementPlacementsByOrgIdProgId';
     const { orgId, programId } = this.state;
+    debugger
 
     if (this.state.sessionToken) {
+      debugger
       axios.post(
-        fetchAllChecksByOrgIdProgId,
+        fetchAllAgreementPlacementsByOrgIdProgId,
         {
           sessionToken: this.state.sessionToken,
           orgId,
           programId,
         },
       ).then((response) => {
-        const formData = response.data.checks.find(e => e.type === '3') || {};
+        debugger
 
+        if (response.data.agreementPlacement.length) {
+          this.setState({
+            formData: {
+              ...response.data.agreementPlacement[0],
+              agreementTemplate: undefined, placementTemplate: undefined,
+              agreementTemplateLink: response.data.agreementPlacement[0].agreementTemplate && response.data.agreementPlacement[0].agreementTemplate.originalname,
+              placementTemplateLink: response.data.agreementPlacement[0].placementTemplate && response.data.agreementPlacement[0].placementTemplate.originalname,
+            },
+          })
+        }
         this.setState({
-          formData: {
-            ...formData, checkAmount: formData.amount, checkFile: '', checkDate: formData.date
-          },
-        })
+          dataReceived: true,
+        });
+
       }).catch((error) => {
         this.setState({
           dataReceived: true,
@@ -330,7 +433,7 @@ class AgreementPlacement extends Component {
   };
 
   componentDidMount() {
-    // this.fetchAgreementPlacementData()
+    this.fetchAgreementPlacementData()
   }
 }
 

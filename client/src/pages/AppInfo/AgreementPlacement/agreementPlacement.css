@@ -12,14 +12,13 @@
 }
 
 .light-green-color {
-    background-color: #55c36e;
-    color: black;
+    background-color: #55c36e !important;
+    color: white;
 }
 
-
 .red-color {
-    background-color: #55c36e;
-    color: black;
+    background-color: #a22121 !important;
+    color: white;
 }
 
 

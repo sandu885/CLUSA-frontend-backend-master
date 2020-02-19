@@ -1,4 +1,3 @@
-
 const createNewCheck = async (meta, file) => {
   if (!meta.checkAmount)
     throw new Error('Please pass check amount.');
