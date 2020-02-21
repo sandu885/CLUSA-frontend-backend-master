@@ -38,9 +38,50 @@ class Program extends Component {
       name: 'Strategic Planning Grant',
     }];
 
+    // const columns = [
+    //   // {
+    //   //   label: 'Organization Name',
+    //   //   field: 'orgName',
+    //   //   sort: 'asc',
+    //   //   width: 150
+    //   // },
+    //   {
+    //     label: 'Program',
+    //     field: 'programType',
+    //     sort: 'asc',
+    //     width: 270
+    //   },
+    //   {
+    //     label: 'Year',
+    //     field: 'year',
+    //     sort: 'asc',
+    //     width: 200
+    //   },
+    //   {
+    //     label: 'Awarded Amount',
+    //     field: 'awardedAmount',
+    //     sort: 'asc',
+    //     width: 200
+    //   },
+    //   {
+    //     label: 'Actual Amount',
+    //     field: 'awardedAmount',
+    //     sort: 'asc',
+    //     width: 200
+    //   },
+    //   {
+    //     label: 'Status',
+    //     field: 'status',
+    //     sort: 'asc',
+    //     width: 200
+    //   },
+    // ];
+    //
+    // columns: [ ...columns ],
+    //   rows: [ ...rows ]
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
-      programData: [],
+      programData: {},
       dataReceived: false,
       formData: {},
       programType,
@@ -254,12 +295,12 @@ class Program extends Component {
         console.warn('clusa response', response.data.programs);
 
         const columns = [
-          {
-            label: 'Organization Name',
-            field: 'orgName',
-            sort: 'asc',
-            width: 150
-          },
+          // {
+          //   label: 'Organization Name',
+          //   field: 'orgName',
+          //   sort: 'asc',
+          //   width: 150
+          // },
           {
             label: 'Program',
             field: 'programType',
@@ -280,7 +321,7 @@ class Program extends Component {
           },
           {
             label: 'Actual Amount',
-            field: 'awardedAmount',
+            field: 'actualAmount',
             sort: 'asc',
             width: 200
           },

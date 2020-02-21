@@ -98,7 +98,7 @@ class FinalCheck extends Component {
     formData.append('checkDate', postData.checkDate);
     formData.append('orgId', orgId);
     formData.append('programId', programId);
-    formData.append('checkType', '3');
+    formData.append('checkType', '2');
 
     if (postData.checkFile) {
       formData.append('checkFile', postData.checkFile);
@@ -251,7 +251,7 @@ class FinalCheck extends Component {
           programId,
         },
       ).then((response) => {
-        const formData = response.data.checks.find(e => e.type === '3') || {};
+        const formData = response.data.checks.find(e => e.type === '2') || {};
 
         this.setState({
           formData: {

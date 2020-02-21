@@ -38,6 +38,13 @@ const fetchProgramDetailById = async(programId) => {
 
     let element = {};
     element['program'] = await queryProgram.first({useMasterKey: true});
+
+    let queryCheck = new Parse.Query("Check");
+    queryCheck.limit(3);
+    queryCheck.equalTo("programId", programId);
+    let checkRecord = await queryCheck.find({useMasterKey: true});
+    element["checks"] = checkRecord;
+
     element['application'] = await queryApplication.find({useMasterKey: true});
     return element;
 }
@@ -124,6 +131,18 @@ const fetchAllPrograms = async(meta) => {
         ele["orgName"] = orgRecord ? orgRecord.get('name') : '';
         ele["createdAt"] = programRecords[i].get("createdAt");
         ele["updatedAt"] = programRecords[i].get("updatedAt");
+
+        if (orgRecord) {
+            let queryCheck = new Parse.Query("Check");
+            queryCheck.limit(3);
+            queryCheck.equalTo("orgId", orgRecord.id);
+            queryCheck.equalTo("programId", programRecords[i].id);
+            let checkRecord = await queryCheck.find({useMasterKey: true});
+
+            const checkData = JSON.parse(JSON.stringify(checkRecord));
+
+            ele["actualAmount"] = checkData.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0) || null;
+        }
 
         if ((meta.organizationName || '').trim()) {
             const orgName = orgRecord.get('name') || '';

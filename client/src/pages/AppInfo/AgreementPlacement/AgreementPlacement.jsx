@@ -153,6 +153,7 @@ class AgreementPlacement extends Component {
   render() {
     const { formData, role } = this.state;
 
+    console.log('formData', formData);
     let heading = 'Agreement and Placement';
 
     return (
@@ -175,36 +176,36 @@ class AgreementPlacement extends Component {
                   </MDBCol>
                 </MDBRow>
 
-
                 <MDBCardBody>
 
-
                   <MDBRow>
-
                     <MDBCol md="2" />
                     <MDBCol md="10" className="block-header">
                       <MDBRow>
                         <MDBCol>
                           Agreement
                         </MDBCol>
-
                       </MDBRow>
                     </MDBCol>
                   </MDBRow>
-
                   <MDBRow>
                     <MDBCol md="2" />
                     <MDBCol md="10">
                       <MDBRow>
-                        <MDBCol sm="5">
-                          <input type="file" className="form-control" style={{ display: 'none' }} name="agreementTemplate" onChange={this.handleFileChange}/>
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('agreementTemplate')}>
-                            Click here to Upload/Replace Image
-                          </MDBBtn>
-                        </MDBCol>
+                        {role === '0' ? null :
+                          <MDBCol sm="5">
+                            <input type="file" className="form-control" style={{ display: 'none' }} name="agreementTemplate" onChange={this.handleFileChange}/>
+                            <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('agreementTemplate')}>
+                              Click here to Upload/Replace Image
+                            </MDBBtn>
+                          </MDBCol>
+                        }
+
                         <MDBCol sm="7" className="align-item-center">
                           {
-                            formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ? formData.agreementTemplateLink : 'Image file details over here'
+                            formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ?
+                              <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `http://localhost:1337/${formData.agreementTemplateLink.path}`: '#'}  target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
+                              : 'Image file details over here'
                           }
                         </MDBCol>
                       </MDBRow>
@@ -224,10 +225,7 @@ class AgreementPlacement extends Component {
                       </MDBRow>
                     </MDBCol>
                   </MDBRow>
-
                   <MDBRow className="pt-3">
-
-
                     <MDBCol md="2" />
                     <MDBCol md="10">
                       <MDBRow>
@@ -235,12 +233,13 @@ class AgreementPlacement extends Component {
                           Award amount :-
                         </MDBCol>
                         <MDBCol sm="5" className="block-header">
-                          <input type="number" className="form-control" name="awardAmount" value={formData.awardAmount} onChange={this.handleChange} />
+                          {role === '0' ? formData.awardAmount :
+                            <input type="number" className="form-control" name="awardAmount" value={formData.awardAmount} onChange={this.handleChange} />
+                          }
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
-
-                    </MDBRow>
+                  </MDBRow>
                   <MDBRow>
                     <MDBCol md="11">
                       <MDBRow style={{ display: 'block'}}>
@@ -258,10 +257,13 @@ class AgreementPlacement extends Component {
                         </MDBCol>
                         <MDBCol sm="12" className="pt-2">
                           {
-                            formData.placementTemplate ? formData.placementTemplate.name : formData.placementTemplateLink ? formData.placementTemplateLink : 'Placement template file name shows here, '
+                            formData.placementTemplate ? formData.placementTemplate.name : formData.placementTemplateLink ?
+                              <a href={formData.placementTemplateLink && formData.placementTemplateLink.filename ? `http://localhost:1337/${formData.placementTemplateLink.path}`: '#'}  target="_blank">
+                                Click here to download
+                              </a>
+                              : 'Placement template file name shows here, '
                           }
                           {/*Placement template file name shows here, Click here to download*/}
-                          Click here to download
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -312,18 +314,22 @@ class AgreementPlacement extends Component {
                           <MDBCol sm="12" className="block-header">
                             Result
                           </MDBCol>
-                          <MDBCol sm="5" className="pt-2">
-                            <input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>
-                            <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>
-                              Click here to Upload/Replace Image
-                            </MDBBtn>
-                          </MDBCol>
-                          <MDBCol sm="7" className="pt-2">
-                              Placement file is here
-                          </MDBCol>
+                          
+                          {role === '0' ? null :
+                            <>
+                              <MDBCol sm="5" className="pt-2">
+                                <input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>
+                                <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>
+                                  Click here to Upload/Replace Image
+                                </MDBBtn>
+                              </MDBCol>
+                              <MDBCol sm="7" className="pt-2">
+                                Placement file is here
+                              </MDBCol>
+                            </>
+                          }
 
                           <MDBCol sm="5" className="pt-3">
-
                             {
                               (role === '3' || role === '2') &&
                                 <select name="status" className="browser-default custom-select" onChange={this.handleChange}>
@@ -332,30 +338,41 @@ class AgreementPlacement extends Component {
                                   <option value="1">Active</option>
                                 </select>
                             }
-
-
-
                           </MDBCol>
-
                         </MDBRow>
                       </MDBCol>
                     </MDBRow>
                   </div>
                   <MDBRow className="text-center pt-4">
                     <MDBCol md="3" />
-                    <MDBCol md="3" >
-                      <MDBBtn
-                        rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload light-green-color"
-                        onClick={this.handlePostAgreementPlacementClick}
-                      >
-                        Save
-                      </MDBBtn>
-                    </MDBCol>
-                    <MDBCol md="3">
-                      <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color" onClick={() => this.handleFileClick('checkFile')}>
-                        Cancel
-                      </MDBBtn>
-                    </MDBCol>
+                    {role === '0' ?
+                      <MDBCol md="3" >
+                        <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                                onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}
+                        >
+                          Back
+                        </MDBBtn>
+                      </MDBCol>
+                      :
+                      <>
+                        <MDBCol md="3" >
+                          <MDBBtn
+                            rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload light-green-color"
+                            onClick={this.handlePostAgreementPlacementClick}
+                          >
+                            Save
+                          </MDBBtn>
+                        </MDBCol>
+                        <MDBCol md="3">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
+                                  onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}
+                          >
+                            Cancel
+                          </MDBBtn>
+                        </MDBCol>
+                      </>
+                    }
+
                     <MDBCol md="3" />
                   </MDBRow>
 
@@ -389,8 +406,8 @@ class AgreementPlacement extends Component {
             formData: {
               ...response.data.agreementPlacement[0],
               agreementTemplate: undefined, placementTemplate: undefined,
-              agreementTemplateLink: response.data.agreementPlacement[0].agreementTemplate && response.data.agreementPlacement[0].agreementTemplate.originalname,
-              placementTemplateLink: response.data.agreementPlacement[0].placementTemplate && response.data.agreementPlacement[0].placementTemplate.originalname,
+              agreementTemplateLink: response.data.agreementPlacement[0].agreementTemplate && response.data.agreementPlacement[0].agreementTemplate,
+              placementTemplateLink: response.data.agreementPlacement[0].placementTemplate && response.data.agreementPlacement[0].placementTemplate,
             },
           })
         }
