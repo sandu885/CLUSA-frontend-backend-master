@@ -58,13 +58,15 @@ class ProgramDetail extends Component {
   };
 
   render() {
-    const { programData: { program = {}, application = [] }, programType, dataReceived } = this.state;
+    const { programData: { program = {}, application = [], checks = [] }, programType, dataReceived } = this.state;
     const programName = programType.find(pT => pT.value === program.programType);
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
     const firstSection = application.find(app => app.sectionIndex === "1");
     const tenthSection = application.find(app => app.sectionIndex === "10");
+    const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
     let heading = 'Program Detail Page';
+    console.log('actualAwardAmount', actualAwardAmount);
 
     return (
       <div className="bg-withImage">
@@ -99,7 +101,7 @@ class ProgramDetail extends Component {
                               Applied Date:- <span> {moment(program.createdAt).format('DD/MM/YYYY')} </span>
                             </MDBRow>
                             <MDBRow>
-                              1st Check Date:- <span> 12/10/2019 </span>
+                              1st Check Date:- <span> {checks[0] ? checks[0].date : ''} </span>
                             </MDBRow>
                             <MDBRow>
                               Inter Placement #:- <span> {fifthSection && fifthSection.content['2'] || ''} </span>
@@ -113,10 +115,10 @@ class ProgramDetail extends Component {
                               Award Date:- <span> 12/10/2019 </span>
                             </MDBRow>
                             <MDBRow>
-                              2nd Check Date:- <span> 12/10/2019 </span>
+                              2nd Check Date:- <span> {checks[1] ? checks[1].date : ''} </span>
                             </MDBRow>
                             <MDBRow>
-                              Actual Award Amount:- <span> {tenthSection && tenthSection.content['1'] && tenthSection.content['1'][0].budget || ''} </span>
+                              Actual Award Amount:- <span> {actualAwardAmount && actualAwardAmount} </span>
                             </MDBRow>
                           </MDBCol>
                           <MDBCol md="3" className="program-detail-sub-header font-weight-bold">
@@ -124,7 +126,7 @@ class ProgramDetail extends Component {
                               Status:- <span style={{ textTransform: 'capitalize' }}> {program.status} </span>
                             </MDBRow>
                             <MDBRow>
-                              Actual Award:- <span> {tenthSection && tenthSection.content['2'] && tenthSection.content['2']} </span>
+                              Award Amount:- <span> {tenthSection && tenthSection.content['2'] && tenthSection.content['2']} </span>
                             </MDBRow>
                           </MDBCol>
                         </MDBRow>
@@ -228,13 +230,7 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={() => {
-                                const { history } = this.props;
-                                const { programData: { program } } = this.state;
-                                if (program) {
-                                  history.push(`/final-check?orgId=${program.orgId}&programId=${program.objectId}`);
-                                }
-                              }}
+                              onClick={() => {}}
                             >
                               Review
                             </MDBBtn>
@@ -250,6 +246,13 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
+                              onClick={() => {
+                                const { history } = this.props;
+                                const { programData: { program } } = this.state;
+                                if (program) {
+                                  history.push(`/final-check?orgId=${program.orgId}&programId=${program.objectId}`);
+                                }
+                              }}
                             >
                               Review
                             </MDBBtn>
