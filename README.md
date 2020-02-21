@@ -30,6 +30,7 @@ go to client folder
  * `cd client`
 
 install dependency
+ * `sudo apt-get install npm`
  * `sudo npm install`
 
 build app
@@ -70,12 +71,14 @@ Remove default settings
 ### 6. Run app by the pm2
  * `cd /var/www/html`
  * `sudo chown -R ubuntu {{app_name}}`
+ * `cd CLUSA-frontend-backend/`
  * `pm2 start index.js`
 
 pm2 setting for auto start when system restarted(startup and save command for the run pm2 service
  automatically when restart EC2 instance)
  * `pm2 startup`
- * `spm2 start server.js`
+ * `npm install`
+ * `pm2 start server.js`
  * `pm2 save`
  
 check the pm2 service status,
