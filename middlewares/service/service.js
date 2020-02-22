@@ -1,5 +1,5 @@
 const express = require('express');
-const multer  = require('multer');  
+const multer = require('multer');
 const fs = require('fs-extra');
 const router = express.Router();
 
@@ -31,6 +31,10 @@ const storage1 = multer.diskStorage({
 const storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
     let path = `./uploads/agreement`;
+    if (req.body.path) {
+      path = `./uploads/${req.body.path}`;
+    }
+
     fs.mkdirsSync(path);
     cb(null, path)
   },
@@ -47,6 +51,7 @@ const userController = require("../../controllers/service/user");
 const orgController = require("../../controllers/service/organization");
 const programController = require("../../controllers/service/program");
 const checkController = require("../../controllers/service/check");
+const finalReport = require("../../controllers/service/finalReport");
 const agreementPlacementController = require("../../controllers/service/agreementPlacement");
 const sectionController = require("../../controllers/service/section");
 const applicationController = require("../../controllers/service/application");
@@ -70,6 +75,10 @@ router.post('/saveApplicationContent', upload.array('budget'), applicationContro
 // save application Agreement Placement
 router.post('/createNewAgreementPlacement', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.createNewAgreementPlacement);
 router.post('/updateAgreementPlacementById', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.updateAgreementPlacementById);
+// finalReport
+router.post('/createNewFinalReport', upload2.single('file'), finalReport.createNewFinalReport);
+router.post('/updateFinalReportById', upload2.single('file'), finalReport.updateFinalReportById);
+
 router.use(userController.logger);
 
 // User Table
@@ -107,6 +116,10 @@ router.post('/fetchAllChecksByOrgIdProgId', checkController.fetchAllChecksByOrgI
 
 // Section Table
 router.post('/createNewSection', sectionController.createNewSection);
+
+// Final Report Table
+router.post('/fetchAllFinalReports', finalReport.fetchAllFinalReports);
+router.post('/fetchAllFinalReportByOrgIdProgId', finalReport.fetchAllFinalReportByOrgIdProgId);
 
 // Application Table
 router.post('/submitApplication', applicationController.submitApplication);

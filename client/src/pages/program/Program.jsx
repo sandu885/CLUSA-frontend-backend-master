@@ -295,12 +295,12 @@ class Program extends Component {
         console.warn('clusa response', response.data.programs);
 
         const columns = [
-          // {
-          //   label: 'Organization Name',
-          //   field: 'orgName',
-          //   sort: 'asc',
-          //   width: 150
-          // },
+          {
+            label: 'Organization Name',
+            field: 'orgName',
+            sort: 'asc',
+            width: 150
+          },
           {
             label: 'Program',
             field: 'programType',
