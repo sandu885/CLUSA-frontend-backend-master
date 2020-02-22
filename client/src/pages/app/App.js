@@ -40,6 +40,8 @@ import ProgramDetail from '../program/ProgramDetail/ProgramDetail';
 import Checks from '../AppInfo/Check/Checks';
 import FinalCheck from '../AppInfo/Check/FinalCheck';
 import AgreementPlacement from '../AppInfo/AgreementPlacement/AgreementPlacement';
+import FinalReport from '../FinalReport/FinalReport';
+import FinalReportView from '../FinalReport/FinalReportView';
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
 
@@ -178,11 +180,13 @@ class App extends Component {
             <PrivateRoute component={MyAccount} path="/my-account" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={Program} path="/view-program" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={ProgramDetail} path="/program/:id" exact roles={['it-admin', 'reviewer']} />
-            <PrivateRoute component={OrganizationView} path="/org/:id" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={OrganizationView} path="/org" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={OrganizationView} path="/org/:id" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={Checks} path="/checks" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalCheck} path="/final-check" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={AgreementPlacement} path="/agreement-placement" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={FinalReport} path="/final-report" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={FinalReportView} path="/final-report-view" exact roles={['it-admin', 'reviewer']} />
 
           </Switch>
 

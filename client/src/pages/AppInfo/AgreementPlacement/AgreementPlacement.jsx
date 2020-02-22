@@ -93,7 +93,7 @@ class AgreementPlacement extends Component {
       formData.append('objectId', postData.objectId);
       formData.append('agreementTemplate', postData.agreementTemplate);
       formData.append('placementTemplate', postData.placementTemplate);
-      formData.append('placementTemplate', postData.awardAmount);
+      formData.append('awardAmount', postData.awardAmount);
 
       formData.append('status', postData.status);
       formData.append('role', role);
@@ -204,7 +204,7 @@ class AgreementPlacement extends Component {
                         <MDBCol sm="7" className="align-item-center">
                           {
                             formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ?
-                              <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `http://localhost:1337/${formData.agreementTemplateLink.path}`: '#'}  target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
+                              <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'}  target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
                               : 'Image file details over here'
                           }
                         </MDBCol>
@@ -258,7 +258,7 @@ class AgreementPlacement extends Component {
                         <MDBCol sm="12" className="pt-2">
                           {
                             formData.placementTemplate ? formData.placementTemplate.name : formData.placementTemplateLink ?
-                              <a href={formData.placementTemplateLink && formData.placementTemplateLink.filename ? `http://localhost:1337/${formData.placementTemplateLink.path}`: '#'}  target="_blank">
+                              <a href={formData.placementTemplateLink && formData.placementTemplateLink.filename ? `/${formData.placementTemplateLink.path}`: '#'}  target="_blank">
                                 Click here to download
                               </a>
                               : 'Placement template file name shows here, '
