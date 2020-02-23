@@ -707,9 +707,7 @@ class RegisterInfo extends Component {
     // else if (this.state.selectedFile2 === null) orgType = '1';
     // else orgType = '2';
     
-    const { orgType } = this.state;
-
-    console.warn('allll', this.state);
+    const { orgType, ...formT } = this.state;
 
     formData.append('username', this.state.username);
     formData.append('password', this.state.password); //
@@ -1120,6 +1118,21 @@ class RegisterInfo extends Component {
                           required
                         />
                       </label>
+                      {/* ----------- Password ----------- */}
+                      {/*<label*/}
+                      {/*  htmlFor="register-password"*/}
+                      {/*  className="dark-grey-text font-weight-light pt-2"*/}
+                      {/*><span className="redColor">* </span>Password*/}
+                      {/*  <input*/}
+                      {/*    type="password"*/}
+                      {/*    id="register-password"*/}
+                      {/*    className={this.state.passwordInputError ? 'form-control errorInput' : 'form-control'}*/}
+                      {/*    placeholder="Password"*/}
+                      {/*    name="password"*/}
+                      {/*    defaultValue={this.state.password}*/}
+                      {/*    onChange={(e) => { this.handleChange(e); this.setState({ passwordInputError: false }); }}*/}
+                      {/*  />*/}
+                      {/*</label>*/}
                       {/* ----------- Contact Email ----------- */}
                       <label
                         htmlFor="register-email"

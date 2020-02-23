@@ -45,6 +45,12 @@ const fetchProgramDetailById = async(programId) => {
     let checkRecord = await queryCheck.find({useMasterKey: true});
     element["checks"] = checkRecord;
 
+    let queryAgreementPlacement = new Parse.Query("AgreementPlacement");
+
+    queryAgreementPlacement.equalTo("programId", programId);
+    let agreementPlacementRecord = await queryAgreementPlacement.find({useMasterKey: true});
+    element["agreementPlacement"] = agreementPlacementRecord;
+
     element['application'] = await queryApplication.find({useMasterKey: true});
     return element;
 }
@@ -65,15 +71,21 @@ const fetchAllProgramsByOrgId = async(orgId) => {
         queryApplication.equalTo("programId", programRecords[i].id);
         let appRecord = await queryApplication.find({useMasterKey: true});
 
-        appRecord.forEach((app) => {
+        for (const app of appRecord) {
             if (app.get('sectionIndex') === '1') {
                 ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
             }
             if (app.get('sectionIndex') === '10') {
                 ele["awardedAmount"] = app.get('content') ? app.get('content')['2'] : '0';
-                ele["actualAmount"] = app.get('content') ? app.get('content')['1'] ? [0]['budget'] : '' : '0';
+
+                let queryCheck = new Parse.Query("Check");
+                queryCheck.equalTo("orgId", orgId);
+                queryCheck.equalTo("programId", programRecords[i].id);
+                let checkRecord = await queryCheck.find({useMasterKey: true});
+                checkRecord = checkRecord ? JSON.parse(JSON.stringify(checkRecord)) : [];
+                ele["actualAmount"] = checkRecord.reduce((check1, check2) => (check1 || 0) + (Number(check2.amount) || 0), 0)
             }
-        });
+        }
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
         ele["status"] = programRecords[i].get("status");
@@ -81,10 +93,15 @@ const fetchAllProgramsByOrgId = async(orgId) => {
         ele["programType"] = programRecords[i].get("programType");
         ele["createdAt"] = programRecords[i].get("createdAt");
         ele["updatedAt"] = programRecords[i].get("updatedAt");
-
         programs.push(ele);
     }
-    return programs;
+    let queryUser = new Parse.Query("User");
+    queryUser.equalTo("orgId", orgId);
+    const userRecords = await queryUser.first({useMasterKey: true});
+    let queryOrganization = new Parse.Query("Organization");
+    queryOrganization.equalTo("objectId", orgId);
+    const organizationRecords = await queryOrganization.first({useMasterKey: true});
+    return { programs, organizationData: organizationRecords, userData: userRecords };
 };
 
 const fetchAllPrograms = async(meta) => {
@@ -157,16 +174,16 @@ const fetchAllPrograms = async(meta) => {
 };
 
 const updateProgramByIdToCloseStatus = async (meta) => {
+    console.log('Closing report starting\n', meta);
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
 
-    let queryProgram = new Parse.Query(Parse.Program);
-
+    let queryProgram = new Parse.Query('Program');
+    queryProgram.equalTo("objectId", meta.programId);
     let programRecord = await queryProgram.first({ useMasterKey: true });
-    programRecord.equalTo("objectId", meta.programId);
 
-    meta.closeReport && programRecord.set("closeReport", meta.closeReport);
-    meta.closeReport && programRecord.set("status", 'close');
+    meta.closeNote && programRecord.set("closeNote", meta.closeNote);
+    meta.closeNote && programRecord.set("status", 'closed');
 
     return programRecord.save(null, { useMasterKey: true });
 };

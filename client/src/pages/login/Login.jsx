@@ -97,6 +97,7 @@ class Login extends Component {
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('status', this.state.status);
         localStorage.setItem('orgName', response.data.orgName);
+        localStorage.setItem('orgId', response.data.orgId);
         localStorage.setItem('isAuthenticated', true);
         console.warn('login page session token', this.state.sessionToken);
         this.setState({
@@ -109,6 +110,7 @@ class Login extends Component {
         this.setState({
           sessionToken: response.data.sessionToken,
         });
+
         localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);

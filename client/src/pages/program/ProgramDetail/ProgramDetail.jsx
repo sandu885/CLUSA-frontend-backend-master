@@ -47,18 +47,52 @@ class ProgramDetail extends Component {
     };
   }
 
-  handleChange = (e) => {
-    const { formData } = this.state;
-    this.setState({
-      formData: {
-        ...formData,
-        [e.target.name]: e.target.value,
+  closeReport = () => {
+    const { sessionToken, role, closeNote = '' } = this.state;
+    const { history } = this.props;
+    const programId = this.props.match.params.id;
+
+    if (!closeNote.trim()) {
+      return alert('Please enter close report to close this program.')
+    }
+
+    const postData = {
+      programId, role, closeNote, sessionToken
+    };
+
+    let closeProgramURL = '/api/updateProgramCloseStatusById';
+
+    axios.post(
+      closeProgramURL,
+      {
+        ...postData
+      },
+    ).then(() => {
+      alert('Program is closed');
+      history.goBack();
+    }).catch((error) => {
+      if(error.response !== null && error.response !== undefined) {
+        if( error.response.data !== null && error.response.data !== undefined ) {
+          if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+            localStorage.clear();
+            alert('Your login status was expired. Please login again.');
+            this.props.history('/')
+          } else {
+            alert('Something went wrong please contact our support system');
+          }
+        }
       }
     });
   };
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   render() {
-    const { programData: { program = {}, application = [], checks = [] }, programType, dataReceived } = this.state;
+    const { programData: { program = {}, application = [], checks = [], agreementPlacement = [] }, programType, dataReceived, closeNote } = this.state;
     const programName = programType.find(pT => pT.value === program.programType);
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
@@ -112,7 +146,7 @@ class ProgramDetail extends Component {
                               Year:- <span> {firstSection && firstSection.content['1'] && firstSection.content['1'].programs && firstSection.content['1'].programs[0].startYear} </span>
                             </MDBRow>
                             <MDBRow>
-                              Award Date:- <span> 12/10/2019 </span>
+                              Award Date:- <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span>
                             </MDBRow>
                             <MDBRow>
                               2nd Check Date:- <span> {checks[1] ? checks[1].date : ''} </span>
@@ -126,7 +160,7 @@ class ProgramDetail extends Component {
                               Status:- <span style={{ textTransform: 'capitalize' }}> {program.status} </span>
                             </MDBRow>
                             <MDBRow>
-                              Award Amount:- <span> {tenthSection && tenthSection.content['2'] && tenthSection.content['2']} </span>
+                              Award Amount:- <span> {agreementPlacement[0] && agreementPlacement[0].awardAmount} </span>
                             </MDBRow>
                           </MDBCol>
                         </MDBRow>
@@ -184,7 +218,8 @@ class ProgramDetail extends Component {
                           </MDBCol>
                         </MDBRow>
 
-                        <MDBRow>
+                        {this.state.role != '1' &&
+                          <MDBRow>
                           <MDBCol md="7">
                             Send 1st Check
                           </MDBCol>
@@ -205,6 +240,8 @@ class ProgramDetail extends Component {
                             </MDBBtn>
                           </MDBCol>
                         </MDBRow>
+                        }
+
 
                         <MDBRow>
                           <MDBCol md="7">
@@ -230,14 +267,15 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={() => {}}
                             >
                               Review
                             </MDBBtn>
                           </MDBCol>
                         </MDBRow>
 
-                        <MDBRow>
+
+                        {this.state.role != '1' &&
+                          <MDBRow>
                           <MDBCol md="7">
                             Send final check
                           </MDBCol>
@@ -258,7 +296,7 @@ class ProgramDetail extends Component {
                             </MDBBtn>
                           </MDBCol>
                         </MDBRow>
-
+                        }
 
                       </MDBCol>
                       <MDBCol md="2" />
@@ -266,28 +304,80 @@ class ProgramDetail extends Component {
                         <hr/>
                       </MDBCol>
 
-                      <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                        Program Closing Report
-                      </MDBCol>
-                      <MDBCol md="1" />
-                      <MDBCol md="10">
 
-                      <textarea name="desc" className="form-control mt-2 mb-4" rows="8">
-                      </textarea>
-                        <div style={{
-                          justifyContent: 'center',
-                          display: 'flex',
-                        }}>
-                          <MDBBtn
-                            rounded
-                            size={"sm"}
-                            className="application-close-button second-action-button  btn-block z-depth-1a"
-                          >
-                            Back
-                          </MDBBtn>
+                      {this.state.role != '1' &&
+                        <div>
+                          <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
+                            Program Closing Report
+                          </MDBCol>
+                          <MDBCol md="1" />
+                          <MDBCol md="10">
+
+                            <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote} onChange={this.handleChange} />
+
+                            <div style={{
+                              justifyContent: 'center',
+                              display: 'flex',
+                            }}>
+                              <div
+                                style={{
+                                  paddingRight: '100px',
+                                }}
+                              >
+                                <MDBBtn
+                                  rounded
+                                  size={"sm"}
+                                  style={{ width: '150px' }}
+                                  className="second-action-button btn-block z-depth-1a red-color"
+                                  onClick={this.closeReport}
+                                >
+                                  Close
+                                </MDBBtn>
+                              </div>
+                              <div>
+                                <MDBBtn
+                                  rounded
+                                  size={"sm"}
+                                  style={{ width: '150px' }}
+                                  className="second-action-button btn-block z-depth-1a light-green-color"
+                                  onClick={() => {
+                                    this.props.history.goBack();
+                                  }}
+                                >
+                                  Back
+                                </MDBBtn>
+                              </div>
+                            </div>
+                          </MDBCol>
+                          <MDBCol md="1" />
                         </div>
-                      </MDBCol>
-                      <MDBCol md="1" />
+                      }
+                      {this.state.role == '1' &&
+                        <>
+                          <MDBCol md="1" />
+                            <MDBCol md="10">
+                              <div style={{
+                                justifyContent: 'center',
+                                display: 'flex',
+                              }}>
+                                <MDBBtn
+                                  rounded
+                                  size={"sm"}
+                                  style={{ width: '250px' }}
+                                  className="second-action-button btn-block z-depth-1a red-color"
+                                  onClick={() => {
+                                    this.history.push('/account')
+                                  }}
+                                >
+                                  Back to Organization
+                                </MDBBtn>
+                              </div>
+                            </MDBCol>
+                          <MDBCol md="1" />
+                        </>
+                      }
+
+
                     </MDBRow>
                   </MDBCardBody>
                 </MDBCard>

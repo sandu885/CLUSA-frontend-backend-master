@@ -169,8 +169,6 @@ class FinalReport extends Component {
   render() {
     const { formData: { q1 = {}, q2 = {}, q3 = {}, fileLink } } = this.state;
 
-    console.log('this.state', this.state);
-
     return (
       <div className="bg-withImage">
         <HeaderComponent />
@@ -211,8 +209,6 @@ class FinalReport extends Component {
                           {questionList['question1-3']}
                         </label>
                         <textarea className="form-control ml-4 final-report-input" name="q1-third" value={q1['third']} onChange={this.handleChange} />
-
-                        {/*<input className="form-control ml-4 final-report-input" name="username" value={username} onChange={this.handleChange} />*/}
                       </div>
 
                       <div className="pt-second text-left">
@@ -252,7 +248,6 @@ class FinalReport extends Component {
                           {questionList['question3-1']}
                         </label>
                         <textarea className="form-control ml-4 final-report-input" name="q3-first" value={q3['first']} onChange={this.handleChange} />
-                        {/*<input className="form-control ml-4 final-report-input" name="q3-1" value={q1['2']} onChange={this.handleChange} />*/}
                       </div>
 
                       <div className="pt-2 text-left">
@@ -308,15 +303,9 @@ class FinalReport extends Component {
                           <MDBCol md="1"/>
                         </MDBRow>
                       </div>
-
                     </MDBCol>
                     <MDBCol md="1" />
-
                   </MDBRow>
-
-
-
-
                 </MDBCardBody>
 
                 <br />
