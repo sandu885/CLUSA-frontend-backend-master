@@ -73,8 +73,8 @@ router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 
 router.post('/saveApplicationContent', upload.array('budget'), applicationController.saveApplicationContent);
 
 // save application Agreement Placement
-router.post('/createNewAgreementPlacement', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.createNewAgreementPlacement);
-router.post('/updateAgreementPlacementById', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.updateAgreementPlacementById);
+router.post('/createNewAgreementPlacement', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'finalFilledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.createNewAgreementPlacement);
+router.post('/updateAgreementPlacementById', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'finalFilledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.updateAgreementPlacementById);
 // finalReport
 router.post('/createNewFinalReport', upload2.single('file'), finalReport.createNewFinalReport);
 router.post('/updateFinalReportById', upload2.single('file'), finalReport.updateFinalReportById);

@@ -49,7 +49,7 @@ class ProgramDetail extends Component {
   }
 
   render() {
-    const { programData: { program = {}, application = [] }, programType, dataReceived, programData } = this.state;
+    const { programType, dataReceived, programData, organization = {}, user = {} } = this.state;
 
     let heading = 'Organization Home Page';
 
@@ -78,7 +78,7 @@ class ProgramDetail extends Component {
                                 Organization Name:-
                               </div>
                               <div>
-                                <span> TesetVielw </span>
+                                <span> {organization.name} </span>
                               </div>
                             </MDBRow>
                             <MDBRow>
@@ -86,7 +86,7 @@ class ProgramDetail extends Component {
                                 Conant Name:-
                               </div>
                               <div>
-                                <span> Tommay </span>
+                                <span> {user.username} </span>
                               </div>
                             </MDBRow>
                             <MDBRow>
@@ -94,7 +94,7 @@ class ProgramDetail extends Component {
                                 Email:-
                               </div>
                               <div>
-                                <span> Test@test.com </span>
+                                <span> {user.emailAddress || user.email} </span>
                               </div>
                             </MDBRow>
                             <MDBRow className="mb-3">
@@ -225,8 +225,6 @@ class ProgramDetail extends Component {
                         </MDBRow>
                       </MDBCol>
                     </MDBRow>
-
-
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -242,8 +240,7 @@ class ProgramDetail extends Component {
     const fetchAllProgramsByOrgId = '/api/fetchAllProgramsByOrgId';
     const { programType } = this.state;
 
-    if (this.state.sessionToken) {
-      axios.post(
+    axios.post(
         fetchAllProgramsByOrgId,
         {
           sessionToken: this.state.sessionToken,
@@ -271,7 +268,7 @@ class ProgramDetail extends Component {
           },
           {
             label: 'Actual Amount',
-            field: 'awardedAmount',
+            field: 'actualAmount',
             sort: 'asc',
             width: 200
           },
@@ -282,7 +279,7 @@ class ProgramDetail extends Component {
             width: 200
           },
         ];
-        const rows = (response.data.programs || []).map(row => {
+        const rows = (response.data.data.programs || []).map(row => {
           return {
             ...row,
             programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
@@ -293,6 +290,8 @@ class ProgramDetail extends Component {
             columns: [ ...columns ],
             rows: [ ...rows ]
           },
+          organization: response.data.data.organizationData,
+          user: response.data.data.userData,
           columns,
           dataReceived: true,
         });
@@ -313,7 +312,79 @@ class ProgramDetail extends Component {
           }
         }
       });
-    }
+
+    // if (this.state.sessionToken) {
+    //   axios.post(
+    //     fetchAllProgramsByOrgId,
+    //     {
+    //       sessionToken: this.state.sessionToken,
+    //       orgId: this.props.match.params ? this.props.match.params.id : ''
+    //     },
+    //   ).then((response) => {
+    //     const columns = [
+    //       {
+    //         label: 'Program',
+    //         field: 'programType',
+    //         sort: 'asc',
+    //         width: 270
+    //       },
+    //       {
+    //         label: 'Year',
+    //         field: 'year',
+    //         sort: 'asc',
+    //         width: 200
+    //       },
+    //       {
+    //         label: 'Awarded Amount',
+    //         field: 'awardedAmount',
+    //         sort: 'asc',
+    //         width: 200
+    //       },
+    //       {
+    //         label: 'Actual Amount',
+    //         field: 'actualAmount',
+    //         sort: 'asc',
+    //         width: 200
+    //       },
+    //       {
+    //         label: 'Status',
+    //         field: 'status',
+    //         sort: 'asc',
+    //         width: 200
+    //       },
+    //     ];
+    //     const rows = (response.data.programs || []).map(row => {
+    //       return {
+    //         ...row,
+    //         programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
+    //       }
+    //     })
+    //     this.setState({
+    //       programData: {
+    //         columns: [ ...columns ],
+    //         rows: [ ...rows ]
+    //       },
+    //       columns,
+    //       dataReceived: true,
+    //     });
+    //
+    //   }).catch((error) => {
+    //     this.setState({
+    //       dataReceived: true,
+    //     });
+    //     if(error.response !== null && error.response !== undefined) {
+    //       if( error.response.data !== null && error.response.data !== undefined ) {
+    //         if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+    //           localStorage.clear();
+    //           alert('Your login status was expired. Please login again.');
+    //           this.props.history.push('/')
+    //         } else {
+    //           alert(error.response.data.message);
+    //         }
+    //       }
+    //     }
+    //   });
+    // }
   }
 }
 

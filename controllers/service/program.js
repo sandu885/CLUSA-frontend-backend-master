@@ -55,7 +55,7 @@ const fetchAllProgramsByOrgId = async(req, res) => {
         console.log("Successfully fetch all programs by organization id");
         res.status(200).json({
             message: "Successfully fetch all programs by organization id",
-            programs: programs,
+            data: programs,
         });
     } catch(error) {
         console.log(error.message);
@@ -83,6 +83,7 @@ const fetchAllPrograms = async (req, res) => {
 }
 
 const updateProgramCloseStatusById = async (req, res) => {
+    console.log('Closing report started');
     try {
         let programs = await PROGRAM.updateProgramByIdToCloseStatus(req.body);
         console.log("Successfully fetch all programs");

@@ -15,6 +15,18 @@ const createNewCheck = async (meta, file) => {
   // 1 first Check, 2 second Check and more 3 final check send
   check.set("type", meta.checkType);
 
+
+  let queryProgram = new Parse.Query('Program');
+  queryProgram.equalTo("objectId", meta.programId);
+
+  let programRecord = await queryProgram.first({ useMasterKey: true });
+  if (meta.checkType == '1') {
+    programRecord.set("status", 'firstCheckSend');
+  } else if (meta.checkType == '2') {
+    programRecord.set("status", 'finalCheckSend');
+  }
+  await programRecord.save(null, { useMasterKey: true });
+
   // TODO FILE section
   if (file) {
     check.set("checkFile", file);

@@ -13,6 +13,7 @@ const createNewFinalReport = async (meta, file) => {
   finalReport.set("orgId", meta.orgId);
   if (meta.isSubmitted === 'true') {
     finalReport.set("isSubmitted", 1);
+    await updateProgramStatus(finalReport);
   } else if (meta.isSubmitted === 'false') {
     finalReport.set("isSubmitted", 0);
   } else {
@@ -44,6 +45,15 @@ const fetchAllFinalReportByOrgIdProgId = async (meta) => {
   return await queryFinalReport.first({useMasterKey: true});
 };
 
+const updateProgramStatus = async (finalReport) => {
+  let queryProgram = new Parse.Query('Program');
+  queryProgram.equalTo("objectId", finalReport.get('programId'));
+  let programRecord = await queryProgram.first({ useMasterKey: true });
+
+  programRecord.set("status", 'reportSubmitted');
+  await programRecord.save(null, { useMasterKey: true });
+};
+
 const updateFinalReportById = async (meta, file) => {
   let queryFinalReport = new Parse.Query('FinalReport');
   queryFinalReport.equalTo("objectId", meta.objectId);
@@ -56,8 +66,14 @@ const updateFinalReportById = async (meta, file) => {
   }
   finalReport.set("q3", [meta.q3]);
 
-  if (meta.isSubmitted)
-    finalReport.set("isSubmitted", meta.isSubmitted);
+  if (meta.isSubmitted === 'true') {
+    finalReport.set("isSubmitted", 1);
+    await updateProgramStatus(finalReport)
+  } else if (meta.isSubmitted === 'false') {
+    finalReport.set("isSubmitted", 0);
+  } else {
+    finalReport.set("isSubmitted", 0);
+  }
 
   const finalReportSaved = await finalReport.save(null,{useMasterKey: true});
   console.log('\n\n FinalReport saved in the database finalReportSaved', finalReportSaved, '\n\n');

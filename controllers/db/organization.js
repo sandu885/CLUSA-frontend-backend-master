@@ -215,6 +215,10 @@ const updateOrgInfo = async(meta, files) => {
     if (!meta.phone)
         throw new Error("No contact phone");
     userRecord.set("phone", meta.phone);
+    // console.log('\n\nmeta.password', meta.password, '\n\n\n');
+    // if (!meta.password)
+    //     throw new Error("No password");
+    // userRecord.set("password", JSON.parse(meta.password));
     if (!meta.email)
         throw new Error("No contact email");
     userRecord.set("emailAddress", meta.email);
