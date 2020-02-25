@@ -30,6 +30,20 @@ import UserOrganizationManagement from '../UserOrganizationManagement/UserOrgani
 import UserAccountManagement from '../userAccount/UserAccountManagement/UserAccountManagement';
 import MyAccount from '../userAccount/MyAccount/MyAccount';
 
+// Organization
+import OrganizationView from '../orgInfo/OrganizationView/OrganizationView';
+
+// Program
+import Program from '../program/Program.jsx';
+import ProgramDetail from '../program/ProgramDetail/ProgramDetail';
+
+import Checks from '../AppInfo/Check/Checks';
+import FinalCheck from '../AppInfo/Check/FinalCheck';
+import AgreementPlacement from '../AppInfo/AgreementPlacement/AgreementPlacement';
+import SignedAgreementPlacement from '../AppInfo/AgreementPlacement/SignedAgreementPlacement';
+import FinalReport from '../FinalReport/FinalReport';
+import FinalReportView from '../FinalReport/FinalReportView';
+import ProgramReport from '../ProgramReport/ProgramReport';
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
 
@@ -39,6 +53,7 @@ import { PrivateRoute } from "./router";
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import 'mdbreact/dist/css/mdb.css';
 
 class App extends Component {
@@ -165,7 +180,17 @@ class App extends Component {
             <PrivateRoute component={UserAccountManagement} path="/user-account/:userId" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={UserAccountManagement} path="/user-account" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={MyAccount} path="/my-account" exact roles={['it-admin', 'reviewer']} />
-
+            <PrivateRoute component={Program} path="/view-program" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={ProgramDetail} path="/program/:id" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={OrganizationView} path="/org" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={OrganizationView} path="/org/:id" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={Checks} path="/checks" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={FinalCheck} path="/final-check" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={AgreementPlacement} path="/agreement-placement" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={SignedAgreementPlacement} path="/signed-agreement-placement" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={FinalReport} path="/final-report" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={FinalReportView} path="/final-report-view" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={ProgramReport} path="/program-report" exact roles={['it-admin', 'reviewer']} />
 
           </Switch>
 

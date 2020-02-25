@@ -71,12 +71,15 @@ const findOrgByName = async(orgName) => {
 
 // get all organizations stored in the database
 const fetchAllOrgs = async(user) => {
-    if (user.get("userType") != "0")
-        throw new Error("No permission to fetch all organizations");
+    // if (user.get("userType") != "0")
+    //     throw new Error("No permission to fetch all organizations");
     let queryOrg = new Parse.Query("Organization");
     queryOrg.limit(10000);
     let orgRecords = await queryOrg.find({useMasterKey: true});
-    let programRecords = await PROGRAM.fetchAllPrograms();
+    let queryProgram = new Parse.Query("Program");
+    queryProgram.limit(10000);
+    let programRecords = await queryProgram.find({useMasterKey: true});
+
     console.log("fetchAllOrgs: successfully get all organizations and programs");
     let programList = {};
     for (let i in programRecords) {
@@ -212,6 +215,10 @@ const updateOrgInfo = async(meta, files) => {
     if (!meta.phone)
         throw new Error("No contact phone");
     userRecord.set("phone", meta.phone);
+    // console.log('\n\nmeta.password', meta.password, '\n\n\n');
+    // if (!meta.password)
+    //     throw new Error("No password");
+    // userRecord.set("password", JSON.parse(meta.password));
     if (!meta.email)
         throw new Error("No contact email");
     userRecord.set("emailAddress", meta.email);

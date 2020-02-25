@@ -47,6 +47,7 @@ var api = new ParseServer({
 // app.use('/public', express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, './client/build')));
 
+app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';

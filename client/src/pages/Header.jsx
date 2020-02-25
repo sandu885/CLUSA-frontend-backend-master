@@ -6,6 +6,7 @@ import './style.css';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 // import Auth from './login/Auth';
 
 import CLUSAlogo from '../images/clusalogo_white.png';
@@ -113,7 +114,8 @@ class Header extends Component {
               <div>
                 { userName != null ? (
                   <div>
-                    <span>welcome, {userName}  </span>
+                    <span>welcome, <Link to="/my-account" className="user-name-header">{userName}</Link>  </span>
+                    
                     <MDBBtn
                       rounded
                       className="logoutBtn"
