@@ -68,9 +68,27 @@ const updateProgramReportById = async (req, res) => {
   }
 };
 
+const deleteProgramReportById = async (req, res) => {
+  console.log("deleteProgramReportById: start");
+  try {
+    let programReport = await PROGRAMREPORT.deleteProgramReportById(req.body);
+    console.log("Successfully delete Program Report");
+    res.status(200).json({
+      message: 'Delete final report',
+      programReport: programReport,
+    });
+  } catch(error) {
+    console.log("updateProgramReportById: " + error.message);
+    res.status(400).json({
+      message: error.message
+    });
+  }
+};
+
 module.exports = {
   createNewProgramReport,
   fetchAllProgramReports,
   fetchAllProgramReportByOrgIdProgId,
   updateProgramReportById,
+  deleteProgramReportById,
 };

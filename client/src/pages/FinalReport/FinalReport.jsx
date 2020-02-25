@@ -82,31 +82,6 @@ class FinalReport extends Component {
     history.goBack();
   };
 
-  validate = (formData) => {
-    if (!formData.username) {
-      alert('Please enter username.');
-      return true
-    }
-    if (!formData.name) {
-      alert('Please enter full name address.');
-      return true
-    }
-    const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (!formData.email) {
-      alert('Please enter email address.');
-      return true
-    } else if (emailReg.test(formData.email) === false) {
-      alert('Email address is invalid. So, please enter email address.');
-      return true
-    }
-
-    if (!formData.role) {
-      alert('Please select any role for the user.');
-      return true
-    }
-    return false
-  };
-
   handleFinalReportPost = async (isSubmitted) => {
     const { history } = this.props;
     const { formData: postData, sessionToken, role, programId, orgId } = this.state;

@@ -39,7 +39,14 @@ const storage2 = multer.diskStorage({
     cb(null, path)
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    if (file.originalname) {
+      const fileNameArray = file.originalname.split('.');
+      fileNameArray.splice(fileNameArray.length - 1, 1);
+      const extension = /[^.]+$/.exec(file.originalname)[0];
+      cb(null, fileNameArray.join('.') + '-' + Date.now() + '.' + extension)
+    } else {
+      cb(null, file.originalname)
+    }
   }
 });
 
@@ -128,6 +135,7 @@ router.post('/fetchAllFinalReportByOrgIdProgId', finalReport.fetchAllFinalReport
 // Program Report Table
 router.post('/fetchAllProgramReports', programReportController.fetchAllProgramReports);
 router.post('/fetchAllProgramReportByOrgIdProgId', programReportController.fetchAllProgramReportByOrgIdProgId);
+router.post('/deleteProgramReportById', programReportController.deleteProgramReportById);
 
 // Application Table
 router.post('/submitApplication', applicationController.submitApplication);

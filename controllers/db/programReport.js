@@ -47,6 +47,9 @@ const updateProgramReportById = async (meta, file) => {
   queryProgramReport.equalTo("objectId", meta.objectId);
   let programReport = await queryProgramReport.first({ useMasterKey: true });
 
+  if (meta.type)
+    programReport.set("type", meta.type);
+
   if (file)
     programReport.set("file", file);
 
@@ -57,9 +60,20 @@ const updateProgramReportById = async (meta, file) => {
   return programReportSaved;
 };
 
+const deleteProgramReportById = async (meta) => {
+  let queryProgramReport = new Parse.Query('ProgramReport');
+  queryProgramReport.equalTo("objectId", meta.objectId);
+  let programReport = await queryProgramReport.first({ useMasterKey: true });
+
+  const programReportSaved = await programReport.destroy();
+  console.log('\n\n Program Report delete from the database program report', programReportSaved, '\n\n');
+  return programReportSaved;
+};
+
 module.exports = {
   createNewProgramReport,
   fetchAllProgramReports,
   fetchAllProgramReportByOrgIdProgId,
   updateProgramReportById,
+  deleteProgramReportById,
 };

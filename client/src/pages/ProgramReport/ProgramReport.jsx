@@ -14,6 +14,14 @@ import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
 import './programReport.css'
 
+const reportType  = [
+  { value: '1', name: 'Student Training' },
+  { value: '2', name: 'Graduation Ceremony' },
+  { value: '3', name: 'Inter Documentation' },
+  { value: '4', name: 'Other event' },
+  { value: '5', name: 'Essay Content' },
+];
+
 class ProgramReport extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +34,7 @@ class ProgramReport extends Component {
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
       open: false,
+      deleteConfirm: false,
     };
   }
 
@@ -49,15 +58,11 @@ class ProgramReport extends Component {
 
   handleFileChange = (e) => {
     const { formData } = this.state;
-    const fieldName = e.target.name.split('-');
 
     this.setState({
       formData: {
         ...formData,
-        [fieldName[0]]: {
-          ...formData[fieldName[0]],
-          [fieldName[1]]: e.target.files[0],
-        }
+        [e.target.name]: e.target.files[0],
       }
     });
   };
@@ -67,18 +72,17 @@ class ProgramReport extends Component {
       alert('Please fill the form first');
       return true
     }
-    if (!data.checkAmount) {
-      alert('Please enter check Amount');
+
+    if (!data.file) {
+      alert('Please select file for upload');
       return true
     }
-    if (!data.checkId) {
-      alert('Please enter check#');
+
+    if (!data.type) {
+      alert('Please select Report Type');
       return true
     }
-    if (!data.checkDate) {
-      alert('Please enter check date.');
-      return true
-    }
+
     return false
   };
 
@@ -93,14 +97,126 @@ class ProgramReport extends Component {
     });
   };
 
+  postDeleteProgramReport = () => {
+    const { history } = this.props;
+    const { formData, sessionToken, role, orgId, programId } = this.state;
+
+    let deleteProgramReportURL = '/api/deleteProgramReportById';
+
+    try {
+      axios.post(
+        deleteProgramReportURL,
+        { ...formData, sessionToken },
+      ).then(() => {
+        console.log('created program report successfully');
+        this.toggleDeleteModal();
+        this.setState({
+          formData: {},
+        });
+        this.fetchProgramReport()
+      }).catch((error) => {
+        if (error.response !== null && error.response !== undefined) {
+          if (error.response.data !== null && error.response.data !== undefined) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              history.push('/');
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  postProgramReport = () => {
+    const { history } = this.props;
+    const { formData: postData, sessionToken, role, orgId, programId } = this.state;
+
+    if (!postData.objectId && this.validate(postData)) {
+      return true
+    }
+
+    const formData = new FormData();
+    let postProgramReportURL = '/api/createNewProgramReport';
+
+    if (postData.objectId) {
+      postProgramReportURL = '/api/updateProgramReportById';
+      formData.append('objectId', postData.objectId);
+    } else {
+      postProgramReportURL = '/api/createNewProgramReport';
+    }
+
+    formData.append('file', postData.file);
+    formData.append('orgId', orgId);
+    formData.append('programId', programId);
+    formData.append('sessionToken', sessionToken);
+    formData.append('type', postData.type);
+    formData.append('role', role);
+    formData.append('path', 'program-report');
+
+    try {
+      axios.post(
+        postProgramReportURL,
+        formData,
+      ).then(() => {
+        console.log('created program report successfully');
+        this.toggleModal()
+        this.setState({
+          formData: {},
+        });
+        this.fetchProgramReport()
+      }).catch((error) => {
+        if (error.response !== null && error.response !== undefined) {
+          if (error.response.data !== null && error.response.data !== undefined) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              history.push('/');
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  selectProgramReport = (e, data) => {
+    this.setState({
+      formData: { ...data, file: '' }
+    });
+    this.toggleModal();
+  };
+
+  selectDeleteProgramReport = (e, data) => {
+    this.setState({
+      formData: { ...data, file: '' }
+    });
+    this.toggleDeleteModal();
+  };
+
   toggleModal = () => {
     this.setState({
       open: !this.state.open,
     })
   };
 
+  toggleDeleteModal = () => {
+    this.setState({
+      deleteConfirm: !this.state.deleteConfirm,
+    })
+  }
+
   render() {
-    const { formData } = this.state;
+    const { formData, programReportData = [] } = this.state;
+    console.log('this.state', this.state);
 
     let heading = 'Program Report';
 
@@ -238,32 +354,41 @@ class ProgramReport extends Component {
                       <MDBRow>
                         <MDBCol md="11">
                           <MDBRow>
+
                             <MDBCol md={2} className="table-header font-weight-bold">Report File</MDBCol>
                             <MDBCol md={3} className="table-header font-weight-bold">Type</MDBCol>
                             <MDBCol md={7} className="table-header font-weight-bold">Upload Date</MDBCol>
 
-                            <MDBCol md={2}>File.pdf</MDBCol>
-                            <MDBCol md={3}>Graduation Ceremony</MDBCol>
-                            <MDBCol md={2}>05/19/2020</MDBCol>
-                            <MDBCol md={5} style={{ display: 'flex' }}>
-                              <MDBBtn
-                                rounded
-                                size={"sm"}
-                                className="application-info-button second-action-button btn-block z-depth-1a"
-                                style={{ width: '50%' }}
-                              >
-                                Upload/Replace
-                              </MDBBtn>
-                              <MDBBtn
-                                rounded
-                                size={"sm"}
-                                className="second-action-button btn-block z-depth-1a red-color"
-                                style={{ width: '40%', marginLeft: '30px' }}
-                              >
-                                Delete
-                              </MDBBtn>
-                            </MDBCol>
 
+                            {programReportData.map((pRD, index) =>
+                              <>
+                                <MDBCol md={2} className="pt-2 ellipsis">
+                                  <a href={pRD.file.path} target="_blank">{pRD.file.filename}</a>
+                                </MDBCol>
+                                <MDBCol md={3} className="pt-2">{reportType.find(e => e.value == pRD.type).name}</MDBCol>
+                                <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
+                                <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
+                                  <MDBBtn
+                                    rounded
+                                    size={"sm"}
+                                    className="application-info-button second-action-button btn-block z-depth-1a"
+                                    style={{ width: '50%' }}
+                                    onClick={(e) => this.selectProgramReport(e, pRD)}
+                                  >
+                                    Upload/Replace
+                                  </MDBBtn>
+                                  <MDBBtn
+                                    rounded
+                                    size={"sm"}
+                                    className="second-action-button btn-block z-depth-1a red-color"
+                                    style={{ width: '40%', marginLeft: '30px' }}
+                                    onClick={(e) => this.selectDeleteProgramReport(e, pRD)}
+                                  >
+                                    Delete
+                                  </MDBBtn>
+                                </MDBCol>
+                              </>
+                            )}
                           </MDBRow>
                         </MDBCol>
                         {/*<MDBCol md="2" />*/}
@@ -294,7 +419,7 @@ class ProgramReport extends Component {
             </MDBCol>
           </MDBRow>
 
-          <MDBModal isOpen={this.state.open} toggle={this.toggle}>
+          <MDBModal isOpen={this.state.open} toggle={this.toggleModal}>
             <MDBModalBody className="text-center">
               <MDBRow>
                 <MDBCol className="table-header font-weight-bold pt-3">
@@ -305,10 +430,12 @@ class ProgramReport extends Component {
               <MDBRow>
                 <MDBCol md={2} />
                 <MDBCol md={8} className="pt-3">
+                  <input type="file" name="file" style={{ display: 'none' }} onChange={this.handleFileChange} />
                   <MDBBtn
                     rounded
                     size={"sm"}
                     className="application-info-button second-action-button btn-block z-depth-1a"
+                    onClick={() => this.handleFileClick('file')}
                   >
                     Click to Upload/Replace Files
                   </MDBBtn>
@@ -323,12 +450,12 @@ class ProgramReport extends Component {
                 </MDBCol>
                 <MDBCol md={6} className="pt-3">
                   <select name="type" value={formData.type} className="browser-default custom-select" onChange={this.handleChange}>
-                    <option>Choose Role</option>
+                    <option>Choose Report Type</option>
                     <option value="1">Student Training</option>
                     <option value="2">Graduation Ceremony</option>
                     <option value="3">Inter Documentation</option>
                     <option value="4">Other event</option>
-                    <option value="4">Essay Content</option>
+                    <option value="5">Essay Content</option>
                   </select>
                 </MDBCol>
                 <MDBCol md={2} />
@@ -341,7 +468,7 @@ class ProgramReport extends Component {
                     rounded
                     size={"sm"}
                     className="second-action-button btn-block z-depth-1a"
-                    onClick={this.toggleModal}
+                    onClick={this.postProgramReport}
                   >
                     Upload
                   </MDBBtn>
@@ -354,6 +481,41 @@ class ProgramReport extends Component {
                     onClick={this.toggleModal}
                   >
                     Cancel
+                  </MDBBtn>
+                </MDBCol>
+                <MDBCol md={2} />
+              </MDBRow>
+            </MDBModalBody>
+          </MDBModal>
+
+          <MDBModal isOpen={this.state.deleteConfirm} toggle={this.toggleDeleteModal}>
+            <MDBModalBody className="text-center">
+              <MDBRow>
+                <MDBCol className="table-header  pt-3">
+                  Sure to delete?
+                </MDBCol>
+              </MDBRow>
+
+              <MDBRow className="mt-4">
+                <MDBCol md={2} />
+                <MDBCol md={4} className="text-center">
+                  <MDBBtn
+                    rounded
+                    size={"sm"}
+                    className="second-action-button btn-block z-depth-1a red-color"
+                    onClick={this.postDeleteProgramReport}
+                  >
+                    Yes
+                  </MDBBtn>
+                </MDBCol>
+                <MDBCol md={4} className="text-center">
+                  <MDBBtn
+                    rounded
+                    size={"sm"}
+                    className="second-action-button btn-block z-depth-1a"
+                    onClick={this.toggleDeleteModal}
+                  >
+                    No
                   </MDBBtn>
                 </MDBCol>
                 <MDBCol md={2} />
@@ -380,16 +542,10 @@ class ProgramReport extends Component {
           programId,
         },
       ).then((response) => {
-        // const first = response.data.checks.find(e => e.type === '1') || {};
-        // const second = response.data.checks.find(e => e.type === '2') || {};
 
-        // this.setState({
-        //   formData: {
-        //     first: { ...first, checkAmount: first.amount, checkFile: '', checkDate: first.date, checkFileLink: first.checkFile },
-        //     second: { ...second, checkAmount: second.amount, checkFile: '', checkDate: second.date, checkFileLink: second.checkFile },
-        //   },
-        // })
-
+        this.setState({
+          programReportData: response.data.programReport,
+        })
       }).catch((error) => {
         this.setState({
           dataReceived: true,
