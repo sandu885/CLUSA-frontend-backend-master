@@ -44,11 +44,12 @@ import SignedAgreementPlacement from '../AppInfo/AgreementPlacement/SignedAgreem
 import FinalReport from '../FinalReport/FinalReport';
 import FinalReportView from '../FinalReport/FinalReportView';
 import ProgramReport from '../ProgramReport/ProgramReport';
+import RecreateLogin from '../RecreateLogin/RecreateLogin';
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
 
 // Router
-import { PrivateRoute } from "./router";
+import { PrivateRoute, PublicRoute } from "./router";
 
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -191,11 +192,10 @@ class App extends Component {
             <PrivateRoute component={FinalReport} path="/final-report" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalReportView} path="/final-report-view" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={ProgramReport} path="/program-report" exact roles={['it-admin', 'reviewer']} />
+            <PublicRoute component={RecreateLogin} path="/recreate-login" exact roles={['it-admin', 'reviewer']} />
+
 
           </Switch>
-
-
-
         </div>
       </Router>
     );
