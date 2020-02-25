@@ -252,6 +252,13 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
+                              onClick={() => {
+                                const { history } = this.props;
+                                const { programData: { program } } = this.state;
+                                if (program) {
+                                  history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}`);
+                                }
+                              }}
                             >
                               Review
                             </MDBBtn>
@@ -306,7 +313,7 @@ class ProgramDetail extends Component {
 
 
                       {this.state.role != '1' &&
-                        <div>
+                        <>
                           <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
                             Program Closing Report
                           </MDBCol>
@@ -350,7 +357,7 @@ class ProgramDetail extends Component {
                             </div>
                           </MDBCol>
                           <MDBCol md="1" />
-                        </div>
+                        </>
                       }
                       {this.state.role == '1' &&
                         <>
@@ -376,7 +383,6 @@ class ProgramDetail extends Component {
                           <MDBCol md="1" />
                         </>
                       }
-
 
                     </MDBRow>
                   </MDBCardBody>
