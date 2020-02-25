@@ -1,0 +1,28 @@
+.sub-management-header {
+    font-size: 1.25rem;
+}
+
+.block-header {
+    font-weight: 700;
+}
+
+.align-item-center {
+    align-items: center;
+    display: flex;
+}
+
+.light-green-color {
+    background-color: #55c36e !important;
+    color: white;
+}
+
+.red-color {
+    background-color: #a22121 !important;
+    color: white;
+}
+
+.blue-font-color {
+    color: #4b9ac2;
+}
+
+

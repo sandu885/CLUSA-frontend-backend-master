@@ -114,8 +114,6 @@ class UserAccountManagement extends Component {
 
   render() {
     const { formData: { username = '', name = '', email = '' } } = this.state;
-    console.log('this.state  ', this.state);
-
 
     return (
       <div className="bg-withImage">

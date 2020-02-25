@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn } from 'mdbreact';
+import {MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBDataTable} from 'mdbreact';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 
@@ -11,10 +11,32 @@ import 'mdbreact/dist/css/mdb.css';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
+import {Link} from "react-router-dom";
 
 class Account extends Component {
   constructor(props) {
     super(props);
+
+    const programType = [{
+      value: '0',
+      name: 'Internship Grant',
+    }, {
+      value: '1',
+      name: 'Civic Leadership Forum Grant',
+    }, {
+      value: '2',
+      name: 'Capacity Building Grant',
+    }, {
+      value: '3',
+      name: 'Media Service Grant',
+    }, {
+      value: '4',
+      name: 'Website Development Grant',
+    }, {
+      value: '5',
+      name: 'Strategic Planning Grant',
+    }];
+
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
       status: undefined,
@@ -23,6 +45,10 @@ class Account extends Component {
       redirectToNewApply: false,
       redirectToReview: false,
       redirectToLogin: false,
+      userId: localStorage.getItem('clusa-user-id'),
+      role: localStorage.getItem('clusa-role'),
+      programType,
+      programData: {},
     };
   }
 
@@ -58,6 +84,87 @@ class Account extends Component {
 
   async componentDidMount() {
     const dataOrgCall = {sessionToken: this.state.sessionToken,}
+
+    const fetchAllProgramsByOrgId = '/api/fetchAllProgramsByOrgId';
+    const orgId = localStorage.getItem('orgId');
+    if (orgId) {
+      const { programType } = this.state;
+      await axios.post(
+        fetchAllProgramsByOrgId,
+        {
+          sessionToken: this.state.sessionToken,
+          orgId: orgId,
+        },
+      ).then((response) => {
+        const columns = [
+          {
+            label: 'Program',
+            field: 'programType',
+            sort: 'asc',
+            width: 270
+          },
+          {
+            label: 'Year',
+            field: 'year',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Awarded Amount',
+            field: 'awardedAmount',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Actual Amount',
+            field: 'actualAmount',
+            sort: 'asc',
+            width: 200
+          },
+          {
+            label: 'Status',
+            field: 'status',
+            sort: 'asc',
+            width: 200
+          },
+        ];
+        const rows = (response.data.data.programs || []).map(row => {
+          return {
+            ...row,
+            programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
+          }
+        })
+        this.setState({
+          programData: {
+            columns: [ ...columns ],
+            rows: [ ...rows ]
+          },
+          organization: response.data.data.organizationData,
+          user: response.data.data.userData,
+          columns,
+          dataReceived: true,
+        });
+
+      }).catch((error) => {
+        this.setState({
+          dataReceived: true,
+        });
+        if(error.response !== null && error.response !== undefined) {
+          if( error.response.data !== null && error.response.data !== undefined ) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              this.props.history.push('/')
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    }
+
+
+
     try {
       await this.getOrgInfo(dataOrgCall);
      } catch (error) {
@@ -140,6 +247,8 @@ class Account extends Component {
     if (this.state.redirectToNewApply === true) return <Redirect to="/internship-application-section01" />;
     if (this.state.redirectToReview === true) return <Redirect to="/organization-application-information" />;
 
+    const { dataReceived, programData, organization = {}, user = {} } = this.state;
+
     let buttonText = '';
     if (status === 'not applied') { buttonText = 'APPLY'; } else if (status === 'applying') buttonText = 'Continue Application';
     else buttonText = 'Review Application';
@@ -160,19 +269,67 @@ class Account extends Component {
                 <MDBCardBody className="mx-4">
                   <div className="text-center">
                     <h3 className="dark-grey-text mb-4">
-                      <strong>My Organization Infomation</strong>
+                      <strong>Organization Home Page</strong>
                     </h3>
                   </div>
-                  <div className="text-center mb-3">
-                    <MDBBtn
-                      gradient="blue"
-                      rounded
-                      className="btn-block z-depth-1a"
-                      href="/organization-information"
-                    >
-                      View My Organization Information
-                    </MDBBtn>
-                  </div>
+
+                  <MDBCol md="12" className="program-detail-sub-header font-weight-bold text-center organization-sub-header">
+                    {/*<div>*/}
+                    <MDBRow>
+                      <div className="organization-sub-header-item">
+                        Organization Name:-
+                      </div>
+                      <div>
+                        <span> {organization.name} </span>
+                      </div>
+                    </MDBRow>
+                    <MDBRow>
+                      <div className="organization-sub-header-item">
+                        Conant Name:-
+                      </div>
+                      <div>
+                        <span> {user.username} </span>
+                      </div>
+                    </MDBRow>
+                    <MDBRow>
+                      <div className="organization-sub-header-item">
+                        Email:-
+                      </div>
+                      <div>
+                        <span> {user.emailAddress || user.email} </span>
+                      </div>
+                    </MDBRow>
+                    <MDBRow className="mb-3">
+                      <MDBCol md="3" />
+                      <MDBCol md="6">
+                        <MDBBtn
+                          rounded
+                          size={"sm"}
+                          className="green-button org-view-sub-header-button btn-block z-depth-1a"
+                          href="/organization-information"
+                        >
+                          More Details
+                        </MDBBtn>
+                      </MDBCol>
+                      <MDBCol md="3" />
+                    </MDBRow>
+                    {/*</div>*/}
+
+                    <MDBRow>
+                      <MDBCol md="12">
+                        <MDBDataTable
+                          className="custom-table program-table"
+                          striped
+                          borderless
+                          displayEntries={false}
+                          data={programData}
+                          searching={false}
+                          noBottomColumns
+                          info={false}
+                        />
+                      </MDBCol>
+                    </MDBRow>
+                  </MDBCol>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>

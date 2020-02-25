@@ -63,7 +63,7 @@ class ForgetPassword extends Component {
 
     if (!password) {
       return alert('Please enter password');
-    } else if (password.length > 6) {
+    } else if (password.length < 6) {
       return alert('Min. password length should be 6');
     }
 
@@ -120,6 +120,7 @@ class ForgetPassword extends Component {
                         <input type="email" name="emailAddress" onChange={this.handleChange} className="form-control mt-2" value={emailAddress} />
                       </MDBCol>
                     </MDBRow>
+
                     <MDBRow>
                       <MDBCol
                         md="4"
@@ -127,7 +128,7 @@ class ForgetPassword extends Component {
                       >Or Organization Name:
                       </MDBCol>
                       <MDBCol md="8">
-                        <input name="organization" onChange={this.handleChange} className="form-control mt-2" value={organization} />
+                        <input type="text" name="organization" onChange={this.handleChange} className="form-control mt-2" value={organization} />
                       </MDBCol>
                     </MDBRow>
 
@@ -276,7 +277,7 @@ class ForgetPassword extends Component {
           <MDBModal isOpen={this.state.linkSend && !this.state.token} toggle={this.toggle}>
             <MDBModalHeader>Success!</MDBModalHeader>
             <MDBModalBody>
-              Your account password already sent to the email address associate with the organization, please check email and login again.
+              Your account password reset link already been sent to the email address associate with the organization, please check email and login again.
               <MDBRow className="mt-4">
                 <MDBCol md="7" className="text-center">
                   <MDBBtn className="modal-success-button" color="primary" onClick={this.successClickHandle}>Back to Login Page</MDBBtn>

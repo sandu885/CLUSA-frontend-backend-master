@@ -2,6 +2,8 @@ const ORG = require("../db/organization");
 const TOOL = require('../tool/tool');
 const jwt = require('jwt-simple');
 const jwtSecret = 'fe1a1915a379f3be5394b64d14794932';
+const userRoleName = { '0': 'Grant Reviewer', '1':  'Grant Viewer', '2': 'Grant Manager', '3': 'IT Admin' };
+
 // find user by username
 const findUserByUsername = async (username) => {
     let queryUser = new Parse.Query(Parse.User);
@@ -234,8 +236,8 @@ const findAllUsersByOrgId = async(orgId) => {
 
 // get all Users stored in the database
 const fetchAllUsers = async(user) => {
-    if (user.get("userType") != "0")
-        throw new Error("No permission to fetch all Users");
+    // if (user.get("userType") != "0")
+    //     throw new Error("No permission to fetch all Users");
     let queryUser = new Parse.Query("User");
     queryUser.doesNotExist('isDeleted');
 
@@ -253,7 +255,11 @@ const fetchAllUsers = async(user) => {
         ele["username"] = u.get("username");
         ele["firstName"] = u.get("firstName");
         ele["lastName"] = u.get("lastName");
+        ele["name"] = ele["firstName"] ? u.get("firstName") + ' ' +u.get("lastName") : '';
         ele["title"] = u.get("title");
+        // ROLE
+        ele["userType"] = u.get("userType");
+        ele["role"] = userRoleName[ele["userType"]];
         ele["phone"] = u.get("phone");
         if (u.get("emailAddress"))
             ele["email"] = u.get("emailAddress");
@@ -283,9 +289,9 @@ const updateUserById = async (meta) => {
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
     let queryUser = new Parse.Query(Parse.User);
-
-    let userRecord = await queryUser.first({ useMasterKey: true });
     queryUser.equalTo("objectId", meta.userId);
+    let userRecord = await queryUser.first({ useMasterKey: true });
+
     meta.username && userRecord.set("username", meta.username);
     meta.firstName && userRecord.set("firstName", meta.firstName);
     meta.lastName && userRecord.set("lastName", meta.lastName);
@@ -316,13 +322,13 @@ const createUserByAdmin = async (meta) => {
     meta.username && user.set("username", meta.username);
     meta.firstName && user.set("firstName", meta.firstName);
     meta.lastName && user.set("lastName", meta.lastName);
-    meta.emailAddress && user.set("emailAddress", meta.email);
+    (meta.emailAddress || meta.email) && user.set("email", (meta.emailAddress || meta.email));
     meta.userType && user.set("userType", meta.userType);
     meta.password ? user.set("userType", meta.password) : user.set("password", 'test');
 
     const payload = { email: meta.emailAddress, username: meta.username };
     const token = jwt.encode(payload, jwtSecret);
-    await TOOL.sendUserAddEmail(meta.emailAddress, meta.username, token);
+    await TOOL.sendUserAddEmail((meta.emailAddress || meta.email), meta.username, token);
 
     return user.save(null,{ useMasterKey: true });
 }

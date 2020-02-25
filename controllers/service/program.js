@@ -33,12 +33,62 @@ const fetchAllProgramsByUserId = async(req, res) => {
     }
 }
 
+const fetchProgramDetailById = async(req, res) => {
+    try {
+        let program = await PROGRAM.fetchProgramDetailById(req.body.programId);
+        console.log("Successfully fetch all programs by user id \n", program);
+        res.status(200).json({
+            message: "Successfully fetch all programs by user id",
+            program: program,
+        });
+    } catch(error) {
+        console.log(error.message);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
 const fetchAllProgramsByOrgId = async(req, res) => {
     try {
         let programs = await PROGRAM.fetchAllProgramsByOrgId(req.body.orgId);
         console.log("Successfully fetch all programs by organization id");
         res.status(200).json({
             message: "Successfully fetch all programs by organization id",
+            data: programs,
+        });
+    } catch(error) {
+        console.log(error.message);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
+const fetchAllPrograms = async (req, res) => {
+    try {
+        console.log("Start fetching all programs");
+        let programs = await PROGRAM.fetchAllPrograms(req.body);
+        console.log("Successfully fetch all programs");
+        res.status(200).json({
+            message: "Successfully fetch all programs",
+            programs: programs,
+        });
+    } catch(error) {
+        console.log(error.message);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
+const updateProgramCloseStatusById = async (req, res) => {
+    console.log('Closing report started');
+    try {
+        let programs = await PROGRAM.updateProgramByIdToCloseStatus(req.body);
+        console.log("Successfully fetch all programs");
+        res.status(200).json({
+            message: "Successfully fetch all programs",
             programs: programs,
         });
     } catch(error) {
@@ -52,5 +102,8 @@ const fetchAllProgramsByOrgId = async(req, res) => {
 module.exports = {
     createNewProgram,
     fetchAllProgramsByUserId,
-    fetchAllProgramsByOrgId
+    fetchAllProgramsByOrgId,
+    fetchAllPrograms,
+    fetchProgramDetailById,
+    updateProgramCloseStatusById,
 }

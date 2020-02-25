@@ -1,0 +1,31 @@
+.program-table td:first-letter {
+    text-transform: uppercase;
+}
+
+.header-section {
+    background-color: #ededed;
+}
+
+.sub-header {
+    font-size: 1.3rem;
+}
+
+.program-detail-sub-header div {
+    font-size: 1rem;
+    padding-bottom: .5rem;
+}
+
+.program-detail-sub-header span {
+    color: #4f9bc1;
+    font-weight: 100;
+    padding-left: .5rem;
+}
+
+.application-info-button {
+    background-color: #2e8ab8 !important;
+}
+
+.application-close-button {
+    background-color: #a22121 !important;
+    width: 20% !important;
+}
