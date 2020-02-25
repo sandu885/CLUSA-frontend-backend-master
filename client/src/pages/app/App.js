@@ -43,6 +43,7 @@ import AgreementPlacement from '../AppInfo/AgreementPlacement/AgreementPlacement
 import SignedAgreementPlacement from '../AppInfo/AgreementPlacement/SignedAgreementPlacement';
 import FinalReport from '../FinalReport/FinalReport';
 import FinalReportView from '../FinalReport/FinalReportView';
+import ProgramReport from '../ProgramReport/ProgramReport';
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
 
@@ -189,6 +190,7 @@ class App extends Component {
             <PrivateRoute component={SignedAgreementPlacement} path="/signed-agreement-placement" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalReport} path="/final-report" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalReportView} path="/final-report-view" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={ProgramReport} path="/program-report" exact roles={['it-admin', 'reviewer']} />
 
           </Switch>
 

@@ -55,6 +55,7 @@ const finalReport = require("../../controllers/service/finalReport");
 const agreementPlacementController = require("../../controllers/service/agreementPlacement");
 const sectionController = require("../../controllers/service/section");
 const applicationController = require("../../controllers/service/application");
+const programReportController = require("../../controllers/service/programReport");
 
 // User Table Public
 router.post('/signup', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), userController.signup);
@@ -78,6 +79,9 @@ router.post('/updateAgreementPlacementById', upload2.fields([{ name: 'signedAgre
 // finalReport
 router.post('/createNewFinalReport', upload2.single('file'), finalReport.createNewFinalReport);
 router.post('/updateFinalReportById', upload2.single('file'), finalReport.updateFinalReportById);
+// programReport
+router.post('/createNewProgramReport', upload2.single('file'), programReportController.createNewProgramReport);
+router.post('/updateProgramReportById', upload2.single('file'), programReportController.updateProgramReportById);
 
 router.use(userController.logger);
 
@@ -120,6 +124,10 @@ router.post('/createNewSection', sectionController.createNewSection);
 // Final Report Table
 router.post('/fetchAllFinalReports', finalReport.fetchAllFinalReports);
 router.post('/fetchAllFinalReportByOrgIdProgId', finalReport.fetchAllFinalReportByOrgIdProgId);
+
+// Program Report Table
+router.post('/fetchAllProgramReports', programReportController.fetchAllProgramReports);
+router.post('/fetchAllProgramReportByOrgIdProgId', programReportController.fetchAllProgramReportByOrgIdProgId);
 
 // Application Table
 router.post('/submitApplication', applicationController.submitApplication);
