@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 if (app.get('env') === 'development') {
   databaseUri = "mongodb://chivalry:chivalry94539@ds233258.mlab.com:33258/intern_grand_db"; //development
-  //  databaseUri = "localhost:27017/intern_grant_db_dev";
+   // databaseUri = "mongodb:27017/intern_grant_db_dev";
   console.log("In development env...");
 }
 
