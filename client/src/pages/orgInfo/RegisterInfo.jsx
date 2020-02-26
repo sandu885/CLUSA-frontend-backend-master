@@ -707,7 +707,7 @@ class RegisterInfo extends Component {
     // else if (this.state.selectedFile2 === null) orgType = '1';
     // else orgType = '2';
     
-    const { orgType, ...formT } = this.state;
+    const { orgType } = this.state;
 
     formData.append('username', this.state.username);
     formData.append('password', this.state.password); //

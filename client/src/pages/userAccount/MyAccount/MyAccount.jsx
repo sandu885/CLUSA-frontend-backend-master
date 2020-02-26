@@ -47,7 +47,7 @@ class MyAccount extends Component {
       alert('Please enter full name address.');
       return true
     }
-    const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    const emailReg = /\S+@\S+\.\S+/;
     if (!formData.email) {
       alert('Please enter email address.');
       return true

@@ -247,7 +247,7 @@ class Account extends Component {
     if (this.state.redirectToNewApply === true) return <Redirect to="/internship-application-section01" />;
     if (this.state.redirectToReview === true) return <Redirect to="/organization-application-information" />;
 
-    const { dataReceived, programData, organization = {}, user = {} } = this.state;
+    const { programData, organization = {}, user = {} } = this.state;
 
     let buttonText = '';
     if (status === 'not applied') { buttonText = 'APPLY'; } else if (status === 'applying') buttonText = 'Continue Application';

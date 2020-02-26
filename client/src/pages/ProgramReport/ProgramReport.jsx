@@ -4,10 +4,9 @@ import {
   MDBCardBody,
   MDBBtn,
   MDBRow, MDBCol, MDBCard,
-  MDBModal, MDBModalHeader, MDBModalBody
+  MDBModal, MDBModalBody
 } from 'mdbreact';
 import axios from 'axios';
-import moment from 'moment';
 
 import { queryStringToJSON } from '../../utils/util'
 import FooterComponent from '../Footer';
@@ -99,7 +98,7 @@ class ProgramReport extends Component {
 
   postDeleteProgramReport = () => {
     const { history } = this.props;
-    const { formData, sessionToken, role, orgId, programId } = this.state;
+    const { formData, sessionToken } = this.state;
 
     let deleteProgramReportURL = '/api/deleteProgramReportById';
 
@@ -363,7 +362,7 @@ class ProgramReport extends Component {
                             {programReportData.map((pRD, index) =>
                               <>
                                 <MDBCol md={2} className="pt-2 ellipsis">
-                                  <a href={pRD.file.path} target="_blank">{pRD.file.filename}</a>
+                                  <a href={pRD.file.path} rel="noopener noreferrer" target="_blank">{pRD.file.filename}</a>
                                 </MDBCol>
                                 <MDBCol md={3} className="pt-2">{reportType.find(e => e.value == pRD.type).name}</MDBCol>
                                 <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>

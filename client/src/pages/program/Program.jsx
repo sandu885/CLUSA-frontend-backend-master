@@ -91,7 +91,7 @@ class Program extends Component {
   }
 
   handleChange = (e) => {
-    const { formData, programType } = this.state;
+    const { formData } = this.state;
     this.setState({
       formData: {
         ...formData,
@@ -158,6 +158,9 @@ class Program extends Component {
         break;
       case '3':
         heading = 'Admin Program View';
+        break;
+      default:
+        heading = '';
         break;
     }
 

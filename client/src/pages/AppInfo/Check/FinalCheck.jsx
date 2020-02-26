@@ -7,7 +7,6 @@ import {
   MDBRow, MDBCol, MDBCard,
 } from 'mdbreact';
 import axios from 'axios';
-import moment from 'moment';
 
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';

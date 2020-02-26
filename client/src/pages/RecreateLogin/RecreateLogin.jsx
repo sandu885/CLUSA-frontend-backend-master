@@ -4,10 +4,8 @@ import {
   MDBCardBody,
   MDBBtn,
   MDBRow, MDBCol, MDBCard,
-  MDBModal, MDBModalHeader, MDBModalBody
 } from 'mdbreact';
 import axios from 'axios';
-import moment from 'moment';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
