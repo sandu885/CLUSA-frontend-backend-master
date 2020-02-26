@@ -8,11 +8,11 @@ import {
 } from 'mdbreact';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import moment from 'moment';
 
-import './organizationView.css'
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
+
+import './organizationView.css'
 
 class ProgramDetail extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class ProgramDetail extends Component {
   }
 
   render() {
-    const { programType, dataReceived, programData, organization = {}, user = {} } = this.state;
+    const { dataReceived, programData, organization = {}, user = {} } = this.state;
 
     let heading = 'Organization Home Page';
 

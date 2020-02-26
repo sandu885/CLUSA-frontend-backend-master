@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
   MDBContainer,
   MDBCardBody,
-  MDBBtn,
   MDBRow, MDBCol, MDBCard
 } from 'mdbreact';
 import axios from 'axios';
@@ -64,7 +63,8 @@ class FinalReportView extends Component {
   };
 
   componentWillMount() {
-    const { location, history } = this.props;
+    // const { location, history } = this.props;
+    const { location } = this.props;
     const queryData = queryStringToJSON(location.search);
     // if (!queryData.orgId && !queryData.programId) {
     //   alert('Not having proper data to access this route');
@@ -89,7 +89,7 @@ class FinalReportView extends Component {
       alert('Please enter full name address.');
       return true
     }
-    const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    const emailReg = /\S+@\S+\.\S+/;
     if (!formData.email) {
       alert('Please enter email address.');
       return true
@@ -136,7 +136,7 @@ class FinalReportView extends Component {
 
     formData.append('orgId', orgId);
     formData.append('programId', programId);
-    formData.append('sessionToken', this.state.sessionToken);
+    formData.append('sessionToken', sessionToken);
     formData.append('role', role);
     formData.append('isSubmitted', isSubmitted);
     formData.append('path', 'final-report');
@@ -240,7 +240,7 @@ class FinalReportView extends Component {
                         </label>
                         {
                           fileLink &&
-                          <a href={`/${fileLink.path}`} className="ml-4" target="_blank">Click to download Expense Template</a>
+                          <a href={`/${fileLink.path}`} className="ml-4" rel="noopener noreferrer" target="_blank">Click to download Expense Template</a>
                         }
                       </div>
 

@@ -66,7 +66,8 @@ class FinalReport extends Component {
   };
 
   componentWillMount() {
-    const { location, history } = this.props;
+    // const { location, history } = this.props;
+    const { location } = this.props;
     const queryData = queryStringToJSON(location.search);
     // if (!queryData.orgId && !queryData.programId) {
     //   alert('Not having proper data to access this route');
@@ -113,7 +114,7 @@ class FinalReport extends Component {
 
     formData.append('orgId', orgId);
     formData.append('programId', programId);
-    formData.append('sessionToken', this.state.sessionToken);
+    formData.append('sessionToken', sessionToken);
     formData.append('role', role);
     formData.append('isSubmitted', isSubmitted);
     formData.append('path', 'final-report');
@@ -207,7 +208,7 @@ class FinalReport extends Component {
 
                         {
                           fileLink &&
-                          <a href={`/${fileLink.path}`} target="_blank">Click to download Expense Template</a>
+                          <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank">Click to download Expense Template</a>
                         }
                         <input type="file" className="form-control ml-4 final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
                         <br/>

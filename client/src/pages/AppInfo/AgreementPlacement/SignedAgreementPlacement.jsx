@@ -195,10 +195,8 @@ class SignedAgreementPlacement extends Component {
                       <MDBRow>
 
                         <MDBCol sm="12">
-                          {formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? <a href={`/${formData.agreementTemplateLink.path}`}  target="_blank">Click to download the agreement template.</a> : 'Agreement file is not uploaded'}
+                          {formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? <a href={`/${formData.agreementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Agreement file is not uploaded'}
                         </MDBCol>
-
-
                       </MDBRow>
                     </MDBCol>
                   </MDBRow>
@@ -223,7 +221,7 @@ class SignedAgreementPlacement extends Component {
                         <MDBCol sm="7" className="align-item-center">
                           {
                             formData.signedAgreement ? formData.signedAgreement.name : formData.signedAgreementLink ?
-                              <a href={formData.signedAgreementLink && formData.signedAgreementLink.filename ? `/${formData.signedAgreementLink.path}`: '#'}  target="_blank">{formData.signedAgreementLink && formData.signedAgreementLink.filename}</a>
+                              <a href={formData.signedAgreementLink && formData.signedAgreementLink.filename ? `/${formData.signedAgreementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.signedAgreementLink && formData.signedAgreementLink.filename}</a>
                               : 'Image file details over here'
                           }
                         </MDBCol>
@@ -264,7 +262,7 @@ class SignedAgreementPlacement extends Component {
 
                           <MDBRow>
                             <MDBCol sm="12">
-                              {formData.placementTemplateLink && formData.placementTemplateLink.filename ? <a href={`/${formData.placementTemplateLink.path}`}  target="_blank">Click to download the agreement template.</a> : 'Placement file is not uploaded'}
+                              {formData.placementTemplateLink && formData.placementTemplateLink.filename ? <a href={`/${formData.placementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Placement file is not uploaded'}
                             </MDBCol>
                           </MDBRow>
 
@@ -293,7 +291,7 @@ class SignedAgreementPlacement extends Component {
                         <MDBCol sm="7" className="align-item-center">
                           {
                             formData.filledPlacement ? formData.filledPlacement.name : formData.filledPlacementLink ?
-                              <a href={formData.filledPlacementLink && formData.filledPlacementLink.filename ? `/${formData.filledPlacementLink.path}`: '#'}  target="_blank">{formData.filledPlacementLink && formData.filledPlacementLink.filename}</a>
+                              <a href={formData.filledPlacementLink && formData.filledPlacementLink.filename ? `/${formData.filledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.filledPlacementLink && formData.filledPlacementLink.filename}</a>
                               : 'Image file details over here'
                           }
                         </MDBCol>
@@ -335,9 +333,8 @@ class SignedAgreementPlacement extends Component {
                           <MDBCol sm="11" className="blue-font-color">
                             {formData.status && (formData.status == '0' ? 'Pending' : 'Approved')}
                           </MDBCol>
-
                           <MDBCol sm="12">
-                            {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`}  target="_blank">Click to download final placement file.</a>}
+                            {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank">Click to download final placement file.</a>}
                           </MDBCol>
                         </MDBRow>
                       </MDBCol>

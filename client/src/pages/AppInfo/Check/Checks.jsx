@@ -7,7 +7,6 @@ import {
   MDBRow, MDBCol, MDBCard,
 } from 'mdbreact';
 import axios from 'axios';
-import moment from 'moment';
 
 import { queryStringToJSON } from '../../../utils/util'
 import FooterComponent from '../../Footer';
@@ -204,14 +203,12 @@ class Checks extends Component {
   };
 
   render() {
-    const { formData: { first = {}, second = {}}, formData } = this.state;
-
+    const { formData: { first = {} } } = this.state;
     let heading = 'Send Check';
 
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
         <MDBContainer className="pt-5 mb-5">
           <MDBRow>
             <MDBCol md="12">
@@ -258,7 +255,7 @@ class Checks extends Component {
                             color: '#b6b6b6',
                           }}> {
                             first.checkFile ? first.checkFile.name :
-                              first.checkFileLink && <a href={`/${first.checkFileLink.path}`}  target="_blank"> Click here to view the file </a>
+                              first.checkFileLink && <a href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> Click here to view the file </a>
                           } </label>
                         </div>
                         <div className="col-sm-6">

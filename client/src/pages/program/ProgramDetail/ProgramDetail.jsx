@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
   MDBContainer,
@@ -97,7 +96,7 @@ class ProgramDetail extends Component {
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
     const firstSection = application.find(app => app.sectionIndex === "1");
-    const tenthSection = application.find(app => app.sectionIndex === "10");
+    // const tenthSection = application.find(app => app.sectionIndex === "10");
     const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
     let heading = 'Program Detail Page';
     console.log('actualAwardAmount', actualAwardAmount);
@@ -138,7 +137,7 @@ class ProgramDetail extends Component {
                               1st Check Date:- <span> {checks[0] ? checks[0].date : ''} </span>
                             </MDBRow>
                             <MDBRow>
-                              Inter Placement #:- <span> {fifthSection && fifthSection.content['2'] || ''} </span>
+                              Inter Placement #:- <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span>
                             </MDBRow>
                           </MDBCol>
                           <MDBCol md="4" className="program-detail-sub-header font-weight-bold">

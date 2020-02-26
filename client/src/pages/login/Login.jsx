@@ -164,6 +164,7 @@ class Login extends Component {
     const { password } = this.state.password;
     // const { responseMessage } = this.state.responseMessage;
 
+
     if (this.state.shouldRedirect === true) return <Redirect to="/account" />;
     if (this.state.redirectCLUSAVerifier === true) return <Redirect to="/clusa-account" />;
 

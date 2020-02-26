@@ -6,7 +6,6 @@ import {
   MDBRow, MDBCol, MDBCard,
 } from 'mdbreact';
 import axios from 'axios';
-import moment from 'moment';
 
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
@@ -208,7 +207,7 @@ class AgreementPlacement extends Component {
                         <MDBCol sm="7" className="align-item-center">
                           {
                             formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ?
-                              <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'}  target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
+                              <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
                               : 'Image file details over here'
                           }
                         </MDBCol>
@@ -225,7 +224,7 @@ class AgreementPlacement extends Component {
                         </MDBCol>
                         <MDBCol sm="12" className="pt-2">
                           {formData.signedAgreementLink ?
-                            <a href={`/${formData.signedAgreementLink.path}`}  target="_blank">Click here to Download the signed agreement</a>
+                            <a href={`/${formData.signedAgreementLink.path}`} rel="noopener noreferrer" target="_blank">Click here to Download the signed agreement</a>
                             : 'File is not uploaded'}
                         </MDBCol>
                       </MDBRow>
@@ -280,7 +279,7 @@ class AgreementPlacement extends Component {
                             <MDBCol sm="7" className="align-item-center">
                               {
                                 formData.placementTemplate ? formData.placementTemplate.name : formData.placementTemplateLink ?
-                                  <a href={formData.placementTemplateLink && formData.placementTemplateLink.filename ? `/${formData.placementTemplateLink.path}`: '#'}  target="_blank">{formData.placementTemplateLink && formData.placementTemplateLink.filename}</a>
+                                  <a href={formData.placementTemplateLink && formData.placementTemplateLink.filename ? `/${formData.placementTemplateLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.placementTemplateLink && formData.placementTemplateLink.filename}</a>
                                   : 'Image file details over here'
                               }
                             </MDBCol>
@@ -308,7 +307,7 @@ class AgreementPlacement extends Component {
                         </MDBCol>
                         <MDBCol sm="12" className="pt-2">
                           {formData.filledPlacementLink ?
-                            <a href={`/${formData.filledPlacementLink.path}`}  target="_blank">Click here to download the filled placement confirmation</a>
+                            <a href={`/${formData.filledPlacementLink.path}`} rel="noopener noreferrer" target="_blank">Click here to download the filled placement confirmation</a>
                             : 'File is not uploaded'}
                         </MDBCol>
                       </MDBRow>
