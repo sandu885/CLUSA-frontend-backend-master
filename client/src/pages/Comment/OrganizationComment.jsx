@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import {
-  MDBContainer,
-  MDBCardBody,
   MDBBtn,
-  MDBRow, MDBCol, MDBCard,
-  MDBModal, MDBModalBody, MDBCardFooter
+  MDBRow, MDBCol,
+  MDBCardFooter
 } from 'mdbreact';
 import axios from 'axios';
+import { cloneDeep } from 'lodash';
 import moment from 'moment';
 
 import { queryStringToJSON } from '../../utils/util'
@@ -23,7 +22,6 @@ class OrganizationComment extends Component {
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
       dataReceived: false,
-      programReportData: [],
       formData: {},
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
@@ -44,8 +42,6 @@ class OrganizationComment extends Component {
       ...queryData,
     });
   }
-
-
 
   validate = (data) => {
     if (!data.note) {
@@ -75,7 +71,7 @@ class OrganizationComment extends Component {
 
   postProgramUpdateStatus = () => {
     const { history } = this.props;
-    const { programStatus, programId, sessionToken } = this.state;
+    const { programStatus, programId, sessionToken, orgId } = this.state;
 
     if (!programStatus) {
       return alert('Please select the status for the program.')
@@ -84,6 +80,7 @@ class OrganizationComment extends Component {
 
     const postData = {
       objectId: programId,
+      orgId: orgId,
       status: programStatus,
       sessionToken,
     };
@@ -106,7 +103,6 @@ class OrganizationComment extends Component {
         }
       }
     });
-
   };
 
   postComment = () => {
@@ -165,62 +161,80 @@ class OrganizationComment extends Component {
     }
   };
 
-
-
-  toggleDeleteModal = () => {
-    this.setState({
-      deleteConfirm: !this.state.deleteConfirm,
-    })
-  }
-
   render() {
-    const { formData, commentData = [], programStatus, role } = this.state;
+    const { formData, commentData = [], programStatus, role, programId } = this.state;
+    console.log('this.state', this.state);
 
     const fixFooter = <MDBCardFooter className="comment-container comment-fix-footer">
       <MDBRow>
         <MDBCol md="1" />
         <MDBCol md="10" style={{ display: 'flex' }}>
           <div style={{ width: '100%' }}>
-            <MDBRow>
-              <MDBCol md={(role === '3' || role === '2') ? "6" : "9"} className="text-center p-3 font-weight-bold">
-                All Comment
-              </MDBCol>
-              <MDBCol md="3" className="text-center p-3 font-weight-bold">
-                My Comment
-              </MDBCol>
-              {(role === '3' || role === '2') &&
-                <MDBCol md="3" className="text-center p-3 font-weight-bold">
-                  Result
+            {role === '1' ?
+              <MDBRow>
+                <MDBCol md="12" className="text-center p-3 font-weight-bold">
+                  All Comment
                 </MDBCol>
-              }
-            </MDBRow>
+              </MDBRow>
+              :
+                <MDBRow>
+                  <MDBCol md={(role === '3' || role === '2') ? "6" : "9"} className="text-center p-3 font-weight-bold">
+                    All Comment
+                  </MDBCol>
+                  <MDBCol md="3" className="text-center p-3 font-weight-bold">
+                    My Comment
+                  </MDBCol>
+                  {(role === '3' || role === '2') &&
+                  <MDBCol md="3" className="text-center p-3 font-weight-bold">
+                    Result
+                  </MDBCol>
+                  }
+                </MDBRow>
+            }
 
-            <MDBRow>
-              <MDBCol md={(role === '3' || role === '2') ? "6" : "9"} className="text-left">
-                {commentData.map((cData, index) =>
-                  <div key={cData.objectId + index}>
-                    <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
-                    {' '+ cData.note}
-                  </div>
-                )}
-              </MDBCol>
-              <MDBCol md="3" className="text-center">
+            {role === '1' ?
+              <MDBRow>
+                <MDBCol md="12" className="text-left">
+                  {commentData.map((cData, index) =>
+                    <div key={cData.objectId + index}>
+                      <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
+                      {' '+ cData.note}
+                    </div>
+                  )}
+                </MDBCol>
+              </MDBRow>
+              :
+              <MDBRow>
+                <MDBCol md={(role === '3' || role === '2') ? "6" : "9"} className="text-left">
+                  {commentData.map((cData, index) =>
+                    <div key={cData.objectId + index}>
+                      <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
+                      {' '+ cData.note}
+                    </div>
+                  )}
+                </MDBCol>
+                <MDBCol md="3" className="text-center">
                 <textarea
                   style={{ width: '100%'}}
                   name="note"
                   onChange={this.handleChange}
                   value={formData.note}
                 />
-                <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="second-action-button btn-block z-depth-1a check-file-upload"
-                        onClick={this.postComment}
-                >
-                  Save
-                </MDBBtn>
-                <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color">
-                  Cancel
-                </MDBBtn>
-              </MDBCol>
-              {(role === '3' || role === '2') &&
+                  <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="second-action-button btn-block z-depth-1a check-file-upload"
+                          onClick={this.postComment}
+                  >
+                    Save
+                  </MDBBtn>
+                  <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
+                          onClick={() => {
+                            const { history } = this.props;
+                            history(`/program/${programId}`);
+                          }}
+                  >
+                    Cancel
+                  </MDBBtn>
+                </MDBCol>
+                {(role === '3' || role === '2') &&
                 <MDBCol md="3" className="text-center">
                   <select name="programStatus" className="browser-default custom-select form-control" value={programStatus} onChange={this.handleProgramChange}>
                     <option>Select Status</option>
@@ -234,8 +248,9 @@ class OrganizationComment extends Component {
                     Save
                   </MDBBtn>
                 </MDBCol>
-              }
-            </MDBRow>
+                }
+              </MDBRow>
+            }
           </div>
         </MDBCol>
         <MDBCol md="1" />
@@ -269,9 +284,46 @@ class OrganizationComment extends Component {
         const commentData = response.data.comments.filter(e => e.type === 'appView');
         const comment = response.data.comments.find(e => e.userId === userId);
         this.setState({
-          commentData,
-          formData: comment || {},
-          programStatus: comment.program.status,
+          commentData: cloneDeep(commentData),
+          formData: cloneDeep(comment || {}),
+          programStatus: cloneDeep(commentData),
+        });
+      }).catch((error) => {
+        this.setState({
+          dataReceived: true,
+        });
+        if(error.response !== null && error.response !== undefined) {
+          if( error.response.data !== null && error.response.data !== undefined ) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              this.props.history.push('/')
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    }
+  };
+
+  fetchCommentsInterval = () => {
+    const fetchAllCommentByOrgIdProgId = '/api/fetchAllCommentByOrgIdProgId';
+    const { orgId, programId, sessionToken } = this.state;
+
+    if (this.state.sessionToken) {
+      axios.post(
+        fetchAllCommentByOrgIdProgId,
+        {
+          sessionToken: sessionToken,
+          orgId,
+          programId,
+        },
+      ).then((response) => {
+        const commentData = response.data.comments.filter(e => e.type === 'appView');
+        this.setState({
+          commentData: cloneDeep(commentData),
+          programStatus: cloneDeep(commentData),
         });
       }).catch((error) => {
         this.setState({
@@ -293,7 +345,14 @@ class OrganizationComment extends Component {
   };
 
   componentDidMount() {
-    this.fetchComments()
+    this.fetchComments();
+    this.interval = setInterval(() => {
+      this.fetchCommentsInterval();
+    }, 15000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 }
 

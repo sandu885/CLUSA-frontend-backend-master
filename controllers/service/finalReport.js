@@ -39,6 +39,7 @@ const fetchAllFinalReportByOrgIdProgId = async (req, res) => {
   try {
     let finalReport = await FINALREPORT.fetchAllFinalReportByOrgIdProgId(req.body);
     console.log("Successfully fetch a finalReport");
+    console.log('finalReport', JSON.stringify(finalReport));
     res.status(200).json({
       message: 'Successfully fetch a finalReport',
       finalReport: finalReport,

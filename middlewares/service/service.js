@@ -75,6 +75,9 @@ router.post('/checkSessionToken', userController.checkSessionToken);
 router.post('/createNewCheck', upload1.single('checkFile'), checkController.createNewCheck);
 router.post('/updateCheckById', upload1.single('checkFile'), checkController.updateCheckById);
 
+// Recreate login Send Email
+router.post('/createRecreateLogin', userController.createRecreateLogin);
+
 // update org info
 router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
 
@@ -118,7 +121,6 @@ router.post('/updateProgramCloseStatusById', programController.updateProgramClos
 // Placement and agreement
 router.post('/fetchAllAgreementPlacements', agreementPlacementController.fetchAllAgreementPlacements);
 router.post('/fetchAllAgreementPlacementsByOrgIdProgId', agreementPlacementController.fetchAllAgreementPlacementsByOrgIdProgId);
-// router.post('/updateCheckById', checkController.updateCheckById);
 
 // Check Table
 router.post('/fetchAllChecks', checkController.fetchAllChecks);

@@ -83,9 +83,25 @@ class FinalReport extends Component {
     history.goBack();
   };
 
+  validate = (data) => {
+    if (data && data.q2 && data.q2['third'] && data.q2['third']) {
+      const fileName = data.q2['third'].name;
+      const allowFileExt = ['csv', 'xlx', 'xlsx'];
+      if (!allowFileExt.includes(/[^.]+$/.exec(fileName)[0])) {
+        alert('The file format is not supported');
+        return true
+      }
+    }
+    return false
+  };
+  
   handleFinalReportPost = async (isSubmitted) => {
     const { history } = this.props;
     const { formData: postData, sessionToken, role, programId, orgId } = this.state;
+
+    if (this.validate(postData)) {
+      return 
+    }
 
     const formData = new FormData();
     let postFinalReportURL = '/api/createNewFinalReport';
@@ -97,6 +113,7 @@ class FinalReport extends Component {
 
     if (postData.objectId) {
       postFinalReportURL = '/api/updateFinalReportById';
+      formData.append('objectId', postData.objectId);
     } else {
       postFinalReportURL = '/api/createNewFinalReport';
     }

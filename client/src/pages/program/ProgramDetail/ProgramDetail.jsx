@@ -104,6 +104,15 @@ class ProgramDetail extends Component {
     }
   };
 
+  handleFinalReportClick = () => {
+    const {history} = this.props;
+    const {programData: {program}} = this.state;
+    localStorage.setItem('orgId', program.orgId);
+    if (program.objectId && program.orgId) {
+      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}`);
+    }
+  };
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -239,26 +248,26 @@ class ProgramDetail extends Component {
 
                         {this.state.role != '1' &&
                           <MDBRow>
-                          <MDBCol md="7">
-                            Send 1st Check
-                          </MDBCol>
-                          <MDBCol md="5">
-                            <MDBBtn
-                              rounded
-                              size={"sm"}
-                              className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={() => {
-                                const { history } = this.props;
-                                const { programData: { program } } = this.state;
-                                if (program) {
-                                  history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
-                                }
-                              }}
-                            >
-                              Review
-                            </MDBBtn>
-                          </MDBCol>
-                        </MDBRow>
+                            <MDBCol md="7">
+                              Send 1st Check
+                            </MDBCol>
+                            <MDBCol md="5">
+                              <MDBBtn
+                                rounded
+                                size={"sm"}
+                                className="application-info-button second-action-button btn-block z-depth-1a"
+                                onClick={() => {
+                                  const { history } = this.props;
+                                  const { programData: { program } } = this.state;
+                                  if (program) {
+                                    history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                  }
+                                }}
+                              >
+                                Review
+                              </MDBBtn>
+                            </MDBCol>
+                          </MDBRow>
                         }
 
 
@@ -293,12 +302,29 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={this.handleFinalReportCommentClick}
+                              onClick={this.state.role === '1' ? this.handleFinalReportClick : this.handleFinalReportCommentClick}
                             >
                               Review
                             </MDBBtn>
                           </MDBCol>
                         </MDBRow>
+                        {this.state.role === '1' &&
+                          <MDBRow>
+                            <MDBCol md="7">
+                              Final Report View
+                            </MDBCol>
+                            <MDBCol md="5">
+                              <MDBBtn
+                                rounded
+                                size={"sm"}
+                                className="application-info-button second-action-button btn-block z-depth-1a"
+                                onClick={this.handleFinalReportCommentClick}
+                              >
+                                Review
+                              </MDBBtn>
+                            </MDBCol>
+                          </MDBRow>
+                        }
 
 
                         {this.state.role != '1' &&

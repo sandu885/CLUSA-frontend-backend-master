@@ -115,8 +115,77 @@ const forgetPassword = async(emailAddress, username, token) => {
   }
 }
 
+const sendRecreateLoginEmail = async(emailAddress, note) => {
+  try {
+    console.log("send email request received.");
+    if (!emailAddress)
+      throw new Error("No email");
+    console.log("Receiver email address is " + emailAddress);
+    let options = {
+      auth: {
+        api_key: keys.sendGridKey,
+      }
+    };
+    let client = nodemailer.createTransport(sgTransport(options));
+    let mailContent = {
+      from: {
+        name: 'CLUSA',
+        address: 'grant@clusa.org'
+      },
+      to: emailAddress,
+      subject: 'Recreate account request.',
+      text: `Dear CLUSA, \n  
+                \n Below is recreate account information: \n
+                \n ${note} \n  
+                \n Best Regards, \n CLUSA`,
+    };
+    await client.sendMail(mailContent);
+    const message = 'Your message has been successfully sent.';
+    console.log("Your message has been successfully sent.");
+    return message;
+  } catch(err) {
+    console.log(err.message);
+    throw new Error(err.message);
+  }
+}
+
+const programStatusUpdate = async(emailAddress, username) => {
+  try {
+    console.log("send email request received.");
+    if (!emailAddress)
+      throw new Error("No email");
+    console.log("Receiver email address is " + emailAddress);
+    let options = {
+      auth: {
+        api_key: keys.sendGridKey,
+      }
+    };
+    let client = nodemailer.createTransport(sgTransport(options));
+    let mailContent = {
+      from: {
+        name: 'CLUSA',
+        address: 'grant@clusa.org'
+      },
+      to: emailAddress,
+      subject: 'Program status Update.',
+      text: `Dear ${username}, \n  
+                \n Your program status is been updated \n  
+                \n Best Regards, \n CLUSA`,
+    };
+    await client.sendMail(mailContent);
+    const message = 'Your message has been successfully sent.';
+    console.log("Your message has been successfully sent.");
+    return message;
+  } catch(err) {
+    console.log(err.message);
+    throw new Error(err.message);
+  }
+};
+
 module.exports = {
     sendEmail,
     forgetPassword,
     sendUserAddEmail,
+    sendRecreateLoginEmail,
+    programStatusUpdate,
 }

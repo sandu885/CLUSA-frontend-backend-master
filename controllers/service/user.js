@@ -199,6 +199,23 @@ const createUserByAdmin = async(req, res) => {
   }
 };
 
+const createRecreateLogin = async(req, res) => {
+  try {
+    console.log("ReCreate login start");
+    let user = await USER.createRecreateLogin(req.body);
+    console.log("ReCreate login is success");
+    res.status(200).json({
+      message: 'Successfully ReCreate login email send',
+      user,
+    });
+  } catch(error) {
+    console.log("fetchUser: " + error.message);
+    res.status(400).json({
+      message: error.message
+    });
+  }
+};
+
 module.exports = {
     signup,
     login,
@@ -212,4 +229,5 @@ module.exports = {
     updateUserById,
     createUserByAdmin,
     deleteUserById,
+    createRecreateLogin,
 }

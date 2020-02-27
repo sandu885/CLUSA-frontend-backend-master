@@ -36,11 +36,12 @@ const fetchAllFinalReportByOrgIdProgId = async (meta) => {
   if (!meta.orgId)
     throw new Error("No organization id");
   if (!meta.programId)
-    throw new Error("No organization id");
+    throw new Error("No program id");
 
   let queryFinalReport = new Parse.Query("FinalReport");
   queryFinalReport.equalTo("orgId", meta.orgId);
   queryFinalReport.equalTo("programId", meta.programId);
+  console.log(queryFinalReport);
 
   return await queryFinalReport.first({useMasterKey: true});
 };
@@ -62,14 +63,14 @@ const updateFinalReportById = async (meta, file) => {
   if (file) {
     finalReport.set("q2", [{ ...meta.q2, file }]);
   } else {
-    finalReport.set("q2", [meta.q2]);
+    finalReport.set("q2", [{ ...meta.q2, file: finalReport.get('q2')[0].file }]);
   }
   finalReport.set("q3", [meta.q3]);
 
-  if (meta.isSubmitted === 'true') {
+  if (meta.isSubmitted == 'true') {
     finalReport.set("isSubmitted", 1);
     await updateProgramStatus(finalReport)
-  } else if (meta.isSubmitted === 'false') {
+  } else if (meta.isSubmitted == 'false') {
     finalReport.set("isSubmitted", 0);
   } else {
     finalReport.set("isSubmitted", 0);

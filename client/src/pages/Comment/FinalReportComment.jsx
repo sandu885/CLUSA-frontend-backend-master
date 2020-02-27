@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import {
-  MDBContainer,
-  MDBCardBody,
   MDBBtn,
-  MDBRow, MDBCol, MDBCard,
-  MDBModal, MDBModalBody, MDBCardFooter
+  MDBRow, MDBCol,
+  MDBCardFooter
 } from 'mdbreact';
 import axios from 'axios';
+import { cloneDeep } from 'lodash';
 
 import { queryStringToJSON } from '../../utils/util'
 import FooterComponent from '../Footer';
@@ -131,49 +130,71 @@ class FinalReportComment extends Component {
   }
 
   render() {
-    const { formData, commentData = [] } = this.state;
+    const { formData, commentData = [], role } = this.state;
 
     const fixFooter = <MDBCardFooter className="comment-container comment-fix-footer">
       <MDBRow>
         <MDBCol md="1" />
         <MDBCol md="10" style={{ display: 'flex' }}>
           <div style={{ width: '100%' }}>
-            <MDBRow>
-              <MDBCol md="9" className="text-center p-3 font-weight-bold">
-                All Comment
-              </MDBCol>
-              <MDBCol md="3" className="text-center p-3 font-weight-bold">
-                My Comment
-              </MDBCol>
-            </MDBRow>
+            { role === '1' ?
+              <MDBRow>
+                <MDBCol md="12" className="text-center p-3 font-weight-bold">
+                  All Comment
+                </MDBCol>
+              </MDBRow>
+              :
+              <MDBRow>
+                <MDBCol md="9" className="text-center p-3 font-weight-bold">
+                  All Comment
+                </MDBCol>
+                <MDBCol md="3" className="text-center p-3 font-weight-bold">
+                  My Comment
+                </MDBCol>
+              </MDBRow>
+            }
 
-            <MDBRow>
-              <MDBCol md="9" className="comment-view">
-                {commentData.map((cData, index) =>
-                  <div key={cData.objectId + index}>
-                    <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
-                    {' '+ cData.note}
-                  </div>
-                )}
+            {role === '1' ?
+              <MDBRow>
+                <MDBCol md="12" className="comment-view">
+                  {commentData.map((cData, index) =>
+                    <div key={cData.objectId + index}>
+                      <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
+                      {' '+ cData.note}
+                    </div>
+                  )}
 
-              </MDBCol>
-              <MDBCol md="3" className="text-center">
+                </MDBCol>
+              </MDBRow>
+              :
+              <MDBRow>
+                <MDBCol md="9" className="comment-view">
+                  {commentData.map((cData, index) =>
+                    <div key={cData.objectId + index}>
+                      <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
+                      {' '+ cData.note}
+                    </div>
+                  )}
+
+                </MDBCol>
+                <MDBCol md="3" className="text-center">
                 <textarea
                   style={{ width: '100%'}}
                   name="note"
                   onChange={this.handleChange}
                   value={formData.note}
                 />
-                <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="second-action-button btn-block z-depth-1a check-file-upload"
-                        onClick={this.postComment}
-                >
-                  Save
-                </MDBBtn>
-                <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color">
-                  Cancel
-                </MDBBtn>
-              </MDBCol>
-            </MDBRow>
+                  <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="second-action-button btn-block z-depth-1a check-file-upload"
+                          onClick={this.postComment}
+                  >
+                    Save
+                  </MDBBtn>
+                  <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color">
+                    Cancel
+                  </MDBBtn>
+                </MDBCol>
+              </MDBRow>
+            }
           </div>
         </MDBCol>
         <MDBCol md="1" />
@@ -187,7 +208,6 @@ class FinalReportComment extends Component {
         <FinalReportView {...this.props} fixFooter={fixFooter} />
         
         <FooterComponent className="mt-5 pt-5" />
-
       </div>
     );
   }
@@ -207,10 +227,50 @@ class FinalReportComment extends Component {
       ).then((response) => {
         const commentData = response.data.comments.filter(e => e.type === 'finalReportView');
         const comment = commentData.find(e => e.userId === userId);
+        this.state.commentData = cloneDeep(commentData);
         this.setState({
-          commentData,
-          formData: comment || {},
-          programStatus: comment.program.status,
+          commentData: cloneDeep(commentData),
+          formData: cloneDeep(comment || {}),
+          programStatus: cloneDeep(comment.program || {}),
+        });
+      }).catch((error) => {
+        this.setState({
+          dataReceived: true,
+        });
+        if(error.response !== null && error.response !== undefined) {
+          if( error.response.data !== null && error.response.data !== undefined ) {
+            if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
+              localStorage.clear();
+              alert('Your login status was expired. Please login again.');
+              this.props.history.push('/')
+            } else {
+              alert(error.response.data.message);
+            }
+          }
+        }
+      });
+    }
+  };
+
+  fetchCommentsInterval = () => {
+    const fetchAllCommentByOrgIdProgId = '/api/fetchAllCommentByOrgIdProgId';
+    const { orgId, programId, userId, sessionToken } = this.state;
+
+    if (this.state.sessionToken) {
+      axios.post(
+        fetchAllCommentByOrgIdProgId,
+        {
+          sessionToken: sessionToken,
+          orgId,
+          programId,
+        },
+      ).then((response) => {
+        const commentData = response.data.comments.filter(e => e.type === 'finalReportView');
+        const comment = commentData.find(e => e.userId === userId);
+        this.state.commentData = cloneDeep(commentData);
+        this.setState({
+          commentData: cloneDeep(commentData),
+          programStatus: cloneDeep(comment.program || {}),
         });
       }).catch((error) => {
         this.setState({
@@ -232,7 +292,14 @@ class FinalReportComment extends Component {
   };
 
   componentDidMount() {
-    this.fetchComments()
+    this.fetchComments();
+    this.interval = setInterval(() => {
+      this.fetchCommentsInterval();
+    }, 15000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 }
 

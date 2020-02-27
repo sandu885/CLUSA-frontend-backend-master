@@ -8,7 +8,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component, forwardRef } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBNotification } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBNotification } from 'mdbreact';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 import { Redirect } from 'react-router';
@@ -35,9 +35,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-
-import FooterComponent from '../Footer';
-import HeaderComponent from '../Header';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => (

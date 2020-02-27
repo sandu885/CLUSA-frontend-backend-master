@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import {
   MDBContainer,
   MDBCardBody,
-  MDBCardFooter,
   MDBRow, MDBCol, MDBCard
 } from 'mdbreact';
 import axios from 'axios';
+import { cloneDeep } from 'lodash';
 
-import FooterComponent from '../Footer';
-import HeaderComponent from '../Header';
 import './finalReport.css'
 import { questionList } from './questionList'
 import { queryStringToJSON } from "../../utils/util";
@@ -26,27 +24,7 @@ class FinalReportView extends Component {
     };
   }
 
-  handleFileClick = (name) => {
-    const fileUpload = document.getElementsByName(name)[0];
-    fileUpload.click();
-  };
 
-  handleFileChange = (e) => {
-    const { formData } = this.state;
-
-    const nameSplit = e.target.name.split('-');
-
-    this.setState({
-      formData: {
-        ...formData,
-        [nameSplit[0]]: {
-          ...formData[nameSplit[0]],
-          [nameSplit[1]]: e.target.files[0],
-        }
-      }
-    });
-
-  };
 
   handleChange = (e) => {
     const { formData } = this.state;
@@ -63,13 +41,12 @@ class FinalReportView extends Component {
   };
 
   componentWillMount() {
-    // const { location, history } = this.props;
-    const { location } = this.props;
+    const { location, history } = this.props;
     const queryData = queryStringToJSON(location.search);
-    // if (!queryData.orgId && !queryData.programId) {
-    //   alert('Not having proper data to access this route');
-    //   history.goBack();
-    // }
+    if (!queryData.orgId && !queryData.programId) {
+      alert('Not having proper data to access this route');
+      history.goBack();
+    }
     this.setState({
       ...queryData,
     });
@@ -111,8 +88,6 @@ class FinalReportView extends Component {
 
     return (
       <div className="bg-withImage">
-
-
         <MDBContainer className="pt-5 mb-5">
           <MDBRow>
             <MDBCol md="12">
@@ -123,11 +98,8 @@ class FinalReportView extends Component {
                   </MDBCol>
                 </MDBRow>
                 <MDBCardBody className="comment-card-body">
-
                   <MDBRow>
-
                     <MDBCol md="1" />
-
                     <MDBCol md="10">
                       <div className="pt-2 text-left">
                         <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
@@ -259,20 +231,12 @@ class FinalReportView extends Component {
         };
         // ======================== success ========================
 
-        // const formData = {
-        //   username: response.data.user.username,
-        //   email: response.data.user.emailAddress || response.data.user.email,
-        //   name: response.data.user.firstName + ' ' + response.data.user.lastName,
-        //   role: response.data.user.userType,
-        // }
-        // // console.warn('organizations in CLUSA', this.getData('organizations'));
-        if (response.data.finalReport.isSubmitted) {
+        // if (response.data.finalReport.isSubmitted) {
+          // thi
           this.setState({
-            formData,
+            formData: cloneDeep(formData),
           });
-        }
-
-        // console.warn('orgAll', this.state.orgAll);
+        // }
 
       }).catch((error) => {
         if(error.response !== null && error.response !== undefined) {
@@ -291,7 +255,7 @@ class FinalReportView extends Component {
   };
 
   componentDidMount() {
-    // this.fetchFinalReport()
+    this.fetchFinalReport()
   }
 }
 

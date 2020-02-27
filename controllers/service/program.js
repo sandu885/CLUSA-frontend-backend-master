@@ -36,7 +36,7 @@ const fetchAllProgramsByUserId = async(req, res) => {
 const fetchProgramDetailById = async(req, res) => {
     try {
         let program = await PROGRAM.fetchProgramDetailById(req.body.programId);
-        console.log("Successfully fetch all programs by user id \n", program);
+        console.log("Successfully fetch all programs by user id");
         res.status(200).json({
             message: "Successfully fetch all programs by user id",
             program: program,
