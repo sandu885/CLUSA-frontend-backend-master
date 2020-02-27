@@ -1,4 +1,5 @@
 const moment = require('moment');
+const TOOL = require('../tool/tool');
 
 const createNewCommentSaved = async (meta) => {
   console.log('\n\n\nJSON.stringify\n\n\n', meta);
@@ -88,10 +89,22 @@ const updateCommentProgramStatus = async (meta) => {
   if (!program)
     throw new Error('Provide proper program details');
 
+  let queryUser = new Parse.Query('User');
+  queryUser.equalTo("orgId", meta.orgId);
+  let user = await queryUser.first({ useMasterKey: true });
+
   program.set('status', meta.status);
 
+  let email = '';
+  if (user.get('email'))
+    email = user.get('email');
+  else
+    email = user.get('emailAddress');
+
+
   const programSave = await program.save(null,{useMasterKey: true});
-  console.log('\n\n Program Status from the database program status', programSave, '\n\n');
+  await TOOL.programStatusUpdate(email, user.get('username'));
+  console.log('\n\n Program Status from the database program status', '\n\n');
   return programSave;
 };
 

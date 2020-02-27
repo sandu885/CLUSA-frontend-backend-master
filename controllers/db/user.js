@@ -333,6 +333,10 @@ const createUserByAdmin = async (meta) => {
     return user.save(null,{ useMasterKey: true });
 }
 
+const createRecreateLogin = async (meta) => {
+    return await TOOL.sendRecreateLoginEmail('info@clusa.org', meta.note);
+};
+
 module.exports = {
     findUserByUsername,
     findUserByUserId,
@@ -350,4 +354,5 @@ module.exports = {
     updateUserById,
     createUserByAdmin,
     deleteUserById,
+    createRecreateLogin,
 }

@@ -15,33 +15,13 @@ class RecreateLogin extends Component {
     super(props);
 
     this.state = {
-      sessionToken: localStorage.getItem('sessionToken'),
-      dataReceived: false,
-      programReportData: [],
       formData: {},
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
-      open: false,
-      deleteConfirm: false,
     };
   }
 
 
-  handleFileClick = (name) => {
-    const fileUpload = document.getElementsByName(name)[0];
-    fileUpload.click();
-  };
-
-  handleFileChange = (e) => {
-    const { formData } = this.state;
-
-    this.setState({
-      formData: {
-        ...formData,
-        [e.target.name]: e.target.files[0],
-      }
-    });
-  };
 
   validate = (data) => {
     if (!data) {
@@ -49,13 +29,8 @@ class RecreateLogin extends Component {
       return true
     }
 
-    if (!data.file) {
-      alert('Please select file for upload');
-      return true
-    }
-
-    if (!data.type) {
-      alert('Please select Report Type');
+    if (!data.note) {
+      alert('Please enter some note or description.');
       return true
     }
 
@@ -75,7 +50,7 @@ class RecreateLogin extends Component {
 
   postRecreateLogin = () => {
     const { history } = this.props;
-    const { formData, sessionToken } = this.state;
+    const { formData } = this.state;
 
     if (this.validate(formData)) {
       return true
@@ -86,13 +61,12 @@ class RecreateLogin extends Component {
     try {
       axios.post(
         createRecreateLoginURL,
-        { ...formData, sessionToken },
+        { ...formData },
       ).then(() => {
-        this.toggleDeleteModal();
         this.setState({
           formData: {},
         });
-        this.fetchProgramReport()
+        this.props.history.push('/')
       }).catch((error) => {
         if (error.response !== null && error.response !== undefined) {
           if (error.response.data !== null && error.response.data !== undefined) {
@@ -109,9 +83,7 @@ class RecreateLogin extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
-
-
+  };
 
   render() {
     const { formData } = this.state;
@@ -144,7 +116,7 @@ class RecreateLogin extends Component {
                       <MDBRow>
                         <MDBCol md="1" />
                         <MDBCol md="10" className="table-header font-weight-bold">
-                          <textarea rows={5} className="form-control ml-12 final-report-input mt-3" name="comment" value={formData.comment} onChange={this.handleChange} />
+                          <textarea rows={5} className="form-control ml-12 mt-3" name="note" value={formData.note} onChange={this.handleChange} />
                         </MDBCol>
                         <MDBCol md="1" />
                       </MDBRow>
@@ -177,7 +149,7 @@ class RecreateLogin extends Component {
                         className="second-action-button btn-block z-depth-1a red-color"
                         style={{ width: '40%', marginLeft: '30px' }}
                         onClick={(e) => {
-                          this.props.history.push('/')
+                          this.props.history.push('/');
                         }}
                       >
                         Cancel
@@ -191,9 +163,6 @@ class RecreateLogin extends Component {
               </MDBCard>
             </MDBCol>
           </MDBRow>
-
-
-
         </MDBContainer>
         <FooterComponent className="mt-5 pt-5" />
       </div>
