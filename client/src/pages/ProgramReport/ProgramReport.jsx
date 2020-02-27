@@ -107,7 +107,6 @@ class ProgramReport extends Component {
         deleteProgramReportURL,
         { ...formData, sessionToken },
       ).then(() => {
-        console.log('created program report successfully');
         this.toggleDeleteModal();
         this.setState({
           formData: {},
@@ -129,7 +128,6 @@ class ProgramReport extends Component {
     } catch (error) {
       console.log(error);
     }
-
   }
 
   postProgramReport = () => {
@@ -163,8 +161,7 @@ class ProgramReport extends Component {
         postProgramReportURL,
         formData,
       ).then(() => {
-        console.log('created program report successfully');
-        this.toggleModal()
+        this.toggleModal();
         this.setState({
           formData: {},
         });
@@ -215,7 +212,6 @@ class ProgramReport extends Component {
 
   render() {
     const { formData, programReportData = [] } = this.state;
-    console.log('this.state', this.state);
 
     let heading = 'Program Report';
 

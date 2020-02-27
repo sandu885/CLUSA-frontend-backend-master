@@ -153,8 +153,6 @@ class SignedAgreementPlacement extends Component {
   render() {
     const { formData, role } = this.state;
 
-
-    console.log('formData', formData);
     let heading = 'Agreement and Placement';
 
     return (
