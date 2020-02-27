@@ -1,8 +1,8 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
   MDBContainer,
   MDBCardBody,
+  MDBCardFooter,
   MDBRow, MDBCol, MDBCard
 } from 'mdbreact';
 import axios from 'axios';
@@ -105,72 +105,13 @@ class FinalReportView extends Component {
     return false
   };
 
-  handleFinalReportPost = async (isSubmitted) => {
-    const { history } = this.props;
-    const { formData: postData, sessionToken, role, programId, orgId } = this.state;
-
-    const formData = new FormData();
-    let postFinalReportURL = '/api/createNewFinalReport';
-
-    if (postData.q2['third']) {
-      postData.q2['third'] && formData.append('file', postData.q2['third']);
-      delete postData.q2['third']
-    }
-
-    if (postData.objectId) {
-      postFinalReportURL = '/api/updateFinalReportById';
-    } else {
-      postFinalReportURL = '/api/createNewFinalReport';
-    }
-    formData.append("q1[first]", postData.q1['first'] || '');
-    formData.append("q1[second]", postData.q1['second'] || '');
-    formData.append("q1[third]", postData.q1['third'] || '');
-
-    formData.append("q2[first]", postData.q2['first'] || '');
-    formData.append("q2[second]", postData.q2['second'] || '');
-
-    formData.append("q3[first]", postData.q3['first'] || '');
-    formData.append("q3[second]", postData.q3['second'] || '');
-    formData.append("q3[third]", postData.q3['third'] || '');
-    formData.append("q3[forth]", postData.q3['forth'] || '');
-
-    formData.append('orgId', orgId);
-    formData.append('programId', programId);
-    formData.append('sessionToken', sessionToken);
-    formData.append('role', role);
-    formData.append('isSubmitted', isSubmitted);
-    formData.append('path', 'final-report');
-
-    try {
-      await axios.post(
-        postFinalReportURL,
-        formData,
-      );
-      console.warn('console User finish');
-      // history.push('/user-organization-management');
-    } catch (error) {
-      if(error.response !== null && error.response !== undefined) {
-        if (error.response.data !== null && error.response.data !== undefined) {
-          if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
-            localStorage.clear();
-            alert('Your login status was expired. Please login again.');
-            history.push('/');
-          } else {
-            alert(error.response.data.message);
-          }
-        }
-      }
-    }
-  };
-
   render() {
     const { formData: { q1 = {}, q2 = {}, q3 = {}, fileLink } } = this.state;
-
-    console.log('this.state', this.state);
+    const { fixFooter } = this.props;
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+
 
         <MDBContainer className="pt-5 mb-5">
           <MDBRow>
@@ -181,7 +122,7 @@ class FinalReportView extends Component {
                     Final Report View
                   </MDBCol>
                 </MDBRow>
-                <MDBCardBody>
+                <MDBCardBody className="comment-card-body">
 
                   <MDBRow>
 
@@ -283,6 +224,7 @@ class FinalReportView extends Component {
                   </MDBRow>
 
                 </MDBCardBody>
+                {fixFooter && fixFooter}
 
                 <br />
               </MDBCard>
@@ -290,7 +232,7 @@ class FinalReportView extends Component {
           </MDBRow>
         </MDBContainer>
 
-        <FooterComponent className="mt-5 pt-5" />
+
       </div>
     );
   }
@@ -349,7 +291,7 @@ class FinalReportView extends Component {
   };
 
   componentDidMount() {
-    this.fetchFinalReport()
+    // this.fetchFinalReport()
   }
 }
 

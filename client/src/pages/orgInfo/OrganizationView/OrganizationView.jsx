@@ -14,7 +14,7 @@ import HeaderComponent from '../../Header';
 
 import './organizationView.css'
 
-class ProgramDetail extends Component {
+class OrganizationView extends Component {
   constructor(props) {
     super(props);
 
@@ -388,4 +388,4 @@ class ProgramDetail extends Component {
   }
 }
 
-export default ProgramDetail;
+export default OrganizationView;

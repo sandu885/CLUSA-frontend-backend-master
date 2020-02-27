@@ -61,6 +61,7 @@ const checkController = require("../../controllers/service/check");
 const finalReport = require("../../controllers/service/finalReport");
 const agreementPlacementController = require("../../controllers/service/agreementPlacement");
 const sectionController = require("../../controllers/service/section");
+const programComment = require("../../controllers/service/programComment");
 const applicationController = require("../../controllers/service/application");
 const programReportController = require("../../controllers/service/programReport");
 
@@ -120,10 +121,8 @@ router.post('/fetchAllAgreementPlacementsByOrgIdProgId', agreementPlacementContr
 // router.post('/updateCheckById', checkController.updateCheckById);
 
 // Check Table
-// router.post('/createNewCheck', checkController.createNewCheck);
 router.post('/fetchAllChecks', checkController.fetchAllChecks);
 router.post('/fetchAllChecksByOrgIdProgId', checkController.fetchAllChecksByOrgIdProgId);
-// router.post('/updateCheckById', checkController.updateCheckById);
 
 // Section Table
 router.post('/createNewSection', sectionController.createNewSection);
@@ -131,6 +130,13 @@ router.post('/createNewSection', sectionController.createNewSection);
 // Final Report Table
 router.post('/fetchAllFinalReports', finalReport.fetchAllFinalReports);
 router.post('/fetchAllFinalReportByOrgIdProgId', finalReport.fetchAllFinalReportByOrgIdProgId);
+
+// Comment Table
+router.post('/createNewComment', programComment.createNewComment);
+router.post('/updateCommentById', programComment.updateCommentById);
+router.post('/deleteCommentById', programComment.deleteCommentById);
+router.post('/updateCommentProgramStatus', programComment.updateCommentProgramStatus);
+router.post('/fetchAllCommentByOrgIdProgId', programComment.fetchAllCommentByOrgIdProgId);
 
 // Program Report Table
 router.post('/fetchAllProgramReports', programReportController.fetchAllProgramReports);

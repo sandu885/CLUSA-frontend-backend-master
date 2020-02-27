@@ -43,6 +43,8 @@ import AgreementPlacement from '../AppInfo/AgreementPlacement/AgreementPlacement
 import SignedAgreementPlacement from '../AppInfo/AgreementPlacement/SignedAgreementPlacement';
 import FinalReport from '../FinalReport/FinalReport';
 import FinalReportView from '../FinalReport/FinalReportView';
+import FinalReportComment from '../Comment/FinalReportComment';
+import OrganizationComment from '../Comment/OrganizationComment';
 import ProgramReport from '../ProgramReport/ProgramReport';
 import RecreateLogin from '../RecreateLogin/RecreateLogin';
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
@@ -192,9 +194,10 @@ class App extends Component {
             <PrivateRoute component={FinalReport} path="/final-report" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalReportView} path="/final-report-view" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={ProgramReport} path="/program-report" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={FinalReportComment} path="/final-report-comment" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={OrganizationComment} path="/app-review" exact roles={['it-admin', 'reviewer']} />
+
             <PublicRoute component={RecreateLogin} path="/recreate-login" exact roles={['it-admin', 'reviewer']} />
-
-
           </Switch>
         </div>
       </Router>

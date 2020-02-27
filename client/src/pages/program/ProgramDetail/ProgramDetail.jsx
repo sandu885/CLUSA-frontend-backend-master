@@ -84,6 +84,26 @@ class ProgramDetail extends Component {
     });
   };
 
+  handleAppCommentClick = () => {
+    const { history } = this.props;
+    const { programData: { program } } = this.state;
+    localStorage.setItem('orgId', program.orgId);
+    // final-report-comment
+    if (program.objectId && program.orgId) {
+      history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}`);
+    }
+  };
+
+  handleFinalReportCommentClick = () => {
+    const { history } = this.props;
+    const { programData: { program } } = this.state;
+    localStorage.setItem('orgId', program.orgId);
+    // final-report-comment
+    if (program.objectId && program.orgId) {
+      history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}`);
+    }
+  };
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -99,7 +119,6 @@ class ProgramDetail extends Component {
     // const tenthSection = application.find(app => app.sectionIndex === "10");
     const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
     let heading = 'Program Detail Page';
-    console.log('actualAwardAmount', actualAwardAmount);
 
     return (
       <div className="bg-withImage">
@@ -188,6 +207,7 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
+                              onClick={this.handleAppCommentClick}
                             >
                               Review
                             </MDBBtn>
@@ -273,6 +293,7 @@ class ProgramDetail extends Component {
                               rounded
                               size={"sm"}
                               className="application-info-button second-action-button btn-block z-depth-1a"
+                              onClick={this.handleFinalReportCommentClick}
                             >
                               Review
                             </MDBBtn>
@@ -293,6 +314,7 @@ class ProgramDetail extends Component {
                               onClick={() => {
                                 const { history } = this.props;
                                 const { programData: { program } } = this.state;
+                                localStorage.setItem('orgId', program.orgId);
                                 if (program) {
                                   history.push(`/final-check?orgId=${program.orgId}&programId=${program.objectId}`);
                                 }
