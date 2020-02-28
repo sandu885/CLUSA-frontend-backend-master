@@ -2,7 +2,7 @@ const ORG = require("../db/organization");
 const TOOL = require('../tool/tool');
 const jwt = require('jwt-simple');
 const jwtSecret = 'fe1a1915a379f3be5394b64d14794932';
-const userRoleName = { '0': 'Grant Reviewer', '1':  'Grant Viewer', '2': 'Grant Manager', '3': 'IT Admin' };
+const userRoleName = { '0': 'Grant Reviewer', '1':  'Organization', '2': 'Grant Manager', '3': 'IT Admin' };
 
 // find user by username
 const findUserByUsername = async (username) => {
@@ -134,7 +134,7 @@ const login = async(username, password) => {
 // User forget password
 const forgetPassword = async({ emailAddress, organizationName }) => {
     if (!emailAddress && !organizationName)
-        throw new Error("Pass email address or organization name2");
+        throw new Error("Pass email address or organization name");
 
     Parse.User.enableUnsafeCurrentUser();
     let queryUser = new Parse.Query(Parse.User);
@@ -172,7 +172,7 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
 // User forget password
 const resetPassword = async({ newPassword, resetPasswordToken }) => {
     if (!newPassword)
-        throw new Error("Pass email address or organization name2");
+        throw new Error("Please pass new password value");
 
     const tokenPayload = jwt.decode(resetPasswordToken, jwtSecret);
 
@@ -183,6 +183,27 @@ const resetPassword = async({ newPassword, resetPasswordToken }) => {
     let userRecord = await queryUser.first({ useMasterKey: true });
     if (!userRecord)
         throw new Error("Reset password token is not valid.");
+
+    userRecord.set("password", newPassword);
+    await userRecord.save(null, { useMasterKey: true });
+
+    return "Password updated successfully "
+}
+
+// Reset password By ID
+const resetPasswordById = async({ newPassword, userId }) => {
+    if (!newPassword)
+        throw new Error("Please pass new password value");
+    if (!userId)
+        throw new Error("User information is not provided");
+
+    Parse.User.enableUnsafeCurrentUser();
+    let queryUser = new Parse.Query('User');
+    queryUser.equalTo("objectId", userId);
+
+    let userRecord = await queryUser.first({ useMasterKey: true });
+    if (!userRecord)
+        throw new Error("User information is not valid so can not update the password.");
 
     userRecord.set("password", newPassword);
     await userRecord.save(null, { useMasterKey: true });
@@ -355,4 +376,5 @@ module.exports = {
     createUserByAdmin,
     deleteUserById,
     createRecreateLogin,
+    resetPasswordById,
 }
