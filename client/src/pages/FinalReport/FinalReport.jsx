@@ -230,7 +230,7 @@ class FinalReport extends Component {
                         <input type="file" className="form-control ml-4 final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
                         <br/>
                         <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
-                          Click to Upload/Replace Expense Report
+                          Click to Upload Template
                         </MDBBtn>
                         <span> {q2['third'] && q2['third'].name} </span>
 

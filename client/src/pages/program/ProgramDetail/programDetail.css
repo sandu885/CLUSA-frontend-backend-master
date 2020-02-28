@@ -29,3 +29,10 @@
     background-color: #a22121 !important;
     width: 20% !important;
 }
+
+.span-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 145px;
+    white-space: nowrap;
+}

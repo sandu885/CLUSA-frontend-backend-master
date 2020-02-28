@@ -1,6 +1,7 @@
 const ORG = require("../db/organization");
 const TOOL = require('../tool/tool');
 const jwt = require('jwt-simple');
+const moment = require('moment');
 const jwtSecret = 'fe1a1915a379f3be5394b64d14794932';
 const userRoleName = { '0': 'Grant Reviewer', '1':  'Organization', '2': 'Grant Manager', '3': 'IT Admin' };
 
@@ -124,6 +125,8 @@ const login = async(username, password) => {
     let userRecord = await queryUser.first({useMasterKey: true});
     if (!userRecord)
         throw new Error("login: Invalid usename");
+    userRecord.set('lastLogin', moment().format());
+    await userRecord.save(null, { useMasterKey: true });
     let querySession = new Parse.Query(Parse.Session);
     querySession.equalTo("user", userRecord);
     let sessionRecords = await querySession.find({useMasterKey: true});
@@ -132,9 +135,16 @@ const login = async(username, password) => {
 }
 
 // User forget password
-const forgetPassword = async({ emailAddress, organizationName }) => {
-    if (!emailAddress && !organizationName)
-        throw new Error("Pass email address or organization name");
+const forgetPassword = async({ emailAddress, organization: organizationName, ...other }) => {
+    console.log('================================', emailAddress, organizationName, other);
+    if (!emailAddress) {
+        if (!organizationName)
+            throw new Error("Pass email address or organization name");
+    }
+    if (!organizationName) {
+        if (!emailAddress)
+            throw new Error("Pass email address or organization name");
+    }
 
     Parse.User.enableUnsafeCurrentUser();
     let queryUser = new Parse.Query(Parse.User);
@@ -147,7 +157,7 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
 
         const payload = { email: userRecord.get("emailAddress"), username: userRecord.get("username") };
         const token = jwt.encode(payload, jwtSecret);
-        await TOOL.forgetPassword(emailAddress, userRecord.get("username"), token);
+        return await TOOL.forgetPassword(emailAddress, userRecord.get("username"), token);
     }
     if (organizationName) {
         queryOrganization.equalTo("name", organizationName);
@@ -163,9 +173,10 @@ const forgetPassword = async({ emailAddress, organizationName }) => {
         const payload = { email: userRecord.get("emailAddress"), username: userRecord.get("username") };
         const token = jwt.encode(payload, jwtSecret);
 
-        await TOOL.forgetPassword(userRecord.get("emailAddress"), userRecord.get("username"), token);
+        return await TOOL.forgetPassword(userRecord.get("emailAddress"), userRecord.get("username"), token);
     }
 
+    throw new Error("Provided information was not proper.");
     return "Reset link send successfully"
 }
 
@@ -292,6 +303,7 @@ const fetchAllUsers = async(user) => {
         ele["orgId"] = u.get("orgId");
         ele["orgName"] = u.get("orgName");
         ele["status"] = u.get("status");
+        ele["lastLogin"] = u.get("lastLogin");
         ele["objectId"] = u.id;
         return ele;
     }));

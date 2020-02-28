@@ -9,6 +9,7 @@ import {
 } from 'mdbreact';
 import Loader from 'react-loader-spinner'
 import axios from 'axios';
+import moment from 'moment';
 
 import './UserOrganizationManagement.css';
 
@@ -266,6 +267,7 @@ class UserOrganizationManagement extends Component {
           return {
             ...e,
             username: userDataByOrg ? userDataByOrg.username : '',
+            lastLogin: userDataByOrg && userDataByOrg.lastLogin ? moment(userDataByOrg.lastLogin).format('MM-DD-YYYY') : '',
             email: userDataByOrg ? userDataByOrg.email || userDataByOrg.emailAddress || '' : '',
             functions: <div>
               <MDBRow>
@@ -319,7 +321,7 @@ class UserOrganizationManagement extends Component {
         const usersData = Users.data.users.map(u => {
           return {
             ...u,
-            lastLogin: 'Xx-xx-xx',
+            lastLogin: u.lastLogin ? moment(u.lastLogin).format('MM-DD-YYYY') : '',
             functions: <div>
               <MDBRow md="3">
                 <MDBCol>

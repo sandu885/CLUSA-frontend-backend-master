@@ -51,6 +51,13 @@ const fetchProgramDetailById = async(programId) => {
     let agreementPlacementRecord = await queryAgreementPlacement.find({useMasterKey: true});
     element["agreementPlacement"] = agreementPlacementRecord;
 
+    let queryOrganization = new Parse.Query("Organization");
+
+
+    queryOrganization.equalTo("objectId", element['program'].get('orgId'));
+    let organizationRecord = await queryOrganization.first({useMasterKey: true});
+    element["organization"] = organizationRecord;
+
     element['application'] = await queryApplication.find({useMasterKey: true});
     return element;
 }

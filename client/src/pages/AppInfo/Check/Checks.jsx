@@ -113,7 +113,7 @@ class Checks extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      this.fetchCheckData()
+      this.fetchCheckData('1');
       console.warn('reponse message', response.data);
 
     }).catch((error) => {
@@ -165,8 +165,7 @@ class Checks extends Component {
       postProgram,
       formData,
     ).then((response) => {
-
-      this.fetchCheckData()
+      this.fetchCheckData('2');
       console.warn('reponse message', response.data);
 
     }).catch((error) => {
@@ -203,7 +202,7 @@ class Checks extends Component {
   };
 
   render() {
-    const { formData: { first = {} } } = this.state;
+    const { formData: { first = {}, second = {} } } = this.state;
     let heading = 'Send Check';
 
     return (
@@ -255,7 +254,7 @@ class Checks extends Component {
                             color: '#b6b6b6',
                           }}> {
                             first.checkFile ? first.checkFile.name :
-                              first.checkFileLink && <a href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> Click here to view the file </a>
+                              first.checkFileLink && <a href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {first.checkFileLink.filename} </a>
                           } </label>
                         </div>
                         <div className="col-sm-6">
@@ -292,85 +291,85 @@ class Checks extends Component {
                   </MDBRow>
                   <br />
 
-                  {/*<MDBRow>*/}
-                  {/*  <MDBCol md="1"/>*/}
-                  {/*  <MDBCol md="10" className="pt-3 sub-header font-weight-bold check-sub-header">*/}
-                  {/*    Second Check*/}
-                  {/*  </MDBCol>*/}
-                  {/*  <MDBCol md="1"/>*/}
-                  {/*  <MDBCol md="1"/>*/}
-                  {/*  <MDBCol md="10">*/}
-                  {/*    <MDBRow style={{display: 'block'}}>*/}
-                  {/*      <hr/>*/}
-                  {/*    </MDBRow>*/}
-                  {/*  </MDBCol>*/}
-                  {/*  <MDBCol md="1"/>*/}
-                  {/*  <MDBCol md="2"/>*/}
-                  {/*  <MDBCol md="9">*/}
+                  <MDBRow>
+                    <MDBCol md="1"/>
+                    <MDBCol md="10" className="pt-3 sub-header font-weight-bold check-sub-header">
+                      Second Check
+                    </MDBCol>
+                    <MDBCol md="1"/>
+                    <MDBCol md="1"/>
+                    <MDBCol md="10">
+                      <MDBRow style={{display: 'block'}}>
+                        <hr/>
+                      </MDBRow>
+                    </MDBCol>
+                    <MDBCol md="1"/>
+                    <MDBCol md="2"/>
+                    <MDBCol md="9">
 
-                  {/*    <MDBRow className="form-group font-weight-bold">*/}
-                  {/*      <label className="col-form-label check-form-label">Check Amount:-</label>*/}
-                  {/*      <div className="col-sm-4">*/}
-                  {/*        <input type="number" className="form-control" name="second-checkAmount" value={second.checkAmount} onChange={this.handleChange}/>*/}
-                  {/*      </div>*/}
-                  {/*      <MDBCol sm="1"/>*/}
-                  {/*      <label className="col-form-label">Check #:-</label>*/}
-                  {/*      <div className="col-sm-4">*/}
-                  {/*        <input type="text" className="form-control" name="second-checkId" value={second.checkId} onChange={this.handleChange}/>*/}
-                  {/*      </div>*/}
-                  {/*    </MDBRow>*/}
+                      <MDBRow className="form-group font-weight-bold">
+                        <label className="col-form-label check-form-label">Check Amount:-</label>
+                        <div className="col-sm-4">
+                          <input type="number" className="form-control" name="second-checkAmount" value={second.checkAmount} onChange={this.handleChange}/>
+                        </div>
+                        <MDBCol sm="1"/>
+                        <label className="col-form-label">Check #:-</label>
+                        <div className="col-sm-4">
+                          <input type="text" className="form-control" name="second-checkId" value={second.checkId} onChange={this.handleChange}/>
+                        </div>
+                      </MDBRow>
 
-                  {/*    <MDBRow className="form-group font-weight-bold">*/}
-                  {/*      <label className="col-form-label check-form-label">Check Image:-</label>*/}
-                  {/*      <div className="col-sm-3">*/}
-                  {/*        <label className="col-form-label" style={{*/}
-                  {/*          fontWeight: '100',*/}
-                  {/*          color: '#b6b6b6',*/}
-                  {/*        }}>*/}
-                  {/*          {*/}
-                  {/*            second.checkFile ? second.checkFile.name :*/}
-                  {/*              second.checkFileLink && <a href={`/${second.checkFileLink.path}`}  target="_blank"> Click here to view the file </a>*/}
-                  {/*          }*/}
-                  {/*        </label>*/}
-                  {/*      </div>*/}
-                  {/*      <div className="col-sm-6">*/}
-                  {/*        <input type="file" className="form-control" style={{display: 'none'}} name="second-checkFile" onChange={this.handleFileChange}/>*/}
-                  {/*        <MDBBtn rounded size={"sm"}*/}
-                  {/*                className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('second-checkFile')}>*/}
-                  {/*          Click here to Upload/Replace Image*/}
-                  {/*        </MDBBtn>*/}
-                  {/*      </div>*/}
-                  {/*    </MDBRow>*/}
+                      <MDBRow className="form-group font-weight-bold">
+                        <label className="col-form-label check-form-label">Check Image:-</label>
+                        <div className="col-sm-3">
+                          <label className="col-form-label" style={{
+                            fontWeight: '100',
+                            color: '#b6b6b6',
+                          }}>
+                            {
+                              second.checkFile ? second.checkFile.name :
+                                second.checkFileLink && <a href={`/${second.checkFileLink.path}`}  target="_blank"> {second.checkFileLink.filename} </a>
+                            }
+                          </label>
+                        </div>
+                        <div className="col-sm-6">
+                          <input type="file" className="form-control" style={{display: 'none'}} name="second-checkFile" onChange={this.handleFileChange}/>
+                          <MDBBtn rounded size={"sm"}
+                                  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('second-checkFile')}>
+                            Click here to Upload/Replace Image
+                          </MDBBtn>
+                        </div>
+                      </MDBRow>
 
-                  {/*    <MDBRow className="form-group font-weight-bold">*/}
-                  {/*      <label className="col-form-label check-form-label">Check Date:-</label>*/}
-                  {/*      <div className="col-sm-4">*/}
-                  {/*        <input type="text" className="form-control" name="second-checkDate" value={second.checkDate} onChange={this.handleChange} />*/}
-                  {/*      </div>*/}
-                  {/*    </MDBRow>*/}
+                      <MDBRow className="form-group font-weight-bold">
+                        <label className="col-form-label check-form-label">Check Date:-</label>
+                        <div className="col-sm-4">
+                          <input type="text" className="form-control" name="second-checkDate" value={second.checkDate} onChange={this.handleChange} />
+                        </div>
+                      </MDBRow>
 
-                  {/*    <MDBRow className="form-group font-weight-bold">*/}
-                  {/*      <MDBCol sm="3"/>*/}
-                  {/*      <MDBCol sm="3">*/}
-                  {/*        <MDBBtn rounded size={"sm"}*/}
-                  {/*                className="send-button second-action-button btn-block z-depth-1a check-file-upload" onClick={this.saveSecondCheck}>*/}
-                  {/*          Send*/}
-                  {/*        </MDBBtn>*/}
-                  {/*      </MDBCol>*/}
-                  {/*      <MDBCol sm="3">*/}
-                  {/*        <MDBBtn rounded size={"sm"}*/}
-                  {/*                className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"*/}
-                  {/*                onClick={event => {this.props.history.goBack();}}*/}
-                  {/*        >*/}
-                  {/*          Cancel*/}
-                  {/*        </MDBBtn>*/}
-                  {/*      </MDBCol>*/}
-                  {/*    </MDBRow>*/}
+                      <MDBRow className="form-group font-weight-bold">
+                        <MDBCol sm="3"/>
+                        <MDBCol sm="3">
+                          <MDBBtn rounded size={"sm"}
+                                  className="send-button second-action-button btn-block z-depth-1a check-file-upload" onClick={this.saveSecondCheck}>
+                            Send
+                          </MDBBtn>
+                        </MDBCol>
+                        <MDBCol sm="3">
+                          <MDBBtn rounded size={"sm"}
+                                  className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  onClick={event => {this.props.history.goBack();}}
+                          >
+                            Cancel
+                          </MDBBtn>
+                        </MDBCol>
+                      </MDBRow>
 
 
-                  {/*  </MDBCol>*/}
-                  {/*  <MDBCol md="1"/>*/}
-                  {/*</MDBRow>*/}
+                    </MDBCol>
+                    <MDBCol md="1"/>
+                  </MDBRow>
                   <br/>
                 </MDBCardBody>
               </MDBCard>
@@ -384,9 +383,9 @@ class Checks extends Component {
     );
   }
 
-  fetchCheckData = () => {
+  fetchCheckData = (getCheckTypeData) => {
     const fetchAllChecksByOrgIdProgId = '/api/fetchAllChecksByOrgIdProgId';
-    const { orgId, programId } = this.state;
+    const { orgId, programId, formData } = this.state;
 
     if (this.state.sessionToken) {
       axios.post(
@@ -399,13 +398,30 @@ class Checks extends Component {
       ).then((response) => {
         const first = response.data.checks.find(e => e.type === '1') || {};
         const second = response.data.checks.find(e => e.type === '2') || {};
+        if (getCheckTypeData === '1') {
+          this.setState({
+            formData: {
+              ...formData,
+              first: { ...first, checkAmount: first.amount, checkFile: '', checkDate: first.date, checkFileLink: first.checkFile },
+            },
+          })
+        } else if (getCheckTypeData === '2') {
+          this.setState({
+            formData: {
+              ...formData,
+              second: { ...second, checkAmount: second.amount, checkFile: '', checkDate: second.date, checkFileLink: second.checkFile },
+            },
+          })
+        } else {
+          this.setState({
+            formData: {
+              first: { ...first, checkAmount: first.amount, checkFile: '', checkDate: first.date, checkFileLink: first.checkFile },
+              second: { ...second, checkAmount: second.amount, checkFile: '', checkDate: second.date, checkFileLink: second.checkFile },
+            },
+          })
+        }
 
-        this.setState({
-          formData: {
-            first: { ...first, checkAmount: first.amount, checkFile: '', checkDate: first.date, checkFileLink: first.checkFile },
-            second: { ...second, checkAmount: second.amount, checkFile: '', checkDate: second.date, checkFileLink: second.checkFile },
-          },
-        })
+
 
       }).catch((error) => {
         this.setState({
@@ -427,7 +443,7 @@ class Checks extends Component {
   };
 
   componentDidMount() {
-    this.fetchCheckData()
+    this.fetchCheckData();
   }
 }
 
