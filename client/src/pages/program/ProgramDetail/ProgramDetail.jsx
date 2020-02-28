@@ -236,8 +236,8 @@ class ProgramDetail extends Component {
                               onClick={() => {
                                 const { history } = this.props;
 
-                                const { programData: { program }, role } = this.state;
-                                if (program.objectId && program.orgId) {
+                                const { programData: { program = {} }, role } = this.state;
+                                if (program && program.objectId && program.orgId) {
                                   if (role === '1') {
                                     return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
                                   }

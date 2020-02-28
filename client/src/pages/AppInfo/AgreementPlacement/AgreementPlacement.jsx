@@ -11,7 +11,7 @@ import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 
 import { queryStringToJSON } from "../../../utils/util";
-
+import CLUSAAgreementPlacement from '../../../images/CLUSA-Agreement-Placement.xlsx';
 import './agreementPlacement.css'
 
 class AgreementPlacement extends Component {
@@ -67,15 +67,15 @@ class AgreementPlacement extends Component {
       return true
     }
 
-    if (!data.agreementTemplate) {
-      alert('Please pass agreement template file');
-      return true
-    }
-
-    if (!data.placementTemplate) {
-      alert('Please pass placement template file');
-      return true
-    }
+    // if (!data.agreementTemplate) {
+    //   alert('Please pass agreement template file');
+    //   return true
+    // }
+    //
+    // if (!data.placementTemplate) {
+    //   alert('Please pass placement template file');
+    //   return true
+    // }
 
     return false
   };
@@ -198,7 +198,7 @@ class AgreementPlacement extends Component {
                           <MDBCol sm="5">
                             <input type="file" className="form-control" style={{ display: 'none' }} name="agreementTemplate" onChange={this.handleFileChange}/>
                             <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('agreementTemplate')}>
-                              Click here to Upload/Replace Image
+                              Click to Upload/Replace Template Files
                             </MDBBtn>
                           </MDBCol>
                         }
@@ -207,7 +207,7 @@ class AgreementPlacement extends Component {
                           {
                             formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ?
                               <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
-                              : 'Image file details over here'
+                              : ''
                           }
                         </MDBCol>
                       </MDBRow>
@@ -268,10 +268,11 @@ class AgreementPlacement extends Component {
                           <MDBRow className="">
                             {role === '0' ? null :
                               <MDBCol sm="5">
-                                <input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>
-                                <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>
-                                  Click here to Upload/Replace Image
-                                </MDBBtn>
+                                Placement template file, <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank">Click to download</a>
+                                {/*<input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>*/}
+                                {/*<MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>*/}
+                                {/*  Click to Upload/Replace Template Files*/}
+                                {/*</MDBBtn>*/}
                               </MDBCol>
                             }
 
@@ -279,19 +280,10 @@ class AgreementPlacement extends Component {
                               {
                                 formData.placementTemplate ? formData.placementTemplate.name : formData.placementTemplateLink ?
                                   <a href={formData.placementTemplateLink && formData.placementTemplateLink.filename ? `/${formData.placementTemplateLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.placementTemplateLink && formData.placementTemplateLink.filename}</a>
-                                  : 'Image file details over here'
+                                  : ''
                               }
                             </MDBCol>
                           </MDBRow>
-
-                          {/*{*/}
-                          {/*  formData.placementTemplate ? formData.placementTemplate.name : formData.placementTemplateLink ?*/}
-                          {/*    <a href={formData.placementTemplateLink && formData.placementTemplateLink.filename ? `/${formData.placementTemplateLink.path}`: '#'}  target="_blank">*/}
-                          {/*      Click here to download*/}
-                          {/*    </a>*/}
-                          {/*    : 'Placement template file name shows here, '*/}
-                          {/*}*/}
-
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -350,7 +342,7 @@ class AgreementPlacement extends Component {
                               <MDBCol sm="5" className="pt-2">
                                 <input type="file" className="form-control" style={{ display: 'none' }} name="finalFilledPlacement" onChange={this.handleFileChange}/>
                                 <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('finalFilledPlacement')}>
-                                  Click here to Upload/Replace Image
+                                  Click to Upload/Replace Template Files
                                 </MDBBtn>
                               </MDBCol>
                               <MDBCol sm="7" className="pt-2 align-item-center">
@@ -362,8 +354,7 @@ class AgreementPlacement extends Component {
                             {
                               (role === '3' || role === '2') &&
                                 <select name="status" value={formData.status} className="browser-default custom-select" onChange={this.handleChange}>
-                                  <option>Choose Role</option>
-                                  <option value="0">Pending</option>
+                                  <option>Preparing Agreement</option>
                                   <option value="1">Active</option>
                                 </select>
                             }

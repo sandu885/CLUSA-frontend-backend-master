@@ -257,7 +257,7 @@ class UserOrganizationManagement extends Component {
         { sessionToken: this.state.sessionToken },
       );
 
-        let orgAll = this.getData('organizations')
+        let orgAll = this.getData('organizations');
 
         orgAll = orgAll.map(e => {
 
