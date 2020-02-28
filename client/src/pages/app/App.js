@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from '../login/Login';
+import ResetPassword from '../login/ResetPassword';
 import Register from '../login/Register';
 import ForgetPassword from '../login/ForgetPassword';
 import UserAccount from '../userAccount/Account';
@@ -196,6 +197,8 @@ class App extends Component {
             <PrivateRoute component={ProgramReport} path="/program-report" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalReportComment} path="/final-report-comment" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={OrganizationComment} path="/app-review" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={ResetPassword} path="/reset-password" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={ResetPassword} path="/reset-password/:id" exact roles={['it-admin', 'reviewer']} />
 
             <PublicRoute component={RecreateLogin} path="/recreate-login" exact roles={['it-admin', 'reviewer']} />
           </Switch>

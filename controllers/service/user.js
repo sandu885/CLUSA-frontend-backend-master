@@ -87,7 +87,21 @@ const resetPassword = async (req, res) => {
     });
   }
 }
-  
+
+const resetPasswordById = async (req, res) => {
+  try {
+    await USER.resetPasswordById(req.body);
+    res.status(200).json({
+      message: "Password updated successfully."
+    });
+  } catch(error) {
+    console.log(error.message);
+    res.status(500).json({
+      message: error.message
+    });
+  }
+}
+
 // User login with a sessionToken
 const logger = async(req, res, next) => {
   try {
@@ -230,4 +244,5 @@ module.exports = {
     createUserByAdmin,
     deleteUserById,
     createRecreateLogin,
+    resetPasswordById,
 }

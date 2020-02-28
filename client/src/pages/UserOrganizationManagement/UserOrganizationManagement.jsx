@@ -273,7 +273,7 @@ class UserOrganizationManagement extends Component {
                     size={"sm"}
                     className="first-action-button btn-block z-depth-1a"
                     onClick={() => {
-                      localStorage.setItem('orgId', [e.objectId]);
+                      localStorage.setItem('orgId', e.objectId);
                       this.props.history.push('/organization-information/');
                     }}
                   >
@@ -286,11 +286,14 @@ class UserOrganizationManagement extends Component {
                     size={"sm"}
                     className="second-action-button btn-block z-depth-1a"
                     onClick={() => {
-                      localStorage.setItem('orgId', [e.objectId]);
-                      this.props.history.push('/organization-application-information/');
+                      const findUser = this.state.userAll.find(u => u.orgId === e.objectId);
+                      if (!findUser) {
+                        return alert('User detail is not proper');
+                      }
+                      this.props.history.push(`/reset-password/${findUser.objectId}`);
                     }}
                   >
-                    View Org.
+                    Password
                   </MDBBtn>
                 </MDBCol>
                 <MDBCol md="5">
@@ -308,6 +311,8 @@ class UserOrganizationManagement extends Component {
             </div>
           }
         })
+
+        console.log('Users.data.users', Users.data.users);
 
         const usersData = Users.data.users.map(u => {
           return {
@@ -334,8 +339,7 @@ class UserOrganizationManagement extends Component {
                     size={"sm"}
                     className="second-action-button btn-block z-depth-1a"
                     onClick={() => {
-                      // localStorage.setItem('orgId', [u.objectId]);
-                      // this.props.history.push('/organization-application-information/');
+                      this.props.history.push(`/reset-password/${u.objectId}`);
                     }}
                   >
                     Password

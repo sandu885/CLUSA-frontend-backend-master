@@ -71,6 +71,7 @@ router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 router.post('/forgetPassword', userController.forgetPassword);
 router.post('/resetPassword', userController.resetPassword);
+router.post('/resetPasswordById', userController.resetPasswordById);
 router.post('/checkSessionToken', userController.checkSessionToken);
 router.post('/createNewCheck', upload1.single('checkFile'), checkController.createNewCheck);
 router.post('/updateCheckById', upload1.single('checkFile'), checkController.updateCheckById);
