@@ -120,8 +120,9 @@ class ProgramDetail extends Component {
   };
 
   render() {
-    const { programData: { program = {}, application = [], checks = [], agreementPlacement = [] }, programType, dataReceived, closeNote } = this.state;
+    const { programData: { program = {}, application = [], checks = [], agreementPlacement = [], organization = {} }, programType, dataReceived, closeNote } = this.state;
     const programName = programType.find(pT => pT.value === program.programType);
+    console.log(this.state);
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
     const firstSection = application.find(app => app.sectionIndex === "1");
@@ -188,6 +189,9 @@ class ProgramDetail extends Component {
                             </MDBRow>
                             <MDBRow>
                               Award Amount:- <span> {agreementPlacement[0] && agreementPlacement[0].awardAmount} </span>
+                            </MDBRow>
+                            <MDBRow>
+                              Org Name:- <span className="span-ellipsis"> {organization && organization.name && organization.name} </span>
                             </MDBRow>
                           </MDBCol>
                         </MDBRow>
@@ -314,25 +318,6 @@ class ProgramDetail extends Component {
                             </MDBBtn>
                           </MDBCol>
                         </MDBRow>
-                        {this.state.role === '1' &&
-                          <MDBRow>
-                            <MDBCol md="7">
-                              Final Report View
-                            </MDBCol>
-                            <MDBCol md="5">
-                              <MDBBtn
-                                rounded
-                                size={"sm"}
-                                className="application-info-button second-action-button btn-block z-depth-1a"
-                                onClick={this.handleFinalReportCommentClick}
-                              >
-                                Review
-                              </MDBBtn>
-                            </MDBCol>
-                          </MDBRow>
-                        }
-
-
                         {this.state.role != '1' &&
                           <MDBRow>
                           <MDBCol md="7">

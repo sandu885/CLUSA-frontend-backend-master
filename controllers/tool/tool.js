@@ -57,7 +57,7 @@ const sendUserAddEmail = async(emailAddress, username, token) => {
         api_key: keys.sendGridKey,
       }
     }
-    const linkGeneration  = `<a href='http://localhost:1337/forget-password?token=${token}'>click here. </a>`;
+    const linkGeneration  = `<a href='http://18.144.133.201/forget-password?token=${token}'>click here. </a>`;
     let client = nodemailer.createTransport(sgTransport(options));
     let mailContent = {
       from: {
@@ -90,7 +90,7 @@ const forgetPassword = async(emailAddress, username, token) => {
       }
     }
     let client = nodemailer.createTransport(sgTransport(options));
-    const linkGeneration  = `<a href='http://localhost:1337/forget-password?token=${token}'>click here. </a>`
+    const linkGeneration  = `<a href='http://18.144.133.201/forget-password?token=${token}'>click here. </a>`
     let mailContent = {
       from: {
         name: 'CLUSA',

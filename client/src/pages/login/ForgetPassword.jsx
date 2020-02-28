@@ -53,7 +53,9 @@ class ForgetPassword extends Component {
       this.toggle()
     }).catch((error) => {
       console.warn(error.response);
-      alert(error.response.data.message);
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      }
     });
   };
 
