@@ -235,9 +235,15 @@ class ProgramDetail extends Component {
                               className="application-info-button second-action-button btn-block z-depth-1a"
                               onClick={() => {
                                 const { history } = this.props;
-                                const { programData: { program } } = this.state;
+
+                                const { programData: { program }, role } = this.state;
                                 if (program.objectId && program.orgId) {
+                                  if (role === '1') {
+                                    return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                  }
                                   history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                } else {
+                                  return alert('Not having proper detail to access this information.')
                                 }
                               }}
                             >
@@ -420,7 +426,7 @@ class ProgramDetail extends Component {
                                   style={{ width: '250px' }}
                                   className="second-action-button btn-block z-depth-1a red-color"
                                   onClick={() => {
-                                    this.history.push('/account')
+                                    this.props.history.push('/account')
                                   }}
                                 >
                                   Back to Organization

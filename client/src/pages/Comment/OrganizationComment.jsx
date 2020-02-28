@@ -11,7 +11,7 @@ import moment from 'moment';
 import { queryStringToJSON } from '../../utils/util'
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
-import OrganizationCommentView from '../orgInfo/OrganizationCommentView';
+import WholeApplicationCommentView from '../wholeApplicationInfo/WholeApplicationCommentView';
 
 import './comment.css';
 
@@ -228,7 +228,7 @@ class OrganizationComment extends Component {
                   <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
                           onClick={() => {
                             const { history } = this.props;
-                            history(`/program/${programId}`);
+                            history.push(`/program/${programId}`);
                           }}
                   >
                     Cancel
@@ -251,6 +251,19 @@ class OrganizationComment extends Component {
                 }
               </MDBRow>
             }
+            <MDBRow>
+              <MDBCol md="9" />
+              <MDBCol md="3" className="text-right">
+                <MDBBtn rounded size={"sm"} style={{ width: '100%' }}  className="second-action-button btn-block z-depth-1a check-file-upload mt-2"
+                        onClick={() => {
+                          const { history } = this.props;
+                          history.push(`/program/${programId}`);
+                        }}
+                >
+                  Go Back
+                </MDBBtn>
+              </MDBCol>
+            </MDBRow>
           </div>
         </MDBCol>
         <MDBCol md="1" />
@@ -261,7 +274,7 @@ class OrganizationComment extends Component {
       <div className="bg-withImage">
         <HeaderComponent />
 
-        <OrganizationCommentView {...this.props} fixFooter={fixFooter} />
+        <WholeApplicationCommentView {...this.props} fixFooter={fixFooter} />
 
         <FooterComponent className="mt-5 pt-5" />
       </div>
