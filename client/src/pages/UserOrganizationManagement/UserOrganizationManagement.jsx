@@ -57,6 +57,8 @@ class UserOrganizationManagement extends Component {
   render() {
     const { orgAll, userAll = [], dataReceived } = this.state;
 
+    console.log('this.state', this.state);
+
     const orgTableData = {
       columns: [
         {
@@ -255,16 +257,16 @@ class UserOrganizationManagement extends Component {
         { sessionToken: this.state.sessionToken },
       );
 
-      if (this.getData('message') === 'Successfully fetch all organizations') {
         let orgAll = this.getData('organizations')
 
         orgAll = orgAll.map(e => {
-          const userDataByOrg = Users.data.users.find((userData) => userData.orgId === e.id)
+
+          const userDataByOrg = Users.data.users.find((userData) => userData.orgId === e.objectId);
+
           return {
             ...e,
-            username: userDataByOrg.username || '',
-            email: userDataByOrg.email || '',
-            lastLogin: 'Xx-xx-xx',
+            username: userDataByOrg ? userDataByOrg.username : '',
+            email: userDataByOrg ? userDataByOrg.email || userDataByOrg.emailAddress || '' : '',
             functions: <div>
               <MDBRow>
                 <MDBCol>
@@ -366,7 +368,7 @@ class UserOrganizationManagement extends Component {
           userAll: usersData,
           dataReceived: false,
         });
-      }
+
     }).catch((error) => {
       console.warn(error.response);
       if(error.response !== null && error.response !== undefined) {
