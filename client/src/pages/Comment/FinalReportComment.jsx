@@ -130,7 +130,7 @@ class FinalReportComment extends Component {
   }
 
   render() {
-    const { formData, commentData = [], role } = this.state;
+    const { formData, commentData = [], role, programId } = this.state;
 
     const fixFooter = <MDBCardFooter className="comment-container comment-fix-footer">
       <MDBRow>
@@ -189,12 +189,30 @@ class FinalReportComment extends Component {
                   >
                     Save
                   </MDBBtn>
-                  <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color">
+                  <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
+                        onClick={() => {
+                          const { history } = this.props;
+                          history.push(`/program/${programId}`);
+                        }}
+                  >
                     Cancel
                   </MDBBtn>
                 </MDBCol>
               </MDBRow>
             }
+            <MDBRow>
+              <MDBCol md="9" />
+              <MDBCol md="3" className="text-right">
+                <MDBBtn rounded size={"sm"} style={{ width: '100%' }}  className="second-action-button btn-block z-depth-1a check-file-upload mt-2"
+                        onClick={() => {
+                          const { history } = this.props;
+                          history.push(`/program/${programId}`);
+                        }}
+                >
+                  Go Back
+                </MDBBtn>
+              </MDBCol>
+            </MDBRow>
           </div>
         </MDBCol>
         <MDBCol md="1" />
@@ -206,7 +224,7 @@ class FinalReportComment extends Component {
         <HeaderComponent />
 
         <FinalReportView {...this.props} fixFooter={fixFooter} />
-        
+
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );

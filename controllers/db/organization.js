@@ -2,7 +2,7 @@ const PROGRAM = require("../db/program");
 // create new Organization
 const createNewOrg = async (name, region, type, note, files, address1, address2, city, state, zipcode, parentOrg) => {
     console.log("Organization type is " + type);
-    if ((type === '1' || type === '2') && (!files || !files['certificate'] || files['certificate'].length == 0)) 
+    if ((type === '1' || type === '2') && (!files || !files['certificate'] || files['certificate'].length == 0))
         throw new Error("No certificate");
     if (type === '2' && (!files || !files['mou'] || files['mou'].length == 0))
         throw new Error("No enough certificate files, You need to upload both files");
@@ -14,9 +14,9 @@ const createNewOrg = async (name, region, type, note, files, address1, address2,
     org.set("type", type);
     org.set("note", note);
     org.set("address1", address1);
-    if (files && files['certificate'] && files['certificate'].length > 0)      
+    if (files && files['certificate'] && files['certificate'].length > 0)
         org.set("certificateFiles", files['certificate']);
-    if (files && files['mou'] && files['mou'].length > 0)      
+    if (files && files['mou'] && files['mou'].length > 0)
         org.set("mou", files['mou']);
     if (address2 != undefined)
         org.set("address2", address2);
@@ -43,9 +43,9 @@ const updateOrgById = async (orgId, name, region, type, note, files, address1, a
     orgRecord.set("type", type);
     orgRecord.set("note", note);
     orgRecord.set("address1", address1);
-    if (files && files['certificate'] && files['certificate'].length > 0)      
+    if (files && files['certificate'] && files['certificate'].length > 0)
         orgRecord.set("certificateFiles", files['certificate']);
-    if (files && files['mou'] && files['mou'].length > 0)      
+    if (files && files['mou'] && files['mou'].length > 0)
         orgRecord.set("mou", files['mou']);
     if (address2 != undefined)
         orgRecord.set("address2", address2);
@@ -98,9 +98,9 @@ const fetchAllOrgs = async(user) => {
         ele["state"] = org.get("state");
         ele["zipcode"] = org.get("zipcode");
         ele["objectId"] = org.id;
-        if (!programList[org.id]) 
+        if (!programList[org.id])
             ele["status"] = "not applied";
-        else 
+        else
             ele["status"] = programList[org.id];
         return ele;
     }));
@@ -148,7 +148,7 @@ const getOrgInfoById = async(user, orgId) => {
             lastName: userRecord.get("lastName"),
             title: userRecord.get("title"),
             phone: userRecord.get("phone"),
-            email: userRecord.get("emailAddress"),
+            email: userRecord.get("emailAddress") ? userRecord.get("emailAddress") : userRecord.get("email"),
             mission: userRecord.get("mission"),
             year: userRecord.get("year"),
             members: userRecord.get("members"),
@@ -234,7 +234,7 @@ const updateOrgInfo = async(meta, files) => {
     if (!meta.programInfo)
         throw new Error("No programs");
     userRecord.set("programInfo", meta.programInfo);
-    if (meta.linkedin != undefined) 
+    if (meta.linkedin != undefined)
         userRecord.set("linkedin", meta.linkedin);
     if (meta.web != undefined)
         userRecord.set("web", meta.web);

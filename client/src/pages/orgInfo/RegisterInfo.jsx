@@ -706,7 +706,7 @@ class RegisterInfo extends Component {
     // if (this.state.selectedFile1 === null) orgType = '3';
     // else if (this.state.selectedFile2 === null) orgType = '1';
     // else orgType = '2';
-    
+
     const { orgType } = this.state;
 
     formData.append('username', this.state.username);
@@ -759,12 +759,15 @@ class RegisterInfo extends Component {
               saveSuccess: true,
               redirectToAccount: true,
             });
+            this.setState({
+              saveSuccess: true,
+            });
           } else {
             console.warn('clusa submit');
             this.setState({
               saveSuccess: true,
-              redirectToCLUSAAccount: true,
             });
+            this.props.history.push('/account')
           }
         }
         // window.location.reload();
@@ -778,6 +781,8 @@ class RegisterInfo extends Component {
               this.setState({
                 redirectToLogin: true,
               });
+            } else if (error.response.data.message === 'No certificate file') {
+              alert('Please select certificate file.');
             }
           }
         }
@@ -1396,7 +1401,8 @@ class RegisterInfo extends Component {
                           color="blue-grey"
                           rounded
                           className="btn-block z-depth-1a"
-                          href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
+                          // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
+                          href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account' : '/account'}
                         >
                         Back To My Account
                         </MDBBtn>
