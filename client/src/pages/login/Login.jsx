@@ -114,9 +114,10 @@ class Login extends Component {
         localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);
-        this.setState({
-          redirectCLUSAVerifier: true,
-        });
+        this.props.history.push('/view-program');
+        // this.setState({
+        //   redirectCLUSAVerifier: true,
+        // });
         // console.warn('getAuth from auth in Login Page=====', Auth.getAuth());
       } else if (response.data.userType === '2') {
         // ======================== success, to reviewer account, userType === 2 && manager========================
