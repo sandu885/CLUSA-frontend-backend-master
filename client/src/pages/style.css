@@ -64,11 +64,15 @@
 
 /* ================= footer ================= */
 .footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
   background-color: #4f4f4f;
   color: white;
   padding: 10px;
   text-align: center;
   margin: 0 !important;
+  z-index: 10;
 }
 
 /* ================= color and text align================= */

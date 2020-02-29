@@ -21,9 +21,9 @@ const createNewCheck = async (meta, file) => {
 
   let programRecord = await queryProgram.first({ useMasterKey: true });
   if (meta.checkType == '1') {
-    programRecord.set("status", 'firstCheckSend');
+    programRecord.set("status", 'firstCheckSent');
   } else if (meta.checkType == '2') {
-    programRecord.set("status", 'finalCheckSend');
+    programRecord.set("status", 'finalCheckSent');
   }
   await programRecord.save(null, { useMasterKey: true });
 
@@ -71,8 +71,6 @@ const updateCheckById = async (meta, file) => {
   queryCheck.equalTo("objectId", meta.objectId);
   let check = await queryCheck.first({ useMasterKey: true });
 
-  // return await queryOrg.first({useMasterKey: true});
-
   check.set("programId", meta.programId);
   check.set("orgId", meta.orgId);
   check.set("amount", meta.checkAmount);
@@ -80,6 +78,18 @@ const updateCheckById = async (meta, file) => {
   check.set("date", meta.checkDate);
   // 1 first Check, 2 second Check and more 3 final check send
   // check.set("type", meta.checkType);
+  // let queryProgram = new Parse.Query('Program');
+  // queryProgram.equalTo("objectId", meta.programId);
+  // let programRecord = await queryProgram.first({ useMasterKey: true });
+  //
+  // if (meta.checkType == '1') {
+  //   if (programRecord.get('status') == '1') {
+  //     programRecord.set("status", 'firstCheckSent');
+  //   }
+  // } else if (meta.checkType == '2') {
+  //   programRecord.set("status", 'finalCheckSent');
+  // }
+  // await programRecord.save(null, { useMasterKey: true });
 
   // TODO FILE section
   if (file) {
@@ -87,7 +97,7 @@ const updateCheckById = async (meta, file) => {
   }
   // TODO FILE section
   const checkSaved = await check.save(null,{useMasterKey: true});
-  console.log('\n\nCheck saved in the database checkSaved', checkSaved, '\n\n');
+  console.log('\n\nCheck saved in the database checkSaved');
   return checkSaved;
 };
 

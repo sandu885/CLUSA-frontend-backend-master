@@ -2,6 +2,7 @@ const SECTION = require("../db/section");
 const PROGRAM = require("../db/program");
 const USER = require("../db/user");
 const TOOL = require('../tool/tool');
+const moment = require('moment');
 
 const findApplicationByProgramIdAndIndex = async(programId, sectionIndex) => {
     let queryApplication = new Parse.Query("Application");
@@ -185,6 +186,7 @@ const submitApplication = async(user, programType) => {
         console.log("submitApplication: The application is completed");
         let programRecord = await PROGRAM.findProgramByUserIdAndProgramType(user.id, programType);
         programRecord.set("status", "applied");
+        programRecord.set("appliedDate", moment().format());
         await programRecord.save(null,{useMasterKey: true});
         user.set("status", 'applied');
         await user.save(null,{useMasterKey: true});

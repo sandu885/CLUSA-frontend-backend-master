@@ -86,11 +86,15 @@ class ProgramDetail extends Component {
 
   handleAppCommentClick = () => {
     const { history } = this.props;
-    const { programData: { program } } = this.state;
-    localStorage.setItem('orgId', program.orgId);
-    // final-report-comment
-    if (program.objectId && program.orgId) {
-      history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}`);
+    const { programData: { program = {} },  } = this.state;
+    if (program.orgId) {
+      localStorage.setItem('orgId', program.orgId);
+      // final-report-comment
+      if (program.objectId && program.orgId) {
+        history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}`);
+      }
+    } else {
+      alert('not having proper information to access this route');
     }
   };
 
@@ -160,7 +164,7 @@ class ProgramDetail extends Component {
                               Program:- <span> {programName && programName.name} </span>
                             </MDBRow>
                             <MDBRow>
-                              Applied Date:- <span> {moment(program.createdAt).format('DD/MM/YYYY')} </span>
+                              Applied Date:- <span> {program.appliedDate ? moment(program.appliedDate).format('DD/MM/YYYY') : ''} </span>
                             </MDBRow>
                             <MDBRow>
                               1st Check Date:- <span> {checks[0] ? checks[0].date : ''} </span>

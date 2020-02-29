@@ -173,7 +173,7 @@ class ProgramReport extends Component {
               localStorage.clear();
               alert('Your login status was expired. Please login again.');
               history.push('/');
-            } else {
+            } else if (error && error.response && error.response.data && error.response.data.message) {
               alert(error.response.data.message);
             }
           }
@@ -184,9 +184,9 @@ class ProgramReport extends Component {
     }
   };
 
-  selectProgramReport = (e, data) => {
+  selectProgramReport = (e, data = {}) => {
     this.setState({
-      formData: { ...data, file: '' }
+      formData: { ...data, file: '', fileLink: data.file }
     });
     this.toggleModal();
   };
@@ -437,9 +437,15 @@ class ProgramReport extends Component {
                 <MDBCol md={2} />
                 <MDBCol md={2} />
                 {
-                  formData.file &&
+                  formData.file ?
                     <MDBCol md={8} className="pt-2">
-                      {formData.file.fileName}
+                      {formData.file.name}
+                    </MDBCol>
+                    :
+                    <MDBCol md={8} className="pt-2">
+                      {
+                        formData.fileLink && <a href={`/${formData.fileLink.path}`} rel="noopener noreferrer" target="_blank">{formData.fileLink.originalname}</a>
+                      }
                     </MDBCol>
                 }
 

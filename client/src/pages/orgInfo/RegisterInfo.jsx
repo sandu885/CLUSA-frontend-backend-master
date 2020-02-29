@@ -161,6 +161,7 @@ class RegisterInfo extends Component {
       data: [],
       // sessionToken in local storage
       sessionToken: localStorage.getItem('sessionToken'),
+      role: localStorage.getItem('clusa-role'),
       showOrgTypeOther: false,
       // form info =============
       orgName: '',
@@ -1402,9 +1403,11 @@ class RegisterInfo extends Component {
                           rounded
                           className="btn-block z-depth-1a"
                           // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
-                          href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account' : '/account'}
+                          href={this.state.role == '3' ? '/user-organization-management' : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
+                            : 'account'
+                          }
                         >
-                        Back To My Account
+                          {this.state.role == '3' ? 'Go Back' : 'Back To My Account'}
                         </MDBBtn>
                       </MDBCol>
                       <MDBCol md="6">

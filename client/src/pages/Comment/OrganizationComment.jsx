@@ -348,8 +348,6 @@ class OrganizationComment extends Component {
               localStorage.clear();
               alert('Your login status was expired. Please login again.');
               this.props.history.push('/')
-            } else {
-              alert(error.response.data.message);
             }
           }
         }

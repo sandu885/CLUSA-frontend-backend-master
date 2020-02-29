@@ -53,7 +53,6 @@ const fetchProgramDetailById = async(programId) => {
 
     let queryOrganization = new Parse.Query("Organization");
 
-
     queryOrganization.equalTo("objectId", element['program'].get('orgId'));
     let organizationRecord = await queryOrganization.first({useMasterKey: true});
     element["organization"] = organizationRecord;
@@ -171,7 +170,8 @@ const fetchAllPrograms = async(meta) => {
         if ((meta.organizationName || '').trim()) {
             const orgName = orgRecord.get('name') || '';
             if (orgName.includes((meta.organizationName || '').trim())) {
-                return programs.push(ele);
+                programs.push(ele);
+                // return
             }
         } else {
             programs.push(ele);

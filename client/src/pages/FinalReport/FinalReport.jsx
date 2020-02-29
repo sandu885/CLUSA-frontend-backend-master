@@ -66,13 +66,12 @@ class FinalReport extends Component {
   };
 
   componentWillMount() {
-    // const { location, history } = this.props;
-    const { location } = this.props;
+    const { location, history } = this.props;
     const queryData = queryStringToJSON(location.search);
-    // if (!queryData.orgId && !queryData.programId) {
-    //   alert('Not having proper data to access this route');
-    //   history.goBack();
-    // }
+    if (!queryData.orgId && !queryData.programId) {
+      alert('Not having proper data to access this route');
+      history.goBack();
+    }
     this.setState({
       ...queryData,
     });

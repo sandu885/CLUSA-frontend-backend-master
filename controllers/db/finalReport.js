@@ -13,6 +13,7 @@ const createNewFinalReport = async (meta, file) => {
   finalReport.set("orgId", meta.orgId);
   if (meta.isSubmitted === 'true') {
     finalReport.set("isSubmitted", 1);
+
     await updateProgramStatus(finalReport);
   } else if (meta.isSubmitted === 'false') {
     finalReport.set("isSubmitted", 0);

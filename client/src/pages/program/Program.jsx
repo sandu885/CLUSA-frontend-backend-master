@@ -38,47 +38,6 @@ class Program extends Component {
       name: 'Strategic Planning Grant',
     }];
 
-    // const columns = [
-    //   // {
-    //   //   label: 'Organization Name',
-    //   //   field: 'orgName',
-    //   //   sort: 'asc',
-    //   //   width: 150
-    //   // },
-    //   {
-    //     label: 'Program',
-    //     field: 'programType',
-    //     sort: 'asc',
-    //     width: 270
-    //   },
-    //   {
-    //     label: 'Year',
-    //     field: 'year',
-    //     sort: 'asc',
-    //     width: 200
-    //   },
-    //   {
-    //     label: 'Awarded Amount',
-    //     field: 'awardedAmount',
-    //     sort: 'asc',
-    //     width: 200
-    //   },
-    //   {
-    //     label: 'Actual Amount',
-    //     field: 'awardedAmount',
-    //     sort: 'asc',
-    //     width: 200
-    //   },
-    //   {
-    //     label: 'Status',
-    //     field: 'status',
-    //     sort: 'asc',
-    //     width: 200
-    //   },
-    // ];
-    //
-    // columns: [ ...columns ],
-    //   rows: [ ...rows ]
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
       programData: {},
@@ -218,14 +177,12 @@ class Program extends Component {
                             <option>Select Status</option>
                             <option value="applying">Applying</option>
                             <option value="applied">Applied</option>
-                            <option value="approved">Approved</option>
-                            <option value="review">Review</option>
-                            <option value="close">Close</option>
+                            <option value="inView">In View</option>
                             <option value="preparingAgreement">Preparing Agreement</option>
-                            <option value="turnDown">Turn Down</option>
-                            <option value="report submitted">Report Submitted</option>
-                            <option value="firstCheck">First check sent</option>
-                            <option value="finalCheck">Final check sent</option>
+                            <option value="approve">Approved</option>
+                            <option value="firstCheckSent">First Check Sent</option>
+                            <option value="reportSubmitted">Report Submitted</option>
+                            <option value="finalCheckSent">Final Check Sent</option>
                           </select>
                         </MDBCol>
                       </MDBRow>
