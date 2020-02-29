@@ -316,9 +316,8 @@ class UserOrganizationManagement extends Component {
           }
         })
 
-        console.log('Users.data.users', Users.data.users);
 
-        const usersData = Users.data.users.map(u => {
+        const usersData = Users.data.users.filter(user1 => user1.userType !== '1').map(u => {
           return {
             ...u,
             lastLogin: u.lastLogin ? moment(u.lastLogin).format('MM-DD-YYYY') : '',

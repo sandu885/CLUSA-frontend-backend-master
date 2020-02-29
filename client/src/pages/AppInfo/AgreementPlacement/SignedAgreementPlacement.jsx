@@ -211,7 +211,7 @@ class SignedAgreementPlacement extends Component {
                           <MDBCol sm="5">
                             <input type="file" className="form-control" style={{ display: 'none' }} name="signedAgreement" onChange={this.handleFileChange}/>
                             <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('signedAgreement')}>
-                              Click here to Upload/Replace Image
+                              Click to Upload/Replace Template File
                             </MDBBtn>
                           </MDBCol>
                         }
@@ -281,7 +281,7 @@ class SignedAgreementPlacement extends Component {
                         <MDBCol sm="5">
                           <input type="file" className="form-control" style={{ display: 'none' }} name="filledPlacement" onChange={this.handleFileChange}/>
                           <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('filledPlacement')}>
-                            Click here to Upload/Replace Image
+                            Click to Upload/Replace Template File
                           </MDBBtn>
                         </MDBCol>
 

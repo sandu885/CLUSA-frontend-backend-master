@@ -252,10 +252,12 @@ class Checks extends Component {
                           <label className="col-form-label" style={{
                             fontWeight: '100',
                             color: '#b6b6b6',
-                          }}> {
+                          }}>
+                          {
                             first.checkFile ? first.checkFile.name :
                               first.checkFileLink && <a href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {first.checkFileLink.filename} </a>
-                          } </label>
+                          }
+                          </label>
                         </div>
                         <div className="col-sm-6">
                           <input type="file" className="form-control" style={{ display: 'none' }} name="first-checkFile" onChange={this.handleFileChange}/>
