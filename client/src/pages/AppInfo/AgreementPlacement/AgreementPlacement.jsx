@@ -256,9 +256,6 @@ class AgreementPlacement extends Component {
                     <MDBCol md="2" />
                     <MDBCol md="10">
 
-
-
-
                       <MDBRow className="pt-3">
                         <MDBCol sm="12" className="block-header">
                           Placement

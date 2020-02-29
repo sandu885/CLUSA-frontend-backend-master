@@ -1,14 +1,14 @@
 const moment = require('moment');
 
 const createNewAgreementPlacement = async (meta, files) => {
-  if (meta.role == '0') {
+  if (meta.role == '1') {
     if (!files['signedAgreement'] || files['signedAgreement'].length == 0)
       throw new Error('Please provide signed agreement file.');
     // if (!files['filledPlacement'] || files['filledPlacement'].length == 0)
     //   throw new Error('Please provide signed placement file.');
   }
 
-  if (meta.role != '0') {
+  if (meta.role != '1') {
     if (!files['agreementTemplate'] || files['agreementTemplate'].length == 0)
       throw new Error('Please provide signed agreement file.');
     // if (!files['placementTemplate'] || files['placementTemplate'].length == 0)
