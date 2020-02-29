@@ -1,3 +1,4 @@
+const moment = require('moment');
 //Create new program
 const createNewProgram = async (user, type) => {
     if (!type)
@@ -78,9 +79,10 @@ const fetchAllProgramsByOrgId = async(orgId) => {
         let appRecord = await queryApplication.find({useMasterKey: true});
 
         for (const app of appRecord) {
-            if (app.get('sectionIndex') === '1') {
-                ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
-            }
+            // if (app.get('sectionIndex') === '1') {
+            //     ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
+            // }
+
             if (app.get('sectionIndex') === '10') {
                 ele["awardedAmount"] = app.get('content') ? app.get('content')['2'] : '0';
 
@@ -94,11 +96,14 @@ const fetchAllProgramsByOrgId = async(orgId) => {
         }
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
-        ele["status"] = programRecords[i].get("status");
+    // .replace( /([A-Z])/g, " $1" );
+        ele["status"] = programRecords[i].get("status") ? programRecords[i].get("status").replace( /([A-Z])/g, " $1" ) : '';
+
         ele["objectId"] = programRecords[i].id;
         ele["programType"] = programRecords[i].get("programType");
         ele["createdAt"] = programRecords[i].get("createdAt");
         ele["updatedAt"] = programRecords[i].get("updatedAt");
+        ele["year"] = programRecords[i].get("appliedDate") ? moment(programRecords[i].get("appliedDate")).format('YYYY') : '';
         programs.push(ele);
     }
     let queryUser = new Parse.Query("User");
@@ -119,7 +124,7 @@ const fetchAllPrograms = async(meta) => {
         queryProgram.equalTo("status", meta.status);
     }
     if (meta.year && meta.year.length === 4) {
-        queryProgram.equalTo("year", meta.year);
+        queryProgram.equalTo("appliedYear", meta.year);
     }
     queryProgram.limit(10000);
     const programRecords = await queryProgram.find({useMasterKey: true});
@@ -136,18 +141,18 @@ const fetchAllPrograms = async(meta) => {
         queryApplication.equalTo("programId", programRecords[i].id);
         let appRecord = await queryApplication.find({useMasterKey: true});
         appRecord.forEach((app) => {
-            if (app.get('sectionIndex') === '1') {
-                ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
-            }
+            // if (app.get('sectionIndex') === '1') {
+            //     ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
+            // }
             if (app.get('sectionIndex') === '10') {
                 ele["awardedAmount"] = app.get('content') ? app.get('content')['2'] : '0';
                 ele["actualAmount"] = app.get('content') ? app.get('content')['1'] ? [0]['budget'] : '' : '0';
             }
         });
-
+        ele["year"] = programRecords[i].get("appliedDate") ? moment(programRecords[i].get("appliedDate")).format('YYYY') : '';
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
-        ele["status"] = programRecords[i].get("status");
+        ele["status"] = programRecords[i].get("status") ? programRecords[i].get("status").replace( /([A-Z])/g, " $1" ) : '';
         ele["objectId"] = programRecords[i].id;
         ele["programType"] = programRecords[i].get("programType");
         ele["org"] = orgRecord;

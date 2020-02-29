@@ -187,6 +187,7 @@ const submitApplication = async(user, programType) => {
         let programRecord = await PROGRAM.findProgramByUserIdAndProgramType(user.id, programType);
         programRecord.set("status", "applied");
         programRecord.set("appliedDate", moment().format());
+        programRecord.set("appliedYear", moment().format('YYYY'));
         await programRecord.save(null,{useMasterKey: true});
         user.set("status", 'applied');
         await user.save(null,{useMasterKey: true});
