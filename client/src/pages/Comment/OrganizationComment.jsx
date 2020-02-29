@@ -163,7 +163,6 @@ class OrganizationComment extends Component {
 
   render() {
     const { formData, commentData = [], programStatus, role, programId } = this.state;
-    console.log('this.state', this.state);
 
     const fixFooter = <MDBCardFooter className="comment-container comment-fix-footer">
       <MDBRow>

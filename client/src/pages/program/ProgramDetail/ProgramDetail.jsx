@@ -126,10 +126,9 @@ class ProgramDetail extends Component {
   render() {
     const { programData: { program = {}, application = [], checks = [], agreementPlacement = [], organization = {} }, programType, dataReceived, closeNote } = this.state;
     const programName = programType.find(pT => pT.value === program.programType);
-    console.log(this.state);
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
-    const firstSection = application.find(app => app.sectionIndex === "1");
+    // const firstSection = application.find(app => app.sectionIndex === "1");
     // const tenthSection = application.find(app => app.sectionIndex === "10");
     const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
     let heading = 'Program Detail Page';
@@ -175,7 +174,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
                           <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                             <MDBRow>
-                              Year:- <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span>
+                              Apply Year:- <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span>
                             </MDBRow>
                             <MDBRow>
                               Award Date:- <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span>

@@ -14,6 +14,7 @@ import HeaderComponent from '../../Header';
 import { queryStringToJSON } from "../../../utils/util";
 
 import './agreementPlacement.css'
+import CLUSAAgreementPlacement from "../../../images/CLUSA-Agreement-Placement.xlsx";
 
 class SignedAgreementPlacement extends Component {
   constructor(props) {
@@ -77,11 +78,11 @@ class SignedAgreementPlacement extends Component {
       alert('Please pass Signed Agreement file');
       return true
     }
-
-    if (!data.filledPlacement) {
-      alert('Please pass filled placement file');
-      return true
-    }
+    //
+    // if (!data.filledPlacement) {
+    //   alert('Please pass filled placement file');
+    //   return true
+    // }
     return false
   };
 
@@ -260,7 +261,8 @@ class SignedAgreementPlacement extends Component {
 
                           <MDBRow>
                             <MDBCol sm="12">
-                              {formData.placementTemplateLink && formData.placementTemplateLink.filename ? <a href={`/${formData.placementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Placement file is not uploaded'}
+                              Placement template file, <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank">Click to download</a>
+                              {/*{formData.placementTemplateLink && formData.placementTemplateLink.filename ? <a href={`/${formData.placementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Placement file is not uploaded'}*/}
                             </MDBCol>
                           </MDBRow>
 
