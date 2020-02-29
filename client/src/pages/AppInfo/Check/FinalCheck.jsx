@@ -107,7 +107,8 @@ class FinalCheck extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      this.fetchCheckData()
+      this.props.history.goBack(`/program${programId}`);
+      // this.fetchCheckData();
       console.warn('reponse message', response.data);
 
     }).catch((error) => {
@@ -141,7 +142,7 @@ class FinalCheck extends Component {
   };
 
   render() {
-    const { formData } = this.state;
+    const { formData, programId } = this.state;
 
     let heading = 'Final Check';
 
@@ -188,7 +189,13 @@ class FinalCheck extends Component {
                           <label className="col-form-label" style={{
                             fontWeight: '100',
                             color: '#b6b6b6',
-                          }}> {formData.checkFile ? formData.checkFile.name : 'Image name is here'} </label>
+                          }}>
+                            {
+                              formData.checkFile ? formData.checkFile.name :
+                                formData.checkFileLink && <a href={`/${formData.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {formData.checkFileLink.filename} </a>
+                            }
+                            {/*{formData.checkFile ? formData.checkFile.name : 'Image name is here'}*/}
+                          </label>
                         </div>
                         <div className="col-sm-6">
                           <input type="file" className="form-control" style={{ display: 'none' }} name="checkFile" onChange={this.handleFileChange}/>
@@ -216,7 +223,9 @@ class FinalCheck extends Component {
                         </MDBCol>
                         <MDBCol sm="3">
                           <MDBBtn rounded size={"sm"} className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
-                                  onClick={event => {this.props.history.goBack();}}
+                                  onClick={event => {
+                                    this.props.history.goBack(`/program${programId}`);
+                                  }}
                           >
                             Cancel
                           </MDBBtn>
@@ -254,7 +263,8 @@ class FinalCheck extends Component {
 
         this.setState({
           formData: {
-            ...formData, checkAmount: formData.amount, checkFile: '', checkDate: formData.date
+            ...formData,
+            checkAmount: formData.amount, checkFile: '', checkDate: formData.date, checkFileLink: formData.checkFile,
           },
         })
       }).catch((error) => {
@@ -277,7 +287,7 @@ class FinalCheck extends Component {
   };
 
   componentDidMount() {
-    this.fetchCheckData()
+    this.fetchCheckData();
   }
 }
 
