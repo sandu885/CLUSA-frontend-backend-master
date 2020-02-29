@@ -329,7 +329,7 @@ class SignedAgreementPlacement extends Component {
                             Result
                           </MDBCol>
                           <MDBCol sm="11" className="blue-font-color">
-                            {formData.status && (formData.status == '0' ? 'Pending' : 'Approved')}
+                            {formData.status ? (formData.status == '0' ? 'Under Review' : 'Approved') : 'Under Review'}
                           </MDBCol>
                           <MDBCol sm="12">
                             {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank">Click to download final placement file.</a>}

@@ -175,7 +175,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
                           <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                             <MDBRow>
-                              Year:- <span> {firstSection && firstSection.content['1'] && firstSection.content['1'].programs && firstSection.content['1'].programs[0].startYear} </span>
+                              Year:- <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span>
                             </MDBRow>
                             <MDBRow>
                               Award Date:- <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span>
