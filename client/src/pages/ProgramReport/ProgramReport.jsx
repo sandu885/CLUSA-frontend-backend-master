@@ -11,6 +11,11 @@ import axios from 'axios';
 import { queryStringToJSON } from '../../utils/util'
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
+import CLUSAStudentTrainingReport from '../../images/CLUSA-Student-Training-Report.xlsx';
+import CLUSAGraduationCeremonyReport from '../../images/CLUSA-Graduation-Ceremony-Report.xlsx';
+import CLUSAInternshipBudget from '../../images/CLUSA Internship -budget-template.xlsx';
+import CLUSAEssayContest from '../../images/CLUSA-Essay-Contest.xlsx';
+
 import './programReport.css'
 
 const reportType  = [
@@ -259,13 +264,16 @@ class ProgramReport extends Component {
 
                       <MDBRow style={{ alignItems: 'center'}} className="pt-3">
                         <MDBCol md={4} className="table-header font-weight-bold">
+
                           Student Training Report
                         </MDBCol>
                         <MDBCol md={4} className="text-center">
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  href={CLUSAStudentTrainingReport}
+                          >
                             Download Template File
                           </MDBBtn>
                         </MDBCol>
@@ -279,7 +287,9 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  href={CLUSAGraduationCeremonyReport}
+                          >
                             Download Template File
                           </MDBBtn>
                         </MDBCol>
@@ -293,21 +303,9 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload">
-                            Download Template File
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
-
-                      <MDBRow style={{ alignItems: 'center'}} className="pt-3">
-                        <MDBCol md={4} className="table-header font-weight-bold">
-                          Other Event
-                        </MDBCol>
-                        <MDBCol md={4} className="text-center">
-                          Report requirement sort introduction
-                        </MDBCol>
-                        <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  href={CLUSAInternshipBudget}
+                          >
                             Download Template File
                           </MDBBtn>
                         </MDBCol>
@@ -321,7 +319,9 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  href={CLUSAEssayContest}
+                          >
                             Download Template File
                           </MDBBtn>
                         </MDBCol>
