@@ -274,7 +274,7 @@ class OrganizationComment extends Component {
       <div className="bg-withImage">
         <HeaderComponent />
 
-        <WholeApplicationCommentView {...this.props} fixFooter={fixFooter} />
+        <WholeApplicationCommentView {...this.props} />
 
         <FooterComponent className="mt-5 pt-5" />
       </div>
