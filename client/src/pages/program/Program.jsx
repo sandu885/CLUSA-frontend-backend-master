@@ -243,7 +243,7 @@ class Program extends Component {
 
   componentDidMount() {
     const fetchAllPrograms = '/api/fetchAllPrograms';
-    const { programType } = this.state
+    const { programType } = this.state;
 
     if (this.state.sessionToken) {
       axios.post(
@@ -252,8 +252,6 @@ class Program extends Component {
           sessionToken: this.state.sessionToken,
         },
       ).then((response) => {
-        console.warn('clusa response', response.data.programs);
-
         const columns = [
           {
             label: 'Organization Name',

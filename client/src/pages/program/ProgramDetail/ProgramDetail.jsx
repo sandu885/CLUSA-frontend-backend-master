@@ -189,7 +189,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
                           <MDBCol md="3" className="program-detail-sub-header font-weight-bold">
                             <MDBRow>
-                              Status:- <span style={{ textTransform: 'capitalize' }}> {program.status} </span>
+                              Status:- <span style={{ textTransform: 'capitalize' }}> {program.status ? program.status.replace( /([A-Z])/g, " $1" ) : ''} </span>
                             </MDBRow>
                             <MDBRow>
                               Award Amount:- <span> {agreementPlacement[0] && agreementPlacement[0].awardAmount} </span>

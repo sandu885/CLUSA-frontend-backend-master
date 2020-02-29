@@ -3,7 +3,7 @@ import './style.css';
 
 const Footer = () => (
   <div className="footer">
-    Copyright 2019 CLUSA. All Rights Reserved.
+    Copyright 2020 CLUSA. All Rights Reserved.
   </div>
 );
 
