@@ -344,9 +344,8 @@ const deleteUserById = async (meta) => {
     queryUser.equalTo("objectId", meta.userId);
     let userRecord = await queryUser.first({ useMasterKey: true });
 
-    userRecord.set("isDeleted", true);
-    return userRecord.save(null,{ useMasterKey: true });
-}
+    return await userRecord.destroy();
+};
 
 const createUserByAdmin = async (meta) => {
     if (!meta.sessionToken)
