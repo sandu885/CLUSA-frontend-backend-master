@@ -119,7 +119,9 @@ class AgreementPlacement extends Component {
       postProgram,
       formData,
     ).then((response) => {
+      alert('🦄Agreement is saved!');
       this.fetchAgreementPlacementData();
+
       console.warn('reponse message', response.data);
 
     }).catch((error) => {
@@ -330,8 +332,8 @@ class AgreementPlacement extends Component {
                       <MDBCol md="2" />
                       <MDBCol md="10">
                         <MDBRow className="pt-3">
-                          <MDBCol sm="12" className="block-header">
-                            Result
+                          <MDBCol sm={12} style={{ paddingLeft: '15px' }} className="block-header">
+                            Result:-
                           </MDBCol>
                           
                           {role === '0' ? null :
@@ -404,6 +406,17 @@ class AgreementPlacement extends Component {
               </MDBCard>
             </MDBCol>
           </MDBRow>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+          />
         </MDBContainer>
         <FooterComponent className="mt-5 pt-5" />
       </div>

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
 import './program.css'
+import Loader from "react-loader-spinner";
 
 class Program extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Program extends Component {
     this.state = {
       sessionToken: localStorage.getItem('sessionToken'),
       programData: {},
-      dataReceived: false,
+      dataReceived: true,
       formData: {},
       programType,
       userId: localStorage.getItem('clusa-user-id'),
@@ -105,7 +106,7 @@ class Program extends Component {
   };
 
   render() {
-    const { formData: { organizationName = '', programType = '', status = '', year = '' }, role, programData } = this.state;
+    const { formData: { organizationName = '', programType = '', status = '', year = '' }, role, programData, dataReceived } = this.state;
 
     let heading = '';
     switch (role) {
@@ -203,6 +204,7 @@ class Program extends Component {
                             <MDBBtn
                               rounded
                               className="btn-block z-depth-1a"
+                              disabled={dataReceived}
                               onClick={this.handleSearchPost}
                             >
                               Search
@@ -219,15 +221,21 @@ class Program extends Component {
                   <MDBRow>
                     <MDBCol md="1" />
                     <MDBCol md="10">
-                      <MDBDataTable
-                        className="custom-table program-table"
-                        striped
-                        borderless
-                        data={programData}
-                        searching={false}
-                        noBottomColumns
-                        info={false}
-                      />
+                      {dataReceived ?
+                        <div style={{textAlign: 'center'}}>
+                          <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80}/>
+                        </div>
+                        :
+                        <MDBDataTable
+                          className="custom-table program-table"
+                          striped
+                          borderless
+                          data={programData}
+                          searching={false}
+                          noBottomColumns
+                          info={false}
+                        />
+                      }
                     </MDBCol>
                     <MDBCol md="1" />
                   </MDBRow>
@@ -303,10 +311,14 @@ class Program extends Component {
             columns: [ ...columns ],
             rows: [ ...rows ]
           },
+          dataReceived: false,
           columns,
         });
 
       }).catch((error) => {
+        this.setState({
+          dataReceived: false,
+        });
         if(error.response !== null && error.response !== undefined) {
           if( error.response.data !== null && error.response.data !== undefined ) {
             if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {

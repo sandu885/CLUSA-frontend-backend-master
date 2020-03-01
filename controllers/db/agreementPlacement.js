@@ -99,6 +99,10 @@ const updateAgreementPlacementById = async (meta, files) => {
   if (files && files['finalFilledPlacement'] && files['finalFilledPlacement'].length > 0)
     agreementPlacement.set("finalFilledPlacement", files['finalFilledPlacement'][0]);
 
+  if (meta.role === '1' && agreementPlacement.get('status') === '1') {
+    throw new Error('Cannot update the agreement now as it is approved.');
+  }
+
   // two row only 3 and 2
   if (meta.role === '3' || meta.role === '2') {
     // 0 pending and 1 approved

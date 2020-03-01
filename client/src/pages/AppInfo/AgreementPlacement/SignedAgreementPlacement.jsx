@@ -93,6 +93,10 @@ class SignedAgreementPlacement extends Component {
     if (!postData.objectId && this.validate(postData)) {
       return
     }
+    if (role === '1' && postData.status === '1') {
+      return alert('Cannot update the agreement now as it is approved.');
+    }
+
     let postProgram = '/api/createNewAgreementPlacement';
 
     if (postData.objectId) {
@@ -117,7 +121,9 @@ class SignedAgreementPlacement extends Component {
       postProgram,
       formData,
     ).then((response) => {
+      alert('🦄Agreement is saved!');
       this.fetchAgreementPlacementData();
+
       console.warn('reponse message', response.data);
 
     }).catch((error) => {
@@ -330,9 +336,9 @@ class SignedAgreementPlacement extends Component {
                       <MDBCol md="2" />
                       <MDBCol md="10">
                         <MDBRow className="pt-3">
-                          <MDBCol sm="2" className="block-header">
+                          <div style={{ paddingLeft: '15px' }} className="block-header">
                             Result:-
-                          </MDBCol>
+                          </div>
                           <MDBCol sm="10" className="blue-font-color">
                             {formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'Approved') : 'Under Review'}
                           </MDBCol>

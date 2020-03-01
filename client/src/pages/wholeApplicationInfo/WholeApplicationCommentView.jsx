@@ -290,31 +290,31 @@ class WholeApplicationCommentView extends Component {
   }
 
   async getUploadedFiles(caller) {
-    // const sectionContent = {};
-    //   sectionContent.sessionToken = this.state.sessionToken;
-    //   sectionContent.programType = '0';
-    //   sectionContent.sectionIndex = '10';
-    //   sectionContent.orgId = this.state.orgId;
-      const response = await axios({
-        method: 'post',
-        url: '/api/getApplicationFileBySectionIndex',
-        data: caller,
-        responseType: 'blob',
-      });
-      const link = document.createElement('a', { className: '', id: 'asd', style: { color: 'red', background: 'yellow' } }); let
-        filename;
-      const disposition = response.headers['content-disposition'];
-      if (disposition && disposition.indexOf('attachment') !== -1) {
-        const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-        const matches = filenameRegex.exec(disposition);
-        if (matches != null && matches[1]) {
-          filename = matches[1].replace(/['"]/g, '');
+      try {
+        const response = await axios({
+          method: 'post',
+          url: '/api/getApplicationFileBySectionIndex',
+          data: caller,
+          responseType: 'blob',
+        });
+
+        const link = document.createElement('a', { className: '', id: 'asd', style: { color: 'red', background: 'yellow' } }); let
+          filename;
+        const disposition = response.headers['content-disposition'];
+        if (disposition && disposition.indexOf('attachment') !== -1) {
+          const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          const matches = filenameRegex.exec(disposition);
+          if (matches != null && matches[1]) {
+            filename = matches[1].replace(/['"]/g, '');
+          }
         }
+        link.href = window.URL.createObjectURL(response.data);
+        link.download = filename;
+        link.innerText = filename;
+        document.getElementById('previousTitle').appendChild(link);
+      } catch (e) {
+        console.log(e);
       }
-      link.href = window.URL.createObjectURL(response.data);
-      link.download = filename;
-      link.innerText = filename;
-      document.getElementById('previousTitle').appendChild(link);
   }
 
   async componentDidMount() {
@@ -566,18 +566,6 @@ class WholeApplicationCommentView extends Component {
                         </div>
                       </form>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section01"
-                        >
-                        Edit Section 1
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 2. Grant Goals  ----------- */}
                   <div className="section02">
@@ -618,18 +606,6 @@ class WholeApplicationCommentView extends Component {
                         <h5 className="darkblueColor">{this.state.s2q3}</h5>
                       </form>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section02"
-                        >
-                        Edit Section 2
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 3. Internship Leaders Team ----------- */}
                   <div className="section03">
@@ -654,18 +630,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor">{this.state.s3q2}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section03"
-                        >
-                        Edit Section 3
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 4. Internship Program Schedule ----------- */}
                   <div className="section04">
@@ -682,18 +646,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor"> {this.state.s4q1}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section04"
-                        >
-                        Edit Section 4
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 5. Internship Placement ----------- */}
                   <div className="section05">
@@ -749,18 +701,6 @@ class WholeApplicationCommentView extends Component {
                         </table>
                       </div>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section05"
-                        >
-                        Edit Section 5
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 6. Student Recruiting Plan ----------- */}
                   <div className="section06">
@@ -806,18 +746,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor"> {this.state.s6q4}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section06"
-                        >
-                        Edit Section 6
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 7. Student Training Plan ----------- */}
                   <div className="section07">
@@ -835,18 +763,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor">{this.state.s7q1}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section07"
-                        >
-                        Edit Section 7
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 8. Graduation Ceremony Plan ----------- */}
                   <div className="section08">
@@ -864,18 +780,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor"> {this.state.s8q1}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section08"
-                        >
-                        Edit Section 8
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 9. Other Events Related ----------- */}
                   <div className="section09">
@@ -891,18 +795,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor"> {this.state.s9q1}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section09"
-                        >
-                        Edit Section 9
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------SECTION 10. Program Budget ----------- */}
                   <div className="section10">
@@ -955,18 +847,6 @@ class WholeApplicationCommentView extends Component {
                         <h5 className="darkblueColor">{this.state.s10q3}</h5>
                       </MDBCol>
                     </MDBRow>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section10"
-                        >
-                        Edit Section 10
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
 
                   {/* -----------SECTION 11. Program Budget ----------- */}
@@ -985,18 +865,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor">{this.state.s11q1}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section11"
-                        >
-                        Edit Section 11
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* -----------12 PART B: GRANT AFFIRMATIONS ----------- */}
                   <div className="section12">
@@ -1086,18 +954,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor"> {this.state.s12q11 === true ? 'Agree' : null}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section12"
-                        >
-                        Edit Section 12
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                   {/* ----------- 13. Certification ----------- */}
                   <div className="section13">
@@ -1152,18 +1008,6 @@ class WholeApplicationCommentView extends Component {
                       </label>
                       <h5 className="darkblueColor"> {this.state.s13q3}</h5>
                     </div>
-                    {
-                      localStorage.getItem('orgId') === null ? (
-                        <MDBBtn
-                          gradient="blue"
-                          rounded
-                          className="btn-lg z-depth-1a mt-4"
-                          href="/internship-application-section13"
-                        >
-                        Edit Section 13
-                        </MDBBtn>
-                      ) : null
-                    }
                   </div>
                 </MDBCardBody>
                 {fixFooter && fixFooter}
