@@ -406,17 +406,6 @@ class AgreementPlacement extends Component {
               </MDBCard>
             </MDBCol>
           </MDBRow>
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnVisibilityChange
-            draggable
-            pauseOnHover
-          />
         </MDBContainer>
         <FooterComponent className="mt-5 pt-5" />
       </div>
