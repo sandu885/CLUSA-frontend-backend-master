@@ -130,6 +130,7 @@ const getOrgInfoById = async(user, orgId) => {
         throw new Error("No user found for this organization id");
     return {
         organization: {
+            username: userRecord.get("username"),
             name: org.get("name"),
             region: org.get("region"),
             type: org.get("type"),
@@ -203,6 +204,18 @@ const updateOrgInfo = async(meta, files) => {
         throw new Error("No organization state");
     if (!meta.zipcode)
         throw new Error("No organization zip code");
+    if (!meta.username)
+        throw new Error("No username");
+    let queryUser1 = new Parse.Query(Parse.User);
+    queryUser1.equalTo("username", meta.username);
+    let userRecord1 = await queryUser1.first({useMasterKey: true});
+    if (userRecord1 != undefined)
+        if (userRecord1.get('orgId') != orgId)
+            throw new Error("Username not available");
+    userRecord.set("username", meta.username);
+    if (meta.password != 'undefined') {
+        userRecord.set("password", meta.password);
+    }
     if (!meta.firstName)
         throw new Error("No first name");
     userRecord.set("firstName", meta.firstName);
