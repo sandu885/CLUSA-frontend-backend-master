@@ -202,7 +202,7 @@ class Checks extends Component {
   };
 
   render() {
-    const { formData: { first = {}, second = {} } } = this.state;
+    const { formData: { first = {}, second = {} }, role } = this.state;
     let heading = 'Send Check';
 
     return (
@@ -237,12 +237,16 @@ class Checks extends Component {
                       <MDBRow className="form-group font-weight-bold">
                         <label className="col-form-label check-form-label">Check Amount:-</label>
                         <div className="col-sm-4">
-                          <input type="number" className="form-control" name="first-checkAmount" value={first.checkAmount} onChange={this.handleChange} />
+                          {role == '0' ? first && <label className="col-form-label check-form-label font-weight-light">{first.checkAmount || ''}</label>
+                            : <input type="number" className="form-control" name="first-checkAmount" value={first.checkAmount} onChange={this.handleChange} />
+                          }
                         </div>
                         <MDBCol sm="1" />
                         <label className="col-form-label">Check #:-</label>
                         <div className="col-sm-4">
-                          <input type="text" className="form-control" name="first-checkId" value={first.checkId} onChange={this.handleChange}/>
+                          {role == '0' ? <label className="col-form-label check-form-label font-weight-light">{first && first.checkId}</label>
+                            : <input type="text" className="form-control" name="first-checkId" value={first.checkId} onChange={this.handleChange}/>
+                          }
                         </div>
                       </MDBRow>
 
@@ -260,34 +264,46 @@ class Checks extends Component {
                           </label>
                         </div>
                         <div className="col-sm-6">
-                          <input type="file" className="form-control" style={{ display: 'none' }} name="first-checkFile" onChange={this.handleFileChange}/>
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
-                            Click here to Upload/Replace Image
-                          </MDBBtn>
+                          {role == '0' ? null :
+                            <>
+                              <input type="file" className="form-control" style={{ display: 'none' }} name="first-checkFile" onChange={this.handleFileChange}/>
+                              <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
+                                Click here to Upload/Replace Image
+                              </MDBBtn>
+                            </>
+                          }
                         </div>
                       </MDBRow>
 
                       <MDBRow className="form-group font-weight-bold">
                         <label className="col-form-label check-form-label">Check Date:-</label>
                         <div className="col-sm-4">
-                          <input type="text" className="form-control" name="first-checkDate" value={first.checkDate} onChange={this.handleChange} />
+                          {role == '0' ? first && <label className="col-form-label check-form-label font-weight-light">{first.checkDate || ''}</label>
+                            : <input type="text" className="form-control" name="first-checkDate" value={first.checkDate} onChange={this.handleChange}/>
+                          }
                         </div>
                       </MDBRow>
-
-                      <MDBRow className="form-group font-weight-bold">
-                        <MDBCol sm="3"/>
-                        <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"} className="send-button second-action-button btn-block z-depth-1a check-file-upload" onClick={this.saveFirstCheck}>
-                            Send
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"} className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
-                                  onClick={event => {this.props.history.goBack();}}>
-                            Cancel
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
+                      {role == '0' ? null :
+                        <MDBRow className="form-group font-weight-bold">
+                          <MDBCol sm="3"/>
+                          <MDBCol sm="3">
+                            <MDBBtn rounded size={"sm"}
+                                    className="send-button second-action-button btn-block z-depth-1a check-file-upload"
+                                    onClick={this.saveFirstCheck}>
+                              Send
+                            </MDBBtn>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBBtn rounded size={"sm"}
+                                    className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
+                                    onClick={event => {
+                                      this.props.history.goBack();
+                                    }}>
+                              Cancel
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
+                      }
                     </MDBCol>
                     <MDBCol md="1" />
                   </MDBRow>
@@ -312,12 +328,16 @@ class Checks extends Component {
                       <MDBRow className="form-group font-weight-bold">
                         <label className="col-form-label check-form-label">Check Amount:-</label>
                         <div className="col-sm-4">
-                          <input type="number" className="form-control" name="second-checkAmount" value={second.checkAmount} onChange={this.handleChange}/>
+                          {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkAmount || ''}</label>
+                            : <input type="number" className="form-control" name="second-checkAmount" value={second.checkAmount} onChange={this.handleChange}/>
+                          }
                         </div>
                         <MDBCol sm="1"/>
                         <label className="col-form-label">Check #:-</label>
                         <div className="col-sm-4">
-                          <input type="text" className="form-control" name="second-checkId" value={second.checkId} onChange={this.handleChange}/>
+                          {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkId || ''}</label>
+                            : <input type="text" className="form-control" name="second-checkId" value={second.checkId} onChange={this.handleChange}/>
+                          }
                         </div>
                       </MDBRow>
 
@@ -335,38 +355,64 @@ class Checks extends Component {
                           </label>
                         </div>
                         <div className="col-sm-6">
-                          <input type="file" className="form-control" style={{display: 'none'}} name="second-checkFile" onChange={this.handleFileChange}/>
-                          <MDBBtn rounded size={"sm"}
-                                  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('second-checkFile')}>
-                            Click here to Upload/Replace Image
-                          </MDBBtn>
+                          {role == '0' ? null :
+                            <>
+                              <input type="file" className="form-control" style={{display: 'none'}}
+                                     name="second-checkFile" onChange={this.handleFileChange}/>
+                              <MDBBtn rounded size={"sm"}
+                                      className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                                      onClick={() => this.handleFileClick('second-checkFile')}>
+                                Click here to Upload/Replace Image
+                              </MDBBtn>
+                            </>
+                          }
                         </div>
                       </MDBRow>
 
                       <MDBRow className="form-group font-weight-bold">
                         <label className="col-form-label check-form-label">Check Date:-</label>
                         <div className="col-sm-4">
-                          <input type="text" className="form-control" name="second-checkDate" value={second.checkDate} onChange={this.handleChange} />
+                          {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkDate || ''}</label>
+                            : <input type="text" className="form-control" name="second-checkDate" value={second.checkDate} onChange={this.handleChange} />
+                          }
                         </div>
                       </MDBRow>
-
-                      <MDBRow className="form-group font-weight-bold">
-                        <MDBCol sm="3"/>
-                        <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"}
-                                  className="send-button second-action-button btn-block z-depth-1a check-file-upload" onClick={this.saveSecondCheck}>
-                            Send
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"}
-                                  className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
-                                  onClick={event => {this.props.history.goBack();}}
-                          >
-                            Cancel
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
+                      {role == '0' ?
+                        <MDBRow className="form-group font-weight-bold">
+                          <MDBCol sm="5"/>
+                          <MDBCol sm="3">
+                            <MDBBtn rounded size={"sm"}
+                                    className="send-button second-action-button btn-block z-depth-1a check-file-upload"
+                                    onClick={event => {
+                                      this.props.history.goBack();
+                                    }}
+                            >
+                              Go Back
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
+                        :
+                        <MDBRow className="form-group font-weight-bold">
+                          <MDBCol sm="3"/>
+                          <MDBCol sm="3">
+                            <MDBBtn rounded size={"sm"}
+                                    className="send-button second-action-button btn-block z-depth-1a check-file-upload"
+                                    onClick={this.saveSecondCheck}>
+                              Send
+                            </MDBBtn>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBBtn rounded size={"sm"}
+                                    className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
+                                    onClick={event => {
+                                      this.props.history.goBack();
+                                    }}
+                            >
+                              Cancel
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBRow>
+                      }
 
 
                     </MDBCol>

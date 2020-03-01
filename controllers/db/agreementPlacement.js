@@ -10,7 +10,7 @@ const createNewAgreementPlacement = async (meta, files) => {
 
   if (meta.role != '1') {
     if (!files['agreementTemplate'] || files['agreementTemplate'].length == 0)
-      throw new Error('Please provide signed agreement file.');
+      throw new Error('Please provide agreement file.');
     // if (!files['placementTemplate'] || files['placementTemplate'].length == 0)
     //   throw new Error('Please provide signed placement file.');
     // if (!files['finalFilledPlacement'] || files['finalFilledPlacement'].length == 0)

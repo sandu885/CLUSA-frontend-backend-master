@@ -131,6 +131,7 @@ class ProgramDetail extends Component {
     // const firstSection = application.find(app => app.sectionIndex === "1");
     // const tenthSection = application.find(app => app.sectionIndex === "10");
     const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
+
     let heading = 'Program Detail Page';
 
     return (
@@ -174,7 +175,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
                           <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                             <MDBRow>
-                              Apply Year:- <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span>
+                              Applied Year:- <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span>
                             </MDBRow>
                             <MDBRow>
                               Award Date:- <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span>
@@ -355,47 +356,76 @@ class ProgramDetail extends Component {
 
                       {this.state.role != '1' &&
                         <>
-                          <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                            Program Closing Report
-                          </MDBCol>
+                          {this.state.role == '0' ? null :
+                            <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
+                              Program Closing Report
+                            </MDBCol>
+                          }
                           <MDBCol md="1" />
                           <MDBCol md="10">
 
-                            <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote} onChange={this.handleChange} />
+                            {this.state.role == '0' ? null :
+                              <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote}
+                                        onChange={this.handleChange}/>
+                            }
 
-                            <div style={{
-                              justifyContent: 'center',
-                              display: 'flex',
-                            }}>
-                              <div
-                                style={{
-                                  paddingRight: '100px',
-                                }}
-                              >
-                                <MDBBtn
-                                  rounded
-                                  size={"sm"}
-                                  style={{ width: '150px' }}
-                                  className="second-action-button btn-block z-depth-1a red-color"
-                                  onClick={this.closeReport}
-                                >
-                                  Close
-                                </MDBBtn>
-                              </div>
-                              <div>
-                                <MDBBtn
-                                  rounded
-                                  size={"sm"}
-                                  style={{ width: '150px' }}
-                                  className="second-action-button btn-block z-depth-1a light-green-color"
-                                  onClick={() => {
-                                    this.props.history.goBack();
+                            {this.state.role != '0' ?
+                              <div style={{
+                                justifyContent: 'center',
+                                display: 'flex',
+                              }}>
+
+                                <div
+                                  style={{
+                                    paddingRight: '100px',
                                   }}
                                 >
-                                  Back
-                                </MDBBtn>
+                                  <MDBBtn
+                                    rounded
+                                    size={"sm"}
+                                    style={{ width: '150px' }}
+                                    className="second-action-button btn-block z-depth-1a red-color"
+                                    onClick={this.closeReport}
+                                  >
+                                    Close
+                                  </MDBBtn>
+                                </div>
+
+                                <div>
+                                  <MDBBtn
+                                    rounded
+                                    size={"sm"}
+                                    style={{ width: '150px' }}
+                                    className="second-action-button btn-block z-depth-1a light-green-color"
+                                    onClick={() => {
+                                      this.props.history.goBack();
+                                    }}
+                                  >
+                                    Back
+                                  </MDBBtn>
+                                </div>
                               </div>
-                            </div>
+                              :
+                              <div style={{
+                                justifyContent: 'center',
+                                display: 'flex',
+                              }}>
+                                <div>
+                                  <MDBBtn
+                                    rounded
+                                    size={"sm"}
+                                    style={{ width: '150px' }}
+                                    className="second-action-button btn-block z-depth-1a light-green-color"
+                                    onClick={() => {
+                                      this.props.history.goBack();
+                                    }}
+                                  >
+                                    Back
+                                  </MDBBtn>
+                                </div>
+                              </div>
+                            }
+
                           </MDBCol>
                           <MDBCol md="1" />
                         </>
