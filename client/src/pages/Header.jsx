@@ -83,6 +83,7 @@ class Header extends Component {
 
   render() {
     const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin } = this.state;
+    console.log('headerheader', this.state);
 
     if (clickLogOut === true || redirectToLogin === true) return <Redirect to="/login" />;
     if (redirectToCLUSAccount === true) return <Redirect to="/clusa-account" />;

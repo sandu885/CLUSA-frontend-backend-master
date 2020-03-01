@@ -236,9 +236,11 @@ class RegisterInfo extends Component {
         // ======================== success ========================
         if (response.data.message === 'Successfully get organization information') {
           console.warn('response =========', response.data);
+          console.warn('response =========', response.data);
           await this.setState({
-            userName: response.data.info.organization.username,
+            username: response.data.info.organization.username,
             password: response.data.info.organization.password,
+            backUpPassword: response.data.info.organization.password,
             orgName: response.data.info.organization.name,
             orgRegion: response.data.info.organization.region,
             orgType: response.data.info.organization.type,
@@ -335,7 +337,7 @@ class RegisterInfo extends Component {
         if (response.data.message === 'Successfully get organization information') {
           console.warn('response =========', response.data);
           await this.setState({
-            userName: response.data.info.organization.username,
+            username: response.data.info.organization.username,
             password: response.data.info.organization.password,
             orgName: response.data.info.organization.name,
             orgRegion: response.data.info.organization.region,
@@ -490,10 +492,10 @@ class RegisterInfo extends Component {
     console.warn(event.target.files);
     if(this.state.selectedFile2 === null) {
       await this.setState({
-      selectedFile1: event.target.files[0],
-      orgType: '1',
-      orgTypeNote: '',
-    });
+        selectedFile1: event.target.files[0],
+        orgType: '1',
+        orgTypeNote: '',
+      });
     } else {
       await this.setState({
         selectedFile1: event.target.files[0],
@@ -507,11 +509,11 @@ class RegisterInfo extends Component {
 
   onChangeHandler2 = async (event) => {
     console.warn(event.target.files);
-      await this.setState({
-              selectedFile2: event.target.files[0],
-              orgType: '2',
-              orgTypeNote: '',
-            });
+    await this.setState({
+      selectedFile2: event.target.files[0],
+      orgType: '2',
+      orgTypeNote: '',
+    });
     console.warn('current org type = ', this.state.orgType);
     console.warn(this.state.selectedFile2);
   }
@@ -741,11 +743,18 @@ class RegisterInfo extends Component {
     if (orgType === '1' || orgType === '2')formData.append('certificate', this.state.selectedFile1);
     if (orgType === '2') formData.append('mou', this.state.selectedFile2);
     if (orgType === '3') formData.append('orgTypeNote', this.state.orgTypeNote);
+    if (this.state.password) {
+      if (this.state.password !== this.state.newpassword) {
+        return alert('Password does not match.')
+      }
+      alert("You would get logout");
+    }
     if (this.handleValidation()) {
       axios.post(
         submitRegistrationAPI,
         formData,
       ).then((response) => {
+        this.state.username && localStorage.setItem('userName', this.state.username);
         currentComponent.setState({
           responseMessage: response.data,
         });
@@ -784,6 +793,9 @@ class RegisterInfo extends Component {
               });
             } else if (error.response.data.message === 'No certificate file') {
               alert('Please select certificate file.');
+            }
+            else if (error.response.data.message == 'Username not available') {
+              alert('Username not available');
             }
           }
         }
@@ -847,6 +859,65 @@ class RegisterInfo extends Component {
                     </h3>
                     <p className="redColor text-right">* Required</p>
                   </div>
+
+
+                  <div className="pt-4 text-left">
+                    <form
+                      id="register-account"
+                      className="form-all"
+                    >
+                      {/* ----------- username ----------- */}
+                      <label
+                        htmlFor="register-username"
+                        className="dark-grey-text font-weight-light"
+                      ><span className="redColor">* </span>Username
+                        <input
+                          type="text"
+                          name="username"
+                          id="register-username"
+                          className={this.state.usernameInputError ? 'form-control errorInput' : 'form-control'}
+                          value={this.state.username}
+                          onChange={(e) => { this.handleChange(e); this.setState({ usernameInputError: false }); }}
+                          required
+                        />
+                      </label>
+                      <br />
+                      {/* ----------- password ----------- */}
+                      <label
+                        htmlFor="register-password"
+                        className="dark-grey-text
+                        font-weight-light pt-2"
+                      ><span className="redColor">* </span>Password
+                        <input
+                          type="password"
+                          id="register-password"
+                          name="password"
+                          className={this.state.passwordInputError ? 'form-control errorInput' : 'form-control'}
+                          value={this.state.password}
+                          onChange={(e) => { this.handleChange(e); this.setState({ passwordInputError: false }); }}
+                          required
+                        />
+                      </label>
+                      <br/>
+                      {/* ----------- new password ----------- */}
+                      <label
+                        htmlFor="register-password"
+                        className="dark-grey-text
+                        font-weight-light pt-2"
+                      >New Password
+                        <input
+                          type="password"
+                          id="register-password"
+                          name="newpassword"
+                          className="form-control"
+                          value={this.state.newpassword}
+                          onChange={(e) => { this.handleChange(e); }}
+                          required
+                        />
+                      </label>
+                    </form>
+                  </div>
+
                   {/* ----------- General Organization Information ----------- */}
                   <div className="greyBG text-center pt-2 pb-2 mt-4">
                     General Organization Information
@@ -913,7 +984,7 @@ class RegisterInfo extends Component {
                         className="dark-grey-text font-weight-light pt-2"
                       >
                         <MDBRow className="pl-4">
-                       1.1. If your organization is non-profit 501(c)(3), please provide:
+                          1.1. If your organization is non-profit 501(c)(3), please provide:
                         </MDBRow>
                         <MDBRow className="margin0">
                           <div className="btn btn-light btn-sm float-left ml-4">
@@ -937,7 +1008,7 @@ class RegisterInfo extends Component {
                         className="dark-grey-text font-weight-light pt-2"
                       >
                         <MDBRow className="pl-4">
-                        1.2. If your organization incorporated with a fiscal agent that has 501(c)(3) status:, please provide:
+                          1.2. If your organization incorporated with a fiscal agent that has 501(c)(3) status:, please provide:
                         </MDBRow>
                         <MDBRow className="margin0">
                           <div className="btn btn-light btn-sm float-left ml-4">
@@ -977,7 +1048,7 @@ class RegisterInfo extends Component {
                         className="dark-grey-text font-weight-light pt-2"
                       >
                         <MDBRow className="pl-4">
-                        1.3. If your organization is other type, please explain your status:
+                          1.3. If your organization is other type, please explain your status:
                         </MDBRow>
                         <input
                           type="text"
@@ -1124,21 +1195,6 @@ class RegisterInfo extends Component {
                           required
                         />
                       </label>
-                      {/* ----------- Password ----------- */}
-                      {/*<label*/}
-                      {/*  htmlFor="register-password"*/}
-                      {/*  className="dark-grey-text font-weight-light pt-2"*/}
-                      {/*><span className="redColor">* </span>Password*/}
-                      {/*  <input*/}
-                      {/*    type="password"*/}
-                      {/*    id="register-password"*/}
-                      {/*    className={this.state.passwordInputError ? 'form-control errorInput' : 'form-control'}*/}
-                      {/*    placeholder="Password"*/}
-                      {/*    name="password"*/}
-                      {/*    defaultValue={this.state.password}*/}
-                      {/*    onChange={(e) => { this.handleChange(e); this.setState({ passwordInputError: false }); }}*/}
-                      {/*  />*/}
-                      {/*</label>*/}
                       {/* ----------- Contact Email ----------- */}
                       <label
                         htmlFor="register-email"
@@ -1196,7 +1252,7 @@ class RegisterInfo extends Component {
 
                       <h6 className="pt-4 pb-4">To change your members, please refill the table below:</h6>
                       <p className="color-gray">
-                          Click <AddBox /> button beside search bar to add record to the table below. After you add a new record, please click the <Check /> mark on the left side of the data to save. To modify the record, click the <Edit /> mark, click the<DeleteOutline /> mark to delete record.
+                        Click <AddBox /> button beside search bar to add record to the table below. After you add a new record, please click the <Check /> mark on the left side of the data to save. To modify the record, click the <Edit /> mark, click the<DeleteOutline /> mark to delete record.
                       </p>
                       <MaterialTable
                         icons={tableIcons}
@@ -1314,7 +1370,7 @@ class RegisterInfo extends Component {
                       <div className="FixedHeightContainer">
                         <div className="Content color-gray pl-2 pr-2">
                           <p className="text-justify pt-1">
-                        Protecting your private information is our priority. This Statement of Privacy applies to clusa.org and CLUSA and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to CLUSA include clusa.org, CLUSA and its affiliated programs. The CLUSA website is a civic leadership site. By using the CLUSA website, you consent to the data practices described in this statement.<br />
+                            Protecting your private information is our priority. This Statement of Privacy applies to clusa.org and CLUSA and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to CLUSA include clusa.org, CLUSA and its affiliated programs. The CLUSA website is a civic leadership site. By using the CLUSA website, you consent to the data practices described in this statement.<br />
                             <br /><b>Collection of your Personal Information</b><br />
                             <br />In order to better provide you with products and services offered on our Site, CLUSA may collect personally identifiable information, such as, but not limited to your:<br />
                             <br /> - First and Last Name

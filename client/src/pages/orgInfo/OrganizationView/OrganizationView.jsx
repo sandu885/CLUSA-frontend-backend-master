@@ -104,6 +104,12 @@ class OrganizationView extends Component {
                                   rounded
                                   size={"sm"}
                                   className="green-button org-view-sub-header-button btn-block z-depth-1a"
+                                  onClick={() =>{
+                                    if (this.props.match.params.id) {
+                                      localStorage.setItem('orgId', this.props.match.params.id);
+                                    }
+                                    this.props.history.push('/organization-information');
+                                  }}
                                 >
                                   More Details
                                 </MDBBtn>
