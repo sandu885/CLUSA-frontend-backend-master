@@ -146,6 +146,7 @@ class FinalReport extends Component {
         formData,
       );
       console.warn('console User finish');
+      // alert()
       history.goBack();
     } catch (error) {
       if(error.response !== null && error.response !== undefined) {
@@ -235,8 +236,13 @@ class FinalReport extends Component {
                         <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
                           Click to Upload Template
                         </MDBBtn>
-                        <span> {q2['third'] && q2['third'].name} </span>
-
+                        <span style={{ paddingLeft: '10px' }}>
+                          {
+                            q2['third'] && q2['third'] ? q2['third'].name : fileLink ?
+                              <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank">{fileLink.filename}</a>
+                              : ''
+                          }
+                        </span>
                       </div>
 
                       <div className="pt-2 text-left">
