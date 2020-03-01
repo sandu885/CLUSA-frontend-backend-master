@@ -394,7 +394,10 @@ class ProgramReport extends Component {
                               rounded
                               size={"sm"}
                               className="second-action-button btn-block z-depth-1a"
-                              onClick={this.toggleModal}
+                              onClick={() => {
+                                this.setState({ formData: {} });
+                                this.toggleModal()
+                              }}
                             >
                               Upload Report
                             </MDBBtn>
@@ -413,7 +416,7 @@ class ProgramReport extends Component {
             </MDBCol>
           </MDBRow>
 
-          <MDBModal isOpen={this.state.open} toggle={this.toggleModal}>
+          <MDBModal isOpen={this.state.open} toggle={this.toggleModal} size="lg">
             <MDBModalBody className="text-center">
               <MDBRow>
                 <MDBCol className="table-header font-weight-bold pt-3">
@@ -422,8 +425,8 @@ class ProgramReport extends Component {
               </MDBRow>
 
               <MDBRow>
-                <MDBCol md={2} />
-                <MDBCol md={8} className="pt-3">
+                <MDBCol md={1} />
+                <MDBCol md={5} className="pt-3">
                   <input type="file" name="file" style={{ display: 'none' }} onChange={this.handleFileChange} />
                   <MDBBtn
                     rounded
@@ -434,30 +437,34 @@ class ProgramReport extends Component {
                     Click to Upload/Replace Files
                   </MDBBtn>
                 </MDBCol>
-                <MDBCol md={2} />
-                <MDBCol md={2} />
-                {
-                  formData.file ?
-                    <MDBCol md={8} className="pt-2">
-                      {formData.file.name}
-                    </MDBCol>
-                    :
-                    <MDBCol md={8} className="pt-2">
-                      {
-                        formData.fileLink && <a href={`/${formData.fileLink.path}`} rel="noopener noreferrer" target="_blank">{formData.fileLink.originalname}</a>
-                      }
-                    </MDBCol>
-                }
+                  {
+                    formData.file ?
+                      <MDBCol md={5} className="pt-3">
+                        {formData.file.name}
+                      </MDBCol>
+                      :
+                      <MDBCol md={5} className="pt-3">
+                        {
+                          formData.fileLink && <a href={`/${formData.fileLink.path}`} rel="noopener noreferrer" target="_blank">{formData.fileLink.originalname}</a>
+                        }
+                      </MDBCol>
+                  }
+
+
+
+                <MDBCol md={5} />
+                <MDBCol md={1} />
+
 
                 <MDBCol md={2} />
               </MDBRow>
 
               <MDBRow>
-                <MDBCol md={2} />
-                <MDBCol md={2} className="pt-3 font-weight-bold align-item-center">
+                <MDBCol md={1} />
+                <MDBCol md={3} className="pt-3 font-weight-bold align-item-center">
                   Type:
                 </MDBCol>
-                <MDBCol md={6} className="pt-3">
+                <MDBCol md={7} className="pt-3">
                   <select name="type" value={formData.type} className="browser-default custom-select" onChange={this.handleChange}>
                     <option>Choose Report Type</option>
                     <option value="1">Student Training</option>
@@ -467,7 +474,7 @@ class ProgramReport extends Component {
                     <option value="5">Essay Content</option>
                   </select>
                 </MDBCol>
-                <MDBCol md={2} />
+                <MDBCol md={1} />
               </MDBRow>
 
               <MDBRow className="mt-4">

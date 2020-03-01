@@ -98,7 +98,7 @@ class AgreementPlacement extends Component {
       formData.append('awardAmount', postData.awardAmount);
       formData.append('finalFilledPlacement', postData.finalFilledPlacement);
 
-      formData.append('status', postData.status);
+      formData.append('status', postData.status || '0');
 
     } else {
       postProgram = '/api/createNewAgreementPlacement';
@@ -108,7 +108,7 @@ class AgreementPlacement extends Component {
       formData.append('awardAmount', postData.awardAmount);
       formData.append('finalFilledPlacement', postData.finalFilledPlacement);
 
-      formData.append('status', postData.status);
+      formData.append('status', postData.status || '0');
     }
     formData.append('orgId', orgId);
     formData.append('programId', programId);
@@ -343,6 +343,11 @@ class AgreementPlacement extends Component {
                                 </MDBBtn>
                               </MDBCol>
                               <MDBCol sm="7" className="pt-2 align-item-center">
+                                {
+                                  formData.finalFilledPlacement ? formData.finalFilledPlacement.name : formData.finalFilledPlacementLink ?
+                                    <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename}</a>
+                                    : ''
+                                }
                               </MDBCol>
                             </>
                           }
@@ -352,7 +357,7 @@ class AgreementPlacement extends Component {
                               (role === '3' || role === '2') &&
                                 <select name="status" value={formData.status} className="browser-default custom-select" onChange={this.handleChange}>
                                   <option>Preparing Agreement</option>
-                                  <option value="1">Active</option>
+                                  <option value="1">Approve</option>
                                 </select>
                             }
                           </MDBCol>
@@ -422,11 +427,12 @@ class AgreementPlacement extends Component {
           this.setState({
             formData: {
               ...response.data.agreementPlacement[0],
-              agreementTemplate: undefined, placementTemplate: undefined,
+              agreementTemplate: undefined, placementTemplate: undefined, finalFilledPlacement: undefined,
               agreementTemplateLink: response.data.agreementPlacement[0].agreementTemplate && response.data.agreementPlacement[0].agreementTemplate,
               placementTemplateLink: response.data.agreementPlacement[0].placementTemplate && response.data.agreementPlacement[0].placementTemplate,
               filledPlacementLink: response.data.agreementPlacement[0].filledPlacement && response.data.agreementPlacement[0].filledPlacement,
               signedAgreementLink: response.data.agreementPlacement[0].signedAgreement && response.data.agreementPlacement[0].signedAgreement,
+              finalFilledPlacementLink: response.data.agreementPlacement[0].finalFilledPlacement && response.data.agreementPlacement[0].finalFilledPlacement,
             },
           })
         }

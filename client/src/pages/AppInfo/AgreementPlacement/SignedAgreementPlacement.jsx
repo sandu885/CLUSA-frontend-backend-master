@@ -153,6 +153,7 @@ class SignedAgreementPlacement extends Component {
 
   render() {
     const { formData, role } = this.state;
+    console.log( 'formData', formData);
 
     let heading = 'Agreement and Placement';
 
@@ -223,6 +224,8 @@ class SignedAgreementPlacement extends Component {
                               <a href={formData.signedAgreementLink && formData.signedAgreementLink.filename ? `/${formData.signedAgreementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.signedAgreementLink && formData.signedAgreementLink.filename}</a>
                               : 'Image file details over here'
                           }
+
+
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -327,13 +330,13 @@ class SignedAgreementPlacement extends Component {
                       <MDBCol md="2" />
                       <MDBCol md="10">
                         <MDBRow className="pt-3">
-                          <MDBCol sm="1" className="block-header">
-                            Result
+                          <MDBCol sm="2" className="block-header">
+                            Result:-
                           </MDBCol>
-                          <MDBCol sm="11" className="blue-font-color">
-                            {formData.status ? (formData.status == '0' ? 'Under Review' : 'Approved') : 'Under Review'}
+                          <MDBCol sm="10" className="blue-font-color">
+                            {formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'Approved') : 'Under Review'}
                           </MDBCol>
-                          <MDBCol sm="12">
+                          <MDBCol sm="12" className="pt-2">
                             {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank">Click to download final placement file.</a>}
                           </MDBCol>
                         </MDBRow>
@@ -402,9 +405,12 @@ class SignedAgreementPlacement extends Component {
           this.setState({
             formData: {
               ...response.data.agreementPlacement[0],
-              agreementTemplate: undefined, placementTemplate: undefined,
+              signedAgreement: undefined, filledPlacement: undefined,
               agreementTemplateLink: response.data.agreementPlacement[0].agreementTemplate && response.data.agreementPlacement[0].agreementTemplate,
               placementTemplateLink: response.data.agreementPlacement[0].placementTemplate && response.data.agreementPlacement[0].placementTemplate,
+              filledPlacementLink: response.data.agreementPlacement[0].filledPlacement && response.data.agreementPlacement[0].filledPlacement,
+              signedAgreementLink: response.data.agreementPlacement[0].signedAgreement && response.data.agreementPlacement[0].signedAgreement,
+              finalFilledPlacementLink: response.data.agreementPlacement[0].finalFilledPlacement && response.data.agreementPlacement[0].finalFilledPlacement,
             },
           })
         }
@@ -432,7 +438,7 @@ class SignedAgreementPlacement extends Component {
   };
 
   componentDidMount() {
-    this.fetchAgreementPlacementData()
+    this.fetchAgreementPlacementData();
   }
 }
 

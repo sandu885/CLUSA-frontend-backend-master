@@ -72,7 +72,9 @@ const updateFinalReportById = async (meta, file) => {
     finalReport.set("isSubmitted", 1);
     await updateProgramStatus(finalReport)
   } else if (meta.isSubmitted == 'false') {
-    finalReport.set("isSubmitted", 0);
+    if (finalReport.get("isSubmitted") != '1') {
+      finalReport.set("isSubmitted", 0);
+    }
   } else {
     finalReport.set("isSubmitted", 0);
   }

@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
   MDBContainer,
@@ -7,6 +6,7 @@ import {
   MDBRow, MDBCol, MDBCard
 } from 'mdbreact';
 import axios from 'axios';
+import { isEmpty } from 'lodash';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
@@ -83,6 +83,10 @@ class FinalReport extends Component {
   };
 
   validate = (data) => {
+    if (isEmpty(data)) {
+      alert('Please fill form before doing some action.');
+      return true
+    }
     if (data && data.q2 && data.q2['third'] && data.q2['third']) {
       const fileName = data.q2['third'].name;
       const allowFileExt = ['csv', 'xlx', 'xlsx'];
@@ -99,13 +103,13 @@ class FinalReport extends Component {
     const { formData: postData, sessionToken, role, programId, orgId } = this.state;
 
     if (this.validate(postData)) {
-      return 
+      return
     }
 
     const formData = new FormData();
     let postFinalReportURL = '/api/createNewFinalReport';
 
-    if (postData.q2['third']) {
+    if (postData && postData.q2 && postData.q2['third']) {
       postData.q2['third'] && formData.append('file', postData.q2['third']);
       delete postData.q2['third']
     }
@@ -116,17 +120,17 @@ class FinalReport extends Component {
     } else {
       postFinalReportURL = '/api/createNewFinalReport';
     }
-    formData.append("q1[first]", postData.q1['first'] || '');
-    formData.append("q1[second]", postData.q1['second'] || '');
-    formData.append("q1[third]", postData.q1['third'] || '');
+    formData.append("q1[first]", postData.q1 ? postData.q1['first'] || '' : '');
+    formData.append("q1[second]", postData.q1 ? postData.q1['second'] || '' : '');
+    formData.append("q1[third]", postData.q1 ? postData.q1['third'] || '' : '');
 
-    formData.append("q2[first]", postData.q2['first'] || '');
-    formData.append("q2[second]", postData.q2['second'] || '');
+    formData.append("q2[first]", postData.q2 ? postData.q2['first'] || '' : '');
+    formData.append("q2[second]", postData.q2 ? postData.q2['second'] || '' : '');
 
-    formData.append("q3[first]", postData.q3['first'] || '');
-    formData.append("q3[second]", postData.q3['second'] || '');
-    formData.append("q3[third]", postData.q3['third'] || '');
-    formData.append("q3[forth]", postData.q3['forth'] || '');
+    formData.append("q3[first]", postData ? postData.q3['first'] || '' : '');
+    formData.append("q3[second]", postData ? postData.q3['second'] || '' : '');
+    formData.append("q3[third]", postData ? postData.q3['third'] || '' : '');
+    formData.append("q3[forth]", postData ? postData.q3['forth'] || '' : '');
 
     formData.append('orgId', orgId);
     formData.append('programId', programId);
