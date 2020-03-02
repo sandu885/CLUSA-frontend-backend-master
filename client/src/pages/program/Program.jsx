@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
   MDBContainer,
@@ -7,13 +6,13 @@ import {
   MDBDataTable,
   MDBRow, MDBCol, MDBCard
 } from 'mdbreact';
+import Loader from "react-loader-spinner";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
 import './program.css'
-import Loader from "react-loader-spinner";
 
 class Program extends Component {
   constructor(props) {

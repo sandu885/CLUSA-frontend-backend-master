@@ -1,7 +1,9 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBDataTable} from 'mdbreact';
+import Loader from "react-loader-spinner";
 import { Redirect } from 'react-router';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 import './account.css';
@@ -11,7 +13,6 @@ import 'mdbreact/dist/css/mdb.css';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
-import {Link} from "react-router-dom";
 
 class Account extends Component {
   constructor(props) {
@@ -143,12 +144,12 @@ class Account extends Component {
           organization: response.data.data.organizationData,
           user: response.data.data.userData,
           columns,
-          dataReceived: true,
+          dataReceived: false,
         });
 
       }).catch((error) => {
         this.setState({
-          dataReceived: true,
+          dataReceived: false,
         });
         if(error.response !== null && error.response !== undefined) {
           if( error.response.data !== null && error.response.data !== undefined ) {
@@ -243,7 +244,7 @@ class Account extends Component {
   }
 
   render() {
-    const { status, redirectToLogin } = this.state;
+    const { status, redirectToLogin, dataReceived } = this.state;
     if (redirectToLogin === true) return <Redirect to="/login" />;
     if (this.state.redirectToNewApply === true) return <Redirect to="/internship-application-section01" />;
     if (this.state.redirectToReview === true) return <Redirect to="/organization-application-information" />;
@@ -318,16 +319,22 @@ class Account extends Component {
 
                     <MDBRow>
                       <MDBCol md="12">
-                        <MDBDataTable
-                          className="custom-table program-table"
-                          striped
-                          borderless
-                          displayEntries={false}
-                          data={programData}
-                          searching={false}
-                          noBottomColumns
-                          info={false}
-                        />
+                        {dataReceived ?
+                          <div style={{textAlign: 'center'}}>
+                            <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80}/>
+                          </div>
+                          :
+                          <MDBDataTable
+                            className="custom-table program-table"
+                            striped
+                            borderless
+                            displayEntries={false}
+                            data={programData}
+                            searching={false}
+                            noBottomColumns
+                            info={false}
+                          />
+                        }
                       </MDBCol>
                     </MDBRow>
                   </MDBCol>
