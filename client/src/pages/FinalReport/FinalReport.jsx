@@ -127,10 +127,10 @@ class FinalReport extends Component {
     formData.append("q2[first]", postData.q2 ? postData.q2['first'] || '' : '');
     formData.append("q2[second]", postData.q2 ? postData.q2['second'] || '' : '');
 
-    formData.append("q3[first]", postData ? postData.q3['first'] || '' : '');
-    formData.append("q3[second]", postData ? postData.q3['second'] || '' : '');
-    formData.append("q3[third]", postData ? postData.q3['third'] || '' : '');
-    formData.append("q3[forth]", postData ? postData.q3['forth'] || '' : '');
+    formData.append("q3[first]", postData.q3 ? postData.q3['first'] || '' : '');
+    formData.append("q3[second]", postData.q3 ? postData.q3['second'] || '' : '');
+    formData.append("q3[third]", postData.q3 ? postData.q3['third'] || '' : '');
+    formData.append("q3[forth]", postData.q3 ? postData.q3['forth'] || '' : '');
 
     formData.append('orgId', orgId);
     formData.append('programId', programId);
@@ -146,7 +146,7 @@ class FinalReport extends Component {
         formData,
       );
       console.warn('console User finish');
-      // alert()
+      alert('Final report save successfully.');
       history.goBack();
     } catch (error) {
       if(error.response !== null && error.response !== undefined) {

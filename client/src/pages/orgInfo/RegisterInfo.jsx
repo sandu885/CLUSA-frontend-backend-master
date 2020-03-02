@@ -908,7 +908,7 @@ class RegisterInfo extends Component {
                         htmlFor="register-password"
                         className="dark-grey-text
                         font-weight-light pt-2"
-                      >Re-type New Password
+                      >New Password
                         <input
                           type="password"
                           id="register-password"
