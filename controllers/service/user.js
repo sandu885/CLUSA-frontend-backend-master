@@ -183,7 +183,7 @@ const updateUserById = async(req, res) => {
 
 const deleteUserById = async(req, res) => {
   try {
-    let user = await USER.deleteUserById(req.body);
+    let user = await USER.deleteUserById({ userId: req.body.userId });
     console.log("Successfully updated User");
     res.status(200).json({
       message: 'Successfully updated User',

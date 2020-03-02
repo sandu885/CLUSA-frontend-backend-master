@@ -336,16 +336,22 @@ const updateUserById = async (meta) => {
 }
 
 const deleteUserById = async (meta) => {
-    if (!meta.sessionToken)
-        throw new Error("No sessionToken");
     console.log('Entered in the delete the user');
     Parse.User.enableUnsafeCurrentUser();
+
     let queryUser = new Parse.Query(Parse.User);
-
     queryUser.equalTo("objectId", meta.userId);
-    let userRecord = await queryUser.first({ useMasterKey: true });
+    let userRecord = await queryUser.first({useMasterKey: true});
 
-    return await userRecord.destroy();
+    userRecord.set('userType', null);
+    userRecord.set('username', '');
+    userRecord.set('firstName', '');
+    userRecord.set('lastName', '');
+    userRecord.set('emailAddress', '');
+    userRecord.set('phone', '');
+    userRecord.set('isDeleted', true);
+
+    return await userRecord.save(null, { useMasterKey: true });
 };
 
 const createUserByAdmin = async (meta) => {
