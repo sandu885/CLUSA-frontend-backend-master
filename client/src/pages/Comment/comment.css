@@ -2,7 +2,8 @@
     position: fixed;
     width: 100%;
     background-color: white;
-    top: 60%;
+    /*top: 60%;*/
+    bottom: 50px;
 }
 
 .comment-card-body {
