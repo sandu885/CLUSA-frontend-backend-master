@@ -58,8 +58,6 @@ class UserOrganizationManagement extends Component {
   render() {
     const { orgAll, userAll = [], dataReceived } = this.state;
 
-    console.log('this.state', this.state);
-
     const orgTableData = {
       columns: [
         {
@@ -308,7 +306,7 @@ class UserOrganizationManagement extends Component {
                     className="third-action-button btn-block z-depth-1a"
                     onClick={() => {}}
                   >
-                    {e.status}
+                    delete
                   </MDBBtn>
                 </MDBCol>
               </MDBRow>

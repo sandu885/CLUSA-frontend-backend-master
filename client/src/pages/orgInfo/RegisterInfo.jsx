@@ -703,6 +703,15 @@ class RegisterInfo extends Component {
     const submitRegistrationAPI = '/api/updateOrgInfo';
     const currentComponent = this;
     // console.warn(this.state);
+    if ((this.state.password || '').length < 6) {
+      return alert('Password min length should be 6')
+    }
+    if (this.state.password) {
+      if (this.state.password !== this.state.newpassword) {
+        return alert('Password does not match.')
+      }
+      alert("You would get logout");
+    }
     const formData = new FormData();
     const members = this.state.data;
     // let orgType = '';
@@ -743,12 +752,7 @@ class RegisterInfo extends Component {
     if (orgType === '1' || orgType === '2')formData.append('certificate', this.state.selectedFile1);
     if (orgType === '2') formData.append('mou', this.state.selectedFile2);
     if (orgType === '3') formData.append('orgTypeNote', this.state.orgTypeNote);
-    if (this.state.password) {
-      if (this.state.password !== this.state.newpassword) {
-        return alert('Password does not match.')
-      }
-      alert("You would get logout");
-    }
+
     if (this.handleValidation()) {
       axios.post(
         submitRegistrationAPI,
@@ -887,7 +891,7 @@ class RegisterInfo extends Component {
                         htmlFor="register-password"
                         className="dark-grey-text
                         font-weight-light pt-2"
-                      ><span className="redColor">* </span>Password
+                      >Password
                         <input
                           type="password"
                           id="register-password"
@@ -904,7 +908,7 @@ class RegisterInfo extends Component {
                         htmlFor="register-password"
                         className="dark-grey-text
                         font-weight-light pt-2"
-                      >New Password
+                      >Re-type New Password
                         <input
                           type="password"
                           id="register-password"

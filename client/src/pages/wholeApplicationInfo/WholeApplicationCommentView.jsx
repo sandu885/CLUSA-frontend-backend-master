@@ -487,7 +487,7 @@ class WholeApplicationCommentView extends Component {
               className="text-center"
             >
               <MDBCard>
-                <MDBCardBody className="mx-4">
+                <MDBCardBody style={{ marginBottom: '190px' }} className="mx-4">
                   <div className="text-center mb-4">
                     <h3 className="dark-grey-text mb-4">
                       <strong>Organization Application Information</strong>
