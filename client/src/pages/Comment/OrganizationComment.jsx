@@ -168,7 +168,7 @@ class OrganizationComment extends Component {
   render() {
     const { formData, commentData = [], programStatus, role, programId } = this.state;
 
-    const fixFooter = <MDBCardFooter className="comment-container comment-fix-footer">
+    const fixFooter = role == '1' ? null : <MDBCardFooter className="comment-container comment-fix-footer">
       <MDBRow>
         <MDBCol md="1" />
         <MDBCol md="10" style={{ display: 'flex' }}>

@@ -45,6 +45,7 @@ class Account extends Component {
       redirectToNewApply: false,
       redirectToReview: false,
       redirectToLogin: false,
+      dataReceived: true,
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
       programType,
