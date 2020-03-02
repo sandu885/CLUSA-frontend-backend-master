@@ -109,14 +109,14 @@ const fetchAllOrgs = async(user) => {
 
 // Get both general organization information and user account information
 const getOrgInfoById = async(user, orgId) => {
-    if (user.get("userType") == '0') {
-        if (!orgId)
-            throw new Error("No organization id");
-    } else if (user.get("userType") == '1') {
-        orgId = user.get("orgId");
-    }
-    if (!orgId)
-        throw new Error("wrong user type");
+    // if (user.get("userType") == '0') {
+    //     if (!orgId)
+    //         throw new Error("No organization id");
+    // } else if (user.get("userType") == '1') {
+    //     orgId = user.get("orgId");
+    // }
+    // if (!orgId)
+    //     throw new Error("wrong user type");
     let org = await findOrgById(orgId);
     console.log("getOrgInfoById: successfully get organization information");
     if (!org)
@@ -174,15 +174,20 @@ const updateOrgInfo = async(meta, files) => {
     if (!sessionRecord)
         throw new Error("sessionToken expired");
     let user = await sessionRecord.get('user'), orgId;
-    if (user.get('userType') == '0') {
-        if (!meta.orgId)
-            throw new Error("No organization id");
+    // if (user.get('userType') == '0') {
+    //     if (!meta.orgId)
+    //         throw new Error("No organization id");
+    if (meta.orgId) {
         orgId = meta.orgId;
-    } else if (user.get('userType') == '1') {
+    } else {
         orgId = user.get('orgId');
     }
-    if (!orgId)
-        throw new Error("Wrong user type");
+
+    // } else if (user.get('userType') == '1') {
+    //     orgId = user.get('orgId');
+    // }
+    // if (!orgId)
+    //     throw new Error("Wrong user type");
     let queryUser = new Parse.Query(Parse.User);
     queryUser.limit(10000);
     queryUser.equalTo("orgId", orgId);
