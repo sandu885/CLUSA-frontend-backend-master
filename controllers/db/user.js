@@ -287,7 +287,7 @@ const fetchAllUsers = async(user) => {
         ele["username"] = u.get("username");
         ele["firstName"] = u.get("firstName");
         ele["lastName"] = u.get("lastName");
-        ele["name"] = ele["firstName"] ? u.get("firstName") + ' ' +u.get("lastName") : '';
+        ele["name"] = ele["firstName"] ? u.get("firstName") + ' ' + (u.get("lastName") || '') : '';
         ele["title"] = u.get("title");
         // ROLE
         ele["userType"] = u.get("userType");
@@ -325,10 +325,19 @@ const updateUserById = async (meta) => {
     queryUser.equalTo("objectId", meta.userId);
     let userRecord = await queryUser.first({ useMasterKey: true });
 
+    if (meta.email !== userRecord.get('emailAddress')) {
+        let queryUser = new Parse.Query(Parse.User);
+        queryUser.equalTo("emailAddress", meta.emailAddress || meta.email);
+
+        let userRecord = await queryUser.first({useMasterKey: true});
+        if (userRecord)
+            throw new Error("Email Address already in use.");
+    }
+
     meta.username && userRecord.set("username", meta.username);
     meta.firstName && userRecord.set("firstName", meta.firstName);
     meta.lastName && userRecord.set("lastName", meta.lastName);
-    meta.email && userRecord.set("email", meta.email);
+    meta.email && userRecord.set("emailAddress", meta.email);
     meta.userType && userRecord.set("userType", meta.userType);
     meta.password && userRecord.set("userType", meta.password);
 
@@ -357,11 +366,19 @@ const deleteUserById = async (meta) => {
 const createUserByAdmin = async (meta) => {
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
+    if ((meta.emailAddress || meta.email)) {
+        let queryUser = new Parse.Query(Parse.User);
+        queryUser.equalTo("emailAddress", meta.emailAddress || meta.email);
+        let userRecord = await queryUser.first({useMasterKey: true});
+        if (userRecord)
+            throw new Error("Email Address already in use.");
+    }
+
     let User = Parse.Object.extend("User"), user = new User();
     meta.username && user.set("username", meta.username);
     meta.firstName && user.set("firstName", meta.firstName);
     meta.lastName && user.set("lastName", meta.lastName);
-    (meta.emailAddress || meta.email) && user.set("email", (meta.emailAddress || meta.email));
+    (meta.emailAddress || meta.email) && user.set("emailAddress", (meta.emailAddress || meta.email));
     meta.userType && user.set("userType", meta.userType);
     meta.password ? user.set("userType", meta.password) : user.set("password", 'test');
 

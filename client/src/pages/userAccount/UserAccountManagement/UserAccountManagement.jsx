@@ -42,7 +42,7 @@ class UserAccountManagement extends Component {
       return true
     }
     if (!formData.name) {
-      alert('Please enter full name address.');
+      alert('Please enter full name.');
       return true
     }
     const emailReg = /\S+@\S+\.\S+/;
@@ -71,10 +71,11 @@ class UserAccountManagement extends Component {
 
     let postData = formData;
     const fullName = postData.name.split(' ');
+    const firstName = fullName.splice(0 , 1)[0];
     postData = {
       ...postData,
-      firstName: fullName.splice(0 , 1)[0],
-      lastName: fullName.join(' '),
+      firstName: firstName,
+      lastName: (fullName.join(' ') || ''),
       userType: postData.role,
     };
     let postUser, passId;
@@ -113,7 +114,7 @@ class UserAccountManagement extends Component {
   };
 
   render() {
-    const { formData: { username = '', name = '', email = '' } } = this.state;
+    const { formData: { username = '', name = '', email = '', role = '' } } = this.state;
 
     return (
       <div className="bg-withImage">
@@ -189,7 +190,7 @@ class UserAccountManagement extends Component {
                         >
                           Role
                         </label>
-                        <select name="role" className="browser-default custom-select" onChange={this.handleChange}>
+                        <select name="role" className="browser-default custom-select" value={role} onChange={this.handleChange}>
                           <option>Choose Role</option>
                           <option value="3">IT Admin</option>
                           <option value="0">Grant Reviewer</option>
@@ -265,7 +266,7 @@ class UserAccountManagement extends Component {
         const formData = {
           username: response.data.user.username,
           email: response.data.user.emailAddress || response.data.user.email,
-          name: response.data.user.firstName + ' ' + response.data.user.lastName,
+          name: response.data.user.firstName + ' ' + (response.data.user.lastName || ''),
           role: response.data.user.userType,
         }
           // console.warn('organizations in CLUSA', this.getData('organizations'));
