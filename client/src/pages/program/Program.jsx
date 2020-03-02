@@ -67,6 +67,9 @@ class Program extends Component {
     postData = {
       ...postData,
     };
+    await this.setState({
+      dataReceived: true
+    });
     const fetchAllPrograms = '/api/fetchAllPrograms';
     try {
       const responseData = await axios({
@@ -88,9 +91,13 @@ class Program extends Component {
           columns: [ ...columns ],
           rows: [ ...rows ]
         },
+        dataReceived: false,
       });
       console.warn('console User finish');
     } catch (error) {
+      this.setState({
+        dataReceived: true
+      });
       if(error.response !== null && error.response !== undefined) {
         if (error.response.data !== null && error.response.data !== undefined) {
           if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
@@ -159,7 +166,7 @@ class Program extends Component {
                         </MDBCol>
                         <MDBCol md="4">
                           <select name="programType" className="browser-default custom-select form-control mt-2" value={programType} onChange={this.handleChange}>
-                            <option>Choose Program</option>
+                            <option value="">Choose Program</option>
                             <option value="0">Internship Grant</option>
                             <option value="1">Civic Leadership Forum Grant</option>
                             <option value="2">Capacity Building Grant</option>
@@ -175,7 +182,7 @@ class Program extends Component {
                         </MDBCol>
                         <MDBCol md="4">
                           <select name="status" className="browser-default custom-select form-control mt-2" value={status} onChange={this.handleChange}>
-                            <option>Select Status</option>
+                            <option value="">Select Status</option>
                             <option value="applying">Applying</option>
                             <option value="applied">Applied</option>
                             <option value="inView">In View</option>

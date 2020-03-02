@@ -123,7 +123,7 @@ const fetchAllPrograms = async(meta) => {
     if (meta.status) {
         queryProgram.equalTo("status", meta.status);
     }
-    if (meta.year && meta.year.length === 4) {
+    if (meta.year && meta.year.length >= 4) {
         queryProgram.equalTo("appliedYear", meta.year);
     }
     queryProgram.limit(10000);
@@ -133,22 +133,12 @@ const fetchAllPrograms = async(meta) => {
     for (let i in programRecords) {
         let ele = {};
         let queryOrg = new Parse.Query("Organization");
-        queryOrg.limit(1);
         queryOrg.equalTo("objectId", programRecords[i].get("orgId"));
+        if (meta.organizationName) {
+            queryOrg.fullText('name', (meta.organizationName || '').trim());
+        }
         let orgRecord = await queryOrg.first({useMasterKey: true});
 
-        let queryApplication = new Parse.Query("Application");
-        queryApplication.equalTo("programId", programRecords[i].id);
-        let appRecord = await queryApplication.find({useMasterKey: true});
-        appRecord.forEach((app) => {
-            // if (app.get('sectionIndex') === '1') {
-            //     ele["year"] = app.get('content')['1']['programs'] ? app.get('content')['1']['programs'][0]['startYear'] || '' : '';
-            // }
-            if (app.get('sectionIndex') === '10') {
-                ele["awardedAmount"] = app.get('content') ? app.get('content')['2'] : '0';
-                ele["actualAmount"] = app.get('content') ? app.get('content')['1'] ? [0]['budget'] : '' : '0';
-            }
-        });
         ele["year"] = programRecords[i].get("appliedDate") ? moment(programRecords[i].get("appliedDate")).format('YYYY') : '';
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
@@ -159,7 +149,6 @@ const fetchAllPrograms = async(meta) => {
         ele["orgName"] = orgRecord ? orgRecord.get('name') : '';
         ele["createdAt"] = programRecords[i].get("createdAt");
         ele["updatedAt"] = programRecords[i].get("updatedAt");
-
         if (orgRecord) {
             let queryCheck = new Parse.Query("Check");
             queryCheck.limit(3);
@@ -167,14 +156,19 @@ const fetchAllPrograms = async(meta) => {
             queryCheck.equalTo("programId", programRecords[i].id);
             let checkRecord = await queryCheck.find({useMasterKey: true});
 
+            let queryAgreementPlacement = new Parse.Query("AgreementPlacement");
+            queryAgreementPlacement.equalTo("orgId", orgRecord.id);
+            queryAgreementPlacement.equalTo("programId", programRecords[i].id);
+            let agreementPlacementRecord = await queryAgreementPlacement.first({useMasterKey: true});
+
             const checkData = JSON.parse(JSON.stringify(checkRecord));
 
             ele["actualAmount"] = checkData.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0) || null;
+            ele["awardedAmount"] = agreementPlacementRecord ? agreementPlacementRecord.get('awardAmount') : '';
         }
 
         if ((meta.organizationName || '').trim()) {
-            const orgName = orgRecord.get('name') || '';
-            if (orgName.includes((meta.organizationName || '').trim())) {
+            if (orgRecord) {
                 programs.push(ele);
                 // return
             }
