@@ -42,7 +42,7 @@ class Header extends Component {
       currentComponent.setState({
         responseMessage: response.data,
       });
-      console.warn('responseMessage', this.state.responseMessage);
+      // console.warn('responseMessage', this.state.responseMessage);
       // successfully logout ==========
       if (this.getData('message') === 'Logout success') {
         localStorage.clear();
@@ -83,7 +83,6 @@ class Header extends Component {
 
   render() {
     const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin } = this.state;
-    console.log('headerheader', this.state);
 
     if (clickLogOut === true || redirectToLogin === true) return <Redirect to="/login" />;
     if (redirectToCLUSAccount === true) return <Redirect to="/clusa-account" />;

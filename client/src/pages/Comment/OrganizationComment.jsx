@@ -295,6 +295,7 @@ class OrganizationComment extends Component {
       ).then((response) => {
         const commentData = response.data.comments.filter(e => e.type === 'appView');
         const comment = response.data.comments.find(e => e.userId === userId);
+        this.state.commentData = cloneDeep(commentData);
         this.setState({
           commentData: cloneDeep(commentData),
           formData: cloneDeep(comment || {}),
@@ -333,6 +334,7 @@ class OrganizationComment extends Component {
         },
       ).then((response) => {
         const commentData = response.data.comments.filter(e => e.type === 'appView');
+        this.state.commentData = cloneDeep(commentData);
         this.setState({
           commentData: cloneDeep(commentData),
           programStatus: cloneDeep(commentData),

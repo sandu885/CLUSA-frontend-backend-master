@@ -1,5 +1,5 @@
 .comment-fix-footer {
-    /*position: fixed;*/
+    position: fixed;
     width: 100%;
     background-color: white;
     top: 60%;

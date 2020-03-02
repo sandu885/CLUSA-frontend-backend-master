@@ -339,6 +339,7 @@ const deleteUserById = async (meta) => {
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
     console.log('Entered in the delete the user');
+    Parse.User.enableUnsafeCurrentUser();
     let queryUser = new Parse.Query(Parse.User);
 
     queryUser.equalTo("objectId", meta.userId);
