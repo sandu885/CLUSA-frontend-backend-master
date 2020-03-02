@@ -97,7 +97,7 @@ class FinalReportView extends Component {
                     Final Report View
                   </MDBCol>
                 </MDBRow>
-                <MDBCardBody className="comment-card-body">
+                <MDBCardBody style={{ marginBottom: '225px' }} className="comment-card-body">
                   <MDBRow>
                     <MDBCol md="1" />
                     <MDBCol md="10">
