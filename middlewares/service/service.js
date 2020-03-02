@@ -102,6 +102,7 @@ router.post('/updateFinalReportById', upload2.single('file'), finalReport.update
 router.post('/createNewProgramReport', upload2.single('file'), programReportController.createNewProgramReport);
 router.post('/updateProgramReportById', upload2.single('file'), programReportController.updateProgramReportById);
 
+router.post('/deleteUserById', userController.deleteUserById);
 router.use(userController.logger);
 
 // User Table
@@ -109,7 +110,7 @@ router.post('/fetchAllUsers', userController.fetchAllUsers);
 router.post('/findUserById', userController.findUserById);
 router.post('/updateUserById', userController.updateUserById);
 router.post('/createUserByAdmin', userController.createUserByAdmin);
-router.post('/deleteUserById', userController.deleteUserById);
+
 
 // Organization Table
 router.post('/findOrgById', orgController.findOrgById);
