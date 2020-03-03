@@ -80,7 +80,7 @@ const sendUserAddEmail = async(emailAddress, username, token) => {
   }
 }
 
-const forgetPassword = async(emailAddress, username, token) => {
+const forgetPassword = async(emailAddress, username, token, originLocation) => {
   try {
     if (!emailAddress)
       throw new Error("No email");
@@ -90,7 +90,7 @@ const forgetPassword = async(emailAddress, username, token) => {
       }
     }
     let client = nodemailer.createTransport(sgTransport(options));
-    const linkGeneration  = `<a href='http://18.144.133.201/forget-password?token=${token}'>click here. </a>`
+    const linkGeneration  = `<a href='${originLocation}/forget-password?token=${token}'>click here. </a>`
     let mailContent = {
       from: {
         name: 'CLUSA',

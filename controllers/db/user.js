@@ -135,8 +135,7 @@ const login = async(username, password) => {
 }
 
 // User forget password
-const forgetPassword = async({ emailAddress, organization: organizationName, ...other }) => {
-    console.log('================================', emailAddress, organizationName, other);
+const forgetPassword = async({ emailAddress, organization: organizationName, originLocation, ...other }) => {
     if (!emailAddress) {
         if (!organizationName)
             throw new Error("Pass email address or organization name");
@@ -157,7 +156,7 @@ const forgetPassword = async({ emailAddress, organization: organizationName, ...
 
         const payload = { email: userRecord.get("emailAddress"), username: userRecord.get("username") };
         const token = jwt.encode(payload, jwtSecret);
-        return await TOOL.forgetPassword(emailAddress, userRecord.get("username"), token);
+        return await TOOL.forgetPassword(emailAddress, userRecord.get("username"), token, originLocation);
     }
     if (organizationName) {
         queryOrganization.equalTo("name", organizationName);
@@ -173,7 +172,7 @@ const forgetPassword = async({ emailAddress, organization: organizationName, ...
         const payload = { email: userRecord.get("emailAddress"), username: userRecord.get("username") };
         const token = jwt.encode(payload, jwtSecret);
 
-        return await TOOL.forgetPassword(userRecord.get("emailAddress"), userRecord.get("username"), token);
+        return await TOOL.forgetPassword(userRecord.get("emailAddress"), userRecord.get("username"), token, originLocation);
     }
 
     throw new Error("Provided information was not proper.");
