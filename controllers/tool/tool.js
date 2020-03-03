@@ -98,9 +98,10 @@ const forgetPassword = async(emailAddress, username, token, originLocation) => {
       },
       to: emailAddress,
       subject: 'Reset password request',
-      html: `Dear ${username}, \n<br /> ${keys.signupText} 
-                \n<br /> Below is your account information: <br />\n username: ${username} \n<br />
-                \n<br /> This is your reset password link ${linkGeneration} \n<br />
+      html: `Dear ${username}, \n<br /> 
+                \n<br /> We got your request that forgot your password, please click the link below to reset your password \n
+                \n<br /> Below is your account information: <br />\n username: ${username} \n
+                \n<br /> This is your reset password link ${linkGeneration} \n
                 \n<br /> To reset password \n<br /> 
                 \n<br /> Best Regards, \n<br /> CLUSA`,
       attachments: null

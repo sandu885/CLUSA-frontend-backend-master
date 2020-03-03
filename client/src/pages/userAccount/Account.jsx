@@ -85,10 +85,11 @@ class Account extends Component {
   }
 
   async componentDidMount() {
-    const dataOrgCall = {sessionToken: this.state.sessionToken,}
+    const orgId = localStorage.getItem('orgId');
+    const dataOrgCall = {sessionToken: this.state.sessionToken, orgId};
 
     const fetchAllProgramsByOrgId = '/api/fetchAllProgramsByOrgId';
-    const orgId = localStorage.getItem('orgId');
+    // const orgId = localStorage.getItem('orgId');
     if (orgId) {
       const { programType } = this.state;
       await axios.post(
@@ -210,6 +211,7 @@ class Account extends Component {
             programId: this.getData('programId'),
           });
           localStorage.setItem('programId', this.state.programId);
+          this.props.history.push('/internship-application-section01');
           this.setState({
             redirectToNewApply: true,
           });
@@ -235,6 +237,8 @@ class Account extends Component {
       });
     } else if (this.state.status === 'applied') {
       console.warn('applied');
+      this.props.history.push('/organization-application-information');
+
       this.setState({
         redirectToReview: true,
       });
@@ -246,8 +250,8 @@ class Account extends Component {
   render() {
     const { status, redirectToLogin, dataReceived } = this.state;
     if (redirectToLogin === true) return <Redirect to="/login" />;
-    if (this.state.redirectToNewApply === true) return <Redirect to="/internship-application-section01" />;
-    if (this.state.redirectToReview === true) return <Redirect to="/organization-application-information" />;
+    // if (this.state.redirectToNewApply === true) return <Redirect to="/internship-application-section01" />;
+    // if (this.state.redirectToReview === true) return <Redirect to="/organization-application-information" />;
 
     const { programData, organization = {}, user = {} } = this.state;
 
@@ -355,7 +359,7 @@ class Account extends Component {
                 <MDBCardBody className="mx-4">
                   <div className="text-center">
                     <h3 className="dark-grey-text mb-5">
-                      <strong>My Application</strong>
+                      <strong>All Grants Program </strong>
                     </h3>
                   </div>
                   {/* ==================== intership program  ==================== */}
@@ -365,22 +369,22 @@ class Account extends Component {
                       className="ml-1"
                     >
                       <MDBCard>
-                        <MDBCardBody className="mx-4">
+                        <MDBCardBody className="mx-4" style={{ cursor: 'pointer' }} onClick={this.clickApplyBtn}>
                           <div className="text-center">
                             <h4 className="dark-grey-text mb-4">
                               <strong>Internship Program Grant</strong>
                             </h4>
                           </div>
-                          <div className="text-center mb-3">
-                            <MDBBtn
-                              gradient="blue"
-                              rounded
-                              className="btn-block z-depth-1a"
-                              onClick={this.clickApplyBtn}
-                            >
-                              { buttonText }
-                            </MDBBtn>
-                          </div>
+                          {/*<div className="text-center mb-3">*/}
+                          {/*  <MDBBtn*/}
+                          {/*    gradient="blue"*/}
+                          {/*    rounded*/}
+                          {/*    className="btn-block z-depth-1a"*/}
+                          {/*    onClick={this.clickApplyBtn}*/}
+                          {/*  >*/}
+                          {/*    { buttonText }*/}
+                          {/*  </MDBBtn>*/}
+                          {/*</div>*/}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
@@ -416,17 +420,17 @@ class Account extends Component {
                               <strong>Civic Leadership Forum Grant</strong>
                             </h4>
                           </div>
-                          <div className="text-center mb-3">
-                            <MDBBtn
-                              type="button"
-                              color="blue-grey"
-                              rounded
-                              disabled
-                              className="btn-block z-depth-1a"
-                            >
-                          Not Open Now
-                            </MDBBtn>
-                          </div>
+                          {/*<div className="text-center mb-3">*/}
+                          {/*  <MDBBtn*/}
+                          {/*    type="button"*/}
+                          {/*    color="blue-grey"*/}
+                          {/*    rounded*/}
+                          {/*    disabled*/}
+                          {/*    className="btn-block z-depth-1a"*/}
+                          {/*  >*/}
+                          {/*Not Open Now*/}
+                          {/*  </MDBBtn>*/}
+                          {/*</div>*/}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
@@ -464,17 +468,17 @@ class Account extends Component {
                             </h4>
                             <p>(By Invitation Only)</p>
                           </div>
-                          <div className="text-center mb-3">
-                            <MDBBtn
-                              type="button"
-                              color="blue-grey"
-                              rounded
-                              disabled
-                              className="btn-block z-depth-1a"
-                            >
-                          Not Open Now
-                            </MDBBtn>
-                          </div>
+                          {/*<div className="text-center mb-3">*/}
+                          {/*  <MDBBtn*/}
+                          {/*    type="button"*/}
+                          {/*    color="blue-grey"*/}
+                          {/*    rounded*/}
+                          {/*    disabled*/}
+                          {/*    className="btn-block z-depth-1a"*/}
+                          {/*  >*/}
+                          {/*Not Open Now*/}
+                          {/*  </MDBBtn>*/}
+                          {/*</div>*/}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
@@ -512,17 +516,17 @@ class Account extends Component {
                               <strong>CLUSA Technical Assistance Grants</strong>
                             </h4>
                           </div>
-                          <div className="text-center mb-3">
-                            <MDBBtn
-                              type="button"
-                              color="blue-grey"
-                              rounded
-                              disabled
-                              className="btn-block z-depth-1a"
-                            >
-                          Not Open Now
-                            </MDBBtn>
-                          </div>
+                          {/*<div className="text-center mb-3">*/}
+                          {/*  <MDBBtn*/}
+                          {/*    type="button"*/}
+                          {/*    color="blue-grey"*/}
+                          {/*    rounded*/}
+                          {/*    disabled*/}
+                          {/*    className="btn-block z-depth-1a"*/}
+                          {/*  >*/}
+                          {/*Not Open Now*/}
+                          {/*  </MDBBtn>*/}
+                          {/*</div>*/}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
