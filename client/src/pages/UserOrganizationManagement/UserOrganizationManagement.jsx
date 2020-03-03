@@ -23,6 +23,7 @@ class UserOrganizationManagement extends Component {
     this.state = {
       orgAll: [],
       dataReceived: true,
+      userResponse: [],
       sessionToken: localStorage.getItem('sessionToken'),
     };
   }
@@ -288,7 +289,7 @@ class UserOrganizationManagement extends Component {
                     size={"sm"}
                     className="second-action-button btn-block z-depth-1a"
                     onClick={() => {
-                      const findUser = this.state.userAll.find(u => u.orgId === e.objectId);
+                      const findUser = this.state.userResponse.find(u => u.orgId === e.objectId);
                       if (!findUser) {
                         return alert('User detail is not proper');
                       }
@@ -365,6 +366,7 @@ class UserOrganizationManagement extends Component {
         this.setState({
           orgAll,
           userAll: usersData,
+          userResponse: Users.data.users,
           dataReceived: false,
         });
 
@@ -375,6 +377,7 @@ class UserOrganizationManagement extends Component {
           if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
             localStorage.clear();
             alert('Your login status was expired. Please login again.');
+            this.props.history('/')
           }
         }
       }

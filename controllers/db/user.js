@@ -151,6 +151,13 @@ const forgetPassword = async({ emailAddress, organization: organizationName, ori
     if (emailAddress) {
         queryUser.equalTo("emailAddress", emailAddress);
         let userRecord = await queryUser.first({useMasterKey: true});
+
+        if (!userRecord) {
+            let queryUser1 = new Parse.Query(Parse.User);
+            queryUser1.equalTo("email", emailAddress);
+            userRecord = await queryUser1.first({useMasterKey: true});
+        }
+
         if (!userRecord)
             throw new Error("Invalid email");
 
@@ -167,12 +174,13 @@ const forgetPassword = async({ emailAddress, organization: organizationName, ori
         queryUser.equalTo("orgId", orgRecord.id);
         let userRecord = await queryUser.first({useMasterKey: true});
         if (!userRecord)
-            throw new Error("forget: Invalid organization name user not found");
+            throw new Error("Invalid organization name user not found");
+        const userEmail = userRecord.get("emailAddress") ? userRecord.get("emailAddress") : userRecord.get("email");
 
-        const payload = { email: userRecord.get("emailAddress"), username: userRecord.get("username") };
+        const payload = { email: userEmail, username: userRecord.get("username") };
         const token = jwt.encode(payload, jwtSecret);
 
-        return await TOOL.forgetPassword(userRecord.get("emailAddress"), userRecord.get("username"), token, originLocation);
+        return await TOOL.forgetPassword(userEmail, userRecord.get("username"), token, originLocation);
     }
 
     throw new Error("Provided information was not proper.");
@@ -351,15 +359,7 @@ const deleteUserById = async (meta) => {
     queryUser.equalTo("objectId", meta.userId);
     let userRecord = await queryUser.first({useMasterKey: true});
 
-    userRecord.set('userType', null);
-    userRecord.set('username', '');
-    userRecord.set('firstName', '');
-    userRecord.set('lastName', '');
-    userRecord.set('emailAddress', '');
-    userRecord.set('phone', '');
-    userRecord.set('isDeleted', true);
-
-    return await userRecord.save(null, { useMasterKey: true });
+    return await userRecord.destroy({ useMasterKey: true });
 };
 
 const createUserByAdmin = async (meta) => {

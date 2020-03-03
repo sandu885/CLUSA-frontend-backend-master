@@ -718,14 +718,17 @@ class RegisterInfo extends Component {
     const submitRegistrationAPI = '/api/updateOrgInfo';
     const currentComponent = this;
     // console.warn(this.state);
-    if ((this.state.password || '').length < 6) {
-      return alert('Password min length should be 6')
-    }
+
     if (this.state.password) {
+      if ((this.state.password || '').length < 6) {
+        return alert('Password min length should be 6')
+      }
       if (this.state.password !== this.state.newpassword) {
         return alert('Password does not match.')
       }
-      alert("You would get logout");
+      if (this.state.role == '1') {
+        alert("You would get logout");
+      }
     }
     const formData = new FormData();
     const members = this.state.data;
@@ -797,7 +800,7 @@ class RegisterInfo extends Component {
               saveSuccess: true,
             });
             if (this.state.role == '3') {
-              this.props.history.push('/UserOrganizationManagement');
+              this.props.history.push('/user-organization-management');
             } else {
               this.props.history.push('/account');
             }
@@ -912,7 +915,7 @@ class RegisterInfo extends Component {
                           htmlFor="register-password"
                           className="dark-grey-text
                           font-weight-light pt-2"
-                        >Password
+                        >New Password
                           <input
                             type="password"
                             id="register-password"
@@ -929,7 +932,7 @@ class RegisterInfo extends Component {
                           htmlFor="register-password"
                           className="dark-grey-text
                           font-weight-light pt-2"
-                        >New Password
+                        >Re-type New Password
                           <input
                             type="password"
                             id="register-password"
@@ -940,6 +943,35 @@ class RegisterInfo extends Component {
                             required
                           />
                         </label>
+
+                        <div className="text-center mb-3 mt-5">
+                          <MDBRow>
+                            <MDBCol md="6">
+                              <MDBBtn
+                                color="blue-grey"
+                                rounded
+                                className="btn-block z-depth-1a"
+                                // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
+                                href={this.state.role == '3' ? '/user-organization-management' : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
+                                  : 'account'
+                                }
+                              >
+                                {this.state.role == '3' ? 'Go Back' : 'Back To My Account'}
+                              </MDBBtn>
+                            </MDBCol>
+                            <MDBCol md="6">
+                              <MDBBtn
+                                gradient="blue"
+                                rounded
+                                className="btn-block z-depth-1a"
+                                onClick={this.clickSubmitBtn}
+                              >
+                                Save My Updates
+                              </MDBBtn>
+                            </MDBCol>
+                          </MDBRow>
+
+                        </div>
                       </form>
                     </div>
 
