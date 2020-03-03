@@ -47,8 +47,11 @@ class ForgetPassword extends Component {
 
     axios.post(
       forgetPasswordAPI,
-      { emailAddress: emailAddress,
-        organization: organization },
+      {
+        emailAddress: emailAddress,
+        organization: organization,
+        originLocation: window.location.origin,
+      },
     ).then((response) => {
       this.toggle()
     }).catch((error) => {
