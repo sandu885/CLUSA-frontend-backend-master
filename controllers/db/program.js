@@ -23,7 +23,17 @@ const fetchAllProgramsByUserId = async(userId) => {
     queryProgram.limit(10000);
     queryProgram.equalTo("userId", userId);
     return await queryProgram.find({useMasterKey: true});
-}
+};
+
+const fetchProgramById = async(programId) => {
+    if (!programId)
+        throw new Error("No Program id");
+
+    let queryProgram = new Parse.Query("Program");
+    queryProgram.equalTo("objectId", programId);
+
+    return await queryProgram.first({useMasterKey: true});
+};
 
 const fetchProgramDetailById = async(programId) => {
     if (!programId)
@@ -227,4 +237,5 @@ module.exports = {
     findProgramByOrgIdAndProgramType,
     fetchProgramDetailById,
     updateProgramByIdToCloseStatus,
+    fetchProgramById,
 }

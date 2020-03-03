@@ -25,6 +25,7 @@ class SignedAgreementPlacement extends Component {
       dataReceived: false,
       checkData: [],
       formData: {},
+      disableAllPostButton: false,
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
     };
@@ -87,7 +88,10 @@ class SignedAgreementPlacement extends Component {
   };
 
   handlePostAgreementPlacementClick = () => {
-    const { formData: postData, orgId, programId, role } = this.state;
+    const { formData: postData, orgId, programId, role, disableAllPostButton } = this.state;
+    if (disableAllPostButton) {
+      return alert('You can not perform this action now as report is submitted.');
+    }
 
     const formData = new FormData();
     if (!postData.objectId && this.validate(postData)) {
@@ -142,8 +146,6 @@ class SignedAgreementPlacement extends Component {
         }
       }
     });
-
-
   };
 
   handleChange = (e) => {
@@ -396,7 +398,8 @@ class SignedAgreementPlacement extends Component {
 
   fetchAgreementPlacementData = () => {
     const fetchAllAgreementPlacementsByOrgIdProgId = '/api/fetchAllAgreementPlacementsByOrgIdProgId';
-    const { orgId, programId } = this.state;
+    const fetchProgramById = '/api/fetchAllAgreementPlacementsByOrgIdProgId';
+    const { orgId, programId, role } = this.state;
 
     if (this.state.sessionToken) {
       axios.post(
@@ -406,7 +409,30 @@ class SignedAgreementPlacement extends Component {
           orgId,
           programId,
         },
-      ).then((response) => {
+      ).then(async (response) => {
+        if (role === '1') {
+          try {
+            const sd = await axios.post(
+              fetchProgramById,
+              {
+                sessionToken: this.state.sessionToken,
+                orgId,
+                programId,
+              },
+            )
+            if (sd.data && sd.data.finalReport) {
+              if (sd.data.finalReport.isSubmitted && sd.data.finalReport.isSubmitted == '1') {
+                this.setState({
+                  disableAllPostButton: true
+                });
+              }
+            }
+
+          } catch (idError) {
+            console.log(idError);
+          }
+        }
+
         if (response.data.agreementPlacement.length) {
           this.setState({
             formData: {

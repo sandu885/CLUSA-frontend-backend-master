@@ -49,6 +49,22 @@ const fetchProgramDetailById = async(req, res) => {
     }
 }
 
+const fetchProgramById = async(req, res) => {
+    try {
+        let program = await PROGRAM.fetchProgramById(req.body.programId);
+        console.log("Successfully fetch all programs by user id");
+        res.status(200).json({
+            message: "Successfully fetch all programs by user id",
+            program: program,
+        });
+    } catch(error) {
+        console.log(error.message);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
 const fetchAllProgramsByOrgId = async(req, res) => {
     try {
         let programs = await PROGRAM.fetchAllProgramsByOrgId(req.body.orgId);
@@ -106,4 +122,5 @@ module.exports = {
     fetchAllPrograms,
     fetchProgramDetailById,
     updateProgramCloseStatusById,
+    fetchProgramById,
 }

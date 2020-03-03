@@ -377,7 +377,7 @@ class UserOrganizationManagement extends Component {
           if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
             localStorage.clear();
             alert('Your login status was expired. Please login again.');
-            this.props.history('/')
+            this.props.history.push('/')
           }
         }
       }
