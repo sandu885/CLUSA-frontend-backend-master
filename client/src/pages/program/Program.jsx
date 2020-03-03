@@ -190,6 +190,7 @@ class Program extends Component {
                             <option value="firstCheckSent">First Check Sent</option>
                             <option value="reportSubmitted">Report Submitted</option>
                             <option value="finalCheckSent">Final Check Sent</option>
+                            <option value="closed">Closed</option>
                           </select>
                         </MDBCol>
                       </MDBRow>

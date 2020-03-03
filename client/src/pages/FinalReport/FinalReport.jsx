@@ -102,6 +102,12 @@ class FinalReport extends Component {
     const { history } = this.props;
     const { formData: postData, sessionToken, role, programId, orgId } = this.state;
 
+    if (postData.objectId) {
+      if (postData.isSubmitted && postData.isSubmitted == '1') {
+        return alert('You can not perform this action as report is submitted.');
+      }
+    }
+
     if (this.validate(postData)) {
       return
     }

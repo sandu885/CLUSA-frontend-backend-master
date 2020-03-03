@@ -39,6 +39,7 @@ class ProgramReport extends Component {
       role: localStorage.getItem('clusa-role'),
       open: false,
       deleteConfirm: false,
+      disableAllPostButton: false,
     };
   }
 
@@ -137,7 +138,10 @@ class ProgramReport extends Component {
 
   postProgramReport = () => {
     const { history } = this.props;
-    const { formData: postData, sessionToken, role, orgId, programId } = this.state;
+    const { formData: postData, sessionToken, role, orgId, programId, disableAllPostButton } = this.state;
+    if (disableAllPostButton) {
+      return alert('You can not perform this action now as report is submitted.');
+    }
 
     if (!postData.objectId && this.validate(postData)) {
       return true
@@ -547,7 +551,8 @@ class ProgramReport extends Component {
 
   fetchProgramReport = () => {
     const fetchAllProgramReportByOrgIdProgId = '/api/fetchAllProgramReportByOrgIdProgId';
-    const { orgId, programId } = this.state;
+    const { orgId, programId, role } = this.state;
+    const fetchProgramById = '/api/fetchAllFinalReportByOrgIdProgId';
 
     if (this.state.sessionToken) {
       axios.post(
@@ -557,7 +562,30 @@ class ProgramReport extends Component {
           orgId,
           programId,
         },
-      ).then((response) => {
+      ).then(async (response) => {
+
+        if (role === '1') {
+          try {
+            const sd = await axios.post(
+              fetchProgramById,
+              {
+                sessionToken: this.state.sessionToken,
+                orgId,
+                programId,
+              },
+            )
+            if (sd.data && sd.data.finalReport) {
+              if (sd.data.finalReport.isSubmitted && sd.data.finalReport.isSubmitted == '1') {
+                this.setState({
+                  disableAllPostButton: true
+                });
+              }
+            }
+
+          } catch (idError) {
+            console.log(idError);
+          }
+        }
 
         this.setState({
           programReportData: response.data.programReport,
