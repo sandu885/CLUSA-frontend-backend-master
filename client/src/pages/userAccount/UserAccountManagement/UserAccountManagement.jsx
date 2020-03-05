@@ -54,6 +54,8 @@ class UserAccountManagement extends Component {
       return true
     }
 
+    debugger
+
     if (!formData.role) {
       alert('Please select any role for the user.');
       return true
@@ -115,6 +117,7 @@ class UserAccountManagement extends Component {
 
   render() {
     const { formData: { username = '', name = '', email = '', role = '' } } = this.state;
+    console.log('debugger');
 
     return (
       <div className="bg-withImage">
@@ -191,7 +194,7 @@ class UserAccountManagement extends Component {
                           Role
                         </label>
                         <select name="role" className="browser-default custom-select" value={role} onChange={this.handleChange}>
-                          <option>Choose Role</option>
+                          <option value=''>Choose Role</option>
                           <option value="3">IT Admin</option>
                           <option value="0">Grant Reviewer</option>
                           <option value="1">Organization</option>
@@ -266,7 +269,7 @@ class UserAccountManagement extends Component {
         const formData = {
           username: response.data.user.username,
           email: response.data.user.emailAddress || response.data.user.email,
-          name: response.data.user.firstName + ' ' + (response.data.user.lastName || ''),
+          name: response.data.user.firstName ? (response.data.user.firstName || '') + ' ' + (response.data.user.lastName || '') : '',
           role: response.data.user.userType,
         }
           // console.warn('organizations in CLUSA', this.getData('organizations'));

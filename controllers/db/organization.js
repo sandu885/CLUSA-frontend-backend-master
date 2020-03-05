@@ -74,10 +74,13 @@ const fetchAllOrgs = async(user) => {
     // if (user.get("userType") != "0")
     //     throw new Error("No permission to fetch all organizations");
     let queryOrg = new Parse.Query("Organization");
+    // queryOrg.descending("createdAt");
+    // queryOrg.descending("_created_at");
     queryOrg.limit(10000);
     let orgRecords = await queryOrg.find({useMasterKey: true});
     let queryProgram = new Parse.Query("Program");
     queryProgram.limit(10000);
+    // queryProgram.rev
     let programRecords = await queryProgram.find({useMasterKey: true});
 
     console.log("fetchAllOrgs: successfully get all organizations and programs");
