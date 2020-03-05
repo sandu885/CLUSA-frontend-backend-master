@@ -239,8 +239,8 @@ class Login extends Component {
                   Sign Up
                     </a>
                   </p>
-                  <div className="font-small justify-content forget-password" style={{ color: '#aaa49e', marginRight: '13.25rem' }}>
-                    Recreate<Link className="ml-1" to="/recreate-login">Login</Link>
+                  <div className="font-small justify-content forget-password" style={{ color: '#aaa49e', width: '415px' }}>
+                    <Link className="ml-1" to="/recreate-login">Recreate log in due to contact person change</Link>
                   </div>
                 </MDBModalFooter>
               </MDBCard>

@@ -88,7 +88,7 @@ class RecreateLogin extends Component {
   render() {
     const { formData } = this.state;
 
-    let heading = 'Recreate login due to contact person change';
+    let heading = 'Recreate log in due to contact person change';
 
     return (
       <div className="bg-withImage">
