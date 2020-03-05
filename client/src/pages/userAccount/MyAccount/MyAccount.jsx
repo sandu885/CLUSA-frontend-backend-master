@@ -92,6 +92,10 @@ class MyAccount extends Component {
 
     const updateUserByAdmin = '/api/updateUserById';
     try {
+      if (this.state.postData) {
+        this.state.postData.username && localStorage.setItem('userName', this.state.postData.username);
+      }
+
       await axios({
         method: 'post',
         url: updateUserByAdmin,
