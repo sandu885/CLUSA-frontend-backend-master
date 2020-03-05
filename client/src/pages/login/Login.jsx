@@ -240,7 +240,7 @@ class Login extends Component {
                     </a>
                   </p>
                   <div className="font-small justify-content forget-password" style={{ color: '#aaa49e', width: '415px' }}>
-                    <Link className="ml-1" to="/recreate-login">Recreate log in due to contact person change</Link>
+                    <Link className="ml-1" to="/recreate-login">Recreate log</Link> in due to contact person change
                   </div>
                 </MDBModalFooter>
               </MDBCard>
