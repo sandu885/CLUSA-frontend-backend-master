@@ -353,7 +353,7 @@ class Checks extends Component {
                           }}>
                             {
                               second.checkFile ? second.checkFile.name :
-                                second.checkFileLink && <a href={`/${second.checkFileLink.path}`}  target="_blank"> {second.checkFileLink.filename} </a>
+                                second.checkFileLink && <a href={`/${second.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {second.checkFileLink.filename} </a>
                             }
                           </label>
                         </div>

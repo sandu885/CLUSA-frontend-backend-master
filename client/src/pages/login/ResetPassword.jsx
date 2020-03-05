@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBModalFooter, MDBModal, MDBModalHeader, MDBModalBody } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn } from 'mdbreact';
 import axios from 'axios';
 
 import './ForgetPassword.css';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
-import {queryStringToJSON} from "../../utils/util";
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -131,9 +130,7 @@ class ResetPassword extends Component {
                         <input type="password" name="newPassword" onChange={this.handleChange} className="form-control mt-2" value={newPassword} />
                       </MDBCol>
                     </MDBRow>
-
                     <br />
-
                     {/* ================== button group =================== */}
                     <div className="text-center mb-3">
                       <MDBRow>

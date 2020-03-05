@@ -255,9 +255,9 @@ class Account extends Component {
 
     const { programData, organization = {}, user = {} } = this.state;
 
-    let buttonText = '';
-    if (status === 'not applied') { buttonText = 'APPLY'; } else if (status === 'applying') buttonText = 'Continue Application';
-    else buttonText = 'Review Application';
+    // let buttonText = '';
+    // if (status === 'not applied') { buttonText = 'APPLY'; } else if (status === 'applying') buttonText = 'Continue Application';
+    // else buttonText = 'Review Application';
 
     return (
       <div className="bg-lightcolor">

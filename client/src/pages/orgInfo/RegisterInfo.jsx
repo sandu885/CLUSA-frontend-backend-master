@@ -38,7 +38,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
-import UserOrganizationManagement from "../UserOrganizationManagement/UserOrganizationManagement";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => (
@@ -789,7 +788,6 @@ class RegisterInfo extends Component {
         // console.warn('console finish');
         // ======================== success ========================
         if (response.data.message === 'Successfully update organization information') {
-          alert('Successfully update organization information');
           if (localStorage.getItem('orgId') === null || localStorage.getItem('orgId') === undefined) { // org call
             console.warn('organization submit');
             this.setState({

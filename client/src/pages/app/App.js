@@ -200,7 +200,8 @@ class App extends Component {
             <PrivateRoute component={ResetPassword} path="/reset-password" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={ResetPassword} path="/reset-password/:id" exact roles={['it-admin', 'reviewer']} />
 
-            <PublicRoute component={RecreateLogin} path="/recreate-login" exact roles={['it-admin', 'reviewer']} />
+            <Route component={RecreateLogin} path="/recreate-login" exact />
+            {/*<PublicRoute component={RecreateLogin} path="/recreate-login" exact roles={['it-admin', 'reviewer']} />*/}
           </Switch>
         </div>
       </Router>
