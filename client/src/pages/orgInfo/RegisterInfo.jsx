@@ -776,7 +776,12 @@ class RegisterInfo extends Component {
         submitRegistrationAPI,
         formData,
       ).then((response) => {
-        this.state.username && localStorage.setItem('userName', this.state.username);
+        alert('Save Successfully');
+        if (this.state.role == '1') {
+          this.state.username && localStorage.setItem('userName', this.state.username);
+        }
+        // this.state.username && localStorage.setItem('userName', this.state.username);
+
         currentComponent.setState({
           responseMessage: response.data,
         });
@@ -952,11 +957,11 @@ class RegisterInfo extends Component {
                                 rounded
                                 className="btn-block z-depth-1a"
                                 // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
-                                href={this.state.role == '3' ? '/user-organization-management' : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
-                                  : 'account'
+                                href={this.state.role == '3' ? '/user-organization-management' : (this.state.role == '2' || this.state.role == '0') ? `/${localStorage.getItem('orgId')}` : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
+                                  : '/account'
                                 }
                               >
-                                {this.state.role == '3' ? 'Go Back' : 'Back To My Account'}
+                                {this.state.role != '1' ? 'Go Back' : 'Back To My Account'}
                               </MDBBtn>
                             </MDBCol>
                             <MDBCol md="6">
