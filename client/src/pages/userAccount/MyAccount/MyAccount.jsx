@@ -92,15 +92,14 @@ class MyAccount extends Component {
 
     const updateUserByAdmin = '/api/updateUserById';
     try {
-      if (this.state.postData) {
-        this.state.postData.username && localStorage.setItem('userName', this.state.postData.username);
-      }
-
       await axios({
         method: 'post',
         url: updateUserByAdmin,
         data: { ...postData, sessionToken, userId: this.state.userId },
       });
+      if (postData) {
+        postData.username && localStorage.setItem('userName', postData.username);
+      }
       console.warn('console User finish');
       history.goBack();
     } catch (error) {
@@ -248,7 +247,10 @@ class MyAccount extends Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount', 'componentDidMount');
     const getFindUserById = '/api/findUserById';
+
+    debugger
 
     if (this.state.userId) {
       axios.post(
@@ -258,16 +260,19 @@ class MyAccount extends Component {
           userId: this.state.userId,
         },
       ).then((response) => {
+        debugger
         console.warn('clusa response', response.data.user);
+
+        debugger
 
         const formData = {
           username: response.data.user.username,
           email: response.data.user.emailAddress || response.data.user.email,
-          name: (response.data.user.firstName || '') + ' ' + (response.data.user.lastName || ''),
+          name: response.data.user.firstName ? (response.data.user.firstName || '') + ' ' + (response.data.user.lastName || '') : '',
           role: response.data.user.userType,
           password: response.data.user.password,
           newPassword: response.data.user.password,
-        }
+        };
         // console.warn('organizations in CLUSA', this.getData('organizations'));
         this.setState({
           formData,
