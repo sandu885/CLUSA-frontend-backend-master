@@ -270,7 +270,7 @@ class WholeApplicatoin extends Component {
           s12q10: finals12q10,
           s12q11: finals12q11,
           s11q1: finals11q1,
-          s13q1: finalss13q1,
+          s13q1: finalss13q1 ? typeof finalss13q1 == 'string' ? finalss13q1 ? finalss13q1.name : finalss13q1.name : '' : '',
           s13q2: finalss13q2,
           s13q3: finalss13q3,
           s13email: finals13email,
