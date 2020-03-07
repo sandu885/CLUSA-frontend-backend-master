@@ -584,17 +584,17 @@ class Register extends Component {
           <MDBRow>
             <MDBCol
               md="12"
-              className="text-center"
+              className="register-box"              
             >
               <MDBCard>
                 <MDBCardBody className="mx-4">
                   <div className="mb-4">
-                    <h3 className="dark-grey-text mb-4">
+                    <h3 className="mb-4">
                       <strong>Register</strong>
                     </h3>
                     <p className="redColor text-right">* Required</p>
                   </div>
-                  <div className="greyBG text-center pt-2 pb-2">
+                  <div className="sub-heading">
                     Account Registration Information
                   </div>
                   <div className="pt-4 text-left">
@@ -604,8 +604,7 @@ class Register extends Component {
                     >
                       {/* ----------- username ----------- */}
                       <label
-                        htmlFor="register-username"
-                        className="dark-grey-text font-weight-light"
+                        htmlFor="register-username"                        
                       ><span className="redColor">* </span>Username
                         <input
                           type="text"
@@ -622,7 +621,7 @@ class Register extends Component {
                       <label
                         htmlFor="register-password"
                         className="dark-grey-text
-                        font-weight-light pt-2"
+                        pt-2"
                       ><span className="redColor">* </span>Password
                         <input
                           type="text"
@@ -638,7 +637,7 @@ class Register extends Component {
                   </div>
 
                   {/* ----------- General Organization Information ----------- */}
-                  <div className="greyBG text-center pt-2 pb-2 mt-4">
+                  <div className="sub-heading mt-4">
                     General Organization Information
                   </div>
                   <div className="pt-4 text-left">
@@ -649,7 +648,6 @@ class Register extends Component {
                       {/* ----------- Organization Name ----------- */}
                       <label
                         htmlFor="register-orgname"
-                        className="dark-grey-text font-weight-light"
                       ><span className="redColor">* </span>Organization Name
                         <input
                           type="text"
@@ -665,7 +663,7 @@ class Register extends Component {
                       {/* ----------- parent org Name ----------- */}
                       <label
                         htmlFor="register-parentOrg"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       >Parent Organization (If this is a chapter of an organization, please list the parent organization name)
                         <input
                           type="text"
@@ -680,7 +678,7 @@ class Register extends Component {
                       {/* ----------- Geographic Region Served ----------- */}
                       <label
                         htmlFor="register-region"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       ><span className="redColor">* </span>Geographic Region Served (City/State)
                         <input
                           type="text"
@@ -694,18 +692,18 @@ class Register extends Component {
                       </label>
                       <br />
                       {/* ----------- Organization Type ----------- */}
-                      <label className="dark-grey-text font-weight-light pt-2">
+                      <label className="pt-2">
                         <span className="redColor">* </span>Organization Type
                       </label>
-                      <p className="text-justify color-gray"> CLUSA is only able to award grants to 501(c)(3) organizations. If your organization is a 501(c)(3) organization, please answer the question 1.1. If your organization does not qualify under this classification, you may register if you are partnered with a 501(c)(3) organization as your fiscal agent under a memorandum of understanding (MOU). Please answer the question 1.2 upload both the MOU and fiscal agent’s 501(c)(3) certificate. For other organizations still interested in registering in our website，please answer the question 1.3.</p>
+                      <p className="mb-4"> CLUSA is only able to award grants to 501(c)(3) organizations. If your organization is a 501(c)(3) organization, please answer the question 1.1. If your organization does not qualify under this classification, you may register if you are partnered with a 501(c)(3) organization as your fiscal agent under a memorandum of understanding (MOU). Please answer the question 1.2 upload both the MOU and fiscal agent’s 501(c)(3) certificate. For other organizations still interested in registering in our website，please answer the question 1.3.</p>
 
                       {/* ----------- options ----------- */}
                       {/* --------1.1------- */}
                       <label
                         htmlFor="register-type1"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       >
-                        <MDBRow className="pl-4">
+                        <MDBRow className="pl-3 mb-2">
                           {/* <input
                             type="radio"
                             name="orgType"
@@ -715,7 +713,7 @@ class Register extends Component {
                           />&nbsp; */}
                        1.1. If your organization is non-profit 501(c)(3), please provide:
                         </MDBRow>
-                        <MDBRow className="margin0">
+                        <MDBRow className="mb-4 file-box">
                           <div className="btn btn-light btn-sm float-left ml-4">
                             <input
                               type="file"
@@ -730,8 +728,8 @@ class Register extends Component {
                               // className={this.state.certificateInputError ? 'form-control errorInput' : 'form-control'}
                             />
                           </div>
-                          <div className="vertical-center">
-                            <p className="regularsize">
+                          <div className="vertical-center ml-4">
+                            <p>
                               <span className="redColor">* </span>Upload 501(c)(3) Certificate
                             </p>
                           </div>
@@ -740,9 +738,9 @@ class Register extends Component {
                       {/* --------1.2------- */}
                       <label
                         htmlFor="register-type2"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       >
-                        <MDBRow className="pl-4">
+                        <MDBRow className="pl-3 mb-2">
                           {/* <input
                             type="radio"
                             name="orgType"
@@ -752,7 +750,7 @@ class Register extends Component {
                           />&nbsp; */}
                         1.2. If your organization incorporated with a fiscal agent that has 501(c)(3) status:, please provide:
                         </MDBRow>
-                        <MDBRow className="margin0">
+                        <MDBRow className="mb-2 file-box">
                           <div className="btn btn-light btn-sm float-left ml-4">
                             <input
                               type="file"
@@ -767,13 +765,13 @@ class Register extends Component {
                               // className={this.state.certificateInputError ? 'form-control errorInput' : 'form-control'}
                             />
                           </div>
-                          <div className="vertical-center">
-                            <p className="regularsize">
+                          <div className="vertical-center ml-4">
+                            <p>
                               <span className="redColor">* </span>Upload Fiscal Agent’s 501(c)(3) Certificate
                             </p>
                           </div>
                         </MDBRow>
-                        <MDBRow className="margin0">
+                        <MDBRow className="mb-4 file-box">
                           <div className="btn btn-light btn-sm float-left ml-4">
                             <input
                               type="file"
@@ -787,8 +785,8 @@ class Register extends Component {
                               // }}
                             />
                           </div>
-                          <div className="vertical-center">
-                            <p className="regularsize">
+                          <div className="vertical-center ml-4">
+                            <p>
                               <span className="redColor">* </span>Upload MOU
                             </p>
                           </div>
@@ -798,9 +796,9 @@ class Register extends Component {
                       {/* --------1.3------- */}
                       <label
                         htmlFor="register-type3"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       >
-                        <MDBRow className="pl-4">
+                        <MDBRow className="pl-3">
                           {/* <input
                             type="radio"
                             name="orgType"
@@ -858,7 +856,7 @@ class Register extends Component {
                             </div>
                             { showingFiscalAgent
                               ? (
-                                <div className="pl-4">
+                                <div className="pl-3">
                                   <label
                                     htmlFor="register-region"
                                     className="dark-grey-text font-weight-light pt-2"
@@ -897,7 +895,7 @@ class Register extends Component {
                       {/* ----------- Address ----------- */}
                       <label
                         htmlFor="register-address1"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       ><span className="redColor">* </span>Mailing Address Line 1
                         <input
                           type="text"
@@ -911,7 +909,7 @@ class Register extends Component {
                       </label>
                       <label
                         htmlFor="register-address2"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       >Mailing Address Line 2
                         <input
                           type="text"
@@ -924,7 +922,7 @@ class Register extends Component {
                       </label>
                       <label
                         htmlFor="register-city"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       ><span className="redColor">* </span>City
                         <input
                           type="text"
@@ -938,7 +936,7 @@ class Register extends Component {
                       </label>
                       <label
                         htmlFor="register-state"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       ><span className="redColor">* </span>State/Province
                         <input
                           type="text"
@@ -952,7 +950,7 @@ class Register extends Component {
                       </label>
                       <label
                         htmlFor="register-zip"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       ><span className="redColor">* </span>Postal/Zipcode
                         <input
                           type="text"
@@ -965,13 +963,13 @@ class Register extends Component {
                         />
                       </label>
                       {/* ----------- Contact Section ----------- */}
-                      <div className="greyBG text-center pt-2 pb-2 mt-4">
+                      <div className="sub-heading mt-4">
                         Contact Information
                       </div>
                       {/* ----------- Contact Name ----------- */}
                       <label
                         htmlFor="register-firstname"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       ><span className="redColor">* </span>Contact First Name
                         <input
                           type="text"
@@ -985,7 +983,7 @@ class Register extends Component {
                       </label>
                       <label
                         htmlFor="register-lastname"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="pt-2"
                       ><span className="redColor">* </span>Contact Last Name
                         <input
                           type="text"
@@ -1000,7 +998,7 @@ class Register extends Component {
                       {/* ----------- Contact Title ----------- */}
                       <label
                         htmlFor="register-title"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       ><span className="redColor">* </span>Contact Title
                         <input
                           type="text"
@@ -1015,7 +1013,7 @@ class Register extends Component {
                       {/* ----------- Phone Number ----------- */}
                       <label
                         htmlFor="register-phone"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       ><span className="redColor">* </span>Phone Number
                         <input
                           type="tel"
@@ -1032,7 +1030,7 @@ class Register extends Component {
                       {/* ----------- Contact Email ----------- */}
                       <label
                         htmlFor="register-email"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       ><span className="redColor">* </span>Contact Email
                         <input
                           type="email"
@@ -1047,7 +1045,7 @@ class Register extends Component {
                       {/* ----------- Organization’s Mission Statement ----------- */}
                       <label
                         htmlFor="register-mission"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       ><span className="redColor">* </span>Organization’s Mission Statement
                         <textarea
                           id="register-mission"
@@ -1064,7 +1062,7 @@ class Register extends Component {
                       {/* ----------- Year Founded ----------- */}
                       <label
                         htmlFor="register-year"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       ><span className="redColor">* </span>Year Founded
                         <input
                           type="number"
@@ -1080,11 +1078,11 @@ class Register extends Component {
                       </label>
                       {/* ----------- Current Board Members ----------- */}
                       <label
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       ><span className="redColor">* </span>Current Board Members
                       </label>
-                      <p className="color-gray">
-                          Click <AddBox /> button beside search bar to add record to the table below. After you add a new record, please click the <Check /> mark on the left side of the data to save. To modify the record, click the <Edit /> mark, click the<DeleteOutline /> mark to delete record.
+                      <p>
+                          Click <AddBox /> button beside search bar to add record to the table below. After you add a new record, please click the <Check /> mark on the left side of the data to save. To modify the record, click the <Edit /> mark, click the <DeleteOutline /> mark to delete record.
                       </p>
                       <MaterialTable
                         icons={tableIcons}
@@ -1096,7 +1094,7 @@ class Register extends Component {
                         options={{
                           // toolbar: false,
                           paging: false,
-                          headerStyle: { background: '#f6f6f6', boxShadow: 'none' }, // change header padding
+                          headerStyle: { background: '#ffffff', boxShadow: 'none' }, // change header padding
                         }}
                         editable={{
                           onRowAdd: (newData) => new Promise((resolve) => {
@@ -1136,7 +1134,7 @@ class Register extends Component {
                       {/* ----------- Organization’s Programs ----------- */}
                       <label
                         htmlFor="register-program"
-                        className="dark-grey-text font-weight-light pt-4"
+                        className="dark-grey-text pt-4"
                       ><span className="redColor">* </span>Programs, please list all programs your organization has (eg. Internship Program, Civic Leadership Forum, etc.) :
                         <textarea
                           id="register-program"
@@ -1153,7 +1151,7 @@ class Register extends Component {
                       {/* ----------- Website ----------- */}
                       <label
                         htmlFor="register-website"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       >Website URL
                         <input
                           type="url"
@@ -1167,7 +1165,7 @@ class Register extends Component {
                       {/* ----------- Linkedin ----------- */}
                       <label
                         htmlFor="register-linkedin"
-                        className="dark-grey-text font-weight-light pt-2"
+                        className="dark-grey-text pt-2"
                       >LinkedIn Profile URL (if any)
                         <input
                           type="url"
@@ -1181,7 +1179,7 @@ class Register extends Component {
                       {/* ----------- Other Information ----------- */}
                       <label
                         htmlFor="register-other"
-                        className="dark-grey-text font-weight-light pt-4"
+                        className="dark-grey-text pt-2"
                       >Other Information You Want Us To Know About Your Organization
                         <textarea
                           id="register-other"
@@ -1196,11 +1194,11 @@ class Register extends Component {
                       </label>
                       {/* ----------- Privacy Policy ----------- */}
                       <label
-                        className="dark-grey-text font-weight-light pt-4"
+                        className="dark-grey-text pt-2"
                       ><span className="redColor">* </span>Privacy Policy
                       </label>
                       <div className="FixedHeightContainer">
-                        <div className="Content color-gray pl-2 pr-2">
+                        <div className="Content pl-2 pr-2">
                           <p className="text-justify pt-1">
                         Protecting your private information is our priority. This Statement of Privacy applies to Civic Leadership USA (CLUSA) and clusa.org and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to CLUSA include clusa.org, CLUSA and its affiliated programs. The CLUSA website is a civic leadership site. By using the CLUSA website, you consent to the data practices described in this statement.<br />
                             <br /><b>Collection of your Personal Information</b><br />
@@ -1265,7 +1263,7 @@ class Register extends Component {
                       </div>
                       <label
                         htmlFor="register-agree"
-                        className="dark-grey-text font-weight-light mt-2"
+                        className="dark-grey-text mt-2"
                       >
                         <input
                           type="checkbox"
@@ -1277,28 +1275,27 @@ class Register extends Component {
                           onChange={(e) => { this.handleCheckboxChange(e); this.setState({ agreeInputError: false }); }}
 
                           required
-                        /><span className="redColor pl-2">* </span>I agree
+                        />                        
+                        <span className="redColor pl-2">* </span>I agree
                       </label>
 
                       <br />
-                      <p className="text-justify color-gray mt-4">By submitting your information, you acknowledge the following:<br />
+                      <p className="text-justify mt-4">By submitting your information, you acknowledge the following:<br />
                         <br />Registering for prequalification does not guarantee acceptance by our grant-issuing committee.<br />
                         <br />After registration，you can use your username and password to log in and proceed to grant application(s). You can also update your account information. Please keep your login credentials safe, do not share with people outside your organization. Any questions please contact CLUSA at&nbsp;
                         <a
-                          href="mailto:info@clusa.org"
-                          className="color-gray"
+                          href="mailto:info@clusa.org"                         
                         >info@clusa.org
                         </a>
                       </p>
                     </form>
                   </div>
                   {/* ----------- submit button ----------- */}
-                  <div className="text-center mb-3 mt-5">
+                  <div className="mb-3 mt-4">
                     <MDBBtn
                       type="button"
-                      gradient="blue"
                       rounded
-                      className="btn-block z-depth-1a"
+                      className="z-depth-1a"
                       onClick={this.clickSubmitBtn}
                     >
                       Submit

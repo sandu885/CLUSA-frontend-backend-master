@@ -93,7 +93,7 @@ class Header extends Component {
         <MDBContainer>
           <MDBRow>
             <MDBCol
-              md="6"
+              md="4"
               className="text-left"
             >
               <button
@@ -108,14 +108,12 @@ class Header extends Component {
               </button>
             </MDBCol>
             <MDBCol
-              md="6"
+              md="8"
               className="text-right vertical-center"
             >
-              <div>
                 { userName != null ? (
                   <div>
-                    <span>welcome, <Link to="/my-account" className="user-name-header">{userName}</Link>  </span>
-                    
+                    <span>welcome, <Link to="/my-account" className="user-name-header m-0">{userName}</Link>  </span>
                     <MDBBtn
                       rounded
                       className="logoutBtn"
@@ -123,28 +121,40 @@ class Header extends Component {
                     >
                     Logout
                     </MDBBtn>
+                    <Link to="#"> 
+                      <div className="profile-pic">
+                        <div className="profile-name">John Smith</div>
+                        <div className="profile-img">
+                            {/* Profile Image code */}
+                        </div>
+                        
+                      </div>
+                    </Link>
                   </div>
                 ) : (
                   <div>
                     <a
                       className="whiteBlue"
                       href="/"
-                    >Login /
+                    >Login
                     </a>
                     <a
                       className="whiteBlue"
                       href="/register"
                     > Register
                     </a>
+                   
                   </div>
-                )}
-              </div>
+                )}              
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </div>
+      
     );
   }
 }
+
+
 
 export default Header;

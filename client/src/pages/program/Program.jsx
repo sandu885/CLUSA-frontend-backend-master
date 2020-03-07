@@ -145,8 +145,7 @@ class Program extends Component {
                 </MDBRow>
                 <MDBCardBody>
                   <MDBRow className="header-section">
-                    <MDBCol md="1" />
-                    <MDBCol md="10">
+                    <MDBCol md="12">
                       <MDBRow className="pt-4">
                         <MDBCol
                           md="2"
@@ -221,13 +220,11 @@ class Program extends Component {
                         </MDBRow>
                       </div>
                     </MDBCol>
-                    <MDBCol md="1" />
                   </MDBRow>
                   <br />
                   <br />
-                  <MDBRow>
-                    <MDBCol md="1" />
-                    <MDBCol md="10">
+                  <MDBRow>                    
+                    <MDBCol md="12">
                       {dataReceived ?
                         <div style={{textAlign: 'center'}}>
                           <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80}/>
@@ -244,7 +241,6 @@ class Program extends Component {
                         />
                       }
                     </MDBCol>
-                    <MDBCol md="1" />
                   </MDBRow>
                 </MDBCardBody>
               </MDBCard>

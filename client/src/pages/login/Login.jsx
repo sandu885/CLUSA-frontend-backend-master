@@ -175,24 +175,21 @@ class Login extends Component {
         <MDBContainer className="pb-3 mb-2 mt-2">
           <img
             src={CLUSAlogo}
-            className="mx-auto d-block clusalogo mb-3 mt-3"
+            className="mx-auto d-block clusalogo mt-3"
             alt="aligment"
           />
           <MDBRow>
             <MDBCol md="3" />
             <MDBCol
-              md="6"
-              className="text-center"
+              md="6"              
             >
-              <MDBCard>
+              <MDBCard className="card-small">
                 <MDBCardBody className="mx-4">
-                  <div className="text-center">
-                    <h3 className="dark-grey-text mb-5">
+                    <h3 className="dark-grey-text">
                       <strong>Login</strong>
-                    </h3>
-                  </div>
+                    </h3>                  
                   <MDBInput
-                    label="Your account"
+                    
                     group
                     type="text"
                     validate
@@ -201,7 +198,7 @@ class Login extends Component {
                     onChange={(e) => this.setState({ username: e.target.value })}
                   />
                   <MDBInput
-                    label="Your password"
+                    
                     group
                     type="password"
                     validate
@@ -209,40 +206,46 @@ class Login extends Component {
                     onChange={(e) => this.setState({ password: e.target.value })}
                   />
                   {username}
-                  <br />
+                  
                   {password}
+                  <p className="mb-2 forget-password">
+                    Forgot
+                    <Link to="/forget-password" className="ml-1">
+                      Password?
+                    </Link>
+                  </p>
                   {/* ================== button group =================== */}
-                  <div className="text-center mb-3">
+                  <div className="mb-3">
                     <MDBBtn
-                      gradient="blue"
                       rounded
-                      className="btn-block z-depth-1a"
+                      className="z-depth-1a"
                       onClick={this.clickLoginBtn}
                     >
                   Sign in
                     </MDBBtn>
                   </div>
-                </MDBCardBody>
-                <MDBModalFooter className="mx-5 pt-3 mb-1">
-                  <div className="font-small blue-text justify-content forget-password">
+                  {/* <div className="font-small justify-content forget-password">
                     Forgot
-                    <Link to="/forget-password" className="blue-text ml-1">
+                    <Link to="/forget-password" className="ml-1">
                       Password?
                     </Link>
-                  </div>
-                  <p className="font-small grey-text d-flex justify-content-end">
+                  </div> */}
+                  <p className="mb-0">
                 Don&apos;t have an account?
                     <a
                       href="/register"
-                      className="blue-text ml-1"
+                      className="ml-1"
                     >
                   Sign Up
                     </a>
                   </p>
-                  <div className="font-small justify-content forget-password" style={{ color: '#aaa49e', width: '415px' }}>
-                    <Link className="ml-1" to="/recreate-login">Recreate log</Link> in due to contact person change
-                  </div>
-                </MDBModalFooter>
+                  <p className="forget-password">
+                    <Link to="/recreate-login">Recreate log</Link> in due to contact person change
+                  </p>
+                </MDBCardBody>
+                {/* <MDBModalFooter className="mx-5 pt-3 mb-1">
+                  
+                </MDBModalFooter> */}
               </MDBCard>
             </MDBCol>
             <MDBCol md="3" />
