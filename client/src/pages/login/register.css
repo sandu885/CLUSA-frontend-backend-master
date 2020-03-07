@@ -14,19 +14,46 @@
   text-align: left !important;
 }
 
-.FixedHeightContainer
-{
+.FixedHeightContainer{
   float:right;
-  height: 250px; 
-  padding:3px; 
-  /* background:#f00; */
-  border: 1px solid #cfd5db;
+  height: 150px !important;  
+  padding:3px 0px 20px 3px !important;  
+  border-style: solid !important;
+  border-width: 2px !important;
+  border-color: rgb(225, 225, 225) !important;
   border-radius: 5px;
 }
-
-.Content
-{
-  height:244px;
-   overflow:auto;
-    background:#fff;
+.Content{
+  height:140px !important;
+  overflow:auto;
+  background:#fff;
+}
+.register-box .form-control{
+  margin-top: 3px;
+}
+.register-box .MuiSvgIcon-root{
+  background: #556ee6;
+  border-radius: 3px;
+  padding: 2px;
+  fill: #ffffff;
+  margin: 0 2px 0 2px;
+  width: 0.7em;
+  height: 0.7em;
+}
+.register-box .MuiTypography-h6{
+  font-weight: 400;
+  color: #666666;
+  font-size: 14px;
+}
+.register-box .MuiPaper-elevation2{
+  box-shadow: none !important;
+  border-radius: 0px !important;
+}
+.register-box .MTableHeader-header-153{
+  width: auto !important;
+  padding: 8px 0 8px 0;
+  text-align: left !important;
+}
+.register-box .MuiToolbar-regular{
+  padding-left: 0 !important;
 }

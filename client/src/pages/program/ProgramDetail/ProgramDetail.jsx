@@ -156,7 +156,6 @@ class ProgramDetail extends Component {
                       <MDBCol md="12">
                         <hr/>
                       </MDBCol>
-                      <MDBCol md="1" />
                       <MDBCol md="10">
                         <MDBRow>
                           <MDBCol md="5" className="program-detail-sub-header font-weight-bold">
@@ -200,7 +199,6 @@ class ProgramDetail extends Component {
                           </MDBCol>
                         </MDBRow>
                       </MDBCol>
-                      <MDBCol md="1" />
                     </MDBRow>
                     <br />
 
