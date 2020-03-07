@@ -8,6 +8,8 @@ import './ForgetPassword.css';
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
 
+import CLUSAlogo from '../../images/clusaLogo.png';
+
 class ForgetPassword extends Component {
   constructor(props) {
     super(props);
@@ -101,82 +103,77 @@ class ForgetPassword extends Component {
       <div className="bg-withImage">
         <HeaderComponent />
         <MDBContainer className="pb-3 mb-2 mt-2">
+          <img
+            src={CLUSAlogo}
+            className="mx-auto d-block clusalogo mt-3"
+            alt="aligment"
+          />
           <MDBRow>
-            <MDBCol md="1" />
             <MDBCol
-              md="10"
-              className="text-center"
+              md="12"              
             >
               {!token ?
                 <MDBCard>
                   <MDBCardBody className="mx-4">
-                    <div className="text-center">
-                      <h3 className="dark-grey-text mb-5">
+                    <div>
+                      <h3>
                         <strong>Forget Username / Password</strong>
                       </h3>
                     </div>
                     <MDBRow>
                       <MDBCol
-                        md="4"
-                        className="pt-3 font-weight-bold"
+                        md="12"
+                        className="font-weight-bold"
                       >Please provide Email Address:
                       </MDBCol>
-                      <MDBCol md="8">
+                      <MDBCol md="12">
                         <input type="email" name="emailAddress" onChange={this.handleChange} className="form-control mt-2" value={emailAddress} />
                       </MDBCol>
                     </MDBRow>
 
                     <MDBRow>
                       <MDBCol
-                        md="4"
-                        className="pt-3 font-weight-bold"
+                        md="12"
+                        className="font-weight-bold"
                       >Or Organization Name:
                       </MDBCol>
-                      <MDBCol md="8">
+                      <MDBCol md="12">
                         <input type="text" name="organization" onChange={this.handleChange} className="form-control mt-2" value={organization} />
                       </MDBCol>
                     </MDBRow>
 
-                    <br />
-
                     {/* ================== button group =================== */}
-                    <div className="text-center mb-3">
+                    <div className="mt-3">
                       <MDBRow>
-                        <MDBCol md="6">
+                        <MDBCol md="12">
                           <MDBBtn
                             rounded
-                            className="btn-block z-depth-1a"
+                            className="z-depth-1a"
                             onClick={this.clickForgetPassword}
                           >
                             Submit
                           </MDBBtn>
-                        </MDBCol>
-                        <MDBCol md="6">
                           <MDBBtn
-                            color="red"
+                            color="danger"
                             rounded
-                            className="btn-block z-depth-1a"
+                            className="z-depth-1a"
                             onClick={this.clickCancelButton}
                           >
                             Cancel
                           </MDBBtn>
-                        </MDBCol>
+                          <p className="mt-2">
+                            Don&apos;t have an account?
+                            <a
+                              href="/register"
+                              className="blue-text ml-1"
+                            >
+                              Sign Up
+                            </a>
+                          </p>
+                        </MDBCol>                       
                       </MDBRow>
-
-
                     </div>
                   </MDBCardBody>
-                  <MDBModalFooter className="mx-5 pt-3 mb-1">
-                    <p className="font-small grey-text d-flex justify-content-end">
-                      Don&apos;t have an account?
-                      <a
-                        href="/register"
-                        className="blue-text ml-1"
-                      >
-                        Sign Up
-                      </a>
-                    </p>
-                  </MDBModalFooter>
                 </MDBCard>
                 :
                 <MDBCard>
@@ -277,7 +274,6 @@ class ForgetPassword extends Component {
                 </MDBCard>
               }
             </MDBCol>
-            <MDBCol md="1" />
           </MDBRow>
           <MDBModal isOpen={this.state.linkSend && !this.state.token} toggle={this.toggle}>
             <MDBModalHeader>Success!</MDBModalHeader>
