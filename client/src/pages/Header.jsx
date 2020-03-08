@@ -114,7 +114,7 @@ class Header extends Component {
             >
                 { userName != null ? (
                   <div>
-                    <span>welcome, <Link to="/my-account" className="user-name-header m-0">{userName}</Link>  </span>
+                    
                     <MDBBtn
                       rounded
                       className="logoutBtn"
@@ -124,7 +124,7 @@ class Header extends Component {
                     </MDBBtn>
                     <Link to="#"> 
                       <div className="profile-pic">
-                        <div className="profile-name">John Smith</div>
+                        <div className="profile-name"><span><Link to="/my-account" className="user-name-header m-0">{userName}</Link>  </span></div>
                         <div className="profile-img">
                             {/* Profile Image code */}
                         </div>
@@ -196,6 +196,7 @@ class Header extends Component {
           
         </div>
       </div>
+      
     );
   }
 }
