@@ -132,235 +132,217 @@ class ProgramDetail extends Component {
     // const tenthSection = application.find(app => app.sectionIndex === "10");
     const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
 
-    let heading = 'Program Detail Page';
+    let heading = 'Program Detail';
 
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>{heading}</h1>
+            </MDBCol>            
+          </MDBRow>            
+        </MDBContainer>
+        <MDBContainer className="mb-5">
           {dataReceived &&
             <MDBRow>
               <MDBCol md="12">
-                <MDBCard>
-                  <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                    <MDBCol>
-                      {heading}
-                    </MDBCol>
-                  </MDBRow>
+                <MDBCard className="card-padding">
                   <MDBCardBody>
                     <MDBRow className="header-section">
-                      <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                        Program Info
-                      </MDBCol>
                       <MDBCol md="12">
-                        <hr/>
-                      </MDBCol>
-                      <MDBCol md="10">
-                        <MDBRow>
-                          <MDBCol md="5" className="program-detail-sub-header font-weight-bold">
-                            <MDBRow>
-                              Program:- <span> {programName && programName.name} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              Applied Date:- <span> {program.appliedDate ? moment(program.appliedDate).format('DD/MM/YYYY') : ''} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              1st Check Date:- <span> {checks[0] ? checks[0].date : ''} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              Inter Placement #:- <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span>
-                            </MDBRow>
-                          </MDBCol>
-                          <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
-                            <MDBRow>
-                              Applied Year:- <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              Award Date:- <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              2nd Check Date:- <span> {checks[1] ? checks[1].date : ''} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              Actual Award Amount:- <span> {actualAwardAmount && actualAwardAmount} </span>
-                            </MDBRow>
-                          </MDBCol>
-                          <MDBCol md="3" className="program-detail-sub-header font-weight-bold">
-                            <MDBRow>
-                              Status:- <span style={{ textTransform: 'capitalize' }}> {program.status ? program.status.replace( /([A-Z])/g, " $1" ) : ''} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              Award Amount:- <span> {agreementPlacement[0] && agreementPlacement[0].awardAmount} </span>
-                            </MDBRow>
-                            <MDBRow>
-                              Org Name:- <span className="span-ellipsis"> {organization && organization.name && organization.name} </span>
-                            </MDBRow>
-                          </MDBCol>
-                        </MDBRow>
+                        <h3>Program Info</h3>
                       </MDBCol>
                     </MDBRow>
-                    <br />
-
+                    <div className="grey-bg">
                     <MDBRow>
-                      <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                        Application Info
-                      </MDBCol>
-                      <MDBCol md="12">
-                        <hr/>
-                      </MDBCol>
-
-                      <MDBCol md="2" />
-                      <MDBCol md="8" className="program-detail-sub-header font-weight-bold app-info">
-
+                      <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                         <MDBRow>
-                          <MDBCol md="7">
-                            Application Information
-                          </MDBCol>
-                          <MDBCol md="5">
-                            <MDBBtn
-                              rounded
-                              size={"sm"}
-                              className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={this.handleAppCommentClick}
-                            >
-                              Review
-                            </MDBBtn>
-                          </MDBCol>
-
+                          <MDBCol md="5">Program:-</MDBCol> <MDBCol md="7"><span> {programName && programName.name} </span></MDBCol>
                         </MDBRow>
-
                         <MDBRow>
-                          <MDBCol md="7">
-                            Agreement & Placement
-                          </MDBCol>
-                          <MDBCol md="5">
-                            <MDBBtn
-                              rounded
-                              size={"sm"}
-                              className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={() => {
-                                const { history } = this.props;
-
-                                const { programData: { program = {} }, role } = this.state;
-                                if (program && program.objectId && program.orgId) {
-                                  if (role === '1') {
-                                    return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
-                                  }
-                                  history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
-                                } else {
-                                  return alert('Not having proper detail to access this information.')
-                                }
-                              }}
-                            >
-                              Review
-                            </MDBBtn>
-                          </MDBCol>
+                          <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('DD/MM/YYYY') : ''} </span></MDBCol>
                         </MDBRow>
-
-                        {this.state.role != '1' &&
+                        <MDBRow>
+                          <MDBCol md="5">1st Check Date:-</MDBCol> <MDBCol md="7"> <span> {checks[0] ? checks[0].date : ''} </span></MDBCol>
+                        </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="5">Inter Placement #:-</MDBCol> <MDBCol md="7"> <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span></MDBCol>
+                        </MDBRow>
+                      </MDBCol>
+                      <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
+                        <MDBRow>
+                          <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span></MDBCol>
+                        </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="5">Award Date:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span></MDBCol>
+                        </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="5">2nd Check Date:-</MDBCol> <MDBCol md="7"> <span> {checks[1] ? checks[1].date : ''} </span></MDBCol>
+                        </MDBRow>
+                        <MDBRow>
+                          <MDBCol md="5">Actual Award Amount:-</MDBCol> <MDBCol md="7"> <span> {actualAwardAmount && actualAwardAmount} </span></MDBCol>
+                        </MDBRow>
+                      </MDBCol>
+                      <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                           <MDBRow>
-                            <MDBCol md="7">
-                              Send 1st Check
-                            </MDBCol>
-                            <MDBCol md="5">
-                              <MDBBtn
-                                rounded
-                                size={"sm"}
-                                className="application-info-button second-action-button btn-block z-depth-1a"
-                                onClick={() => {
-                                  const { history } = this.props;
-                                  const { programData: { program } } = this.state;
-                                  if (program) {
-                                    history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
-                                  }
-                                }}
-                              >
-                                Review
-                              </MDBBtn>
-                            </MDBCol>
+                            <MDBCol md="5">Status:-</MDBCol> <MDBCol md="7"> <span style={{ textTransform: 'capitalize' }}> {program.status ? program.status.replace( /([A-Z])/g, " $1" ) : ''} </span></MDBCol>
                           </MDBRow>
-                        }
-
-
-                        <MDBRow>
-                          <MDBCol md="7">
-                            Program Report
-                          </MDBCol>
-                          <MDBCol md="5">
-                            <MDBBtn
-                              rounded
-                              size={"sm"}
-                              className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={() => {
-                                const { history } = this.props;
-                                const { programData: { program } } = this.state;
-                                if (program) {
-                                  history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}`);
-                                }
-                              }}
-                            >
-                              Review
-                            </MDBBtn>
-                          </MDBCol>
-                        </MDBRow>
-
-                        <MDBRow>
-                          <MDBCol md="7">
-                            Final Report
-                          </MDBCol>
-                          <MDBCol md="5">
-                            <MDBBtn
-                              rounded
-                              size={"sm"}
-                              className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={this.state.role === '1' ? this.handleFinalReportClick : this.handleFinalReportCommentClick}
-                            >
-                              Review
-                            </MDBBtn>
-                          </MDBCol>
-                        </MDBRow>
-                        {this.state.role != '1' &&
                           <MDBRow>
-                          <MDBCol md="7">
-                            Send final check
+                            <MDBCol md="5">Award Amount:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].awardAmount} </span></MDBCol>
+                          </MDBRow>
+                          <MDBRow>
+                            <MDBCol md="5">Org Name:-</MDBCol> <MDBCol md="7"> <span className="span-ellipsis"> {organization && organization.name && organization.name} </span></MDBCol>
+                          </MDBRow>
+                        </MDBCol>
+                    </MDBRow>
+                    </div>
+                    <MDBRow>
+                      <MDBCol md="12">
+                        <h3>Application Info</h3>
+                      </MDBCol>
+                     
+                      <MDBCol md="11" className="program-detail-sub-header font-weight-bold app-info">
+                        <MDBRow>
+                          <MDBCol md="4">
+                            <MDBRow>
+                              <MDBCol md="6">
+                                Application Information
+                              </MDBCol>
+                              <MDBCol md="6">
+                                <MDBBtn
+                                  rounded
+                                  className="application-info-button second-action-button z-depth-1a"
+                                  onClick={this.handleAppCommentClick}
+                                >
+                                  Review
+                                </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
+                            <MDBRow>
+                              <MDBCol md="6">
+                                Agreement & Placement
+                              </MDBCol>
+                              <MDBCol md="6">
+                                <MDBBtn
+                                  rounded
+                                  className="application-info-button second-action-button z-depth-1a"
+                                  onClick={() => {
+                                    const { history } = this.props;
+
+                                    const { programData: { program = {} }, role } = this.state;
+                                    if (program && program.objectId && program.orgId) {
+                                      if (role === '1') {
+                                        return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      }
+                                      history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                    } else {
+                                      return alert('Not having proper detail to access this information.')
+                                    }
+                                  }}
+                                >
+                                  Review
+                                </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
                           </MDBCol>
-                          <MDBCol md="5">
-                            <MDBBtn
-                              rounded
-                              size={"sm"}
-                              className="application-info-button second-action-button btn-block z-depth-1a"
-                              onClick={() => {
-                                const { history } = this.props;
-                                const { programData: { program } } = this.state;
-                                localStorage.setItem('orgId', program.orgId);
-                                if (program) {
-                                  history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
-                                }
-                              }}
-                            >
-                              Review
-                            </MDBBtn>
+                          <MDBCol md="4">
+                            
+                              {this.state.role != '1' &&
+                                <MDBRow>
+                                  <MDBCol md="6">
+                                    Send 1st Check
+                                  </MDBCol>
+                                  <MDBCol md="6">
+                                    <MDBBtn
+                                      rounded
+                                      className="application-info-button second-action-button z-depth-1a"
+                                      onClick={() => {
+                                        const { history } = this.props;
+                                        const { programData: { program } } = this.state;
+                                        if (program) {
+                                          history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                        }
+                                      }}
+                                    >
+                                      Review
+                                    </MDBBtn>
+                                  </MDBCol>
+                                </MDBRow>
+                              }
+                            <MDBRow>
+                              <MDBCol md="6">
+                                Program Report
+                              </MDBCol>
+                              <MDBCol md="6">
+                                <MDBBtn
+                                  rounded
+                                  className="application-info-button second-action-button z-depth-1a"
+                                  onClick={() => {
+                                    const { history } = this.props;
+                                    const { programData: { program } } = this.state;
+                                    if (program) {
+                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}`);
+                                    }
+                                  }}
+                                >
+                                  Review
+                                </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
+                          </MDBCol>
+                          <MDBCol md="4">
+                            <MDBRow>
+                              <MDBCol md="6">
+                                Final Report
+                              </MDBCol>
+                              <MDBCol md="6">
+                                <MDBBtn
+                                  rounded
+                                  className="application-info-button second-action-button z-depth-1a"
+                                  onClick={this.state.role === '1' ? this.handleFinalReportClick : this.handleFinalReportCommentClick}
+                                >
+                                  Review
+                                </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
+                            {this.state.role != '1' &&
+                              <MDBRow>
+                                <MDBCol md="6">
+                                  Send final check
+                                </MDBCol>
+                                <MDBCol md="6">
+                                  <MDBBtn
+                                    rounded
+                                    className="application-info-button second-action-button z-depth-1a"
+                                    onClick={() => {
+                                      const { history } = this.props;
+                                      const { programData: { program } } = this.state;
+                                      localStorage.setItem('orgId', program.orgId);
+                                      if (program) {
+                                        history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      }
+                                    }}
+                                  >
+                                    Review
+                                  </MDBBtn>
+                                </MDBCol>
+                              </MDBRow>
+                            }
                           </MDBCol>
                         </MDBRow>
-                        }
-
                       </MDBCol>
-                      <MDBCol md="2" />
-                      <MDBCol md="12">
-                        <hr/>
-                      </MDBCol>
-
-
                       {this.state.role != '1' &&
                         <>
                           {this.state.role == '0' ? null :
-                            <MDBCol md="12" className="text-center pt-3 sub-header font-weight-bold">
-                              Program Closing Report
+                            <MDBCol md="12">
+                              <h3>Program Closing Report</h3>
                             </MDBCol>
                           }
-                          <MDBCol md="1" />
-                          <MDBCol md="10">
+                          <MDBCol md="12">
 
                             {this.state.role == '0' ? null :
                               <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote}
@@ -369,20 +351,18 @@ class ProgramDetail extends Component {
 
                             {this.state.role != '0' ?
                               <div style={{
-                                justifyContent: 'center',
                                 display: 'flex',
                               }}>
 
                                 <div
                                   style={{
-                                    paddingRight: '100px',
+                                   
                                   }}
                                 >
                                   <MDBBtn
                                     rounded
-                                    size={"sm"}
-                                    style={{ width: '150px' }}
-                                    className="second-action-button btn-block z-depth-1a red-color"
+                                    color="danger"
+                                    className="second-action-button z-depth-1a red-color"
                                     onClick={this.closeReport}
                                   >
                                     Close
@@ -392,8 +372,7 @@ class ProgramDetail extends Component {
                                 <div>
                                   <MDBBtn
                                     rounded
-                                    size={"sm"}
-                                    style={{ width: '150px' }}
+                                    color="danger"
                                     className="second-action-button btn-block z-depth-1a light-green-color"
                                     onClick={() => {
                                       this.props.history.goBack();
@@ -425,7 +404,6 @@ class ProgramDetail extends Component {
                             }
 
                           </MDBCol>
-                          <MDBCol md="1" />
                         </>
                       }
                       {this.state.role == '1' &&
@@ -438,9 +416,8 @@ class ProgramDetail extends Component {
                               }}>
                                 <MDBBtn
                                   rounded
-                                  size={"sm"}
                                   style={{ width: '250px' }}
-                                  className="second-action-button btn-block z-depth-1a red-color"
+                                  className="second-action-button z-depth-1a red-color"
                                   onClick={() => {
                                     this.props.history.push('/account')
                                   }}

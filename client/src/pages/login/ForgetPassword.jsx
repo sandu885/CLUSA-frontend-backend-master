@@ -278,31 +278,19 @@ class ForgetPassword extends Component {
           <MDBModal isOpen={this.state.linkSend && !this.state.token} toggle={this.toggle}>
             <MDBModalHeader>Success!</MDBModalHeader>
             <MDBModalBody>
-              Your account password reset link already been sent to the email address associate with the organization, please check email and login again.
-              <MDBRow className="mt-4">
-                <MDBCol md="7" className="text-center">
-                  <MDBBtn className="modal-success-button" color="primary" onClick={this.successClickHandle}>Back to Login Page</MDBBtn>
-                </MDBCol>
-                <MDBCol md="5" className="text-center">
-                  <MDBBtn className="modal-cancel-button"  color="secondary" onClick={this.toggle}>Cancel</MDBBtn>
-                </MDBCol>
-              </MDBRow>
+              <p>Your account password reset link already been sent to the email address associate with the organization, please check email and login again.</p>
+              <MDBBtn className="modal-success-button" color="default" onClick={this.successClickHandle}>Back to Login Page</MDBBtn>
+              <MDBBtn className="modal-cancel-button"  color="danger" onClick={this.toggle}>Cancel</MDBBtn>              
             </MDBModalBody>
           </MDBModal>
+
           <MDBModal isOpen={this.state.linkSend && this.state.token} toggle={this.toggle}>
             <MDBModalHeader>Success!</MDBModalHeader>
             <MDBModalBody>
-              Password is changed successfully.
-              <MDBRow className="mt-4">
-                <MDBCol md="7" className="text-center">
-                  <MDBBtn className="modal-success-button" color="primary" onClick={this.successClickHandle}>Back to Login Page</MDBBtn>
-                </MDBCol>
-                <MDBCol md="5" className="text-center">
-                  <MDBBtn className="modal-cancel-button"  color="secondary" onClick={this.toggle}>Cancel</MDBBtn>
-                </MDBCol>
-              </MDBRow>
+              <p>Password is changed successfully.</p>
+              <MDBBtn className="modal-success-button" color="default" onClick={this.successClickHandle}>Back to Login Page</MDBBtn>
+              <MDBBtn className="modal-cancel-button"  color="danger" onClick={this.toggle}>Cancel</MDBBtn>
             </MDBModalBody>
-
           </MDBModal>
         </MDBContainer>
         <br />
