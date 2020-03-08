@@ -231,14 +231,8 @@ class UserOrganizationManagement extends Component {
                 <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
                 <MDBModalBody className="text-center">
                   {this.state.selectedUserData && this.state.selectedUserData.username}
-                  <MDBRow className="mt-4">
-                    <MDBCol md="6" className="text-center">
-                      <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
-                    </MDBCol>
-                    <MDBCol md="6" className="text-center">
-                      <MDBBtn className="modal-cancel-button" color="red" onClick={this.toggle}>Cancel</MDBBtn>
-                    </MDBCol>
-                  </MDBRow>
+                  <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
+                  <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggle}>Cancel</MDBBtn>
                 </MDBModalBody>
               </MDBModal>
             </MDBCol>

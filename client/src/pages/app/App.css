@@ -13,11 +13,9 @@ a:hover{
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,11 +26,9 @@ a:hover{
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #09d3ac;
 }
-
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: transparent !important;
 }
@@ -97,6 +93,9 @@ a:hover{
 .card-body {
   padding: 2.25rem 1.25rem;
 }
+.card-padding .card-body {
+  padding: 2.25rem 2.80rem;
+}
 .card-body h3, .sub-heading{
     font-size: 17px;
     font-family: "Roboto";
@@ -152,6 +151,7 @@ a:hover{
   border-radius: 3px;
   box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.28);  
   font-size: 13px;  
+  text-transform: capitalize;
 }
 .btn-default{ 
   background-color: rgb(85, 110, 230) !important;  
@@ -325,6 +325,27 @@ table td {
 .custom-table tr td:last-child, .custom-table tr th:last-child{
   /* max-width: 202px; */
   padding-right: 0;
+}
+.header-section .btn-default{
+  margin: 9px 0 0 0;
+  text-transform: capitalize;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+}
+.grey-bg{
+  padding: 30px 30px 10px 30px;
+  background: #ededed;
+  margin: 0 0 20px 0;
 }
 @media (min-width: 1200px){
   .container, .container-lg, .container-md, .container-sm, .container-xl {
