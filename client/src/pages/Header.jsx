@@ -7,6 +7,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import AddBox from '@material-ui/icons/AddBox';
 // import Auth from './login/Auth';
 
 import CLUSAlogo from '../images/clusalogo_white.png';
@@ -149,8 +150,52 @@ class Header extends Component {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
+        <div 
+          className="sub-header"
+        > 
+         <MDBContainer>
+          <MDBRow>
+            <MDBCol
+                md="6"                
+              >
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><AddBox /> <a href="#">User Management</a></li>
+                    <li className="breadcrumb-item active"> <AddBox />  Organization Management</li>
+                  </ol>
+                </nav>
+            </MDBCol>
+            <MDBCol
+                md="6"
+                className="text-right c-role"
+              >
+               <p><span>current role</span> <AddBox /> IT Admin</p> 
+            </MDBCol>
+
+          </MDBRow>    
+         </MDBContainer>
+          
+        </div>
+        <div 
+          className="breadcrumb-header"
+        > 
+         <MDBContainer>
+          <MDBRow>
+            <MDBCol
+                md="12"                
+              >
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><AddBox /> <a href="#">Dashboard</a></li>
+                    <li className="breadcrumb-item active">User Management</li>
+                  </ol>
+                </nav>
+            </MDBCol>
+          </MDBRow>    
+         </MDBContainer>
+          
+        </div>
       </div>
-      
     );
   }
 }
