@@ -1,7 +1,3 @@
 .program-table td:first-letter {
     text-transform: uppercase;
 }
-
-.header-section {
-    background-color: #ededed;
-}

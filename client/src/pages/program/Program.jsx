@@ -9,6 +9,7 @@ import {
 import Loader from "react-loader-spinner";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import AddBox from '@material-ui/icons/AddBox';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
@@ -132,97 +133,80 @@ class Program extends Component {
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <HeaderComponent />        
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="8"
+            >
+              <h1>{heading}</h1>
+            </MDBCol>
+            <MDBCol
+              md="4"
+              className="text-right"
+            >
+              <MDBBtn
+                rounded
+                className="second-action-button z-depth-1a add-new-user"                
+              >
+                <AddBox /> Add New User
+              </MDBBtn>
+            </MDBCol>
+          </MDBRow>            
+        </MDBContainer>
+        <MDBContainer className="pt-1 mb-2">
+          <MDBRow className="header-section">
+            <MDBCol md="12">
+            <strong>Filter</strong>
+            </MDBCol>
+            <MDBCol md="2">
+              <input type="text" name="organizationName" placeholder="Organization Name" onChange={this.handleChange} className="form-control mt-2" value={organizationName} />
+            </MDBCol>
+            <MDBCol md="2">
+              <select name="programType" className="browser-default custom-select form-control mt-2" value={programType} onChange={this.handleChange}>
+                <option value="">Choose Program</option>
+                <option value="0">Internship Grant</option>
+                <option value="1">Civic Leadership Forum Grant</option>
+                <option value="2">Capacity Building Grant</option>
+                <option value="3">Media Service Grant</option>
+                <option value="4">Website Development Grant</option>
+                <option value="5">Strategic Planning Grant</option>
+              </select>
+            </MDBCol>                
+            <MDBCol md="2">
+              <select name="status" className="browser-default custom-select form-control mt-2" value={status} onChange={this.handleChange}>
+                <option value="">Select Status</option>
+                <option value="applying">Applying</option>
+                <option value="applied">Applied</option>
+                <option value="inView">In View</option>
+                <option value="preparingAgreement">Preparing Agreement</option>
+                <option value="approve">Approved</option>
+                <option value="firstCheckSent">First Check Sent</option>
+                <option value="reportSubmitted">Report Submitted</option>
+                <option value="finalCheckSent">Final Check Sent</option>
+                <option value="closed">Closed</option>
+              </select>
+            </MDBCol>
+            <MDBCol md="2">
+              <input type="number" placeholder="Year" name="year" onChange={this.handleChange} className="form-control mt-2" value={year} />
+            </MDBCol>
+            <MDBCol md="2">
+              <MDBBtn
+                rounded
+                className="z-depth-1a"
+                disabled={dataReceived}
+                onClick={this.handleSearchPost}
+              >
+                Search
+              </MDBBtn>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
-              <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    {heading} Home Page
-                  </MDBCol>
-                </MDBRow>
-                <MDBCardBody>
-                  <MDBRow className="header-section">
-                    <MDBCol md="12">
-                      <MDBRow className="pt-4">
-                        <MDBCol
-                          md="2"
-                          className="pt-3 font-weight-bold"
-                        >Organization:
-                        </MDBCol>
-                        <MDBCol md="10">
-                          <input type="text" name="organizationName" onChange={this.handleChange} className="form-control mt-2" value={organizationName} />
-                        </MDBCol>
-                      </MDBRow>
-                      <MDBRow>
-                        <MDBCol
-                          md="2"
-                          className="pt-3 font-weight-bold"
-                        >Program:
-                        </MDBCol>
-                        <MDBCol md="4">
-                          <select name="programType" className="browser-default custom-select form-control mt-2" value={programType} onChange={this.handleChange}>
-                            <option value="">Choose Program</option>
-                            <option value="0">Internship Grant</option>
-                            <option value="1">Civic Leadership Forum Grant</option>
-                            <option value="2">Capacity Building Grant</option>
-                            <option value="3">Media Service Grant</option>
-                            <option value="4">Website Development Grant</option>
-                            <option value="5">Strategic Planning Grant</option>
-                          </select>
-                        </MDBCol>
-                        <MDBCol
-                          md="2"
-                          className="pt-3 font-weight-bold"
-                        >Status:
-                        </MDBCol>
-                        <MDBCol md="4">
-                          <select name="status" className="browser-default custom-select form-control mt-2" value={status} onChange={this.handleChange}>
-                            <option value="">Select Status</option>
-                            <option value="applying">Applying</option>
-                            <option value="applied">Applied</option>
-                            <option value="inView">In View</option>
-                            <option value="preparingAgreement">Preparing Agreement</option>
-                            <option value="approve">Approved</option>
-                            <option value="firstCheckSent">First Check Sent</option>
-                            <option value="reportSubmitted">Report Submitted</option>
-                            <option value="finalCheckSent">Final Check Sent</option>
-                            <option value="closed">Closed</option>
-                          </select>
-                        </MDBCol>
-                      </MDBRow>
-                      <MDBRow>
-                        <MDBCol
-                          md="2"
-                          className="pt-3 font-weight-bold"
-                        >Year:
-                        </MDBCol>
-                        <MDBCol md="4">
-                          <input type="number" name="year" onChange={this.handleChange} className="form-control mt-2" value={year} />
-                        </MDBCol>
-                      </MDBRow>
-                      <div className="pt-4 pb-4 text-center">
-                        <MDBRow>
-                          <MDBCol md="2"/>
-                          <MDBCol md="10">
-                            <MDBBtn
-                              rounded
-                              className="btn-block z-depth-1a"
-                              disabled={dataReceived}
-                              onClick={this.handleSearchPost}
-                            >
-                              Search
-                            </MDBBtn>
-                          </MDBCol>
-                          <MDBCol md="2"/>
-                        </MDBRow>
-                      </div>
-                    </MDBCol>
-                  </MDBRow>
-                  <br />
-                  <br />
+              <MDBCard>                
+                <MDBCardBody>                 
                   <MDBRow>                    
                     <MDBCol md="12">
                       {dataReceived ?
@@ -230,15 +214,17 @@ class Program extends Component {
                           <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80}/>
                         </div>
                         :
-                        <MDBDataTable
-                          className="custom-table program-table"
-                          striped
-                          borderless
-                          data={programData}
-                          searching={false}
-                          noBottomColumns
-                          info={false}
-                        />
+                        <div className="table-responsive">
+                          <MDBDataTable
+                            className="custom-table program-table"
+                            striped
+                            borderless
+                            data={programData}
+                            searching={false}
+                            noBottomColumns
+                            info={false}
+                          />
+                        </div>
                       }
                     </MDBCol>
                   </MDBRow>

@@ -10,7 +10,7 @@ import {
 import Loader from 'react-loader-spinner'
 import axios from 'axios';
 import moment from 'moment';
-
+import AddBox from '@material-ui/icons/AddBox';
 import './UserOrganizationManagement.css';
 
 import FooterComponent from '../Footer';
@@ -145,32 +145,34 @@ class UserOrganizationManagement extends Component {
       <div className="bg-withImage">
         <HeaderComponent />
 
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="8"
+            >
+              <h1>User Management</h1>
+            </MDBCol>
+            <MDBCol
+              md="4"
+              className="text-right"
+            >
+              <MDBBtn
+                rounded
+                className="second-action-button z-depth-1a add-new-user"
+                onClick={() => {
+                  this.props.history.push(`/user-account`);
+                }}
+              >
+                <AddBox /> Add New User
+              </MDBBtn>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+
+        <MDBContainer className="">
           <MDBRow>
             <MDBCol md="12">
-              <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol
-                    md="2"
-                  >
-                    <MDBBtn
-                      rounded
-                      size={"sm"}
-                      className="second-action-button btn-block z-depth-1a add-new-user"
-                      onClick={() => {
-                        this.props.history.push(`/user-account`);
-                      }}
-                    >
-                      Add New User
-                    </MDBBtn>
-                  </MDBCol>
-                  <MDBCol
-                    md="8"
-                  >
-                    User Management
-                  </MDBCol>
-                  <MDBCol md="2"/>
-                </MDBRow>
+              <MDBCard>                
                 {dataReceived ?
                   <div style={{ textAlign: 'center' }}>
                     <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
@@ -178,7 +180,7 @@ class UserOrganizationManagement extends Component {
                   :
                   <MDBCardBody>
                     <MDBDataTable
-                      className="custom-table"
+                      className="custom-table responsive"
                       striped
                       borderless
                       data={userTableData}
@@ -188,13 +190,25 @@ class UserOrganizationManagement extends Component {
                     />
                   </MDBCardBody>
                 }
+                
                 <br />
-
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    Organization Management
-                  </MDBCol>
-                </MDBRow>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>         
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>Organization Management</h1>
+            </MDBCol>            
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer className="">
+          <MDBRow>
+            <MDBCol md="12">
+              <MDBCard> 
                 {dataReceived ?
                   <div style={{ textAlign: 'center' }}>
                     <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
@@ -212,26 +226,18 @@ class UserOrganizationManagement extends Component {
                     />
                   </MDBCardBody>
                 }
-
-                <br />
               </MDBCard>
+              <MDBModal isOpen={this.state.open} toggle={this.toggle}>
+                <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
+                <MDBModalBody className="text-center">
+                  {this.state.selectedUserData && this.state.selectedUserData.username}
+                  <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
+                  <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggle}>Cancel</MDBBtn>
+                </MDBModalBody>
+              </MDBModal>
             </MDBCol>
           </MDBRow>
-          <MDBModal isOpen={this.state.open} toggle={this.toggle}>
-            <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
-            <MDBModalBody className="text-center">
-              {this.state.selectedUserData && this.state.selectedUserData.username}
-              <MDBRow className="mt-4">
-                <MDBCol md="6" className="text-center">
-                  <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
-                </MDBCol>
-                <MDBCol md="6" className="text-center">
-                  <MDBBtn className="modal-cancel-button" color="red" onClick={this.toggle}>Cancel</MDBBtn>
-                </MDBCol>
-              </MDBRow>
-            </MDBModalBody>
-          </MDBModal>
-        </MDBContainer>
+        </MDBContainer> 
 
 
         <FooterComponent className="mt-5 pt-5" />
@@ -270,11 +276,11 @@ class UserOrganizationManagement extends Component {
             email: userDataByOrg ? userDataByOrg.email || userDataByOrg.emailAddress || '' : '',
             functions: <div>
               <MDBRow>
-                <MDBCol>
+                <MDBCol md="12">
                   <MDBBtn
                     rounded
-                    size={"sm"}
-                    className="first-action-button btn-block z-depth-1a"
+                    color="default"
+                    className="first-action-button z-depth-1a"
                     onClick={() => {
                       localStorage.setItem('orgId', e.objectId);
                       this.props.history.push('/organization-information/');
@@ -282,12 +288,10 @@ class UserOrganizationManagement extends Component {
                   >
                     Edit
                   </MDBBtn>
-                </MDBCol>
-                <MDBCol md="4">
                   <MDBBtn
                     rounded
-                    size={"sm"}
-                    className="second-action-button btn-block z-depth-1a"
+                    color="success"
+                    className="second-action-button z-depth-1a"
                     onClick={() => {
                       const findUser = this.state.userResponse.find(u => u.orgId === e.objectId);
                       if (!findUser) {
@@ -298,13 +302,10 @@ class UserOrganizationManagement extends Component {
                   >
                     Password
                   </MDBBtn>
-                </MDBCol>
-                <MDBCol md="5">
                   <MDBBtn
-                    color="red"
+                    color="danger"
                     rounded
-                    size={"sm"}
-                    className="third-action-button btn-block z-depth-1a"
+                    className="third-action-button z-depth-1a"
                     onClick={() => {}}
                   >
                     delete
@@ -320,46 +321,43 @@ class UserOrganizationManagement extends Component {
           return {
             ...u,
             lastLogin: u.lastLogin ? moment(u.lastLogin).format('MM-DD-YYYY') : '',
-            functions: <div>
-              <MDBRow md="3">
-                <MDBCol>
-                  <MDBBtn
+            functions: 
+              <MDBRow>
+                 <MDBCol md="12">
+                  <MDBBtn 
+                    color="default"
                     rounded
-                    size={"sm"}
-                    className="first-action-button btn-block z-depth-1a"
+                    className="first-action-button z-depth-1a"
                     onClick={() => {
                       // localStorage.setItem('orgId', [u.objectId]);
                       this.props.history.push(`/user-account/${u.objectId}`);
                     }}
                   >
                     Edit
-                  </MDBBtn>
-                </MDBCol>
-                <MDBCol md="5">
+                  </MDBBtn>                
+                
                   <MDBBtn
+                    color="success"
                     rounded
-                    size={"sm"}
-                    className="second-action-button btn-block z-depth-1a"
+                    className="second-action-button z-depth-1a"
                     onClick={() => {
                       this.props.history.push(`/reset-password/${u.objectId}`);
                     }}
                   >
                     Password
-                  </MDBBtn>
-                </MDBCol>
-                <MDBCol md="4">
+                  </MDBBtn>                
+                
                   <MDBBtn
-                    color="red"
+                    color="danger"
                     rounded
-                    size={"sm"}
-                    className="third-action-button btn-block z-depth-1a"
+                    className="third-action-button z-depth-1a"
                     onClick={(e) => this.toggle(e, u)}
                   >
                     Deleted
                   </MDBBtn>
-                </MDBCol>
+                  </MDBCol>
               </MDBRow>
-            </div>
+            
           }
         });
 
