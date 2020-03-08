@@ -62,11 +62,22 @@ a:hover{
   font-weight: 400;  
 }
 .header a{
-  margin: 0 0 0 40px;
+  margin: 0px 0 0 20px;
+  color: #d9defa;
+  display: inline-block;
+}
+.header .btn{
+  box-shadow: none;
+  margin: 5px 0 0 0;
+  text-transform: capitalize;
+  font-size: 15px;
   color: #d9defa;
 }
 .header a:hover{
   color: #000000;
+}
+.header .profile-link{
+  float: right;
 }
 .sub-header{
     background-color: rgb(85, 110, 230);
@@ -312,7 +323,7 @@ table td {
   margin: 0 0px 0px 0px;
 }
 .custom-table tr td:last-child, .custom-table tr th:last-child{
-  max-width: 202px;
+  /* max-width: 202px; */
   padding-right: 0;
 }
 @media (min-width: 1200px){

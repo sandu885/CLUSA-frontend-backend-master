@@ -114,21 +114,22 @@ class Header extends Component {
             >
                 { userName != null ? (
                   <div>
-                    
                     <MDBBtn
                       rounded
+                      color="flat"
                       className="logoutBtn"
                       onClick={this.clickLogoutBtn}
                     >
-                    Logout
+                    Sign Out
                     </MDBBtn>
-                    <Link to="#"> 
+                    <Link to="#"
+                    className="profile-link"
+                    > 
                       <div className="profile-pic">
                         <div className="profile-name"><span><Link to="/my-account" className="user-name-header m-0">{userName}</Link>  </span></div>
                         <div className="profile-img">
                             {/* Profile Image code */}
-                        </div>
-                        
+                        </div>                        
                       </div>
                     </Link>
                   </div>

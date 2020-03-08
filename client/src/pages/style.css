@@ -130,15 +130,6 @@
   outline: 2px solid red !important;
 }
 
-.logoutBtn {
-  color: white;
-}
-
-.logoutBtn:hover {
-  color: black;
-  font-weight: bold;
-}
-
 .z99 {
   z-index: 99;
 }
