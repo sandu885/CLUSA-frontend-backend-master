@@ -100,6 +100,7 @@ const fetchAllOrgs = async(user) => {
         ele["city"] = org.get("city");
         ele["state"] = org.get("state");
         ele["zipcode"] = org.get("zipcode");
+        ele["isSuspended"] = org.get("isSuspended");
         ele["objectId"] = org.id;
         if (!programList[org.id])
             ele["status"] = "not applied";
@@ -164,6 +165,25 @@ const getOrgInfoById = async(user, orgId) => {
         }
     }
 }
+
+const suspendOrgById = async(meta) => {
+    if (!meta.sessionToken)
+        throw new Error("No sessionToken");
+
+    let queryOrg = new Parse.Query("Organization");
+    queryOrg.equalTo("objectId", meta.orgId);
+
+    const orgRecord = await queryOrg.first({useMasterKey: true});
+    if (!orgRecord)
+        throw new Error("Provide data are not proper");
+
+    if (orgRecord.get('isSuspended'))
+        orgRecord.set('isSuspended', false);
+    else
+        orgRecord.set('isSuspended', true);
+
+    return await orgRecord.save(null, { useMasterKey: true });
+};
 
 // update both general organization information and user account information
 const updateOrgInfo = async(meta, files) => {
@@ -328,4 +348,5 @@ module.exports = {
     getOrgInfoById,
     updateOrgInfo,
     getCertificateFile,
+    suspendOrgById,
 }

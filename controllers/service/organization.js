@@ -72,6 +72,23 @@ const getOrgInfoById = async(req, res) => {
     }
 }
 
+const suspendOrgById = async(req, res) => {
+    console.log("getOrgInfoById: start");
+    try {
+        let info = await ORG.suspendOrgById(req.body);
+        console.log("Successfully suspended organization");
+        res.status(200).json({
+            message: 'Successfully suspended organization',
+            data: info,
+        });
+    } catch(error) {
+        console.log('suspendOrgById: ' + error.message);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+};
+
 const updateOrgInfo = async(req, res) => {
     console.log("updateOrgInfo: start");
     try {
@@ -117,5 +134,6 @@ module.exports = {
     fetchAllOrgs,
     getOrgInfoById,
     updateOrgInfo,
-    getCertificateFile
+    getCertificateFile,
+    suspendOrgById,
 }

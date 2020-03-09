@@ -152,6 +152,9 @@ class Login extends Component {
           else if (error.response.data.message === 'Invalid username/password.') {
             alert('Username/password is invalid, please check and try again.')
           }
+          else if (error.response.data.message === 'Your organization is suspended.') {
+            alert('Your organization is suspended.')
+          }
           else {
             alert('Your input is not correct, please check and try again.')
           }
