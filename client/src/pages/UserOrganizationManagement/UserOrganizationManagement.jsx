@@ -360,10 +360,24 @@ class UserOrganizationManagement extends Component {
                     className="second-action-button z-depth-1a"
                     onClick={() => {
                       const findUser = this.state.userResponse.find(u => u.orgId === e.objectId);
-                      if (!findUser) {
+                      if (!findUser)
                         return alert('User detail is not proper');
-                      }
-                      this.props.history.push(`/reset-password/${findUser.objectId}`);
+                      if (!findUser.email)
+                        return alert('User detail is not proper');
+                      const forgetPasswordAPI = '/api/forgetPassword';
+
+                      axios.post(
+                        forgetPasswordAPI,
+                        {
+                          emailAddress: findUser.email,
+                          originLocation: window.location.origin,
+                        },
+                      ).then((response) => {
+                        alert('Reset link send.')
+                      }).catch((error) => {
+                        alert('Something went wrong.')
+                      })
+                      // this.props.history.push(`/reset-password/${findUser.objectId}`);
                     }}
                   >
                     Password
@@ -407,7 +421,23 @@ class UserOrganizationManagement extends Component {
                     rounded
                     className="second-action-button z-depth-1a"
                     onClick={() => {
-                      this.props.history.push(`/reset-password/${u.objectId}`);
+                      const forgetPasswordAPI = '/api/forgetPassword';
+                      if (!u.email) {
+                        return alert('User detail is not proper');
+                      }
+
+                      axios.post(
+                        forgetPasswordAPI,
+                        {
+                          emailAddress: u.email || '',
+                          originLocation: window.location.origin,
+                        },
+                      ).then((response) => {
+                        alert('Reset link send.')
+                      }).catch((error) => {
+                        alert('Something went wrong.')
+                      })
+                      // this.props.history.push(`/reset-password/${u.objectId}`);
                     }}
                   >
                     Password
