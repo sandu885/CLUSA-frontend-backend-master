@@ -15,6 +15,9 @@ import './UserOrganizationManagement.css';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
+import Person from "@material-ui/icons/Person";
+import HomeIcon from "@material-ui/icons/Home";
+import {Link} from "react-router-dom";
 
 class UserOrganizationManagement extends Component {
   constructor(props) {
@@ -141,9 +144,21 @@ class UserOrganizationManagement extends Component {
       ]
     };
 
+    const currentPage = [{
+      name: 'userPerson',
+      child: <li key={`userPerson1`} className="breadcrumb-item"><Person/> <Link to={'/user-organization-management'}>User Management</Link></li>,
+    }, {
+      name: 'userOrg',
+      child: <li key={`userOrg2`} className="breadcrumb-item active"><HomeIcon/> Organization Management</li>,
+    }];
+    const BreadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/user-organization-management'}>Dashboard</Link></li>,
+    }];
+
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent currentPage={currentPage} />
 
         <MDBContainer className="title-section">
           <MDBRow>
