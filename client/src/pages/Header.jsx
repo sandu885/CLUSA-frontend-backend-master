@@ -163,8 +163,8 @@ class Header extends Component {
                   <MDBCol md="6">
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
-                        {currentPage.length &&
-                          currentPage.map(cP => cP.child)
+                        {currentPage.length ?
+                          currentPage.map(cP => cP.child) : null
                         }
                         {!currentPage.length &&
                           <>

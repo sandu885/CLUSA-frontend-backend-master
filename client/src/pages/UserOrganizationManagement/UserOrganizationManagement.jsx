@@ -28,6 +28,7 @@ class UserOrganizationManagement extends Component {
       dataReceived: true,
       userResponse: [],
       sessionToken: localStorage.getItem('sessionToken'),
+      suspensionModal: false,
     };
   }
 
@@ -35,6 +36,13 @@ class UserOrganizationManagement extends Component {
     this.setState({
       open: !this.state.open,
       selectedUserData: userData,
+    })
+  };
+
+  toggleSuspend = (e, orgData) => {
+    this.setState({
+      suspensionModal: !this.state.suspensionModal,
+      selectedOrgData: orgData,
     })
   };
 
@@ -56,6 +64,31 @@ class UserOrganizationManagement extends Component {
       })
     } catch (e) {
       this.toggle()
+    }
+  };
+
+  suspendOrg = () => {
+    const deleteUserAPI = '/api/suspendOrgById';
+    const { selectedOrgData = {}, sessionToken, orgAll } = this.state;
+
+    try {
+      axios.post(
+        deleteUserAPI,
+        { ...selectedOrgData, orgId: selectedOrgData.objectId, sessionToken },
+      ).then(async (response) => {
+        const orgIndex = orgAll.findIndex(e => e.objectId === selectedOrgData.objectId);
+        if (orgIndex > -1) {
+          orgAll.splice(orgIndex, 1, { ...orgAll[orgIndex], isSuspended: !orgAll[orgIndex].isSuspended });
+        }
+
+        alert('Save successfully');
+        this.toggleSuspend();
+        this.setState({
+          orgAll: [ ...orgAll ]
+        })
+      })
+    } catch (e) {
+      this.toggleSuspend();
     }
   };
 
@@ -245,16 +278,34 @@ class UserOrganizationManagement extends Component {
               <MDBModal isOpen={this.state.open} toggle={this.toggle}>
                 <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
                 <MDBModalBody className="text-center">
-                  {this.state.selectedUserData && this.state.selectedUserData.username}
+                  <MDBRow>
+                    <MDBCol className='mb-3'>
+                      <div>
+                        {this.state.selectedUserData && this.state.selectedUserData.username}
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
                   <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
                   <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggle}>Cancel</MDBBtn>
                 </MDBModalBody>
               </MDBModal>
+              <MDBModal isOpen={this.state.suspensionModal} toggle={this.toggleSuspend}>
+                <MDBModalHeader>Are you sure you want to {this.state.selectedOrgData && this.state.selectedOrgData.isSuspended ? 'restore' : 'suspend' } organization</MDBModalHeader>
+                <MDBModalBody className="text-center">
+                  <MDBRow>
+                    <MDBCol className='mb-3'>
+                      <div>
+                        {this.state.selectedOrgData && this.state.selectedOrgData.name}
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBBtn className="modal-success-button" color="primary" onClick={this.suspendOrg}>Yes</MDBBtn>
+                  <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggleSuspend}>Cancel</MDBBtn>
+                </MDBModalBody>
+              </MDBModal>
             </MDBCol>
           </MDBRow>
-        </MDBContainer> 
-
-
+        </MDBContainer>
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );
@@ -321,15 +372,15 @@ class UserOrganizationManagement extends Component {
                     color="danger"
                     rounded
                     className="third-action-button z-depth-1a"
-                    onClick={() => {}}
+                    onClick={(event) => this.toggleSuspend(event, { ...e, userData: userDataByOrg })}
                   >
-                    delete
+                    {e.isSuspended ? 'Restore' : 'Suspend'}
                   </MDBBtn>
                 </MDBCol>
               </MDBRow>
             </div>
           }
-        })
+        });
 
 
         const usersData = Users.data.users.filter(user1 => user1.userType !== '1').map(u => {
