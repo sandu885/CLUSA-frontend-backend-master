@@ -191,8 +191,7 @@ class UserOrganizationManagement extends Component {
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent currentPage={currentPage} />
-
+        <HeaderComponent currentPage={currentPage} breadCrums={BreadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -227,15 +226,17 @@ class UserOrganizationManagement extends Component {
                   </div>
                   :
                   <MDBCardBody>
-                    <MDBDataTable
-                      className="custom-table responsive"
-                      striped
-                      borderless
-                      data={userTableData}
-                      searching={true}
-                      noBottomColumns
-                      info={false}
-                    />
+                    <div className="table-responsive">
+                      <MDBDataTable
+                        className="custom-table program-table"
+                        striped
+                        borderless
+                        data={userTableData}
+                        searching={true}
+                        noBottomColumns
+                        info={false}
+                      />
+                    </div>
                   </MDBCardBody>
                 }
                 
@@ -263,15 +264,17 @@ class UserOrganizationManagement extends Component {
                   </div>
                   :
                   <MDBCardBody>
-                    <MDBDataTable
-                      className="custom-table"
-                      striped
-                      borderless
-                      data={orgTableData}
-                      searching={true}
-                      noBottomColumns
-                      info={false}
-                    />
+                    <div className="table-responsive">
+                      <MDBDataTable
+                        className="custom-table program-table"
+                        striped
+                        borderless
+                        data={orgTableData}
+                        searching={true}
+                        noBottomColumns
+                        info={false}
+                      />
+                    </div>
                   </MDBCardBody>
                 }
               </MDBCard>

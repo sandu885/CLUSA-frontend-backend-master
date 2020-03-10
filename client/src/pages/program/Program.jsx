@@ -14,6 +14,8 @@ import AddBox from '@material-ui/icons/AddBox';
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
 import './program.css'
+import Person from "@material-ui/icons/Person";
+import HomeIcon from "@material-ui/icons/Home";
 
 class Program extends Component {
   constructor(props) {
@@ -131,9 +133,18 @@ class Program extends Component {
         break;
     }
 
+    const currentPage = [{
+      name: 'viewProgram',
+      child: <li key={`viewProgram1`} className="breadcrumb-item"><Person/> <Link to={'/view-program'}>Program Management</Link></li>,
+    }];
+    const breadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Dashboard</Link></li>,
+    }];
+
     return (
       <div className="bg-withImage">
-        <HeaderComponent />        
+        <HeaderComponent currentPage={currentPage} breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -145,12 +156,12 @@ class Program extends Component {
               md="4"
               className="text-right"
             >
-              <MDBBtn
-                rounded
-                className="second-action-button z-depth-1a add-new-user"                
-              >
-                <AddBox /> Add New User
-              </MDBBtn>
+              {/*<MDBBtn*/}
+              {/*  rounded*/}
+              {/*  className="second-action-button z-depth-1a add-new-user"                */}
+              {/*>*/}
+              {/*  <AddBox /> Add New User*/}
+              {/*</MDBBtn>*/}
             </MDBCol>
           </MDBRow>            
         </MDBContainer>

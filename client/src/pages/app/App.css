@@ -352,3 +352,7 @@ table td {
       max-width: 1400px;
   }
 }
+
+.white-button {
+  color: #fff !important;
+}

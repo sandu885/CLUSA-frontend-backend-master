@@ -14,7 +14,9 @@ import HeaderComponent from '../Header';
 import CLUSAStudentTrainingReport from '../../images/CLUSA-Student-Training-Report.xlsx';
 import CLUSAGraduationCeremonyReport from '../../images/CLUSA-Graduation-Ceremony-Report.xlsx';
 import CLUSAInternshipBudget from '../../images/CLUSA Internship -budget-template.xlsx';
+import CLUSAOtherEvent from '../../images/CLUSA-Other-Event.xlsx';
 import CLUSAEssayContest from '../../images/CLUSA-Essay-Contest.xlsx';
+import CLUSAInternInformation from '../../images/CLUSA-Intern-Information.xlsx';
 
 import './programReport.css'
 
@@ -220,7 +222,7 @@ class ProgramReport extends Component {
   }
 
   render() {
-    const { formData, programReportData = [] } = this.state;
+    const { formData, programReportData = [], role } = this.state;
 
     let heading = 'Program Report';
 
@@ -268,14 +270,13 @@ class ProgramReport extends Component {
 
                       <MDBRow style={{ alignItems: 'center'}} className="pt-3">
                         <MDBCol md={4} className="table-header font-weight-bold">
-
                           Student Training Report
                         </MDBCol>
                         <MDBCol md={4} className="text-center">
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
                                   href={CLUSAStudentTrainingReport}
                           >
                             Download Template File
@@ -291,7 +292,7 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a white-button check-file-upload"
                                   href={CLUSAGraduationCeremonyReport}
                           >
                             Download Template File
@@ -307,8 +308,24 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
                                   href={CLUSAInternshipBudget}
+                          >
+                            Download Template File
+                          </MDBBtn>
+                        </MDBCol>
+                      </MDBRow>
+
+                      <MDBRow style={{ alignItems: 'center'}} className="pt-3">
+                        <MDBCol md={4} className="table-header font-weight-bold">
+                          Other Event
+                        </MDBCol>
+                        <MDBCol md={4} className="text-center">
+                          Report requirement sort introduction
+                        </MDBCol>
+                        <MDBCol md={4} className="table-header font-weight-bold text-center">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                                  href={CLUSAOtherEvent}
                           >
                             Download Template File
                           </MDBBtn>
@@ -323,8 +340,24 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
                                   href={CLUSAEssayContest}
+                          >
+                            Download Template File
+                          </MDBBtn>
+                        </MDBCol>
+                      </MDBRow>
+
+                      <MDBRow style={{ alignItems: 'center'}} className="pt-3">
+                        <MDBCol md={4} className="table-header font-weight-bold">
+                          Intern Information
+                        </MDBCol>
+                        <MDBCol md={4} className="text-center">
+                          Report requirement sort introduction
+                        </MDBCol>
+                        <MDBCol md={4} className="table-header font-weight-bold text-center">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                                  href={CLUSAInternInformation}
                           >
                             Download Template File
                           </MDBBtn>
@@ -333,7 +366,7 @@ class ProgramReport extends Component {
 
                       <MDBRow className="pt-4">
                         <MDBCol md={12}>
-                          Reports note: Please submit all Student Training, Graduation Ceremony Reports, Intern Documentation and essay Contest
+                          Reports note: Please submit all Student Training, Graduation Ceremony Reports, Intern Documentation, Other Event, Essay Contest and Intern Information
                         </MDBCol>
                       </MDBRow>
 
@@ -354,18 +387,19 @@ class ProgramReport extends Component {
                         <MDBCol md={11}>
                           <MDBRow>
 
-                            <MDBCol md={2} className="table-header font-weight-bold">Report File</MDBCol>
+                            <MDBCol md={role == '1' ? 2 : 7} className="table-header font-weight-bold">Report File</MDBCol>
                             <MDBCol md={3} className="table-header font-weight-bold">Type</MDBCol>
-                            <MDBCol md={7} className="table-header font-weight-bold">Upload Date</MDBCol>
+                            <MDBCol md={role == '1' ? 7 : 2} className="table-header font-weight-bold">Upload Date</MDBCol>
                           </MDBRow>
                           {programReportData.map((pRD, index) =>
                             <MDBRow key={pRD.objectId + index}>
-                              <MDBCol md={2} className="pt-2 ellipsis">
+                              <MDBCol md={role == '1' ? 2 : 7} className="pt-2 ellipsis">
                                 <a href={pRD.file.path} rel="noopener noreferrer" target="_blank">{pRD.file.filename}</a>
                               </MDBCol>
                               <MDBCol md={3} className="pt-2">{reportType.find(e => e.value == pRD.type).name}</MDBCol>
                               <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
-                              <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
+
+                              {role == '1' && <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
                                 <MDBBtn
                                   rounded
                                   size={"sm"}
@@ -384,7 +418,7 @@ class ProgramReport extends Component {
                                 >
                                   Delete
                                 </MDBBtn>
-                              </MDBCol>
+                              </MDBCol>}
                             </MDBRow>
                           )}
 

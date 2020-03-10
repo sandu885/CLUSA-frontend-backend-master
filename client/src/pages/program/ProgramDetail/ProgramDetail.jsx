@@ -332,6 +332,27 @@ class ProgramDetail extends Component {
                                 </MDBCol>
                               </MDBRow>
                             }
+                            <MDBRow>
+                              <MDBCol md="6">
+                                Program Closing Report
+                              </MDBCol>
+                              <MDBCol md="6">
+                                <MDBBtn
+                                  rounded
+                                  className="application-info-button second-action-button z-depth-1a"
+                                  onClick={() => {
+                                    // const { history } = this.props;
+                                    // const { programData: { program } } = this.state;
+                                    // localStorage.setItem('orgId', program.orgId);
+                                    // if (program) {
+                                    //   history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                    // }
+                                  }}
+                                >
+                                  Review
+                                </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
                           </MDBCol>
                         </MDBRow>
                       </MDBCol>

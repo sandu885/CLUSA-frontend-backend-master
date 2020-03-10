@@ -14,6 +14,20 @@ import HomeIcon from '@material-ui/icons/Home';
 
 import CLUSAlogo from '../images/clusalogo_white.png';
 
+const roleData = [{
+  userType: '0',
+  displayName: 'Grant Reviewer',
+}, {
+  userType: '1',
+  displayName: 'Organization',
+}, {
+  userType: '2',
+  displayName: 'Grant Manager',
+}, {
+  userType: '3',
+  displayName: 'It Admin',
+}];
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +39,7 @@ class Header extends Component {
       clickLogOut: false,
       redirectToCLUSAccount: false,
       redirectToAccount: false,
+      displayRole: roleData.find(role => role.userType === localStorage.getItem('clusa-role'))
     };
   }
 
@@ -85,9 +100,9 @@ class Header extends Component {
   }
 
   render() {
-    const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin, sessionToken } = this.state;
+    const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin, sessionToken, displayRole } = this.state;
     console.log('this.props', this.props);
-    const { currentPage = []} = this.props;
+    const { currentPage = [], breadCrums = [] } = this.props;
 
     if (clickLogOut === true || redirectToLogin === true) return <Redirect to="/login" />;
     if (redirectToCLUSAccount === true) return <Redirect to="/clusa-account" />;
@@ -179,7 +194,7 @@ class Header extends Component {
                     md="6"
                     className="text-right c-role"
                   >
-                    <p><span>Current Role</span> <AddBox/> IT Admin</p>
+                    <p><span>Current Role</span> <Person/> {displayRole && displayRole.displayName}</p>
                   </MDBCol>
                 </MDBRow>
               </MDBContainer>
@@ -190,8 +205,13 @@ class Header extends Component {
                   <MDBCol md="12">
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><HomeIcon/> <a href="#">Dashboard</a></li>
-                        <li className="breadcrumb-item active">User Management</li>
+                        {breadCrums.length ? currentPage.map(cP => cP.child) : null}
+                        {!breadCrums.length &&
+                          <>
+                            <li className="breadcrumb-item"><HomeIcon/> <a href="#">Dashboard</a></li>
+                            <li className="breadcrumb-item active">User Management</li>
+                          </>
+                        }
                       </ol>
                     </nav>
                   </MDBCol>
