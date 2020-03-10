@@ -328,16 +328,18 @@ class Account extends Component {
                             <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80}/>
                           </div>
                           :
-                          <MDBDataTable
-                            className="custom-table program-table"
-                            striped
-                            borderless
-                            displayEntries={false}
-                            data={programData}
-                            searching={false}
-                            noBottomColumns
-                            info={false}
-                          />
+                          <div className="table-responsive">
+                            <MDBDataTable
+                              className="custom-table program-table"
+                              striped
+                              borderless
+                              displayEntries={false}
+                              data={programData}
+                              searching={false}
+                              noBottomColumns
+                              info={false}
+                            />
+                          </div>
                         }
                       </MDBCol>
                     </MDBRow>
