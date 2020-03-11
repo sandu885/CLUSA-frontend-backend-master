@@ -36,7 +36,7 @@ class FinalCheck extends Component {
     const { location, history } = this.props;
     const queryData = queryStringToJSON(location.search);
     if (!queryData.orgId && !queryData.programId) {
-      alert('Not having proper data to access this route')
+      alert('Not having proper data to access this route');
       history.goBack();
     }
     this.setState({

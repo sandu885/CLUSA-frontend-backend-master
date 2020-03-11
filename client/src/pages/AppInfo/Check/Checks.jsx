@@ -115,9 +115,9 @@ class Checks extends Component {
     ).then((response) => {
       alert('🦄Save successfully');
 
-      this.fetchCheckData('1');
+      // this.fetchCheckData('1');
       console.warn('reponse message', response.data);
-
+      this.props.history.push(`/program/${programId}`);
     }).catch((error) => {
       console.warn('error.response', error.response);
       if(error.response !== null && error.response !== undefined) {
@@ -168,8 +168,9 @@ class Checks extends Component {
       formData,
     ).then((response) => {
       alert('🦄Save successfully');
-      this.fetchCheckData('2');
+      // this.fetchCheckData('2');
       console.warn('reponse message', response.data);
+      this.props.history.push(`/program/${programId}`);
 
     }).catch((error) => {
       console.warn('error.response', error.response);

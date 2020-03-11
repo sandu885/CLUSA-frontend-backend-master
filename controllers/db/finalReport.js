@@ -1,5 +1,21 @@
+const PROGRAM = require('./program');
+
 const createNewFinalReport = async (meta, file) => {
+  // Validation Section STARTS
   console.log('\n\n\nJSON.stringify\n\n\n', JSON.stringify(meta));
+
+  await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
+  // Validation Section ENDS
+  const programRecord = await PROGRAM.fetchProgramById(meta.programId);
+  if (!programRecord)
+    throw new Error('Provided data are not proper.');
+
+  if (meta.role === '1') {
+    if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+      throw new Error('You can not perform this action right now.');
+    // TODO ask for the message
+  }
+
   let FinalReport = Parse.Object.extend("FinalReport"), finalReport = new FinalReport();
   finalReport.set("q1", [meta.q1]);
   if (file) {
@@ -57,6 +73,15 @@ const updateProgramStatus = async (finalReport) => {
 };
 
 const updateFinalReportById = async (meta, file) => {
+  const programRecord = await PROGRAM.fetchProgramById(meta.programId);
+  if (!programRecord)
+    throw new Error('Provided data are not proper.');
+
+  if (meta.role === '1') {
+    if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+      throw new Error('You can not perform this action right now.');
+    // TODO ask for the message
+  }
   let queryFinalReport = new Parse.Query('FinalReport');
   queryFinalReport.equalTo("objectId", meta.objectId);
   let finalReport = await queryFinalReport.first({ useMasterKey: true });

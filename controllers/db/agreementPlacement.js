@@ -1,6 +1,21 @@
 const moment = require('moment');
+const PROGRAM = require('./program');
 
 const createNewAgreementPlacement = async (meta, files) => {
+  // Validation Section STARTS
+  const programRecord = await PROGRAM.fetchProgramById(meta.programId);
+  if (!programRecord)
+    throw new Error('Provided data are not proper.');
+
+  if (meta.role == '1') {
+    if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+      throw new Error('You can not perform this action right now.');
+    // TODO ask for the message
+  }
+
+  await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
+  // Validation Section ENDS
+
   if (meta.role == '1') {
     if (!files['signedAgreement'] || files['signedAgreement'].length == 0)
       throw new Error('Please provide signed agreement file.');
@@ -80,6 +95,19 @@ const fetchAllAgreementPlacementsByOrgIdProgId = async (meta) => {
 };
 
 const updateAgreementPlacementById = async (meta, files) => {
+  // Validation Section STARTS
+  const programRecord = await PROGRAM.fetchProgramById(meta.programId);
+  if (!programRecord)
+    throw new Error('Provided data are not proper.');
+
+  if (meta.role == '1') {
+    if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+      throw new Error('You can not perform this action right now.');
+    // TODO ask for the message
+  }
+  await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
+  // Validation Section ENDS
+
   let queryAgreementPlacement = new Parse.Query('AgreementPlacement');
   queryAgreementPlacement.equalTo("objectId", meta.objectId);
   let agreementPlacement = await queryAgreementPlacement.first({ useMasterKey: true });

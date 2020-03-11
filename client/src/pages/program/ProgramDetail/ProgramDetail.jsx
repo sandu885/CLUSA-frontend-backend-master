@@ -248,7 +248,7 @@ class ProgramDetail extends Component {
                                 </MDBBtn>
                               </MDBCol>
                             </MDBRow>
-                            {(this.state.role != '1' || this.state.role != '0') &&
+                            {(this.state.role != '1' && this.state.role != '0') &&
                               <MDBRow>
                                 <MDBCol md="6">
                                   Program Closing Report

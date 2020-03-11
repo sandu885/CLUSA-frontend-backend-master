@@ -241,9 +241,9 @@ class OrganizationComment extends Component {
                 <MDBCol md="3" className="text-center">
                   <select name="programStatus" className="browser-default custom-select form-control" value={programStatus} onChange={this.handleProgramChange}>
                     <option>Select Status</option>
-                    <option value="inView">View</option>
+                    <option value="inView">In Review</option>
                     <option value="preparingAgreement">Preparing Agreement</option>
-                    <option value="approved">Approved</option>
+                    <option value="turnDown">Turn Down</option>
                   </select>
                   <MDBBtn rounded size={"sm"} style={{ width: '100%' }}  className="second-action-button btn-block z-depth-1a check-file-upload mt-2"
                           onClick={this.postProgramUpdateStatus}
@@ -272,6 +272,8 @@ class OrganizationComment extends Component {
         <MDBCol md="1" />
       </MDBRow>
     </MDBCardFooter>;
+
+    console.log('fixFooter', fixFooter);
 
     return (
       <div className="bg-withImage">

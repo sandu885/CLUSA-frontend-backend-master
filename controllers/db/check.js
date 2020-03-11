@@ -1,4 +1,9 @@
+const PROGRAM = require('./program');
+
 const createNewCheck = async (meta, file) => {
+  // Validation Section STARTS
+  await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
+  // Validation Section ENDS
   if (!meta.checkAmount)
     throw new Error('Please pass check amount.');
   if (!meta.checkId)
@@ -58,6 +63,9 @@ const fetchAllChecksByOrgIdProgId = async (meta) => {
 };
 
 const updateCheckById = async (meta, file) => {
+  // Validation Section STARTS
+  await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
+  // Validation Section ENDS
   if (!meta.checkAmount)
     throw new Error('Please pass check amount.');
   if (!meta.checkId)

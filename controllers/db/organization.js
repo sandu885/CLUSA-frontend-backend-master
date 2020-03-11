@@ -189,6 +189,9 @@ const suspendOrgById = async(meta) => {
 const updateOrgInfo = async(meta, files) => {
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
+
+
+
     let querySession = new Parse.Query(Parse.Session);
     querySession.equalTo("sessionToken", meta.sessionToken);
     querySession.include("user");
@@ -205,7 +208,16 @@ const updateOrgInfo = async(meta, files) => {
     } else {
         orgId = user.get('orgId');
     }
+    let queryProgram = new Parse.Query("Program");
+    queryProgram.limit(10000);
+    queryProgram.equalTo("orgId", orgId);
 
+    const programRecords = await queryProgram.find({useMasterKey: true});
+    const programData = JSON.parse(JSON.stringify(programRecords));
+    programData.find(pData => (pData.status === 'inView' || !pData.status));
+    if (!programData)
+        throw new Error("You can not edit application information.");
+    // TODO ask the message need to show to the user
     // } else if (user.get('userType') == '1') {
     //     orgId = user.get('orgId');
     // }

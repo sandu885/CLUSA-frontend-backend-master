@@ -26,6 +26,7 @@ const reportType  = [
   { value: '3', name: 'Inter Documentation' },
   { value: '4', name: 'Other event' },
   { value: '5', name: 'Essay Content' },
+  { value: '6', name: 'Inter Information' },
 ];
 
 class ProgramReport extends Component {
@@ -119,8 +120,9 @@ class ProgramReport extends Component {
         this.setState({
           formData: {},
         });
-        this.fetchProgramReport()
+        this.fetchProgramReport();
       }).catch((error) => {
+        this.toggleDeleteModal();
         if (error.response !== null && error.response !== undefined) {
           if (error.response.data !== null && error.response.data !== undefined) {
             if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
@@ -396,7 +398,9 @@ class ProgramReport extends Component {
                               <MDBCol md={role == '1' ? 2 : 7} className="pt-2 ellipsis">
                                 <a href={pRD.file.path} rel="noopener noreferrer" target="_blank">{pRD.file.filename}</a>
                               </MDBCol>
-                              <MDBCol md={3} className="pt-2">{reportType.find(e => e.value == pRD.type).name}</MDBCol>
+                              <MDBCol md={3} className="pt-2">
+                                {reportType.find(e => e.value == pRD.type).name}
+                              </MDBCol>
                               <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
 
                               {role == '1' && <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
@@ -513,6 +517,7 @@ class ProgramReport extends Component {
                     <option value="3">Inter Documentation</option>
                     <option value="4">Other event</option>
                     <option value="5">Essay Content</option>
+                    <option value="6">Intern Information</option>
                   </select>
                 </MDBCol>
                 <MDBCol md={1} />
