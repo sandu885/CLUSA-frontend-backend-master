@@ -262,65 +262,47 @@ class Account extends Component {
     return (
       <div className="bg-lightcolor">
         <HeaderComponent />
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
           <MDBRow>
-            <MDBCol md="1" />
             <MDBCol
-              md="10"
-              className="text-center"
+              md="12"
             >
-
-              {/* my organization info section */}
+              <h1>Organization Home Page</h1>
+            </MDBCol>            
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol
+              md="12"              
+            >
               <MDBCard>
                 <MDBCardBody className="mx-4">
-                  <div className="text-center">
-                    <h3 className="dark-grey-text mb-4">
-                      <strong>Organization Home Page</strong>
-                    </h3>
-                  </div>
-
-                  <MDBCol md="12" className="program-detail-sub-header font-weight-bold text-center organization-sub-header">
-                    {/*<div>*/}
+                  <div className="grey-bg" style={{ padding: '15px 30px 15px 30px' }}>
                     <MDBRow>
-                      <div className="organization-sub-header-item">
-                        Organization Name:-
-                      </div>
-                      <div>
-                        <span> {organization.name} </span>
-                      </div>
-                    </MDBRow>
-                    <MDBRow>
-                      <div className="organization-sub-header-item">
-                        Conant Name:-
-                      </div>
-                      <div>
-                        <span> {user.username} </span>
-                      </div>
-                    </MDBRow>
-                    <MDBRow>
-                      <div className="organization-sub-header-item">
-                        Email:-
-                      </div>
-                      <div>
-                        <span> {user.emailAddress || user.email} </span>
-                      </div>
-                    </MDBRow>
-                    <MDBRow className="mb-3">
-                      <MDBCol md="3" />
-                      <MDBCol md="6">
-                        <MDBBtn
+                      <MDBCol md="2" className="pt-2">
+                        <strong>Organization Name: </strong><span> {organization.name} </span>
+                      </MDBCol>                   
+                      <MDBCol md="2" className="pt-2">
+                      <strong>Conant Name: </strong><span> {user.username} </span>
+                      </MDBCol>                   
+                      <MDBCol md="2" className="pt-2">
+                      <strong>Email: </strong><span> {user.emailAddress || user.email} </span>
+                      </MDBCol>
+                      <MDBCol md="2">
+                      <MDBBtn
                           rounded
-                          size={"sm"}
-                          className="green-button org-view-sub-header-button btn-block z-depth-1a"
+                          style={{ margin: '0' }}
+                          className="green-button org-view-sub-header-button z-depth-1a"
                           href="/organization-information"
                         >
                           More Details
                         </MDBBtn>
                       </MDBCol>
-                      <MDBCol md="3" />
                     </MDBRow>
-                    {/*</div>*/}
-
+                  </div>
+                
+                  <MDBCol md="12" className="program-detail-sub-header font-weight-bold organization-sub-header">
                     <MDBRow>
                       <MDBCol md="12">
                         {dataReceived ?
@@ -344,6 +326,86 @@ class Account extends Component {
                       </MDBCol>
                     </MDBRow>
                   </MDBCol>
+                        
+                  <div className="offer-box-row">
+                    <h3>ALL GRANTS PROGRAM</h3>
+                    <MDBRow>
+                      <MDBCol md="3">
+                        <div className="offer-box">
+                            <p>Internship Program Grant</p>
+                            <h5
+                                  id="current-status"
+                                  className="blue-text"
+                              ><strong>{status}</strong>
+                              </h5>
+                              <p><a
+                                  className="instruction-link"
+                                  href="/internship-information"
+                              >
+                                  Internship Program Grant Instruction
+                                  </a></p>
+                        </div>
+                      </MDBCol>
+                      <MDBCol md="3">
+                        <div className="offer-box">
+                            <p>Civic Leadership Forum Grant<br></br>
+                            <span>Civic Leadership Forum Grant Information</span></p>
+                            <MDBBtn
+                              rounded
+                              style={{ margin: '0' }}
+                              disabled
+                              className="green-button org-view-sub-header-button z-depth-1a"
+                              onClick={() =>{
+                                if (this.props.match.params.id) {
+                                  localStorage.setItem('orgId', this.props.match.params.id);
+                                }
+                                this.props.history.push('/organization-information');
+                              }}
+                            >
+                              Not Open Yet
+                            </MDBBtn>
+                        </div>
+                      </MDBCol>
+                      <MDBCol md="3">
+                        <div className="offer-box">
+                            <p>Capacity Building Grant <br></br><span>(By Invitation Only)</span></p>
+                            <MDBBtn
+                              rounded
+                              style={{ margin: '0' }}
+                              disabled
+                              className="green-button org-view-sub-header-button z-depth-1a"
+                              onClick={() =>{
+                                if (this.props.match.params.id) {
+                                  localStorage.setItem('orgId', this.props.match.params.id);
+                                }
+                                this.props.history.push('/organization-information');
+                              }}
+                            >
+                              Not Open Yet
+                            </MDBBtn>
+                        </div>
+                      </MDBCol>
+                      <MDBCol md="3">
+                        <div className="offer-box">
+                            <p>CLUSA Technical Assistance Grants<br></br><span>CLUSA Technical Assistance Grants Information</span></p>
+                            <MDBBtn
+                              rounded
+                              style={{ margin: '0' }}
+                              disabled
+                              className="green-button org-view-sub-header-button z-depth-1a"
+                              onClick={() =>{
+                                if (this.props.match.params.id) {
+                                  localStorage.setItem('orgId', this.props.match.params.id);
+                                }
+                                this.props.history.push('/organization-information');
+                              }}
+                            >
+                              Not Open Yet
+                            </MDBBtn>
+                        </div>
+                      </MDBCol>
+                    </MDBRow>
+                  </div>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -351,212 +413,7 @@ class Account extends Component {
           </MDBRow>
 
           {/* Application section */}
-          <MDBRow className="pt-5">
-            <MDBCol md="1" />
-            <MDBCol
-              md="10"
-              className="text-center"
-            >
-              <MDBCard className="pb-3">
-                <MDBCardBody className="mx-4">
-                  <div className="text-center">
-                    <h3 className="dark-grey-text mb-5">
-                      <strong>All Grants Program </strong>
-                    </h3>
-                  </div>
-                  {/* ==================== intership program  ==================== */}
-                  <MDBRow>
-                    <MDBCol
-                      md="6"
-                      className="ml-1"
-                    >
-                      <MDBCard>
-                        <MDBCardBody className="mx-4" style={{ cursor: 'pointer' }} onClick={this.clickApplyBtn}>
-                          <div className="text-center">
-                            <h4 className="dark-grey-text mb-4">
-                              <strong>Internship Program Grant</strong>
-                            </h4>
-                          </div>
-                          {/*<div className="text-center mb-3">*/}
-                          {/*  <MDBBtn*/}
-                          {/*    gradient="blue"*/}
-                          {/*    rounded*/}
-                          {/*    className="btn-block z-depth-1a"*/}
-                          {/*    onClick={this.clickApplyBtn}*/}
-                          {/*  >*/}
-                          {/*    { buttonText }*/}
-                          {/*  </MDBBtn>*/}
-                          {/*</div>*/}
-                        </MDBCardBody>
-                      </MDBCard>
-                    </MDBCol>
-                    <MDBCol
-                      md="5"
-                      className="vertical-center"
-                    >
-                      <div>
-                        <h5
-                          id="current-status"
-                          className="blue-text"
-                        ><strong>{status}</strong>
-                        </h5>
-                        <a
-                          className="dark-grey-text instruction-link"
-                          href="/internship-information"
-                        >
-                      Internship Program Grant Instruction
-                        </a>
-                      </div>
-                    </MDBCol>
-                  </MDBRow>
-                  {/* =========== Civic Leadership Forum Grant Information ============ */}
-                  <MDBRow className="pt-4">
-                    <MDBCol
-                      md="6"
-                      className="ml-1"
-                    >
-                      <MDBCard>
-                        <MDBCardBody className="mx-4">
-                          <div className="text-center">
-                            <h4 className="dark-grey-text mb-4">
-                              <strong>Civic Leadership Forum Grant</strong>
-                            </h4>
-                          </div>
-                          {/*<div className="text-center mb-3">*/}
-                          {/*  <MDBBtn*/}
-                          {/*    type="button"*/}
-                          {/*    color="blue-grey"*/}
-                          {/*    rounded*/}
-                          {/*    disabled*/}
-                          {/*    className="btn-block z-depth-1a"*/}
-                          {/*  >*/}
-                          {/*Not Open Now*/}
-                          {/*  </MDBBtn>*/}
-                          {/*</div>*/}
-                        </MDBCardBody>
-                      </MDBCard>
-                    </MDBCol>
-                    <MDBCol
-                      md="5"
-                      className="vertical-center"
-                    >
-                      <div>
-                        {/* <h5
-                      id="current-status"
-                      className="blue-text"
-                    ><strong>Current Status</strong>
-                    </h5> */}
-                        <p
-                          className="disabledInstruction-link"
-                        >
-                      Civic Leadership Forum Grant Information<br />
-                      (Not Open Yet)
-                        </p>
-                      </div>
-                    </MDBCol>
-                  </MDBRow>
-
-                  {/* ========== Capacity Building Grant ================ */}
-                  <MDBRow className="pt-4">
-                    <MDBCol
-                      md="6"
-                      className="ml-1"
-                    >
-                      <MDBCard>
-                        <MDBCardBody className="mx-4">
-                          <div className="text-center">
-                            <h4 className="dark-grey-text">
-                              <strong>Capacity Building Grant</strong>
-                            </h4>
-                            <p>(By Invitation Only)</p>
-                          </div>
-                          {/*<div className="text-center mb-3">*/}
-                          {/*  <MDBBtn*/}
-                          {/*    type="button"*/}
-                          {/*    color="blue-grey"*/}
-                          {/*    rounded*/}
-                          {/*    disabled*/}
-                          {/*    className="btn-block z-depth-1a"*/}
-                          {/*  >*/}
-                          {/*Not Open Now*/}
-                          {/*  </MDBBtn>*/}
-                          {/*</div>*/}
-                        </MDBCardBody>
-                      </MDBCard>
-                    </MDBCol>
-                    <MDBCol
-                      md="5"
-                      className="vertical-center"
-                    >
-                      <div>
-                        {/* <h5
-                      id="current-status"
-                      className="blue-text"
-                    ><strong>Current Status</strong>
-                    </h5> */}
-                        <p
-                          className="disabledInstruction-link"
-                          // href="#"
-                        >
-                      Capacity Building Grant Instruction<br />
-                      (Not Open Yet)
-                        </p>
-                      </div>
-                    </MDBCol>
-                  </MDBRow>
-
-                  {/* =========== CLUSA Technical Assistance Grants ============ */}
-                  <MDBRow className="pt-4">
-                    <MDBCol
-                      md="6"
-                      className="ml-1"
-                    >
-                      <MDBCard>
-                        <MDBCardBody className="mx-4">
-                          <div className="text-center">
-                            <h4 className="dark-grey-text mb-4">
-                              <strong>CLUSA Technical Assistance Grants</strong>
-                            </h4>
-                          </div>
-                          {/*<div className="text-center mb-3">*/}
-                          {/*  <MDBBtn*/}
-                          {/*    type="button"*/}
-                          {/*    color="blue-grey"*/}
-                          {/*    rounded*/}
-                          {/*    disabled*/}
-                          {/*    className="btn-block z-depth-1a"*/}
-                          {/*  >*/}
-                          {/*Not Open Now*/}
-                          {/*  </MDBBtn>*/}
-                          {/*</div>*/}
-                        </MDBCardBody>
-                      </MDBCard>
-                    </MDBCol>
-                    <MDBCol
-                      md="5"
-                      className="vertical-center"
-                    >
-                      <div>
-                        {/* <h5
-                      id="current-status"
-                      className="blue-text"
-                    ><strong>Current Status</strong>
-                    </h5> */}
-                        <p
-                          className="disabledInstruction-link"
-                        >
-                      CLUSA Technical Assistance Grants Information<br />
-                      (Not Open Yet)
-                        </p>
-                      </div>
-                    </MDBCol>
-                  </MDBRow>
-
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCol>
-            <MDBCol md="1" />
-          </MDBRow>
+          
         </MDBContainer>
         <FooterComponent />
       </div>
