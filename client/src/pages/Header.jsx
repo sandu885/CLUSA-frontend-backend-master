@@ -101,7 +101,6 @@ class Header extends Component {
 
   render() {
     const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin, sessionToken, displayRole } = this.state;
-    console.log('this.props', this.props);
     const { currentPage = [], breadCrums = [] } = this.props;
 
     if (clickLogOut === true || redirectToLogin === true) return <Redirect to="/login" />;

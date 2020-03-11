@@ -248,6 +248,29 @@ class ProgramDetail extends Component {
                                 </MDBBtn>
                               </MDBCol>
                             </MDBRow>
+                            {(this.state.role != '1' && this.state.role != '0') &&
+                              <MDBRow>
+                                <MDBCol md="6">
+                                  Program Closing Report
+                                </MDBCol>
+                                <MDBCol md="6">
+                                  <MDBBtn
+                                    rounded
+                                    className="application-info-button second-action-button z-depth-1a"
+                                    onClick={() => {
+                                      const { history } = this.props;
+                                      const { programData: { program } } = this.state;
+                                      localStorage.setItem('orgId', program.orgId);
+                                      if (program) {
+                                        history.push(`/close-program?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      }
+                                    }}
+                                  >
+                                    Review
+                                  </MDBBtn>
+                                </MDBCol>
+                              </MDBRow>
+                            }
                           </MDBCol>
                           <MDBCol md="4">
                             
@@ -358,71 +381,23 @@ class ProgramDetail extends Component {
                       </MDBCol>
                       {this.state.role != '1' &&
                         <>
-                          {this.state.role == '0' ? null :
-                            <MDBCol md="12">
-                              <h3>Program Closing Report</h3>
-                            </MDBCol>
-                          }
-                          <MDBCol md="12">
 
-                            {this.state.role == '0' ? null :
-                              <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote}
-                                        onChange={this.handleChange}/>
-                            }
+                          <MDBCol md="12" />
 
-                            {this.state.role != '0' ?
-                              <div style={{
-                                display: 'flex',
-                              }}>
+                          <MDBCol md="1">
 
-                                <div
-                                  style={{
-                                   
-                                  }}
-                                >
-                                  <MDBBtn
-                                    rounded
-                                    color="danger"
-                                    className="second-action-button z-depth-1a red-color"
-                                    onClick={this.closeReport}
-                                  >
-                                    Close
-                                  </MDBBtn>
-                                </div>
 
-                                <div>
-                                  <MDBBtn
-                                    rounded
-                                    color="danger"
-                                    className="second-action-button btn-block z-depth-1a light-green-color"
-                                    onClick={() => {
-                                      this.props.history.goBack();
-                                    }}
-                                  >
-                                    Back
-                                  </MDBBtn>
-                                </div>
-                              </div>
-                              :
-                              <div style={{
-                                justifyContent: 'center',
-                                display: 'flex',
-                              }}>
-                                <div>
-                                  <MDBBtn
-                                    rounded
-                                    size={"sm"}
-                                    style={{ width: '150px' }}
-                                    className="second-action-button btn-block z-depth-1a light-green-color"
-                                    onClick={() => {
-                                      this.props.history.goBack();
-                                    }}
-                                  >
-                                    Back
-                                  </MDBBtn>
-                                </div>
-                              </div>
-                            }
+                              <MDBBtn
+                                rounded
+                                color="danger"
+                                className="second-action-button btn-block z-depth-1a light-green-color"
+                                onClick={() => {
+                                  this.props.history.goBack();
+                                }}
+                              >
+                                Back
+                              </MDBBtn>
+
 
                           </MDBCol>
                         </>

@@ -35,6 +35,18 @@ const fetchProgramById = async(programId) => {
     return await queryProgram.first({useMasterKey: true});
 };
 
+const closeFinalCheckProgramValidationById = async (programId) => {
+    const programRecord = await fetchProgramById(programId);
+    if (!programRecord)
+        throw new Error('Provided data is not proper.');
+
+    if (programRecord.get('status') === 'finalCheckSent')
+        throw new Error('You can not perform this action as final check is send.');
+
+    if (programRecord.get('status') === 'closed')
+        throw new Error('You can not perform this action as program is closed.');
+};
+
 const fetchProgramDetailById = async(programId) => {
     if (!programId)
         throw new Error("No Program id");
@@ -190,7 +202,7 @@ const fetchAllPrograms = async(meta) => {
 };
 
 const updateProgramByIdToCloseStatus = async (meta) => {
-    console.log('Closing report starting\n', meta);
+    console.log('Closing report starting');
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
 
@@ -238,4 +250,5 @@ module.exports = {
     fetchProgramDetailById,
     updateProgramByIdToCloseStatus,
     fetchProgramById,
-}
+    closeFinalCheckProgramValidationById,
+};

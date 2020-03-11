@@ -115,9 +115,9 @@ class Checks extends Component {
     ).then((response) => {
       alert('🦄Save successfully');
 
-      this.fetchCheckData('1');
+      // this.fetchCheckData('1');
       console.warn('reponse message', response.data);
-
+      this.props.history.push(`/program/${programId}`);
     }).catch((error) => {
       console.warn('error.response', error.response);
       if(error.response !== null && error.response !== undefined) {
@@ -168,8 +168,9 @@ class Checks extends Component {
       formData,
     ).then((response) => {
       alert('🦄Save successfully');
-      this.fetchCheckData('2');
+      // this.fetchCheckData('2');
       console.warn('reponse message', response.data);
+      this.props.history.push(`/program/${programId}`);
 
     }).catch((error) => {
       console.warn('error.response', error.response);
@@ -217,7 +218,7 @@ class Checks extends Component {
               md="12"
             >
               <h1>{heading}</h1>
-            </MDBCol>            
+            </MDBCol>
           </MDBRow>
         </MDBContainer>
         <MDBContainer>
@@ -225,7 +226,7 @@ class Checks extends Component {
             <MDBCol md="12">
               <MDBCard>
                 <MDBCardBody>
-                  <MDBRow>                    
+                  <MDBRow>
                     <MDBCol md="5" className="pt-3 font-weight-bold check-sub-header">
                         <h3>First Check</h3>
                         <div className="form-group font-weight-bold">
@@ -235,7 +236,7 @@ class Checks extends Component {
                             : <input type="number" className="form-control" name="first-checkAmount" value={first.checkAmount} onChange={this.handleChange} />
                           }
                         </div>
-                       
+
                         <label className="col-form-label check-form-label">Check #:-</label>
                         <div className="col-sm-6 p-0">
                           {role == '0' ? <label className="col-form-label check-form-label font-weight-light">{first && first.checkId}</label>
@@ -282,12 +283,12 @@ class Checks extends Component {
                       {role == '0' ? null :
                         <MDBRow className="form-group font-weight-bold">
                           <MDBCol sm="12">
-                            <MDBBtn rounded 
+                            <MDBBtn rounded
                                     className="send-button second-action-button z-depth-1a check-file-upload"
                                     onClick={this.saveFirstCheck}>
                               Send
                             </MDBBtn>
-                            <MDBBtn rounded 
+                            <MDBBtn rounded
                                     className="cancel-button second-action-button  z-depth-1a check-file-upload"
                                     onClick={event => {
                                       this.props.history.goBack();
@@ -296,14 +297,14 @@ class Checks extends Component {
                             </MDBBtn>
                           </MDBCol>
                           <MDBCol sm="3">
-                            
+
                           </MDBCol>
                         </MDBRow>
                       }
                     </MDBCol>
                     <MDBCol md="5" className="pt-3 font-weight-bold check-sub-header">
                       <h3>Second check</h3>
-                      
+
                         <div className="form-group font-weight-bold">
                           <label className="col-form-label check-form-label">Check Amount:-</label>
                           <div className="col-sm-6 p-0">
@@ -361,7 +362,7 @@ class Checks extends Component {
                           <div className="form-group font-weight-bold">
                             <MDBCol sm="5"/>
                             <MDBCol sm="3">
-                              <MDBBtn rounded 
+                              <MDBBtn rounded
                                       className="send-button second-action-button z-depth-1a check-file-upload"
                                       onClick={event => {
                                         this.props.history.goBack();
@@ -373,12 +374,12 @@ class Checks extends Component {
                           </div>
                           :
                           <div className="form-group font-weight-bold">
-                              <MDBBtn rounded 
+                              <MDBBtn rounded
                                       className="send-button second-action-button z-depth-1a check-file-upload"
                                       onClick={this.saveSecondCheck}>
                                 Send
                               </MDBBtn>
-                              <MDBBtn rounded 
+                              <MDBBtn rounded
                                       color="danger"
                                       className="cancel-button second-action-button z-depth-1a check-file-upload"
                                       onClick={event => {
@@ -386,14 +387,14 @@ class Checks extends Component {
                                       }}
                               >
                                 Cancel
-                              </MDBBtn>                            
+                              </MDBBtn>
                           </div>
                         }
 
 
-                     
+
                     </MDBCol>
-                  </MDBRow>                 
+                  </MDBRow>
                   <br/>
                 </MDBCardBody>
               </MDBCard>

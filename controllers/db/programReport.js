@@ -1,9 +1,19 @@
 const moment = require('moment');
+const PROGRAM = require('./program');
 
 const createNewProgramReport = async (meta, file) => {
   console.log('\n\n\nJSON.stringify\n\n\n', JSON.stringify(meta));
   if (!file)
     throw new Error('File is not uploaded.');
+
+  await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
+  const programRecord = await PROGRAM.fetchProgramById(meta.programId);
+  if (!programRecord)
+    throw new Error('Provided data are not proper.');
+
+  if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+    throw new Error('You can not perform this action right now.');
+  // TODO ask for the message
 
   let ProgramReport = Parse.Object.extend("ProgramReport"), programReport = new ProgramReport();
 
@@ -43,6 +53,15 @@ const fetchAllProgramReportByOrgIdProgId = async (meta) => {
 };
 
 const updateProgramReportById = async (meta, file) => {
+  await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
+  const programRecord = await PROGRAM.fetchProgramById(meta.programId);
+  if (!programRecord)
+    throw new Error('Provided data is not proper.');
+
+  if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+    throw new Error('You can not perform this action right now.');
+  // TODO ask for the message
+
   let queryProgramReport = new Parse.Query('ProgramReport');
   queryProgramReport.equalTo("objectId", meta.objectId);
   let programReport = await queryProgramReport.first({ useMasterKey: true });
@@ -61,13 +80,21 @@ const updateProgramReportById = async (meta, file) => {
 };
 
 const deleteProgramReportById = async (meta) => {
+  const programRecord = await PROGRAM.fetchProgramById(meta.programId);
+  if (!programRecord)
+    throw new Error('Provided data is not proper.');
+
+  if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+    throw new Error('You can not perform this action right now.');
+  // TODO ask for the message
+  // meta.programId
   let queryProgramReport = new Parse.Query('ProgramReport');
   queryProgramReport.equalTo("objectId", meta.objectId);
   let programReport = await queryProgramReport.first({ useMasterKey: true });
 
   const programReportSaved = await programReport.destroy();
   console.log('\n\n Program Report delete from the database program report', programReportSaved, '\n\n');
-  return programReportSaved;
+  return 'programReportSaved';
 };
 
 module.exports = {

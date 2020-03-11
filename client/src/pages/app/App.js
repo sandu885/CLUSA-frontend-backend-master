@@ -47,6 +47,7 @@ import FinalReportView from '../FinalReport/FinalReportView';
 import FinalReportComment from '../Comment/FinalReportComment';
 import OrganizationComment from '../Comment/OrganizationComment';
 import ProgramReport from '../ProgramReport/ProgramReport';
+import CloseProgram from '../CloseProgram/CloseProgram';
 import RecreateLogin from '../RecreateLogin/RecreateLogin';
 import orgRegisterInfo from '../orgInfo/RegisterInfo';
 import wholeApplicationInfo from '../wholeApplicationInfo/WholeApplication';
@@ -195,6 +196,7 @@ class App extends Component {
             <PrivateRoute component={FinalReport} path="/final-report" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalReportView} path="/final-report-view" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={ProgramReport} path="/program-report" exact roles={['it-admin', 'reviewer']} />
+            <PrivateRoute component={CloseProgram} path="/close-program" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={FinalReportComment} path="/final-report-comment" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={OrganizationComment} path="/app-review" exact roles={['it-admin', 'reviewer']} />
             <PrivateRoute component={ResetPassword} path="/reset-password" exact roles={['it-admin', 'reviewer']} />

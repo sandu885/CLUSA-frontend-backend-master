@@ -44,9 +44,6 @@ class FinalReportComment extends Component {
     });
   }
 
-
-
-
   validate = (data) => {
     if (!data.note) {
       alert('Please enter the comment');

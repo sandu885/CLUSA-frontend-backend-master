@@ -1,0 +1,25 @@
+.user-org-management-header {
+    font-size: 1.75rem;
+}
+
+.first-action-button {
+    background-color: #80a7ff !important;
+    padding: unset !important;
+    font-size: 1rem !important;
+}
+
+.second-action-button {
+    background-color: #17ba7b !important;
+    padding: unset !important;
+    font-size: 1rem !important;
+}
+
+.third-action-button {
+    padding: unset !important;
+    font-size: 1rem !important;
+}
+
+.add-new-user {
+    align-items: center;
+    display: inherit;
+}

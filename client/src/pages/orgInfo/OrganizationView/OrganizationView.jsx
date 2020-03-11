@@ -62,7 +62,7 @@ class OrganizationView extends Component {
               md="12"
             >
               <h1>{heading}</h1>
-            </MDBCol>            
+            </MDBCol>
           </MDBRow>
         </MDBContainer>
 
@@ -70,16 +70,16 @@ class OrganizationView extends Component {
           {dataReceived &&
             <MDBRow>
               <MDBCol md="12">
-                <MDBCard>                 
+                <MDBCard>
                   <MDBCardBody>
                     <div className="grey-bg" style={{ padding: '15px 30px 15px 30px' }}>
                     <MDBRow>
                       <MDBCol md="2" className="pt-2">
                         <strong>Organization Name: </strong><span> {organization.name} </span>
-                      </MDBCol>                   
+                      </MDBCol>
                       <MDBCol md="2" className="pt-2">
                       <strong>Conant Name: </strong><span> {user.username} </span>
-                      </MDBCol>                   
+                      </MDBCol>
                       <MDBCol md="2" className="pt-2">
                       <strong>Email: </strong><span> {user.emailAddress || user.email} </span>
                       </MDBCol>
@@ -196,7 +196,7 @@ class OrganizationView extends Component {
                               </MDBBtn>
                           </div>
                         </MDBCol>
-                      </MDBRow>      
+                      </MDBRow>
                     </div>
 
                   </MDBCardBody>
@@ -205,7 +205,7 @@ class OrganizationView extends Component {
             </MDBRow>
           }
         </MDBContainer>
-        
+
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );

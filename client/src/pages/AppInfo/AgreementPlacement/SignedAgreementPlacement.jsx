@@ -125,7 +125,7 @@ class SignedAgreementPlacement extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      alert('🦄Agreement is saved!');
+      alert('Save Successfully');
       this.fetchAgreementPlacementData();
 
       console.warn('reponse message', response.data);

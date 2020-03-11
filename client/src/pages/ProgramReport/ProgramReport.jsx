@@ -26,6 +26,7 @@ const reportType  = [
   { value: '3', name: 'Inter Documentation' },
   { value: '4', name: 'Other event' },
   { value: '5', name: 'Essay Content' },
+  { value: '6', name: 'Inter Information' },
 ];
 
 class ProgramReport extends Component {
@@ -119,8 +120,9 @@ class ProgramReport extends Component {
         this.setState({
           formData: {},
         });
-        this.fetchProgramReport()
+        this.fetchProgramReport();
       }).catch((error) => {
+        this.toggleDeleteModal();
         if (error.response !== null && error.response !== undefined) {
           if (error.response.data !== null && error.response.data !== undefined) {
             if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
@@ -235,8 +237,8 @@ class ProgramReport extends Component {
               md="12"
             >
               <h1>{heading}</h1>
-            </MDBCol>            
-          </MDBRow>            
+            </MDBCol>
+          </MDBRow>
         </MDBContainer>
         <MDBContainer>
           <MDBRow>
@@ -356,6 +358,22 @@ class ProgramReport extends Component {
                         </MDBCol>
                       </MDBRow>
 
+                      <MDBRow style={{ alignItems: 'center'}} className="pt-3">
+                        <MDBCol md={4} className="table-header font-weight-bold">
+                          Intern Information
+                        </MDBCol>
+                        <MDBCol md={4} className="text-center">
+                          Report requirement sort introduction
+                        </MDBCol>
+                        <MDBCol md={4} className="table-header font-weight-bold text-center">
+                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                                  href={CLUSAInternInformation}
+                          >
+                            Download Template File
+                          </MDBBtn>
+                        </MDBCol>
+                      </MDBRow>
+
                       <MDBRow className="pt-4">
                         <MDBCol md={12}>
                           Reports note: Please submit all Student Training, Graduation Ceremony Reports, Intern Documentation, Other Event, Essay Contest and Intern Information
@@ -387,7 +405,9 @@ class ProgramReport extends Component {
                               <MDBCol md={role == '1' ? 2 : 7} className="pt-2 ellipsis">
                                 <a href={pRD.file.path} rel="noopener noreferrer" target="_blank">{pRD.file.filename}</a>
                               </MDBCol>
-                              <MDBCol md={3} className="pt-2">{reportType.find(e => e.value == pRD.type).name}</MDBCol>
+                              <MDBCol md={3} className="pt-2">
+                                {reportType.find(e => e.value == pRD.type).name}
+                              </MDBCol>
                               <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
 
                               {role == '1' && <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
@@ -416,24 +436,27 @@ class ProgramReport extends Component {
                         </MDBCol>
                         {/*<MDBCol md={2} />*/}
 
-                        <MDBCol md={1}/>
-                        <MDBCol md={9} className="pt-4">
-                          <MDBCol md={4}>
-                            <MDBBtn
-                              rounded
-                              size={"sm"}
-                              className="second-action-button z-depth-1a"
-                              onClick={() => {
-                                this.setState({ formData: {} });
-                                this.toggleModal()
-                              }}
-                            >
-                              Upload Report
-                            </MDBBtn>
-                          </MDBCol>
-                        </MDBCol>
-                        <MDBCol md={2}/>
-
+                        {role == '1' &&
+                          <>
+                            <MDBCol md={1}/>
+                            <MDBCol md={9} className="pt-4">
+                              <MDBCol md={4}>
+                                <MDBBtn
+                                  rounded
+                                  size={"sm"}
+                                  className="second-action-button z-depth-1a"
+                                  onClick={() => {
+                                    this.setState({ formData: {} });
+                                    this.toggleModal()
+                                  }}
+                                >
+                                  Upload Report
+                                </MDBBtn>
+                              </MDBCol>
+                            </MDBCol>
+                            <MDBCol md={2}/>
+                          </>
+                        }
                       </MDBRow>
 
                     </MDBCol>
@@ -501,6 +524,7 @@ class ProgramReport extends Component {
                     <option value="3">Inter Documentation</option>
                     <option value="4">Other event</option>
                     <option value="5">Essay Content</option>
+                    <option value="6">Intern Information</option>
                   </select>
                 </MDBCol>
                 <MDBCol md={1} />
