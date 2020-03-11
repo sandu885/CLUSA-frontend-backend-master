@@ -267,11 +267,11 @@ class AgreementPlacement extends Component {
                           <MDBRow className="">
                             {role === '0' ? null :
                               <MDBCol sm="5">
-                                Placement template file, <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank">Click to download</a>
-                                {/*<input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>*/}
-                                {/*<MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>*/}
-                                {/*  Click to Upload/Replace Template Files*/}
-                                {/*</MDBBtn>*/}
+                                {/*Placement template file, <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank">Click to download</a>*/}
+                                <input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>
+                                <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>
+                                  Click to Upload/Replace Template Files
+                                </MDBBtn>
                               </MDBCol>
                             }
 

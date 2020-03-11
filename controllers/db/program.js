@@ -202,7 +202,7 @@ const fetchAllPrograms = async(meta) => {
 };
 
 const updateProgramByIdToCloseStatus = async (meta) => {
-    console.log('Closing report starting\n', meta);
+    console.log('Closing report starting');
     if (!meta.sessionToken)
         throw new Error("No sessionToken");
 

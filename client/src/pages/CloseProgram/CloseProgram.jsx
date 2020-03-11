@@ -24,6 +24,7 @@ class CloseProgram extends Component {
       formData: {},
       userId: localStorage.getItem('clusa-user-id'),
       role: localStorage.getItem('clusa-role'),
+      isEdit: false,
     };
   }
 
@@ -120,8 +121,8 @@ class CloseProgram extends Component {
   };
 
   render() {
-    const { formData, programId, role, closeNote } = this.state;
-    console.log(this.state);
+    const { formData, programId, isEdit, closeNote = '' } = this.state;
+    console.log(this.state, closeNote);
 
     let heading = 'Program Closing Report';
 
@@ -144,11 +145,26 @@ class CloseProgram extends Component {
                     <MDBCol md="9">
 
                       <MDBRow className="form-group font-weight-bold">
-                        <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote} onChange={this.handleChange}/>
+                        {isEdit ?
+                          <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote} onChange={this.handleChange}/>
+                          :
+                          closeNote && closeNote
+                        }
                       </MDBRow>
 
-                      <MDBRow className="form-group font-weight-bold">
-                        <MDBCol sm="3"/>
+                      <MDBRow className="form-group font-weight-bold justify-content-center">
+                        <MDBCol sm="3">
+                          <MDBBtn rounded size={"sm"}
+                                  className="send-button second-action-button btn-block z-depth-1a check-file-upload"
+                                  onClick={() => {
+                                    this.setState({
+                                      isEdit: !this.state.isEdit,
+                                    })
+                                  }}
+                          >
+                            Edit
+                          </MDBBtn>
+                        </MDBCol>
                         <MDBCol sm="3">
                           <MDBBtn rounded size={"sm"}
                                   className="send-button second-action-button btn-block z-depth-1a check-file-upload"
@@ -194,11 +210,13 @@ class CloseProgram extends Component {
           programId: this.state.programId ? this.state.programId : ''
         },
       ).then((response) => {
+        debugger
         this.setState({
           programData: { ...response.data.program },
           closeNote: response.data.program && response.data.program.program.closeNote,
           dataReceived: true,
         });
+        debugger
       }).catch((error) => {
         this.setState({
           dataReceived: true,
