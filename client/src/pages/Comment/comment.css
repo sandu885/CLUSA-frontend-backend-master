@@ -26,67 +26,6 @@
     margin-right: auto;
     margin-left: auto;
 }
-
-@media (min-width: 576px) {
-    .container .comment-container {
-        max-width: 510px;
-    }
-}
-
-/*@media (min-width: 320px) {*/
-/*    .comment-container {*/
-/*        max-width: 280px;*/
-/*    }*/
-/*}*/
-
-@media (min-width: 768px) {
-    .container .comment-container {
-        max-width: 690px;
-    }
-}
-
-@media (min-width: 992px) {
-    .container .comment-container {
-        max-width: 919px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .container .comment-container {
-        max-width: 1111px;
-    }
-}
-
-@media (min-width: 576px) {
-    .container .comment-container {
-        max-width: 510px;
-    }
-}
-
-/*@media (min-width: 320px) {*/
-/*    .comment-container {*/
-/*        max-width: 280px;*/
-/*    }*/
-/*}*/
-
-@media (min-width: 768px) {
-    .container .comment-container {
-        max-width: 690px;
-    }
-}
-
-@media (min-width: 992px) {
-    .container .comment-container {
-        max-width: 919px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .container .comment-container {
-        max-width: 1111px;
-    }
-}
-
 .comment-view-6 {
     width: 100%;
 }

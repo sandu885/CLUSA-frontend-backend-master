@@ -134,22 +134,21 @@ class FinalReportComment extends Component {
 
     const fixFooter = <MDBCardFooter className="comment-container comment-fix-footer">
       <MDBRow>
-        <MDBCol md="1" />
         <MDBCol md="10" style={{ display: 'flex' }}>
           <div style={{ width: '100%' }}>
             { role === '1' ?
               <MDBRow>
-                <MDBCol md="12" className="text-center p-3 font-weight-bold">
-                  All Comment
+                <MDBCol md="12">
+                <h3>All Comment</h3>
                 </MDBCol>
               </MDBRow>
               :
               <MDBRow>
-                <MDBCol md="9" className="text-center p-3 font-weight-bold">
-                  All Comment
+                <MDBCol md="9">
+                <h3>All Comment</h3>
                 </MDBCol>
-                <MDBCol md="3" className="text-center p-3 font-weight-bold">
-                  My Comment
+                <MDBCol md="3">
+                  <h3>My Comment</h3>
                 </MDBCol>
               </MDBRow>
             }
@@ -159,7 +158,7 @@ class FinalReportComment extends Component {
                 <MDBCol md="12" className="comment-view">
                   {commentData.map((cData, index) =>
                     <div key={cData.objectId + index}>
-                      <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
+                      <span className="">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
                       {' '+ cData.note}
                     </div>
                   )}
@@ -184,12 +183,12 @@ class FinalReportComment extends Component {
                   onChange={this.handleChange}
                   value={formData.note}
                 />
-                  <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="second-action-button btn-block z-depth-1a check-file-upload"
+                  <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="second-action-button z-depth-1a check-file-upload"
                           onClick={this.postComment}
                   >
                     Save
                   </MDBBtn>
-                  <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
+                  <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button z-depth-1a check-file-upload red-color"
                         onClick={() => {
                           const { history } = this.props;
                           history.push(`/program/${programId}`);
@@ -203,7 +202,7 @@ class FinalReportComment extends Component {
             <MDBRow>
               <MDBCol md="9" />
               <MDBCol md="3" className="text-right">
-                <MDBBtn rounded size={"sm"} style={{ width: '100%' }}  className="second-action-button btn-block z-depth-1a check-file-upload mt-2"
+                <MDBBtn rounded size={"sm"} style={{ width: '100%' }}  className="second-action-button z-depth-1a check-file-upload mt-2"
                         onClick={() => {
                           const { history } = this.props;
                           history.push(`/program/${programId}`);
@@ -215,7 +214,6 @@ class FinalReportComment extends Component {
             </MDBRow>
           </div>
         </MDBCol>
-        <MDBCol md="1" />
       </MDBRow>
     </MDBCardFooter>;
 

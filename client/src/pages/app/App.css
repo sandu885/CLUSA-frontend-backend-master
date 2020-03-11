@@ -107,7 +107,7 @@ a:hover{
     padding: 0 0 7px 0;
     margin: 0 0 20px 0;
 }
-.md-form input:not([type]), .md-form input[type="text"]:not(.browser-default), .md-form input[type="password"]:not(.browser-default), .md-form input[type="email"]:not(.browser-default), .md-form input[type="url"]:not(.browser-default), .md-form input[type="time"]:not(.browser-default), .md-form input[type="date"]:not(.browser-default), .md-form input[type="datetime"]:not(.browser-default), .md-form input[type="datetime-local"]:not(.browser-default), .md-form input[type="tel"]:not(.browser-default), .md-form input[type="number"]:not(.browser-default), .md-form input[type="search"]:not(.browser-default), .md-form input[type="search-md"], .md-form textarea.md-textarea, .form-control{
+.md-form input:not([type]), .md-form input[type="text"]:not(.browser-default), .md-form input[type="password"]:not(.browser-default), .md-form input[type="email"]:not(.browser-default), .md-form input[type="url"]:not(.browser-default), .md-form input[type="time"]:not(.browser-default), .md-form input[type="date"]:not(.browser-default), .md-form input[type="datetime"]:not(.browser-default), .md-form input[type="datetime-local"]:not(.browser-default), .md-form input[type="tel"]:not(.browser-default), .md-form input[type="number"]:not(.browser-default), .md-form input[type="search"]:not(.browser-default), .md-form input[type="search-md"], .md-form textarea.md-textarea, .form-control, textarea{
     border-style: solid;
     border-width: 2px;
     border-color: rgb(225, 225, 225);
@@ -146,7 +146,7 @@ a:hover{
   left: 12px;
 }
 .btn {
-  margin: 0 15px 5px 0;
+  margin: 0 15px 15px 0;
   padding: .40rem 1.14rem;
   border-radius: 3px;
   box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.28);  
@@ -347,8 +347,46 @@ table td {
   background: #ededed;
   margin: 0 0 20px 0;
 }
+.scroll-box{
+  height: 300px;
+  overflow-x: auto;
+  padding: 0 20px 0 0px;
+}
+.scroll-box .ans-text{
+  font-size: 15px;
+  color: #1d1d1d;
+  font-weight: bold !important;
+}
+
+::-webkit-scrollbar-track{
+	border-radius: 20px;
+	background-color: #ededed;
+}
+::-webkit-scrollbar{
+	width: 16px;
+  background-color: #F5F5F5;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb{
+	border-radius: 20px;
+	background-color: #556ee6;
+}
+.comment-container{
+  background: #ededed;
+  padding: 30px 40px 30px 40px;
+  margin: 30px 0 0 0;
+}
 @media (min-width: 1200px){
   .container, .container-lg, .container-md, .container-sm, .container-xl {
       max-width: 1400px;
+  }
+}
+@media (max-width: 767px){
+  .comment-container {
+    padding: 20px 20px 30px 20px;
+    margin: 30px 0 0 0;
+  }
+  .card-body {
+      padding: 2.25rem 0rem;
   }
 }
