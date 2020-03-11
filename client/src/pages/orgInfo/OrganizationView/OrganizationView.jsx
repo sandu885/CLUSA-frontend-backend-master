@@ -56,76 +56,53 @@ class OrganizationView extends Component {
     return (
       <div className="bg-withImage">
         <HeaderComponent />
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>{heading}</h1>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
 
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="">
           {dataReceived &&
             <MDBRow>
               <MDBCol md="12">
                 <MDBCard>
-                  <MDBRow className="text-center pt-3 user-org-management-header font-weight-bold">
-                    <MDBCol>
-                      {heading}
-                    </MDBCol>
-                  </MDBRow>
                   <MDBCardBody>
-                    <MDBRow className="header-section pt-3">
-                      <MDBCol md="1" />
-                      <MDBCol md="10">
-                        <MDBRow>
-                          <MDBCol md="12" className="program-detail-sub-header font-weight-bold text-center organization-sub-header">
-                            <MDBRow>
-                              <div className="organization-sub-header-item">
-                                Organization Name:-
-                              </div>
-                              <div>
-                                <span> {organization.name} </span>
-                              </div>
-                            </MDBRow>
-                            <MDBRow>
-                              <div className="organization-sub-header-item">
-                                Conant Name:-
-                              </div>
-                              <div>
-                                <span> {user.username} </span>
-                              </div>
-                            </MDBRow>
-                            <MDBRow>
-                              <div className="organization-sub-header-item">
-                                Email:-
-                              </div>
-                              <div>
-                                <span> {user.emailAddress || user.email} </span>
-                              </div>
-                            </MDBRow>
-                            <MDBRow className="mb-3">
-                              <MDBCol md="3" />
-                              <MDBCol md="6">
-                                <MDBBtn
-                                  rounded
-                                  size={"sm"}
-                                  className="green-button org-view-sub-header-button btn-block z-depth-1a"
-                                  onClick={() =>{
-                                    if (this.props.match.params.id) {
-                                      localStorage.setItem('orgId', this.props.match.params.id);
-                                    }
-                                    this.props.history.push('/organization-information');
-                                  }}
-                                >
-                                  More Details
-                                </MDBBtn>
-                              </MDBCol>
-                              <MDBCol md="3" />
-                            </MDBRow>
-                          </MDBCol>
-                        </MDBRow>
-                      </MDBCol>
-                      <MDBCol md="1" />
-                    </MDBRow>
-                    <br />
-
+                    <div className="grey-bg" style={{ padding: '15px 30px 15px 30px' }}>
                     <MDBRow>
-                      <MDBCol md="1" />
-                      <MDBCol md="10">
+                      <MDBCol md="2" className="pt-2">
+                        <strong>Organization Name: </strong><span> {organization.name} </span>
+                      </MDBCol>
+                      <MDBCol md="2" className="pt-2">
+                      <strong>Conant Name: </strong><span> {user.username} </span>
+                      </MDBCol>
+                      <MDBCol md="2" className="pt-2">
+                      <strong>Email: </strong><span> {user.emailAddress || user.email} </span>
+                      </MDBCol>
+                      <MDBCol md="2">
+                        <MDBBtn
+                          rounded
+                          style={{ margin: '0' }}
+                          className="green-button org-view-sub-header-button z-depth-1a"
+                          onClick={() =>{
+                            if (this.props.match.params.id) {
+                              localStorage.setItem('orgId', this.props.match.params.id);
+                            }
+                            this.props.history.push('/organization-information');
+                          }}
+                        >
+                          More Details
+                        </MDBBtn>
+                      </MDBCol>
+                    </MDBRow>
+                    </div>
+                    <br />
+                    <MDBRow>
+                      <MDBCol md="12">
                         <div className="table-responsive">
                           <MDBDataTable
                             className="custom-table program-table"
@@ -138,8 +115,89 @@ class OrganizationView extends Component {
                           />
                         </div>
                       </MDBCol>
-                      <MDBCol md="1" />
                     </MDBRow>
+                    {/*<div className="offer-box-row">*/}
+                    {/*  <MDBRow>*/}
+                    {/*    <MDBCol md="12">*/}
+                    {/*      <h3>Apply Other Program</h3>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>Internship Program Grant</p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>civic leadership fourm grant</p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            disabled*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>Capacity Building grant <br></br><span>(By Invitation Only)</span></p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            disabled*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>CLUSA Technical Assistance grant</p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            disabled*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*  </MDBRow>*/}
+                    {/*</div>*/}
 
                   </MDBCardBody>
                 </MDBCard>
@@ -147,6 +205,7 @@ class OrganizationView extends Component {
             </MDBRow>
           }
         </MDBContainer>
+
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );

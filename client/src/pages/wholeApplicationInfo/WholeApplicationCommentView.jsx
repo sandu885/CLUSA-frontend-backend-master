@@ -480,24 +480,34 @@ class WholeApplicationCommentView extends Component {
     return (
       <div className="bg-lightcolor">
         {/*<HeaderComponent />*/}
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
               md="12"
-              className="text-center"
+            >
+              <h1>View detail</h1>
+            </MDBCol>
+           
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol
+              md="12"              
             >
               <MDBCard>
-                <MDBCardBody style={{ marginBottom: '225px' }} className="mx-4">
-                  <div className="text-center mb-4">
-                    <h3 className="dark-grey-text mb-4">
+                <MDBCardBody className="mx-4">
+                  <div className="mb-4">
+                    <h3 className="mb-4">
                       <strong>Organization Application Information</strong>
                     </h3>
                   </div>
-                  <h4>The current applied organization is: <span className="darkblueColor">{this.state.getOrgName}</span></h4>
+                  <h5>The current applied organization is: <span className="ans-text">{this.state.getOrgName}</span></h5>
+                  <div className="scroll-box">
                   {/* -----------SECTION 1: Internship Program Overview  ----------- */}
                   <div className="section01">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    SECTION 1: Internship Program Overview
+                    <div className="pt-2 pb-2 mt-4">
+                      <h3>SECTION 1: Internship Program Overview</h3>
                     </div>
                     <div className="pt-4 text-left">
                       <form
@@ -508,7 +518,7 @@ class WholeApplicationCommentView extends Component {
                         immediate login portal and fully assume the responsibility of
                         fulfilling the requirements as dictated.
                         </p>
-                        <h5 className="darkblueColor pl-4">{this.state.s1qCheck === true ? 'Have checked this box' : 'Did not check this box' } </h5>
+                        <h5 className="ans-text pl-4">{this.state.s1qCheck === true ? 'Have checked this box' : 'Did not check this box' } </h5>
                         {/* ----------- 1.1----------- */}
                         <label className="font-weight-bold">
                             1.1.
@@ -516,13 +526,13 @@ class WholeApplicationCommentView extends Component {
                             applied for the CLUSA Internship grant before? Result?
                         </label>
                         <div className="pl-4">
-                          <MDBRow> Applied Before?&nbsp;&nbsp; <br /><h5 className="darkblueColor">{this.state.s1q101} </h5></MDBRow>
+                          <MDBRow> Applied Before?&nbsp;&nbsp; <br /><h5 className="ans-text">{this.state.s1q101} </h5></MDBRow>
                           {this.state.s1q101 === 'Yes'
                             ? (
-                              <div><MDBRow>The program applied year is &nbsp;&nbsp; <h5 className="darkblueColor">{this.state.s1q1CompletedYear}</h5></MDBRow><MDBRow> Granted?&nbsp;&nbsp; <h5 className="darkblueColor">{this.state.s1q102}</h5></MDBRow>
+                              <div><MDBRow>The program applied year is &nbsp;&nbsp; <h5 className="ans-text">{this.state.s1q1CompletedYear}</h5></MDBRow><MDBRow> Granted?&nbsp;&nbsp; <h5 className="ans-text">{this.state.s1q102}</h5></MDBRow>
                               </div>
                             ) : (
-                              <div><MDBRow><h5 className="darkblueColor">{this.state.s1q101NoDetail}</h5></MDBRow></div>
+                              <div><MDBRow><h5 className="ans-text">{this.state.s1q101NoDetail}</h5></MDBRow></div>
                             )}
 
                         </div>
@@ -535,7 +545,7 @@ class WholeApplicationCommentView extends Component {
                             1.2.<span className="redColor">* </span>How many years has your
                             organization’s internship program been active?
                         </label>
-                        <h5 className="darkblueColor">{this.state.s1q2}</h5>
+                        <h5 className="ans-text">{this.state.s1q2}</h5>
 
                         {/* ----------- 1.3 term design ----------- */}
                         <label className="font-weight-bold pt-3">
@@ -543,7 +553,7 @@ class WholeApplicationCommentView extends Component {
                           <span className="redColor">* </span>For what terms is your
                             internship program designed for?
                         </label>
-                        <h5 className="darkblueColor">{this.s1q3TextResult(this.state.s1q3)}</h5>
+                        <h5 className="ans-text">{this.s1q3TextResult(this.state.s1q3)}</h5>
                         {/* ----------- 1.4 following questions ----------- */}
                         <div>
                           <label
@@ -554,14 +564,14 @@ class WholeApplicationCommentView extends Component {
                             following as accurately as possible to the following scale:
                           </label>
                           <div className="pl-5 font-weight-bold">
-                            <MDBRow className="pt-2">Internship Placement: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q4)}</h5></MDBRow>
-                            <MDBRow className="pt-2">Recruiting Passionate And high-Quality Students: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q5)}</h5></MDBRow>
-                            <MDBRow className="pt-2">Student Training: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q6)}</h5></MDBRow>
-                            <MDBRow className="pt-2">Student Support During The Internship: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q7)}</h5></MDBRow>
-                            <MDBRow className="pt-2">Following Up On Students: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q8)}</h5></MDBRow>
-                            <MDBRow className="pt-2">Community Building Including Voter Registration, Census, Government Training, etc.: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q9)}</h5></MDBRow>
-                            <MDBRow className="pt-2">Fundraising: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q10)}</h5></MDBRow>
-                            <MDBRow className="pt-2">Building A Pipeline Of APIA In Public Service To Elected Office: &nbsp;<h5 className="darkblueColor"> {this.s1q4TextResult(this.state.s1q11)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Internship Placement: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q4)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Recruiting Passionate And high-Quality Students: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q5)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Student Training: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q6)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Student Support During The Internship: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q7)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Following Up On Students: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q8)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Community Building Including Voter Registration, Census, Government Training, etc.: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q9)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Fundraising: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q10)}</h5></MDBRow>
+                            <MDBRow className="pt-2">Building A Pipeline Of APIA In Public Service To Elected Office: &nbsp;<h5 className="ans-text"> {this.s1q4TextResult(this.state.s1q11)}</h5></MDBRow>
                           </div>
                         </div>
                       </form>
@@ -569,8 +579,8 @@ class WholeApplicationCommentView extends Component {
                   </div>
                   {/* -----------SECTION 2. Grant Goals  ----------- */}
                   <div className="section02">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    SECTION 2. Grant Goals
+                    <div className="pt-2 pb-2 mt-4">
+                    <h3>SECTION 2. Grant Goals</h3>
                     </div>
                     <div className="pt-4 text-left">
                       <form
@@ -585,7 +595,7 @@ class WholeApplicationCommentView extends Component {
                             2.1.
                           <span className="redColor">* </span>Encouraging local community-building through public sector engagement
                         </label>
-                        <h5 className="darkblueColor">{this.state.s2q1}</h5>
+                        <h5 className="ans-text">{this.state.s2q1}</h5>
                         {/* ----------- 2.2: inspiring ----------- */}
                         <label
                           htmlFor="internship-s2-q2"
@@ -594,7 +604,7 @@ class WholeApplicationCommentView extends Component {
                             2.2.
                           <span className="redColor">* </span>Inspiring interest in seeking local public offices—including community members, student interns, and internship program leaders engagement
                         </label>
-                        <h5 className="darkblueColor">{this.state.s2q2}</h5>
+                        <h5 className="ans-text">{this.state.s2q2}</h5>
                         {/* ----------- 2.3: building pipeline ----------- */}
                         <label
                           htmlFor="internship-s2-q3"
@@ -603,14 +613,14 @@ class WholeApplicationCommentView extends Component {
                             2.3.
                           <span className="redColor">* </span>Building a pipeline of Asian Americans in local public office
                         </label>
-                        <h5 className="darkblueColor">{this.state.s2q3}</h5>
+                        <h5 className="ans-text">{this.state.s2q3}</h5>
                       </form>
                     </div>
                   </div>
                   {/* -----------SECTION 3. Internship Leaders Team ----------- */}
                   <div className="section03">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                      SECTION 3. Internship Leaders Team
+                    <div className="pt-2 pb-2 mt-4">
+                      <h3>SECTION 3. Internship Leaders Team</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* ----------- 3.1 ----------- */}
@@ -620,7 +630,7 @@ class WholeApplicationCommentView extends Component {
                       >3.1.
                         <span className="redColor">* </span>The Internship Organizer leads in building relationships for internship placements in elected office/government agency internships, galvanizes community financial support, and organizes the internship graduation celebration. Please provide their name and a brief profile of <i>the Internship Organizer engagement</i>
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s3q1}</h5>
+                      <h5 className="ans-text"> {this.state.s3q1}</h5>
                       {/* ----------- 3.2 ----------- */}
                       <label
                         htmlFor="internship-s3-q2"
@@ -628,13 +638,13 @@ class WholeApplicationCommentView extends Component {
                       >3.2.
                         <span className="redColor">* </span><i>The Internship Trainer</i> leads in organizing training, oversight, and mentoring of student interns. This person is very skilled at relating to iGeneration youths born after the 2000s. Please provide name and a brief profile of the Internship Trainer.
                       </label>
-                      <h5 className="darkblueColor">{this.state.s3q2}</h5>
+                      <h5 className="ans-text">{this.state.s3q2}</h5>
                     </div>
                   </div>
                   {/* -----------SECTION 4. Internship Program Schedule ----------- */}
                   <div className="section04">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                      SECTION 4. Internship Program Schedule
+                    <div className="pt-2 pb-2 mt-4">                     
+                      <h3> SECTION 4. Internship Program Schedule</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* ----------- 4.1 ----------- */}
@@ -644,13 +654,13 @@ class WholeApplicationCommentView extends Component {
                       >4.1.
                         <span className="redColor">* </span>Please include the timeline and important time points, such as recruiting, training, internship starting and ending, graduation ceremony, other events
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s4q1}</h5>
+                      <h5 className="ans-text"> {this.state.s4q1}</h5>
                     </div>
                   </div>
                   {/* -----------SECTION 5. Internship Placement ----------- */}
                   <div className="section05">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                      SECTION 5. Internship Placement
+                    <div className="pt-2 pb-2 mt-4">
+                      <h3>SECTION 5. Internship Placement</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* ----------- 5.1 ----------- */}
@@ -658,7 +668,7 @@ class WholeApplicationCommentView extends Component {
                         htmlFor="internship-s5-q1"
                         className="font-weight-bold pt-3"
                       >5.1.<span className="redColor">* </span>How many internship placements are you targeting to have in year 2020?
-                        <h5 className="darkblueColor">{this.state.s5q1}</h5>
+                        <h5 className="ans-text">{this.state.s5q1}</h5>
                       </label>
 
                       {/* ----------- 5.2 ----------- */}
@@ -666,7 +676,7 @@ class WholeApplicationCommentView extends Component {
                         htmlFor="internship-s5-q2"
                         className="font-weight-bold pt-3"
                       >5.2.<span className="redColor">* </span>How many of the placements are confirmed by your best knowledge?
-                        <h5 className="darkblueColor">{this.state.s5q2}</h5>
+                        <h5 className="ans-text">{this.state.s5q2}</h5>
                       </label>
                       {/* ----------- 5.3 ----------- */}
                       <label
@@ -704,8 +714,8 @@ class WholeApplicationCommentView extends Component {
                   </div>
                   {/* -----------SECTION 6. Student Recruiting Plan ----------- */}
                   <div className="section06">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    SECTION 6. Student Recruiting Plan
+                    <div className="pt-2 pb-2 mt-4">                    
+                    <h3>SECTION 6. Student Recruiting Plan</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* ----------- 6.1 ----------- */}
@@ -717,7 +727,7 @@ class WholeApplicationCommentView extends Component {
                         <span className="redColor">* </span>What age range of students are you looking for as interns (ie. high school students, college, both)?
                       </label>
                       <p className="text-justify">Note: Your local organization is responsible for adhering to laws and best practices in supervising student interns experience for minors</p>
-                      <h5 className="darkblueColor">{this.state.s6q1}</h5>
+                      <h5 className="ans-text">{this.state.s6q1}</h5>
                       {/* ----------- 6.2 ----------- */}
                       <label
                         htmlFor="internship-s6-q2"
@@ -726,7 +736,7 @@ class WholeApplicationCommentView extends Component {
                             6.2.
                         <span className="redColor">* </span>What criteria are you using to select students?
                       </label>
-                      <h5 className="darkblueColor">{this.state.s6q2}</h5>
+                      <h5 className="ans-text">{this.state.s6q2}</h5>
                       {/* ----------- 6.3 ----------- */}
                       <label
                         htmlFor="internship-s6-q3"
@@ -735,7 +745,7 @@ class WholeApplicationCommentView extends Component {
                             6.3.
                         <span className="redColor">* </span>What procedure is your student recruitment?
                       </label>
-                      <h5 className="darkblueColor">{this.state.s6q3}</h5>
+                      <h5 className="ans-text">{this.state.s6q3}</h5>
                       {/* ----------- 6.4 ----------- */}
                       <label
                         htmlFor="internship-s6-q4"
@@ -744,13 +754,13 @@ class WholeApplicationCommentView extends Component {
                             6.4.
                         <span className="redColor">* </span>If your program includes minors, please provide a rationale and describe how your organization has met laws protecting minors.
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s6q4}</h5>
+                      <h5 className="ans-text"> {this.state.s6q4}</h5>
                     </div>
                   </div>
                   {/* -----------SECTION 7. Student Training Plan ----------- */}
                   <div className="section07">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    SECTION 7. Student Training Plan
+                    <div className="pt-2 pb-2 mt-4">                    
+                    <h3>SECTION 7. Student Training Plan</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* ----------- 7.1 ----------- */}
@@ -761,13 +771,13 @@ class WholeApplicationCommentView extends Component {
                             7.1.
                         <span className="redColor">* </span>Please share your student training plan:
                       </label>
-                      <h5 className="darkblueColor">{this.state.s7q1}</h5>
+                      <h5 className="ans-text">{this.state.s7q1}</h5>
                     </div>
                   </div>
                   {/* -----------SECTION 8. Graduation Ceremony Plan ----------- */}
                   <div className="section08">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                      SECTION 8. Graduation Ceremony Plan
+                    <div className="pt-2 pb-2 mt-4">                     
+                      <h3>SECTION 8. Graduation Ceremony Plan</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* ----------- 8.1 ----------- */}
@@ -778,13 +788,13 @@ class WholeApplicationCommentView extends Component {
                         8.1.
                         <span className="redColor">* </span>Graduation ceremonies are great opportunities for community-building and seeking financial support. Please share your graduation ceremony plan:
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s8q1}</h5>
+                      <h5 className="ans-text"> {this.state.s8q1}</h5>
                     </div>
                   </div>
                   {/* -----------SECTION 9. Other Events Related ----------- */}
                   <div className="section09">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    SECTION 9. Other Events Related
+                    <div className="pt-2 pb-2 mt-4">                    
+                    <h3>SECTION 9. Other Events Related</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* ----------- 9.1 ----------- */}
@@ -793,13 +803,13 @@ class WholeApplicationCommentView extends Component {
                         className="font-weight-bold"
                       >9.1. If you have other related events, please add them below:
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s9q1}</h5>
+                      <h5 className="ans-text"> {this.state.s9q1}</h5>
                     </div>
                   </div>
                   {/* -----------SECTION 10. Program Budget ----------- */}
                   <div className="section10">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    SECTION 10. Program Budget
+                    <div className="pt-2 pb-2 mt-4">                    
+                    <h3>SECTION 10. Program Budget</h3>
                     </div>
                     <div className="pt-4 text-left">
                       <label
@@ -810,7 +820,7 @@ class WholeApplicationCommentView extends Component {
                         <span className="redColor">* </span>Please provide your program’s budget. CLUSA Internship grant ranges from $2,000 to 10,000 with at least 50% matching requirement. This is to encourage self-sustainability, whether in fundraising or any other means.
                       </label>
                       <h5
-                        className="darkblueColor pt-2"
+                        className="ans-text pt-2"
                         id="previousTitle"
                       >Previous Upload:
                       </h5>
@@ -841,18 +851,18 @@ class WholeApplicationCommentView extends Component {
                       >CLUSA Grant Request Amount
                       </MDBCol>
                       <MDBCol md="4">
-                        <h5 className="darkblueColor">{this.state.s10q2}</h5>
+                        <h5 className="ans-text">{this.state.s10q2}</h5>
                       </MDBCol>
                       <MDBCol md="4">
-                        <h5 className="darkblueColor">{this.state.s10q3}</h5>
+                        <h5 className="ans-text">{this.state.s10q3}</h5>
                       </MDBCol>
                     </MDBRow>
                   </div>
 
                   {/* -----------SECTION 11. Program Budget ----------- */}
                   <div className="section11">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    SECTION 11. Future Plan
+                    <div className="pt-2 pb-2 mt-4">                    
+                    <h3>SECTION 11. Future Plan</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* -----------11.1 ----------- */}
@@ -863,13 +873,13 @@ class WholeApplicationCommentView extends Component {
                         11.1.
                         <span className="redColor">* </span>Please share your vision and long-term planning for your internship program for the following year and in the future.
                       </label>
-                      <h5 className="darkblueColor">{this.state.s11q1}</h5>
+                      <h5 className="ans-text">{this.state.s11q1}</h5>
                     </div>
                   </div>
                   {/* -----------12 PART B: GRANT AFFIRMATIONS ----------- */}
                   <div className="section12">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    PART B: GRANT AFFIRMATIONS
+                    <div className="pt-2 pb-2 mt-4">                    
+                    <h3>PART B: GRANT AFFIRMATIONS</h3>
                     </div>
                     <div className="pt-4 text-left">
                       {/* -----------12.a1 ----------- */}
@@ -879,7 +889,7 @@ class WholeApplicationCommentView extends Component {
                       >
                         A.1 Participate in one informational grant video-conference (12/14/2019 or 1/11/2020)
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q1 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q1 === true ? 'Agree' : null}</h5>
                       {/* -----------12.a2 ----------- */}
                       <label
                         htmlFor="internship-s12-qa2"
@@ -887,7 +897,7 @@ class WholeApplicationCommentView extends Component {
                       >
                         A.2 Participate in all 4 Leaders Training Webinars (2/15/2020, 3/21/2020, 4/18/2020, 5/16/2020)
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q2 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q2 === true ? 'Agree' : null}</h5>
                       {/* -----------12.a3 ----------- */}
                       <label
                         htmlFor="internship-s12-qa3"
@@ -895,28 +905,28 @@ class WholeApplicationCommentView extends Component {
                       >
                         A.3 Provide supporting documents and final reports on time
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q3 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q3 === true ? 'Agree' : null}</h5>
                       {/* -----------12.b1 -4---------- */}
                       <label
                         htmlFor="internship-s12-b1"
                         className="font-weight-bold text-justify"
                       >B.1 Student background including Name, Age(Specify age criteria), College/School, Current Class Level, Ethnicity, Gender, Email, Cell, Address
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q4 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q4 === true ? 'Agree' : null}</h5>
                       {/* -----------12.b2 -5---------- */}
                       <label
                         htmlFor="internship-s12-qb2"
                         className="font-weight-bold text-justify"
                       >B.2 Selection Critera One: Student inters expresses interest in exploring government, public sector careers, and elective office through written response.
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q5 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q5 === true ? 'Agree' : null}</h5>
                       {/* -----------12.b3 --6--------- */}
                       <label
                         htmlFor="internship-s12-qb3"
                         className="font-weight-bold text-justify"
                       >B.3 Selection Criteria Two: Student inters describes relevant exoerience such as Asian American studies, political science, and government classes, and campaign voluteering, voter registration, and public speaking experience, etc. through written response.
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q6 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q6 === true ? 'Agree' : null}</h5>
                       {/* -----------12.b4 -7---------- */}
                       <label
                         htmlFor="internship-s12-qb4"
@@ -924,41 +934,41 @@ class WholeApplicationCommentView extends Component {
                       >B.4 Selection Criteria Three: Student inters shares about view of own ethnic identity and relate it to how government may play a role to address a social issue of concern.
 
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q7 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q7 === true ? 'Agree' : null}</h5>
                       {/* -----------12.b5 -8---------- */}
                       {/* <label
                         htmlFor="internship-s12-qb5"
                         className="font-weight-bold text-justify"
                       >B.5 Minimum GPA of 3.0 is required, even though intern selection is based on student interest and relevant experience, and NOT the highest GPA.
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q8 === true ? 'Agree' : null}</h5> */}
+                      <h5 className="ans-text"> {this.state.s12q8 === true ? 'Agree' : null}</h5> */}
                       {/* -----------12.c1 -9---------- */}
                       <label
                         htmlFor="internship-s12-qc1"
                         className="font-weight-bold text-justify"
                       >C.1 Participate in locak interns training workshops.
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q9 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q9 === true ? 'Agree' : null}</h5>
                       {/* -----------12.c2 -10---------- */}
                       <label
                         htmlFor="internship-s12-qc2"
                         className="font-weight-bold text-justify"
                       >C.2 End-of-program online interns reflections and check-in with Intern Trainer.
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q10 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q10 === true ? 'Agree' : null}</h5>
                       {/* -----------12.c3 ----------- */}
                       <label
                         htmlFor="internship-s12-qc3"
                         className="font-weight-bold text-justify"
                       >C.3 Participate in graduation celebration.
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s12q11 === true ? 'Agree' : null}</h5>
+                      <h5 className="ans-text"> {this.state.s12q11 === true ? 'Agree' : null}</h5>
                     </div>
                   </div>
                   {/* ----------- 13. Certification ----------- */}
                   <div className="section13">
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                    Certification
+                    <div className="pt-2 pb-2 mt-4">                    
+                    <h3>Certification</h3>
                     </div>
                     <div className="pt-4 text-left">
                       <label
@@ -974,7 +984,7 @@ class WholeApplicationCommentView extends Component {
                       >
                         <span className="redColor">* </span>Full Name
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s13q1}</h5>
+                      <h5 className="ans-text"> {this.state.s13q1}</h5>
                       {/* ----------- 13.2 ----------- */}
                       <label
                         htmlFor="internship-s13-q2"
@@ -982,7 +992,7 @@ class WholeApplicationCommentView extends Component {
                       >
                         <span className="redColor">* </span>Position
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s13q2}</h5>
+                      <h5 className="ans-text"> {this.state.s13q2}</h5>
                       {/* ----------- 13.3email ----------- */}
                       <label
                         htmlFor="internship-s13-email"
@@ -990,7 +1000,7 @@ class WholeApplicationCommentView extends Component {
                       >
                         <span className="redColor">* </span>Email
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s13email}</h5>
+                      <h5 className="ans-text"> {this.state.s13email}</h5>
                       {/* ----------- 13phone ----------- */}
                       <label
                         htmlFor="internship-s13-phone"
@@ -998,7 +1008,7 @@ class WholeApplicationCommentView extends Component {
                       >
                         <span className="redColor">* </span>Phone Number
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s13phone}</h5>
+                      <h5 className="ans-text"> {this.state.s13phone}</h5>
                       {/* ----------- 13.3 ----------- */}
                       <label
                         htmlFor="internship-s13-q3"
@@ -1006,11 +1016,13 @@ class WholeApplicationCommentView extends Component {
                       >
                         <span className="redColor">* </span>Date
                       </label>
-                      <h5 className="darkblueColor"> {this.state.s13q3}</h5>
+                      <h5 className="ans-text"> {this.state.s13q3}</h5>
                     </div>
                   </div>
+                  </div>
+                  {fixFooter && fixFooter}
                 </MDBCardBody>
-                {fixFooter && fixFooter}
+                
               </MDBCard>
             </MDBCol>
           </MDBRow>

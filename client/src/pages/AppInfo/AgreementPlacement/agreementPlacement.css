@@ -2,10 +2,6 @@
     font-size: 1.25rem;
 }
 
-.block-header {
-    font-weight: 700;
-}
-
 .align-item-center {
     align-items: center;
     display: flex;

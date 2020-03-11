@@ -168,138 +168,87 @@ class SignedAgreementPlacement extends Component {
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>{heading}</h1>
+            </MDBCol>            
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>
-                <MDBRow className="text-center pt-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    {heading}
-                  </MDBCol>
-                </MDBRow>
-
-                <MDBRow className="text-center pt-3 user-org-management-header sub-management-header">
-                  <MDBCol>
-                    A description about the agreement and placement
-                  </MDBCol>
-                </MDBRow>
-
                 <MDBCardBody>
+                <MDBRow className="user-org-management-header sub-management-header">
+                  <MDBCol>
+                    <h4>A description about the agreement and placement</h4>
+                  </MDBCol>
+                </MDBRow>
 
                   <MDBRow>
-                    <MDBCol md="2" />
-                    <MDBCol md="10" className="block-header">
+                    <MDBCol md="5" className="block-header">
                       <MDBRow>
                         <MDBCol>
-                          Agreement
-                        </MDBCol>
-                      </MDBRow>
-                    </MDBCol>
-                  </MDBRow>
-                  <MDBRow>
-                    <MDBCol md="2" />
-                    <MDBCol md="10">
-                      <MDBRow>
-
-                        <MDBCol sm="12">
-                          {formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? <a href={`/${formData.agreementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Agreement file is not uploaded'}
-                        </MDBCol>
-                      </MDBRow>
-                    </MDBCol>
-                  </MDBRow>
-
-                  {/*<MDBCol md="2" />*/}
-                  <MDBRow>
-                    <MDBCol md="2" />
-                    <MDBCol md="10">
-                      <MDBRow className="pt-3">
-                        <MDBCol sm="12" className="block-header">
-                          Signed Agreement
-                        </MDBCol>
-                        {role === '0' ? null :
-                          <MDBCol sm="5">
-                            <input type="file" className="form-control" style={{ display: 'none' }} name="signedAgreement" onChange={this.handleFileChange}/>
-                            <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('signedAgreement')}>
-                              Click to Upload/Replace Template File
-                            </MDBBtn>
-                          </MDBCol>
-                        }
-
-                        <MDBCol sm="7" className="align-item-center">
-                          {
-                            formData.signedAgreement ? formData.signedAgreement.name : formData.signedAgreementLink ?
-                              <a href={formData.signedAgreementLink && formData.signedAgreementLink.filename ? `/${formData.signedAgreementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.signedAgreementLink && formData.signedAgreementLink.filename}</a>
-                              : 'Image file details over here'
-                          }
-
-
-                        </MDBCol>
-                      </MDBRow>
-                    </MDBCol>
-                  </MDBRow>
-                  <MDBRow className="pt-3">
-                    <MDBCol md="2" />
-                    <MDBCol md="10">
-                      <MDBRow>
-                        <MDBCol sm="2" className="block-header align-item-center">
-                          Award amount :-
-                        </MDBCol>
-                        <MDBCol sm="5" className="blue-font-color">
-                          {formData.awardAmount}
-                        </MDBCol>
-                      </MDBRow>
-                    </MDBCol>
-                  </MDBRow>
-                  <MDBRow>
-                    <MDBCol md="11">
-                      <MDBRow style={{ display: 'block'}}>
-                        <hr/>
-                      </MDBRow>
-                    </MDBCol>
-                  </MDBRow>
-
-                  <MDBRow>
-                    <MDBCol md="2" />
-                    <MDBCol md="10">
-
-
-                      <MDBRow className="pt-3">
-                        <MDBCol sm="12" className="block-header">
-                          Placement Confirmation Template
-                        </MDBCol>
-                        <MDBCol sm="12">
-
+                          <h3>Agreement</h3>
                           <MDBRow>
                             <MDBCol sm="12">
-                              Placement template file, <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank">Click to download</a>
-                              {/*{formData.placementTemplateLink && formData.placementTemplateLink.filename ? <a href={`/${formData.placementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Placement file is not uploaded'}*/}
+                              <p><strong>Agreement Template file name show here if CLUSA uploaded Agreement template</strong></p>
+                              {formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? <a href={`/${formData.agreementTemplateLink.path}`} rel="noopener noreferrer" target="_blank" className="btn btn-default">Download Agreement</a> : 'Agreement file is not uploaded'}
                             </MDBCol>
                           </MDBRow>
+                          <MDBRow className="pt-3">
+                            <MDBCol sm="12 pt-4" className="block-header">
+                            <strong>Signed Agreement</strong>
+                            </MDBCol>
+                            {role === '0' ? null :
+                              <MDBCol sm="12">
+                                <input type="file" className="form-control" style={{ display: 'none' }} name="signedAgreement" onChange={this.handleFileChange}/>
+                                <MDBBtn rounded className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('signedAgreement')}>
+                                  Click to Upload/Replace Template File
+                                </MDBBtn>
+                                {
+                                  formData.signedAgreement ? formData.signedAgreement.name : formData.signedAgreementLink ?
+                                    <a href={formData.signedAgreementLink && formData.signedAgreementLink.filename ? `/${formData.signedAgreementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.signedAgreementLink && formData.signedAgreementLink.filename}</a>
+                                    : 'Image file details over here'
+                                }
+                              </MDBCol>
+                            }
 
-
-
+                            <MDBCol sm="7" className="align-item-center">
+                              
+                            </MDBCol>
+                            <MDBCol md="12 pt-4">
+                              <MDBRow>
+                                <MDBCol sm="12" className="block-header align-item-center">
+                                  <strong>Award amount :</strong> {formData.awardAmount}
+                                </MDBCol>
+                              </MDBRow>
+                            </MDBCol>
+                          </MDBRow>                          
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
-                  </MDBRow>
-
-                  <MDBRow>
-                    <MDBCol md="2" />
-                    <MDBCol md="10">
+                    <MDBCol md="5" className="block-header">
+                      <h3>Placement Confirmation Template</h3>
+                      <MDBRow>
+                        <MDBCol sm="12">
+                          <p><strong>Placement template file name shows here</strong></p>
+                          {/*{formData.placementTemplateLink && formData.placementTemplateLink.filename ? <a href={`/${formData.placementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Placement file is not uploaded'}*/}
+                        </MDBCol>
+                        <MDBCol sm="12"><a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank" className="btn btn-default">Click to download</a></MDBCol>
+                      </MDBRow>
                       <MDBRow className="pt-3">
                         <MDBCol sm="12" className="block-header">
                           Filled placement
                         </MDBCol>
-                        <MDBCol sm="5">
+                        <MDBCol sm="12">
                           <input type="file" className="form-control" style={{ display: 'none' }} name="filledPlacement" onChange={this.handleFileChange}/>
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('filledPlacement')}>
+                          <MDBBtn rounded className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('filledPlacement')}>
                             Click to Upload/Replace Template File
                           </MDBBtn>
-                        </MDBCol>
-
-
-                        <MDBCol sm="7" className="align-item-center">
                           {
                             formData.filledPlacement ? formData.filledPlacement.name : formData.filledPlacementLink ?
                               <a href={formData.filledPlacementLink && formData.filledPlacementLink.filename ? `/${formData.filledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.filledPlacementLink && formData.filledPlacementLink.filename}</a>
@@ -307,81 +256,73 @@ class SignedAgreementPlacement extends Component {
                           }
                         </MDBCol>
                       </MDBRow>
-                    </MDBCol>
-                  </MDBRow>
-
-                  <MDBRow>
-                    <MDBCol md="2" />
-                    <MDBCol md="10">
                       <MDBRow className="pt-3">
-                        <MDBCol sm="2" className="block-header align-item-center">
-                          Uploaded Date:-
-                        </MDBCol>
-                        <div style={{ color: '#2e8ab8' }}>
-                          {formData.placementUploadDate && formData.placementUploadDate}
-                        </div>
+                        <MDBCol sm="12" className="block-header align-item-center">
+                          <strong>Uploaded Date:-</strong> {formData.placementUploadDate && formData.placementUploadDate}
+                        </MDBCol>                        
                       </MDBRow>
                     </MDBCol>
-                  </MDBRow>
-
-
-                  <MDBRow>
-                    <MDBCol md="11">
-                      <MDBRow style={{ display: 'block'}}>
-                        <hr/>
-                      </MDBRow>
-                    </MDBCol>
-                  </MDBRow>
-
+                  </MDBRow>                  
                   <div>
                     <MDBRow>
-                      <MDBCol md="2" />
-                      <MDBCol md="10">
-                        <MDBRow className="pt-3">
-                          <div style={{ paddingLeft: '15px' }} className="block-header">
-                            Result:-
-                          </div>
-                          <MDBCol sm="10" className="blue-font-color">
-                            {formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'Approved') : 'Under Review'}
-                          </MDBCol>
-                          <MDBCol sm="12" className="pt-2">
-                            {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank">Click to download final placement file.</a>}
-                          </MDBCol>
-                        </MDBRow>
+                      <MDBCol md="10 pt-4">
+                        <h3>Result:-</h3>                                              
                       </MDBCol>
+                      <MDBCol sm="10" className="blue-font-color">
+                        <strong><span style={{ color: '#17a44c' }}>{formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'APPROVED') : 'Under Review'}</span></strong>
+                      </MDBCol>
+                      <MDBCol sm="12" className="pt-2">
+                        {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="btn btn-default">Download Placement File</a>}
+                      </MDBCol> 
                     </MDBRow>
                   </div>
-                  <MDBRow className="text-center pt-4">
-                    <MDBCol md="3" />
-                    {role === '0' ?
-                      <MDBCol md="3" >
-                        <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
-                                onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}
-                        >
-                          Back
-                        </MDBBtn>
-                      </MDBCol>
-                      :
-                      <>
-                        <MDBCol md="3" >
-                          <MDBBtn
-                            rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload light-green-color"
-                            onClick={this.handlePostAgreementPlacementClick}
-                          >
-                            Save
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol md="3">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
+                  <MDBRow className="pt-4">
+                    <MDBCol md="12" >
+                      {role === '0' ?
+                        
+                          <MDBBtn rounded color="danger" className="application-info-button second-action-button z-depth-1a check-file-upload"
                                   onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}
                           >
-                            Cancel
+                            Back
                           </MDBBtn>
-                        </MDBCol>
-                      </>
-                    }
+                        
+                        :
+                        <>
+                          
+                            <MDBBtn
+                              rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                              onClick={this.handlePostAgreementPlacementClick}
+                            >
+                              Save
+                            </MDBBtn>
+                         
+                          
+                            <MDBBtn rounded color="danger" className="application-info-button second-action-button z-depth-1a check-file-upload red-color"
+                                    onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}
+                            >
+                              Cancel
+                            </MDBBtn>
+                          
+                        </>
+                      }
 
-                    <MDBCol md="3" />
+                    </MDBCol>
+                    <MDBCol md="12">
+                        <p className="text-right">
+                          <MDBBtn
+                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                            onClick={this.handlePostAgreementPlacementClick}
+                          >
+                            Back to Account Dashboard
+                          </MDBBtn>
+                          <MDBBtn
+                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                            onClick={this.handlePostAgreementPlacementClick}
+                          >
+                            Back to Program Detail
+                          </MDBBtn>
+                        </p>
+                      </MDBCol>
                   </MDBRow>
 
                   <br />

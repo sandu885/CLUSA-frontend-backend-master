@@ -88,115 +88,115 @@ class FinalReportView extends Component {
 
     return (
       <div className="bg-withImage">
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>Final Report View</h1>
+            </MDBCol>            
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
+                <MDBRow className="text-center user-org-management-header font-weight-bold">
                   <MDBCol>
-                    Final Report View
+                    
                   </MDBCol>
                 </MDBRow>
-                <MDBCardBody style={{ marginBottom: '225px' }} className="comment-card-body">
+                <MDBCardBody className="comment-card-body">
                   <MDBRow>
-                    <MDBCol md="1" />
-                    <MDBCol md="10">
+                    <MDBCol md="12">
+                      <div className="scroll-box">
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question1-1']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="text-justify full-label-width">
                           {q1['first']}
                         </label>
                       </div>
-
-
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question1-2']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q1['second']}
                         </label>
                       </div>
-
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question1-3']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q1['third']}
                         </label>
                       </div>
-
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question2-1']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q2['first']}
                         </label>
                       </div>
-
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question2-2']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q1['second']}
                         </label>
                       </div>
-
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" style={{ width: '100%' }} className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" style={{ width: '100%' }} className="font-weight-bold">
                           {questionList['question2-3']}
                         </label>
                         {
                           fileLink &&
-                          <a href={`/${fileLink.path}`} className="ml-4" rel="noopener noreferrer" target="_blank">Click to download Expense Template</a>
+                          <a href={`/${fileLink.path}`} className="btn btn-default" rel="noopener noreferrer" target="_blank">Click to download Expense Template</a>
                         }
                       </div>
-
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question3-1']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q3['first']}
                         </label>
                       </div>
-
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question3-2']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q3['second']}
                         </label>
                       </div>
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question3-3']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q3['third']}
                         </label>
                       </div>
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size full-label-width full-label-width">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold full-label-width">
                           {questionList['question3-4']}
                         </label>
-                        <label htmlFor="internship-s4-q1" className="text-justify ml-4 large-font-size full-label-width">
+                        <label htmlFor="internship-s4-q1" className="full-label-width">
                           {q3['forth']}
                         </label>
                       </div>
+                      </div>
                     </MDBCol>
-                    <MDBCol md="1" />
-
                   </MDBRow>
-
+                  {fixFooter && fixFooter}
                 </MDBCardBody>
-                {fixFooter && fixFooter}
+                
 
                 <br />
               </MDBCard>

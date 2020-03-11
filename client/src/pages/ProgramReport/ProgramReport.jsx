@@ -231,33 +231,25 @@ class ProgramReport extends Component {
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>{heading}</h1>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer>
           <MDBRow>
             <MDBCol md={12}>
               <MDBCard>
-                <MDBRow className="text-center pt-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    {heading}
-                  </MDBCol>
-                </MDBRow>
                 <MDBCardBody>
                   <MDBRow>
-                    <MDBCol md={1}/>
-                    <MDBCol md={10}>
-                      <MDBRow style={{ display: 'block'}}>
-                        <hr/>
-                      </MDBRow>
+                    <MDBCol md={12}>
+                      <p>Here list all the report type, requirement and template</p>
                     </MDBCol>
-                    <MDBCol md={1}/>
-                    <MDBCol md={1}/>
-                    <MDBCol md={10} className="text-center">
-                      Here list all the report type, requirement and template
-                    </MDBCol>
-                    <MDBCol md={1} />
-
-                    <MDBCol md={1} />
-                    <MDBCol md={10}>
+                    <MDBCol md={12}>
                       <MDBRow>
                         <MDBCol md={4} className="table-header font-weight-bold">
                           Report Type
@@ -278,7 +270,7 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
                                   href={CLUSAStudentTrainingReport}
                           >
                             Download Template File
@@ -294,7 +286,7 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a white-button check-file-upload"
+                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a white-button check-file-upload"
                                   href={CLUSAGraduationCeremonyReport}
                           >
                             Download Template File
@@ -310,7 +302,7 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
                                   href={CLUSAInternshipBudget}
                           >
                             Download Template File
@@ -326,7 +318,7 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
                                   href={CLUSAOtherEvent}
                           >
                             Download Template File
@@ -342,8 +334,24 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
                                   href={CLUSAEssayContest}
+                          >
+                            Download Template File
+                          </MDBBtn>
+                        </MDBCol>
+                      </MDBRow>
+
+                      <MDBRow style={{ alignItems: 'center'}} className="pt-3">
+                        <MDBCol md={4} className="table-header font-weight-bold">
+                          Intern Information
+                        </MDBCol>
+                        <MDBCol md={4} className="text-center">
+                          Report requirement sort introduction
+                        </MDBCol>
+                        <MDBCol md={4} className="table-header font-weight-bold text-center">
+                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
+                                  href={CLUSAInternInformation}
                           >
                             Download Template File
                           </MDBBtn>
@@ -373,7 +381,6 @@ class ProgramReport extends Component {
                       </MDBRow>
 
                     </MDBCol>
-                    <MDBCol md={1} />
                   </MDBRow>
 
                   <MDBRow>
@@ -407,7 +414,7 @@ class ProgramReport extends Component {
                                 <MDBBtn
                                   rounded
                                   size={"sm"}
-                                  className="application-info-button second-action-button btn-block z-depth-1a"
+                                  className="application-info-button second-action-button z-depth-1a"
                                   style={{ width: '50%' }}
                                   onClick={(e) => this.selectProgramReport(e, pRD)}
                                 >
@@ -416,7 +423,7 @@ class ProgramReport extends Component {
                                 <MDBBtn
                                   rounded
                                   size={"sm"}
-                                  className="second-action-button btn-block z-depth-1a red-color"
+                                  className="second-action-button z-depth-1a red-color"
                                   style={{ width: '40%', marginLeft: '30px' }}
                                   onClick={(e) => this.selectDeleteProgramReport(e, pRD)}
                                 >
@@ -437,7 +444,7 @@ class ProgramReport extends Component {
                                 <MDBBtn
                                   rounded
                                   size={"sm"}
-                                  className="second-action-button btn-block z-depth-1a"
+                                  className="second-action-button z-depth-1a"
                                   onClick={() => {
                                     this.setState({ formData: {} });
                                     this.toggleModal()
@@ -476,7 +483,7 @@ class ProgramReport extends Component {
                   <MDBBtn
                     rounded
                     size={"sm"}
-                    className="application-info-button second-action-button btn-block z-depth-1a"
+                    className="application-info-button second-action-button z-depth-1a"
                     onClick={() => this.handleFileClick('file')}
                   >
                     Click to Upload/Replace Files
@@ -529,7 +536,7 @@ class ProgramReport extends Component {
                   <MDBBtn
                     rounded
                     size={"sm"}
-                    className="second-action-button btn-block z-depth-1a"
+                    className="second-action-button z-depth-1a"
                     onClick={this.postProgramReport}
                   >
                     Upload
@@ -539,7 +546,7 @@ class ProgramReport extends Component {
                   <MDBBtn
                     rounded
                     size={"sm"}
-                    className="second-action-button btn-block z-depth-1a red-color"
+                    className="second-action-button z-depth-1a red-color"
                     onClick={this.toggleModal}
                   >
                     Cancel
@@ -564,7 +571,7 @@ class ProgramReport extends Component {
                   <MDBBtn
                     rounded
                     size={"sm"}
-                    className="second-action-button btn-block z-depth-1a red-color"
+                    className="second-action-button z-depth-1a red-color"
                     onClick={this.postDeleteProgramReport}
                   >
                     Yes
@@ -574,7 +581,7 @@ class ProgramReport extends Component {
                   <MDBBtn
                     rounded
                     size={"sm"}
-                    className="second-action-button btn-block z-depth-1a"
+                    className="second-action-button z-depth-1a"
                     onClick={this.toggleDeleteModal}
                   >
                     No

@@ -12,8 +12,7 @@ const createNewProgramReport = async (meta, file) => {
     throw new Error('Provided data are not proper.');
 
   if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-    throw new Error('You can not perform this action right now.');
-  // TODO ask for the message
+    throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
 
   let ProgramReport = Parse.Object.extend("ProgramReport"), programReport = new ProgramReport();
 
@@ -59,8 +58,7 @@ const updateProgramReportById = async (meta, file) => {
     throw new Error('Provided data is not proper.');
 
   if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-    throw new Error('You can not perform this action right now.');
-  // TODO ask for the message
+    throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
 
   let queryProgramReport = new Parse.Query('ProgramReport');
   queryProgramReport.equalTo("objectId", meta.objectId);
@@ -85,8 +83,7 @@ const deleteProgramReportById = async (meta) => {
     throw new Error('Provided data is not proper.');
 
   if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-    throw new Error('You can not perform this action right now.');
-  // TODO ask for the message
+    throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   // meta.programId
   let queryProgramReport = new Parse.Query('ProgramReport');
   queryProgramReport.equalTo("objectId", meta.objectId);

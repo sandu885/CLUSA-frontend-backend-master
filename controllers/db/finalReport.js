@@ -12,8 +12,7 @@ const createNewFinalReport = async (meta, file) => {
 
   if (meta.role === '1') {
     if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-      throw new Error('You can not perform this action right now.');
-    // TODO ask for the message
+      throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   }
 
   let FinalReport = Parse.Object.extend("FinalReport"), finalReport = new FinalReport();
@@ -79,8 +78,7 @@ const updateFinalReportById = async (meta, file) => {
 
   if (meta.role === '1') {
     if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-      throw new Error('You can not perform this action right now.');
-    // TODO ask for the message
+      throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   }
   let queryFinalReport = new Parse.Query('FinalReport');
   queryFinalReport.equalTo("objectId", meta.objectId);

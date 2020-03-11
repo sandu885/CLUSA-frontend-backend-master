@@ -168,28 +168,27 @@ class OrganizationComment extends Component {
   render() {
     const { formData, commentData = [], programStatus, role, programId } = this.state;
 
-    const fixFooter = role == '1' ? null : <MDBCardFooter className="comment-container comment-fix-footer">
+    const fixFooter = role == '1' ? null : <div className="comment-container">
       <MDBRow>
-        <MDBCol md="1" />
-        <MDBCol md="10" style={{ display: 'flex' }}>
+        <MDBCol md="12" style={{ display: 'flex' }}>
           <div style={{ width: '100%' }}>
             {role === '1' ?
               <MDBRow>
-                <MDBCol md="12" className="text-center p-3 font-weight-bold">
-                  All Comment
+                <MDBCol md="12">
+                  <h3>All Comment</h3>
                 </MDBCol>
               </MDBRow>
               :
                 <MDBRow>
-                  <MDBCol md={(role === '3' || role === '2') ? "6" : "9"} className="text-center p-3 font-weight-bold">
-                    All Comment
+                  <MDBCol md={(role === '3' || role === '2') ? "6" : "9"}>
+                  <h3>All Comment</h3>
                   </MDBCol>
-                  <MDBCol md="3" className="text-center p-3 font-weight-bold">
-                    My Comment
+                  <MDBCol md="3">
+                    <h3>My Comment</h3>
                   </MDBCol>
                   {(role === '3' || role === '2') &&
-                  <MDBCol md="3" className="text-center p-3 font-weight-bold">
-                    Result
+                  <MDBCol md="3">
+                    <h3>Result</h3>
                   </MDBCol>
                   }
                 </MDBRow>
@@ -200,8 +199,8 @@ class OrganizationComment extends Component {
                 <MDBCol md="12" className="text-left">
                   {commentData.map((cData, index) =>
                     <div key={cData.objectId + index}>
-                      <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
-                      {' '+ cData.note}
+                      <p><strong><span className="">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span> </strong><br></br>
+                      {' '+ cData.note}</p>
                     </div>
                   )}
                 </MDBCol>
@@ -211,24 +210,24 @@ class OrganizationComment extends Component {
                 <MDBCol md={(role === '3' || role === '2') ? "6" : "9"} className="text-left">
                   {commentData.map((cData, index) =>
                     <div key={cData.objectId + index}>
-                      <span className="blue-font-color font-weight-bold">{cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')} + {cData.username}:</span>
-                      {' '+ cData.note}
+                      <p><strong> <span className="">{cData.username} &nbsp;&nbsp; {cData.commentDate && moment(cData.commentDate).format('MM/DD/YYYY')}</span></strong> <br></br>
+                      {' '+ cData.note}</p>
                     </div>
                   )}
                 </MDBCol>
-                <MDBCol md="3" className="text-center">
+                <MDBCol md="3">
                 <textarea
                   style={{ width: '100%'}}
                   name="note"
                   onChange={this.handleChange}
                   value={formData.note}
                 />
-                  <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="second-action-button btn-block z-depth-1a check-file-upload"
+                  <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload"
                           onClick={this.postComment}
                   >
                     Save
                   </MDBBtn>
-                  <MDBBtn rounded size={"sm"} style={{ width: '40%', marginLeft: '20px' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
+                  <MDBBtn rounded color="danger" className="application-info-button second-action-button z-depth-1a check-file-upload "
                           onClick={() => {
                             const { history } = this.props;
                             history.push(`/program/${programId}`);
@@ -238,14 +237,14 @@ class OrganizationComment extends Component {
                   </MDBBtn>
                 </MDBCol>
                 {(role === '3' || role === '2') &&
-                <MDBCol md="3" className="text-center">
+                <MDBCol md="3">
                   <select name="programStatus" className="browser-default custom-select form-control" value={programStatus} onChange={this.handleProgramChange}>
                     <option>Select Status</option>
                     <option value="inView">In Review</option>
                     <option value="preparingAgreement">Preparing Agreement</option>
                     <option value="turnDown">Turn Down</option>
                   </select>
-                  <MDBBtn rounded size={"sm"} style={{ width: '100%' }}  className="second-action-button btn-block z-depth-1a check-file-upload mt-2"
+                  <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2"
                           onClick={this.postProgramUpdateStatus}
                   >
                     Save
@@ -257,21 +256,20 @@ class OrganizationComment extends Component {
             <MDBRow>
               <MDBCol md="9" />
               <MDBCol md="3" className="text-right">
-                <MDBBtn rounded size={"sm"} style={{ width: '100%' }}  className="second-action-button btn-block z-depth-1a check-file-upload mt-2"
+                <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2"
                         onClick={() => {
                           const { history } = this.props;
                           history.push(`/program/${programId}`);
                         }}
                 >
-                  Go Back
+                  Back to Account Dashboard
                 </MDBBtn>
               </MDBCol>
             </MDBRow>
           </div>
         </MDBCol>
-        <MDBCol md="1" />
       </MDBRow>
-    </MDBCardFooter>;
+    </div>;
 
     console.log('fixFooter', fixFooter);
 
