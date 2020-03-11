@@ -171,9 +171,16 @@ select{
 }
 .btn-danger{
   background-color: #ea4d60 !important;
+  color: #fff !important;
 }
 .btn-success{  
   background-color: #34ba6d !important;
+}
+.btn.disabled, .btn:disabled {
+  opacity: 1;
+  background-color: #bdbdbd !important;
+  color: #747474 !important;
+  box-shadow: none;
 }
 .file-upload{
   background-color: #dfdfdf !important;
@@ -402,6 +409,30 @@ table td {
 }
 .white-button {
   color: #fff !important;
+}
+.offer-box-row{
+  margin: 30px 0 0 0;
+}
+.offer-box-row .offer-box{
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(85, 110, 230);
+    border-radius: 3px;
+    background-color: rgba(85, 110, 230, 0.169);  
+    margin: 0 0 20px 0;
+    text-align: center;
+    padding: 20px 20px 25px 20px;
+    min-height: 144px;
+}
+.offer-box-row .offer-box p{
+    font-size: 17px;
+    color: rgb(85, 110, 230);
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.2;  
+}
+.offer-box-row .offer-box p span{
+  font-size: 14px; 
 }
 @media (min-width: 1200px){
   .container, .container-lg, .container-md, .container-sm, .container-xl {

@@ -875,24 +875,21 @@ class RegisterInfo extends Component {
           ) : null}
         </div>
         <HeaderComponent />
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="mb-5">
           <MDBRow>
             <MDBCol
-              md="12"
-              className="text-center"
+              md="12 register-box"              
             >
               {dataReceived &&
                 <MDBCard>
                   <MDBCardBody className="mx-4">
-                    <div className="text-center mb-4">
-                      <h3 className="dark-grey-text mb-4">
+                    <div className="mb-4">
+                      <h3 className="">
                         <strong>Organization Information</strong>
                       </h3>
                       <p className="redColor text-right">* Required</p>
                     </div>
-
-
-                    <div className="pt-4 text-left">
+                    <div>
                       <form
                         id="register-account"
                         className="form-all"
@@ -946,14 +943,13 @@ class RegisterInfo extends Component {
                             required
                           />
                         </label>
-
-                        <div className="text-center mb-3 mt-5">
+                        <div>
                           <MDBRow>
-                            <MDBCol md="6">
+                            <MDBCol md="12">
                               <MDBBtn
-                                color="blue-grey"
+                                color="danger"
                                 rounded
-                                className="btn-block z-depth-1a"
+                                className="z-depth-1a"
                                 // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
                                 href={this.state.role == '3' ? '/user-organization-management' : (this.state.role == '2' || this.state.role == '0') ? `/${localStorage.getItem('orgId')}` : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
                                   : '/account'
@@ -961,12 +957,10 @@ class RegisterInfo extends Component {
                               >
                                 {this.state.role != '1' ? 'Go Back' : 'Back To My Account'}
                               </MDBBtn>
-                            </MDBCol>
-                            <MDBCol md="6">
                               <MDBBtn
-                                gradient="blue"
+                                color="default"
                                 rounded
-                                className="btn-block z-depth-1a"
+                                className="z-depth-1a"
                                 onClick={this.clickSubmitBtn}
                               >
                                 Save My Updates
@@ -979,10 +973,10 @@ class RegisterInfo extends Component {
                     </div>
 
                     {/* ----------- General Organization Information ----------- */}
-                    <div className="greyBG text-center pt-2 pb-2 mt-4">
-                      General Organization Information
+                    <div className="pt-2">
+                      <h3>General Organization Information</h3>                      
                     </div>
-                    <div className="pt-4 text-left">
+                    <div className="">
                       <form
                         id="register-form"
                         className="form-all"
@@ -1043,11 +1037,11 @@ class RegisterInfo extends Component {
                           htmlFor="register-type1"
                           className="dark-grey-text font-weight-light pt-2"
                         >
-                          <MDBRow className="pl-4">
+                          <MDBRow className="pl-3 mb-2">
                             1.1. If your organization is non-profit 501(c)(3), please provide:
                           </MDBRow>
-                          <MDBRow className="margin0">
-                            <div className="btn btn-light btn-sm float-left ml-4">
+                          <MDBRow className="margin0 file-box">
+                            <div className="btn btn-light float-left ml-4">
                               <input
                                 type="file"
                                 name="file"
@@ -1060,18 +1054,18 @@ class RegisterInfo extends Component {
                               </p>
                             </div>
                           </MDBRow>
-                          <MDBRow className="pl-4"><p id="previousTitle"> previous upload: </p></MDBRow>
+                          <MDBRow className="pl-3 mb-2"><p id="previousTitle"> previous upload: </p></MDBRow>
                         </label>
                         {/* --------1.2------- */}
                         <label
                           htmlFor="register-type2"
                           className="dark-grey-text font-weight-light pt-2"
                         >
-                          <MDBRow className="pl-4">
+                          <MDBRow className="pl-3 mb-2 ">
                             1.2. If your organization incorporated with a fiscal agent that has 501(c)(3) status:, please provide:
                           </MDBRow>
-                          <MDBRow className="margin0">
-                            <div className="btn btn-light btn-sm float-left ml-4">
+                          <MDBRow className="margin0 file-box">
+                            <div className="btn btn-light float-left ml-4">
                               <input
                                 type="file"
                                 name="file"
@@ -1084,9 +1078,9 @@ class RegisterInfo extends Component {
                               </p>
                             </div>
                           </MDBRow>
-                          <MDBRow className="pl-4"><p id="previousTitle1"> previous upload: </p></MDBRow>
-                          <MDBRow className="margin0">
-                            <div className="btn btn-light btn-sm float-left ml-4">
+                          <MDBRow className="pl-3 mb-2"><p id="previousTitle1"> previous upload: </p></MDBRow>
+                          <MDBRow className="margin0 file-box">
+                            <div className="btn btn-light float-left ml-4">
                               <input
                                 type="file"
                                 name="file"
@@ -1191,8 +1185,8 @@ class RegisterInfo extends Component {
                           />
                         </label>
                         {/* ----------- Contact Section ----------- */}
-                        <div className="greyBG text-center pt-2 pb-2 mt-4">
-                          Contact Information
+                        <div className="pt-2 pb-2 mt-4">
+                          <h3>Contact Information</h3>
                         </div>
                         {/* ----------- Contact Name ----------- */}
                         <label
@@ -1511,13 +1505,13 @@ class RegisterInfo extends Component {
                       </form>
                     </div>
                     {/* ----------- submit button ----------- */}
-                    <div className="text-center mb-3 mt-5">
+                    <div className="mb-3 mt-5">
                       <MDBRow>
-                        <MDBCol md="6">
+                        <MDBCol md="12">
                           <MDBBtn
-                            color="blue-grey"
+                            color="danger"
                             rounded
-                            className="btn-block z-depth-1a"
+                            className="z-depth-1a"
                             // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
                             href={this.state.role == '3' ? '/user-organization-management' : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
                               : 'account'
@@ -1525,12 +1519,11 @@ class RegisterInfo extends Component {
                           >
                             {this.state.role == '3' ? 'Go Back' : 'Back To My Account'}
                           </MDBBtn>
-                        </MDBCol>
-                        <MDBCol md="6">
+                        
                           <MDBBtn
-                            gradient="blue"
+                            color="default"
                             rounded
-                            className="btn-block z-depth-1a"
+                            className=" z-depth-1a"
                             onClick={this.clickSubmitBtn}
                           >
                             Save My Updates
