@@ -118,6 +118,7 @@ router.post('/findOrgByName', orgController.findOrgByName);
 router.post('/fetchAllOrgs', orgController.fetchAllOrgs);
 router.post('/getOrgInfoById', orgController.getOrgInfoById);
 router.post('/getCertificateFile', orgController.getCertificateFile);
+router.post('/suspendOrgById', orgController.suspendOrgById);
 
 // Program Table
 router.post('/createNewProgram', programController.createNewProgram);

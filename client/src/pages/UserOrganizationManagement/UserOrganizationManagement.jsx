@@ -15,6 +15,9 @@ import './UserOrganizationManagement.css';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
+import Person from "@material-ui/icons/Person";
+import HomeIcon from "@material-ui/icons/Home";
+import {Link} from "react-router-dom";
 
 class UserOrganizationManagement extends Component {
   constructor(props) {
@@ -25,6 +28,7 @@ class UserOrganizationManagement extends Component {
       dataReceived: true,
       userResponse: [],
       sessionToken: localStorage.getItem('sessionToken'),
+      suspensionModal: false,
     };
   }
 
@@ -32,6 +36,13 @@ class UserOrganizationManagement extends Component {
     this.setState({
       open: !this.state.open,
       selectedUserData: userData,
+    })
+  };
+
+  toggleSuspend = (e, orgData) => {
+    this.setState({
+      suspensionModal: !this.state.suspensionModal,
+      selectedOrgData: orgData,
     })
   };
 
@@ -53,6 +64,31 @@ class UserOrganizationManagement extends Component {
       })
     } catch (e) {
       this.toggle()
+    }
+  };
+
+  suspendOrg = () => {
+    const deleteUserAPI = '/api/suspendOrgById';
+    const { selectedOrgData = {}, sessionToken, orgAll } = this.state;
+
+    try {
+      axios.post(
+        deleteUserAPI,
+        { ...selectedOrgData, orgId: selectedOrgData.objectId, sessionToken },
+      ).then(async (response) => {
+        const orgIndex = orgAll.findIndex(e => e.objectId === selectedOrgData.objectId);
+        if (orgIndex > -1) {
+          orgAll.splice(orgIndex, 1, { ...orgAll[orgIndex], isSuspended: !orgAll[orgIndex].isSuspended });
+        }
+
+        alert('Save successfully');
+        this.toggleSuspend();
+        this.setState({
+          orgAll: [ ...orgAll ]
+        })
+      })
+    } catch (e) {
+      this.toggleSuspend();
     }
   };
 
@@ -141,10 +177,21 @@ class UserOrganizationManagement extends Component {
       ]
     };
 
+    const currentPage = [{
+      name: 'userPerson',
+      child: <li key={`userPerson1`} className="breadcrumb-item"><Person/> <Link to={'/user-organization-management'}>User Management</Link></li>,
+    }, {
+      name: 'userOrg',
+      child: <li key={`userOrg2`} className="breadcrumb-item active"><HomeIcon/> Organization Management</li>,
+    }];
+    const BreadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/user-organization-management'}>Dashboard</Link></li>,
+    }];
+
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
-
+        <HeaderComponent currentPage={currentPage} breadCrums={BreadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -179,15 +226,17 @@ class UserOrganizationManagement extends Component {
                   </div>
                   :
                   <MDBCardBody>
-                    <MDBDataTable
-                      className="custom-table responsive"
-                      striped
-                      borderless
-                      data={userTableData}
-                      searching={true}
-                      noBottomColumns
-                      info={false}
-                    />
+                    <div className="table-responsive">
+                      <MDBDataTable
+                        className="custom-table program-table"
+                        striped
+                        borderless
+                        data={userTableData}
+                        searching={true}
+                        noBottomColumns
+                        info={false}
+                      />
+                    </div>
                   </MDBCardBody>
                 }
                 
@@ -215,31 +264,51 @@ class UserOrganizationManagement extends Component {
                   </div>
                   :
                   <MDBCardBody>
-                    <MDBDataTable
-                      className="custom-table"
-                      striped
-                      borderless
-                      data={orgTableData}
-                      searching={true}
-                      noBottomColumns
-                      info={false}
-                    />
+                    <div className="table-responsive">
+                      <MDBDataTable
+                        className="custom-table program-table"
+                        striped
+                        borderless
+                        data={orgTableData}
+                        searching={true}
+                        noBottomColumns
+                        info={false}
+                      />
+                    </div>
                   </MDBCardBody>
                 }
               </MDBCard>
               <MDBModal isOpen={this.state.open} toggle={this.toggle}>
                 <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
                 <MDBModalBody className="text-center">
-                  {this.state.selectedUserData && this.state.selectedUserData.username}
+                  <MDBRow>
+                    <MDBCol className='mb-3'>
+                      <div>
+                        {this.state.selectedUserData && this.state.selectedUserData.username}
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
                   <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
                   <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggle}>Cancel</MDBBtn>
                 </MDBModalBody>
               </MDBModal>
+              <MDBModal isOpen={this.state.suspensionModal} toggle={this.toggleSuspend}>
+                <MDBModalHeader>Are you sure you want to {this.state.selectedOrgData && this.state.selectedOrgData.isSuspended ? 'restore' : 'suspend' } organization</MDBModalHeader>
+                <MDBModalBody className="text-center">
+                  <MDBRow>
+                    <MDBCol className='mb-3'>
+                      <div>
+                        {this.state.selectedOrgData && this.state.selectedOrgData.name}
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBBtn className="modal-success-button" color="primary" onClick={this.suspendOrg}>Yes</MDBBtn>
+                  <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggleSuspend}>Cancel</MDBBtn>
+                </MDBModalBody>
+              </MDBModal>
             </MDBCol>
           </MDBRow>
-        </MDBContainer> 
-
-
+        </MDBContainer>
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );
@@ -294,10 +363,24 @@ class UserOrganizationManagement extends Component {
                     className="second-action-button z-depth-1a"
                     onClick={() => {
                       const findUser = this.state.userResponse.find(u => u.orgId === e.objectId);
-                      if (!findUser) {
+                      if (!findUser)
                         return alert('User detail is not proper');
-                      }
-                      this.props.history.push(`/reset-password/${findUser.objectId}`);
+                      if (!findUser.email)
+                        return alert('User detail is not proper');
+                      const forgetPasswordAPI = '/api/forgetPassword';
+
+                      axios.post(
+                        forgetPasswordAPI,
+                        {
+                          emailAddress: findUser.email,
+                          originLocation: window.location.origin,
+                        },
+                      ).then((response) => {
+                        alert('Reset link send.')
+                      }).catch((error) => {
+                        alert('Something went wrong.')
+                      })
+                      // this.props.history.push(`/reset-password/${findUser.objectId}`);
                     }}
                   >
                     Password
@@ -306,15 +389,15 @@ class UserOrganizationManagement extends Component {
                     color="danger"
                     rounded
                     className="third-action-button z-depth-1a"
-                    onClick={() => {}}
+                    onClick={(event) => this.toggleSuspend(event, { ...e, userData: userDataByOrg })}
                   >
-                    delete
+                    {e.isSuspended ? 'Restore' : 'Suspend'}
                   </MDBBtn>
                 </MDBCol>
               </MDBRow>
             </div>
           }
-        })
+        });
 
 
         const usersData = Users.data.users.filter(user1 => user1.userType !== '1').map(u => {
@@ -341,7 +424,23 @@ class UserOrganizationManagement extends Component {
                     rounded
                     className="second-action-button z-depth-1a"
                     onClick={() => {
-                      this.props.history.push(`/reset-password/${u.objectId}`);
+                      const forgetPasswordAPI = '/api/forgetPassword';
+                      if (!u.email) {
+                        return alert('User detail is not proper');
+                      }
+
+                      axios.post(
+                        forgetPasswordAPI,
+                        {
+                          emailAddress: u.email || '',
+                          originLocation: window.location.origin,
+                        },
+                      ).then((response) => {
+                        alert('Reset link send.')
+                      }).catch((error) => {
+                        alert('Something went wrong.')
+                      })
+                      // this.props.history.push(`/reset-password/${u.objectId}`);
                     }}
                   >
                     Password

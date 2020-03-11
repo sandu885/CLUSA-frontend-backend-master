@@ -124,7 +124,17 @@ const login = async(username, password) => {
     queryUser.equalTo("username", username);
     let userRecord = await queryUser.first({useMasterKey: true});
     if (!userRecord)
-        throw new Error("login: Invalid usename");
+        throw new Error("login: Invalid username");
+
+    if (userRecord.get('userType') == '1') {
+        console.log('\n\n\nuserRecord\n\n', userRecord.get('orgId'), '\n\n\n');
+        let queryOrg = new Parse.Query('Organization');
+        queryOrg.equalTo("objectId", userRecord.get('orgId'));
+        const orgRecord = await queryOrg.first({ useMasterKey: true });
+
+        if (orgRecord.get('isSuspended'))
+            throw new Error("Your organization is suspended.");
+    }
     userRecord.set('lastLogin', moment().format());
     await userRecord.save(null, { useMasterKey: true });
     let querySession = new Parse.Query(Parse.Session);

@@ -8,9 +8,25 @@ import { Redirect } from 'react-router';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import AddBox from '@material-ui/icons/AddBox';
+import Person from '@material-ui/icons/Person';
+import HomeIcon from '@material-ui/icons/Home';
 // import Auth from './login/Auth';
 
 import CLUSAlogo from '../images/clusalogo_white.png';
+
+const roleData = [{
+  userType: '0',
+  displayName: 'Grant Reviewer',
+}, {
+  userType: '1',
+  displayName: 'Organization',
+}, {
+  userType: '2',
+  displayName: 'Grant Manager',
+}, {
+  userType: '3',
+  displayName: 'It Admin',
+}];
 
 class Header extends Component {
   constructor(props) {
@@ -23,6 +39,7 @@ class Header extends Component {
       clickLogOut: false,
       redirectToCLUSAccount: false,
       redirectToAccount: false,
+      displayRole: roleData.find(role => role.userType === localStorage.getItem('clusa-role'))
     };
   }
 
@@ -83,7 +100,9 @@ class Header extends Component {
   }
 
   render() {
-    const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin } = this.state;
+    const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin, sessionToken, displayRole } = this.state;
+    console.log('this.props', this.props);
+    const { currentPage = [], breadCrums = [] } = this.props;
 
     if (clickLogOut === true || redirectToLogin === true) return <Redirect to="/login" />;
     if (redirectToCLUSAccount === true) return <Redirect to="/clusa-account" />;
@@ -151,51 +170,57 @@ class Header extends Component {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-        <div 
-          className="sub-header"
-        > 
-         <MDBContainer>
-          <MDBRow>
-            <MDBCol
-                md="6"                
-              >
-                <nav aria-label="breadcrumb">
-                  <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><AddBox /> <a href="#">User Management</a></li>
-                    <li className="breadcrumb-item active"> <AddBox />  Organization Management</li>
-                  </ol>
-                </nav>
-            </MDBCol>
-            <MDBCol
-                md="6"
-                className="text-right c-role"
-              >
-               <p><span>current role</span> <AddBox /> IT Admin</p> 
-            </MDBCol>
+        {sessionToken &&
+          <>
+            <div className="sub-header">
+              <MDBContainer>
+                <MDBRow>
+                  <MDBCol md="6">
+                    <nav aria-label="breadcrumb">
+                      <ol className="breadcrumb">
+                        {currentPage.length ?
+                          currentPage.map(cP => cP.child) : null
+                        }
+                        {!currentPage.length &&
+                          <>
+                            <li className="breadcrumb-item"><Person/> <a href="#">User Management</a></li>
+                            <li className="breadcrumb-item active"><HomeIcon/> Organization Management</li>
+                          </>
+                        }
+                      </ol>
+                    </nav>
+                  </MDBCol>
+                  <MDBCol
+                    md="6"
+                    className="text-right c-role"
+                  >
+                    <p><span>Current Role</span> <Person/> {displayRole && displayRole.displayName}</p>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </div>
+            <div className="breadcrumb-header">
+              <MDBContainer>
+                <MDBRow>
+                  <MDBCol md="12">
+                    <nav aria-label="breadcrumb">
+                      <ol className="breadcrumb">
+                        {breadCrums.length ? currentPage.map(cP => cP.child) : null}
+                        {!breadCrums.length &&
+                          <>
+                            <li className="breadcrumb-item"><HomeIcon/> <a href="#">Dashboard</a></li>
+                            <li className="breadcrumb-item active">User Management</li>
+                          </>
+                        }
+                      </ol>
+                    </nav>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </div>
+          </>
+        }
 
-          </MDBRow>    
-         </MDBContainer>
-          
-        </div>
-        <div 
-          className="breadcrumb-header"
-        > 
-         <MDBContainer>
-          <MDBRow>
-            <MDBCol
-                md="12"                
-              >
-                <nav aria-label="breadcrumb">
-                  <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><AddBox /> <a href="#">Dashboard</a></li>
-                    <li className="breadcrumb-item active">User Management</li>
-                  </ol>
-                </nav>
-            </MDBCol>
-          </MDBRow>    
-         </MDBContainer>
-          
-        </div>
       </div>
       
     );

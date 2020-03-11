@@ -126,111 +126,21 @@ class OrganizationView extends Component {
                     <MDBRow>
                       <MDBCol md="1" />
                       <MDBCol md="10">
-                        <MDBDataTable
-                          className="custom-table program-table"
-                          striped
-                          borderless
-                          data={programData}
-                          searching={false}
-                          noBottomColumns
-                          info={false}
-                        />
+                        <div className="table-responsive">
+                          <MDBDataTable
+                            className="custom-table program-table"
+                            striped
+                            borderless
+                            data={programData}
+                            searching={false}
+                            noBottomColumns
+                            info={false}
+                          />
+                        </div>
                       </MDBCol>
                       <MDBCol md="1" />
                     </MDBRow>
 
-                    <MDBRow>
-                      <MDBCol md="12">
-                        <hr/>
-                      </MDBCol>
-
-                      <MDBCol md="12" className="text-center sub-header font-weight-bold">
-                        Apply Other Program
-                      </MDBCol>
-
-                      <MDBCol md="12">
-                        <hr/>
-                      </MDBCol>
-
-                      <MDBCol md="12">
-                        <MDBRow>
-                          <MDBCol md="1" />
-                          <MDBCol md="10">
-                            <MDBRow>
-                              <MDBCol lg="6" className="pb-4">
-                                <div className="org-custom-card p-4 text-center">
-                                  <div className="sub-header font-weight-bold">
-                                    Internship Program Grant
-                                  </div>
-                                  <div className="org-custom-card-button">
-                                    <MDBBtn
-                                      rounded
-                                      size={"sm"}
-                                      className="gray-button btn-block z-depth-1a"
-                                    >
-                                      Not Open Now
-                                    </MDBBtn>
-                                  </div>
-
-                                </div>
-                              </MDBCol>
-                              <MDBCol lg="6">
-                                <div className="org-custom-card p-4 text-center">
-                                  <div className="sub-header font-weight-bold">
-                                    Civic Leadership Forum Grant
-                                  </div>
-                                  <div className="org-custom-card-button">
-                                    <MDBBtn
-                                      rounded
-                                      size={"sm"}
-                                      className="gray-button btn-block z-depth-1a"
-                                    >
-                                      Not Open Now
-                                    </MDBBtn>
-                                  </div>
-
-                                </div>
-                              </MDBCol>
-                              <MDBCol lg="6" className="pb-4">
-                                <div className="org-custom-card p-4 text-center">
-                                  <div className="sub-header font-weight-bold">
-                                    Capacity Building Grant
-                                    (By Invitation Only)
-                                  </div>
-                                  <div className="pt-1">
-                                    <MDBBtn
-                                      rounded
-                                      size={"sm"}
-                                      className="gray-button btn-block z-depth-1a"
-                                    >
-                                      Not Open Now
-                                    </MDBBtn>
-                                  </div>
-
-                                </div>
-                              </MDBCol>
-                              <MDBCol lg="6">
-                                <div className="org-custom-card p-4 text-center">
-                                  <div className="sub-header font-weight-bold">
-                                    CLUSA Technical Assistance Grants
-                                  </div>
-                                  <div className="org-custom-card-button">
-                                    <MDBBtn
-                                      rounded
-                                      size={"sm"}
-                                      className="gray-button btn-block z-depth-1a"
-                                    >
-                                      Not Open Now
-                                    </MDBBtn>
-                                  </div>
-                                </div>
-                              </MDBCol>
-                            </MDBRow>
-                          </MDBCol>
-                          <MDBCol md="1" />
-                        </MDBRow>
-                      </MDBCol>
-                    </MDBRow>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>

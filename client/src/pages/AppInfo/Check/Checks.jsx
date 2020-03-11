@@ -113,7 +113,7 @@ class Checks extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      alert('🦄Check saved!');
+      alert('🦄Save successfully');
 
       this.fetchCheckData('1');
       console.warn('reponse message', response.data);
@@ -167,7 +167,7 @@ class Checks extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      alert('🦄Check saved!');
+      alert('🦄Save successfully');
       this.fetchCheckData('2');
       console.warn('reponse message', response.data);
 

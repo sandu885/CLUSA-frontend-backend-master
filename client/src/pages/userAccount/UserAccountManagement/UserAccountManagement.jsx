@@ -54,8 +54,6 @@ class UserAccountManagement extends Component {
       return true
     }
 
-    debugger
-
     if (!formData.role) {
       alert('Please select any role for the user.');
       return true
@@ -117,7 +115,6 @@ class UserAccountManagement extends Component {
 
   render() {
     const { formData: { username = '', name = '', email = '', role = '' } } = this.state;
-    console.log('debugger');
 
     return (
       <div className="bg-withImage">

@@ -247,10 +247,7 @@ class MyAccount extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount', 'componentDidMount');
     const getFindUserById = '/api/findUserById';
-
-    debugger
 
     if (this.state.userId) {
       axios.post(
@@ -260,10 +257,7 @@ class MyAccount extends Component {
           userId: this.state.userId,
         },
       ).then((response) => {
-        debugger
         console.warn('clusa response', response.data.user);
-
-        debugger
 
         const formData = {
           username: response.data.user.username,
