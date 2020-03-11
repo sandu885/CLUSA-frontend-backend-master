@@ -196,16 +196,19 @@ class UserOrganizationManagement extends Component {
           <MDBRow>
             <MDBCol
               md="8"
+
             >
               <h1>User Management</h1>
             </MDBCol>
             <MDBCol
               md="4"
               className="text-right"
+              style={{ display: 'block' }}
             >
               <MDBBtn
                 rounded
-                className="second-action-button z-depth-1a add-new-user"
+                className="second-action-button z-depth-1a add-new-user "
+                style={{ float: 'right' }}
                 onClick={() => {
                   this.props.history.push(`/user-account`);
                 }}

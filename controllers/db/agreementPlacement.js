@@ -9,8 +9,7 @@ const createNewAgreementPlacement = async (meta, files) => {
 
   if (meta.role == '1') {
     if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-      throw new Error('You can not perform this action right now.');
-    // TODO ask for the message
+      throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   }
 
   await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
@@ -102,8 +101,7 @@ const updateAgreementPlacementById = async (meta, files) => {
 
   if (meta.role == '1') {
     if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-      throw new Error('You can not perform this action right now.');
-    // TODO ask for the message
+      throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   }
   await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
   // Validation Section ENDS

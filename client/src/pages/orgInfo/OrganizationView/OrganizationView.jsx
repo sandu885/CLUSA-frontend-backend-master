@@ -116,88 +116,88 @@ class OrganizationView extends Component {
                         </div>
                       </MDBCol>
                     </MDBRow>
-                    <div className="offer-box-row">
-                      <MDBRow>
-                        <MDBCol md="12">
-                          <h3>Apply Other Program</h3>
-                        </MDBCol>
-                        <MDBCol md="3">
-                          <div className="offer-box">
-                              <p>Internship Program Grant</p>
-                              <MDBBtn
-                                rounded
-                                style={{ margin: '0' }}
-                                className="green-button org-view-sub-header-button z-depth-1a"
-                                onClick={() =>{
-                                  if (this.props.match.params.id) {
-                                    localStorage.setItem('orgId', this.props.match.params.id);
-                                  }
-                                  this.props.history.push('/organization-information');
-                                }}
-                              >
-                                Open Now
-                              </MDBBtn>
-                          </div>
-                        </MDBCol>
-                        <MDBCol md="3">
-                          <div className="offer-box">
-                              <p>civic leadership fourm grant</p>
-                              <MDBBtn
-                                rounded
-                                style={{ margin: '0' }}
-                                disabled
-                                className="green-button org-view-sub-header-button z-depth-1a"
-                                onClick={() =>{
-                                  if (this.props.match.params.id) {
-                                    localStorage.setItem('orgId', this.props.match.params.id);
-                                  }
-                                  this.props.history.push('/organization-information');
-                                }}
-                              >
-                                Open Now
-                              </MDBBtn>
-                          </div>
-                        </MDBCol>
-                        <MDBCol md="3">
-                          <div className="offer-box">
-                              <p>Capacity Building grant <br></br><span>(By Invitation Only)</span></p>
-                              <MDBBtn
-                                rounded
-                                style={{ margin: '0' }}
-                                disabled
-                                className="green-button org-view-sub-header-button z-depth-1a"
-                                onClick={() =>{
-                                  if (this.props.match.params.id) {
-                                    localStorage.setItem('orgId', this.props.match.params.id);
-                                  }
-                                  this.props.history.push('/organization-information');
-                                }}
-                              >
-                                Open Now
-                              </MDBBtn>
-                          </div>
-                        </MDBCol>
-                        <MDBCol md="3">
-                          <div className="offer-box">
-                              <p>CLUSA Technical Assistance grant</p>
-                              <MDBBtn
-                                rounded
-                                style={{ margin: '0' }}
-                                disabled
-                                className="green-button org-view-sub-header-button z-depth-1a"
-                                onClick={() =>{
-                                  if (this.props.match.params.id) {
-                                    localStorage.setItem('orgId', this.props.match.params.id);
-                                  }
-                                  this.props.history.push('/organization-information');
-                                }}
-                              >
-                                Open Now
-                              </MDBBtn>
-                          </div>
-                        </MDBCol>
-                      </MDBRow>
-                    </div>
+                    {/*<div className="offer-box-row">*/}
+                    {/*  <MDBRow>*/}
+                    {/*    <MDBCol md="12">*/}
+                    {/*      <h3>Apply Other Program</h3>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>Internship Program Grant</p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>civic leadership fourm grant</p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            disabled*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>Capacity Building grant <br></br><span>(By Invitation Only)</span></p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            disabled*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*    <MDBCol md="3">*/}
+                    {/*      <div className="offer-box">*/}
+                    {/*          <p>CLUSA Technical Assistance grant</p>*/}
+                    {/*          <MDBBtn*/}
+                    {/*            rounded*/}
+                    {/*            style={{ margin: '0' }}*/}
+                    {/*            disabled*/}
+                    {/*            className="green-button org-view-sub-header-button z-depth-1a"*/}
+                    {/*            onClick={() =>{*/}
+                    {/*              if (this.props.match.params.id) {*/}
+                    {/*                localStorage.setItem('orgId', this.props.match.params.id);*/}
+                    {/*              }*/}
+                    {/*              this.props.history.push('/organization-information');*/}
+                    {/*            }}*/}
+                    {/*          >*/}
+                    {/*            Open Now*/}
+                    {/*          </MDBBtn>*/}
+                    {/*      </div>*/}
+                    {/*    </MDBCol>*/}
+                    {/*  </MDBRow>*/}
+                    {/*</div>*/}
 
                   </MDBCardBody>
                 </MDBCard>
