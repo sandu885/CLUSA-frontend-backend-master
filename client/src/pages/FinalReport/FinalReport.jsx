@@ -152,7 +152,7 @@ class FinalReport extends Component {
         formData,
       );
       console.warn('console User finish');
-      alert('Save successfully.');
+      alert('Save Successfully.');
       history.goBack();
     } catch (error) {
       if(error.response !== null && error.response !== undefined) {

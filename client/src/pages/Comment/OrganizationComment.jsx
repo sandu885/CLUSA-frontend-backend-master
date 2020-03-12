@@ -14,6 +14,8 @@ import HeaderComponent from '../Header';
 import WholeApplicationCommentView from '../wholeApplicationInfo/WholeApplicationCommentView';
 
 import './comment.css';
+import HomeIcon from "@material-ui/icons/Home";
+import {Link} from "react-router-dom";
 
 class OrganizationComment extends Component {
   constructor(props) {
@@ -222,12 +224,12 @@ class OrganizationComment extends Component {
                   onChange={this.handleChange}
                   value={formData.note}
                 />
-                  <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload"
+                  <MDBBtn style={{ width: '60px' }} rounded className="second-action-button z-depth-1a check-file-upload"
                           onClick={this.postComment}
                   >
                     Save
                   </MDBBtn>
-                  <MDBBtn rounded color="danger" className="application-info-button second-action-button z-depth-1a check-file-upload "
+                  <MDBBtn style={{ width: '70px' }} rounded color="danger" className="application-info-button second-action-button z-depth-1a check-file-upload "
                           onClick={() => {
                             const { history } = this.props;
                             history.push(`/program/${programId}`);
@@ -244,9 +246,7 @@ class OrganizationComment extends Component {
                     <option value="preparingAgreement">Preparing Agreement</option>
                     <option value="turnDown">Turn Down</option>
                   </select>
-                  <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2"
-                          onClick={this.postProgramUpdateStatus}
-                  >
+                  <MDBBtn style={{ width: '60px' }} rounded className="second-action-button z-depth-1a check-file-upload mt-2" onClick={this.postProgramUpdateStatus}>
                     Save
                   </MDBBtn>
                 </MDBCol>
@@ -254,12 +254,23 @@ class OrganizationComment extends Component {
               </MDBRow>
             }
             <MDBRow>
-              <MDBCol md="9" />
-              <MDBCol md="3" className="text-right">
-                <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2"
+              <MDBCol md="3" />
+              <MDBCol md="3">
+                <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2 btn-block"
                         onClick={() => {
                           const { history } = this.props;
                           history.push(`/program/${programId}`);
+                        }}
+                >
+                  Back to Program Detail
+                </MDBBtn>
+              </MDBCol>
+              <MDBCol md="3" />
+              <MDBCol md="3" className="text-right">
+                <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2 btn-block"
+                        onClick={() => {
+                          const { history } = this.props;
+                          history.push(`/view-program`);
                         }}
                 >
                   Back to Account Dashboard
@@ -271,11 +282,20 @@ class OrganizationComment extends Component {
       </MDBRow>
     </div>;
 
-    console.log('fixFooter', fixFooter);
+    const breadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
+    }, {
+      name: 'programView',
+      child: <li key={`programView1`} className="breadcrumb-item"><Link to={`/program/${programId}`}> Program Detail</Link></li>,
+    }, {
+      name: 'appView',
+      child: <li key={`appView1`} className="breadcrumb-item active"> Application Information</li>,
+    }];
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent breadCrums={breadCrums} />
 
         <WholeApplicationCommentView {...this.props} fixFooter={fixFooter} />
 
@@ -286,9 +306,11 @@ class OrganizationComment extends Component {
 
   fetchComments = () => {
     const fetchAllCommentByOrgIdProgId = '/api/fetchAllCommentByOrgIdProgId';
+    const fetchProgramDetailById = '/api/fetchProgramDetailById';
     const { orgId, programId, userId, sessionToken } = this.state;
 
     if (this.state.sessionToken) {
+
       axios.post(
         fetchAllCommentByOrgIdProgId,
         {
@@ -297,6 +319,24 @@ class OrganizationComment extends Component {
           programId,
         },
       ).then((response) => {
+        axios.post(
+          fetchProgramDetailById,
+          {
+            sessionToken: this.state.sessionToken,
+            programId: programId,
+          },
+        ).then((subResponse) => {
+          debugger
+          const { program: programData } = subResponse.data.program;
+          debugger
+          if (programData.status) {
+            this.setState({
+              programStatus: programData.status,
+            });
+          }
+        }).catch((subError) => {
+          console.log(subError);
+        });
         const commentData = response.data.comments.filter(e => e.type === 'appView');
         const comment = commentData.find(e => e.userId === userId);
         this.state.commentData = cloneDeep(commentData);
@@ -341,7 +381,7 @@ class OrganizationComment extends Component {
         this.state.commentData = cloneDeep(commentData);
         this.setState({
           commentData: cloneDeep(commentData),
-          programStatus: cloneDeep(commentData),
+          // programStatus: cloneDeep(commentData),
         });
       }).catch((error) => {
         this.setState({
@@ -362,6 +402,7 @@ class OrganizationComment extends Component {
 
   componentDidMount() {
     this.fetchComments();
+
     this.interval = setInterval(() => {
       this.fetchCommentsInterval();
     }, 15000);
