@@ -1,4 +1,5 @@
 const moment = require('moment');
+const TOOL = require('../tool/tool');
 //Create new program
 const createNewProgram = async (user, type) => {
     if (!type)
@@ -210,6 +211,18 @@ const updateProgramByIdToCloseStatus = async (meta) => {
     queryProgram.equalTo("objectId", meta.programId);
     let programRecord = await queryProgram.first({ useMasterKey: true });
 
+    if (meta.closeNote) {
+        let queryUser = new Parse.Query('User');
+        queryUser.equalTo("orgId", meta.orgId);
+        let userRecord = await queryUser.first({ useMasterKey: true });
+
+        const queryOrg = new Parse.Query('Organization');
+        queryOrg.equalTo("objectId", meta.orgId);
+        const orgRecord = await queryOrg.first({ useMasterKey: true });
+
+        await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'closed');
+        await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'closed', orgRecord.get('name'));
+    }
     meta.closeNote && programRecord.set("closeNote", meta.closeNote);
     meta.closeNote && programRecord.set("status", 'closed');
 

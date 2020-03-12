@@ -1,4 +1,5 @@
 const PROGRAM = require('./program');
+const TOOL = require('../tool/tool');
 
 const createNewFinalReport = async (meta, file) => {
   // Validation Section STARTS
@@ -66,6 +67,18 @@ const updateProgramStatus = async (finalReport) => {
   let queryProgram = new Parse.Query('Program');
   queryProgram.equalTo("objectId", finalReport.get('programId'));
   let programRecord = await queryProgram.first({ useMasterKey: true });
+
+  let queryUser = new Parse.Query('User');
+  queryUser.equalTo("orgId", finalReport.get('orgId'));
+  let userRecord = await queryUser.first({ useMasterKey: true });
+
+  const queryOrg = new Parse.Query('Organization');
+  queryOrg.equalTo("objectId", finalReport.get('orgId'));
+  const orgRecord = await queryOrg.first({ useMasterKey: true });
+  if (userRecord) {
+    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'reportSubmitted');
+    await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'reportSubmitted', orgRecord.get('name'));
+  }
 
   programRecord.set("status", 'reportSubmitted');
   await programRecord.save(null, { useMasterKey: true });
