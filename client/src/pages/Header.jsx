@@ -173,7 +173,7 @@ class Header extends Component {
             <div className="sub-header">
               <MDBContainer>
                 <MDBRow>
-                  <MDBCol md="6">
+                  <MDBCol md="7">
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         {currentPage.length ?
@@ -189,7 +189,7 @@ class Header extends Component {
                     </nav>
                   </MDBCol>
                   <MDBCol
-                    md="6"
+                    md="5"
                     className="text-right c-role"
                   >
                     <p><span>Current Role</span> <Person/> {displayRole && displayRole.displayName}</p>

@@ -7,6 +7,7 @@ body{
   font-size: 14px;
   font-weight: 400;
 }
+
 a:hover{
   color: #000;
 }
@@ -437,11 +438,10 @@ table td {
 .offer-box-row .offer-box p span{
   font-size: 14px;
 }
-@media (min-width: 1200px){
   .container, .container-lg, .container-md, .container-sm, .container-xl {
-      max-width: 1400px;
+      max-width: 1400px !important;
   }
-}
+
 @media (max-width: 767px){
   .comment-container {
     padding: 20px 20px 30px 20px;
