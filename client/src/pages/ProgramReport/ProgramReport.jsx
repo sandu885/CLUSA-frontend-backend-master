@@ -363,7 +363,7 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
+                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
                                   href={CLUSAInternInformation}
                           >
                             Download Template File
@@ -410,7 +410,6 @@ class ProgramReport extends Component {
                               {role == '1' && <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
                                 <MDBBtn
                                   rounded
-                                  size={"sm"}
                                   className="application-info-button second-action-button z-depth-1a"
                                   style={{ width: '50%' }}
                                   onClick={(e) => this.selectProgramReport(e, pRD)}
@@ -419,7 +418,7 @@ class ProgramReport extends Component {
                                 </MDBBtn>
                                 <MDBBtn
                                   rounded
-                                  size={"sm"}
+                                  color="danger"
                                   className="second-action-button z-depth-1a red-color"
                                   style={{ width: '40%', marginLeft: '30px' }}
                                   onClick={(e) => this.selectDeleteProgramReport(e, pRD)}
@@ -438,7 +437,6 @@ class ProgramReport extends Component {
                             <MDBCol md={4} className="pt-4">
                               <MDBBtn
                                 rounded
-                                size={"sm"}
                                 className="second-action-button z-depth-1a"
                                 onClick={() => {
                                   this.setState({ formData: {} });
@@ -456,6 +454,8 @@ class ProgramReport extends Component {
                                 onClick={() => {
                                   if (role !== '1')
                                     this.props.history.push('/view-program')
+                                  else
+                                    this.props.history.push('/account')
                                 }}
                               >
                                 Back to Account Dashboard
@@ -465,7 +465,7 @@ class ProgramReport extends Component {
                               <MDBBtn
                                 rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color btn-block"
                                 onClick={() => {
-                                  if (role !== '1')
+                                  // if (role !== '1')
                                     this.props.history.push(`/program/${programId}`)
                                 }}
                               >

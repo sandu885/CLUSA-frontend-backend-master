@@ -242,40 +242,42 @@ class Checks extends Component {
                   <MDBRow>
                     <MDBCol md="5" className="pt-3 font-weight-bold check-sub-header">
                         <h3>First Check</h3>
-                        <div className="form-group font-weight-bold">
-                        <label className="col-form-label check-form-label">Check Amount:-</label>
-                        <div className="col-sm-6 p-0">
-                          {role == '0' ? first && <label className="col-form-label check-form-label font-weight-light">{first.checkAmount || ''}</label>
-                            : <input type="number" className="form-control" name="first-checkAmount" value={first.checkAmount} onChange={this.handleChange} />
-                          }
-                        </div>
-
-                        <label className="col-form-label check-form-label">Check #:-</label>
-                        <div className="col-sm-6 p-0">
+                        <div className="form-group font-weight-bold">                        
+                          <div className="col-sm-12 p-0 pb-3">
+                          <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Amount:-</label><br></br>
+                            {role == '0' ? first && <label className="col-form-label check-form-label font-weight-light">{first.checkAmount || ''}</label>
+                              : <input type="number" className="form-control" name="first-checkAmount" value={first.checkAmount} onChange={this.handleChange} />
+                            }
+                        </div>                       
+                        <div className="col-sm-12 p-0 ">
+                        <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check #:-</label><br></br>
                           {role == '0' ? <label className="col-form-label check-form-label font-weight-light">{first && first.checkId}</label>
                             : <input type="text" className="form-control" name="first-checkId" value={first.checkId} onChange={this.handleChange}/>
                           }
                         </div>
                       </div>
-                      <div className="form-group font-weight-bold ">
-                        <label className="col-form-label check-form-label">Check Image:-</label>
+                      <div className="form-group font-weight-bold">                        
                         <MDBRow>
-                        <div className="col-sm-6">
+                        <div className="col-sm-12">
+                        <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Image:-</label><br></br>
                           <label className="col-form-label" style={{
                             fontWeight: '100',
                             color: '#b6b6b6',
                           }}>
                           {
                             first.checkFile ? first.checkFile.name :
-                              first.checkFileLink && <a href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {first.checkFileLink.filename} </a>
+                              first.checkFileLink &&
+                              <MDBBtn href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload">
+                                Click to download image
+                              </MDBBtn>
                           }
                           </label>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-12">
                           {role == '0' ? null :
                             <>
                               <input type="file" className="form-control" style={{ display: 'none' }} name="first-checkFile" onChange={this.handleFileChange}/>
-                              <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
+                              <MDBBtn rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
                                 Click to Upload/Replace Image
                               </MDBBtn>
                             </>
@@ -284,10 +286,9 @@ class Checks extends Component {
                         </MDBRow>
                       </div>
                       <div className="form-group font-weight-bold">
-                        <div className="col-sm-12 p-0">
-                          <label className="col-form-label check-form-label">Check Date:-</label>
-                        </div>
-                        <div className="col-sm-6 p-0">
+                        
+                        <div className="col-sm-6 p-0 pb-3">
+                        <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Date:-</label><br></br>
                           {role == '0' ? first && <label className="col-form-label check-form-label font-weight-light">{first.checkDate || ''}</label>
                             : <input type="text" className="form-control" name="first-checkDate" value={first.checkDate} onChange={this.handleChange}/>
                           }
@@ -322,14 +323,16 @@ class Checks extends Component {
                       <h3>Second check</h3>
 
                         <div className="form-group font-weight-bold">
-                          <label className="col-form-label check-form-label">Check Amount:-</label>
+                         
                           <div className="col-sm-6 p-0">
+                          <label className="col-form-label check-form-label">Check Amount:-</label><br></br>
                             {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkAmount || ''}</label>
                               : <input type="number" className="form-control" name="second-checkAmount" value={second.checkAmount} onChange={this.handleChange}/>
                             }
                           </div>
-                          <label className="col-form-label">Check #:-</label>
-                          <div className="col-sm-6 p-0">
+                          
+                          <div className="col-sm-12 p-0">
+                          <label className="col-form-label">Check #:-</label><br></br>
                             {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkId || ''}</label>
                               : <input type="text" className="form-control" name="second-checkId" value={second.checkId} onChange={this.handleChange}/>
                             }
@@ -339,18 +342,21 @@ class Checks extends Component {
                         <div className="form-group font-weight-bold">
                           <label className="col-form-label check-form-label">Check Image:-</label>
                           <MDBRow>
-                            <div className="col-sm-6">
+                            <div className="col-sm-12">
                               <label className="col-form-label" style={{
                                 fontWeight: '100',
                                 color: '#b6b6b6',
                               }}>
                                 {
                                   second.checkFile ? second.checkFile.name :
-                                    second.checkFileLink && <a href={`/${second.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {second.checkFileLink.filename} </a>
+                                    second.checkFileLink &&
+                                    <MDBBtn href={`/${second.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload">
+                                      Click to download image
+                                    </MDBBtn>
                                 }
                               </label>
                             </div>
-                            <div className="col-sm-6">
+                            <div className="col-sm-12">
                               {role == '0' ? null :
                                 <>
                                   <input type="file" className="form-control" style={{display: 'none'}}
@@ -367,8 +373,8 @@ class Checks extends Component {
                         </div>
 
                         <div className="form-group font-weight-bold">
-                          <label className="col-form-label check-form-label">Check Date:-</label>
                           <div className="col-sm-6 p-0">
+                          <label className="col-form-label check-form-label">Check Date:-</label><br></br>
                             {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkDate || ''}</label>
                               : <input type="text" className="form-control" name="second-checkDate" value={second.checkDate} onChange={this.handleChange} />
                             }
@@ -377,8 +383,9 @@ class Checks extends Component {
                         {role == '0' ?
                           <div className="form-group font-weight-bold">
                             <MDBCol sm="5"/>
-                            <MDBCol sm="3">
+                            <MDBCol sm="3 p-0">
                               <MDBBtn rounded
+                              color="danger"
                                       className="send-button second-action-button z-depth-1a check-file-upload"
                                       onClick={event => {
                                         this.props.history.goBack();

@@ -124,38 +124,41 @@ class CloseProgram extends Component {
     const { formData, programId, isEdit, closeNote = '' } = this.state;
     console.log(this.state, closeNote);
 
-    let heading = 'Program Closing Report';
+    let heading = 'Program Closing Report a';
 
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>{heading}</h1>
+            </MDBCol>            
+          </MDBRow>            
+        </MDBContainer>
+        <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>
-                <MDBRow className="text-center pt-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    {heading}
-                  </MDBCol>
-                </MDBRow>
                 <MDBCardBody>
-                  <MDBRow className="header-section">
-                    <MDBCol md="2" />
-                    <MDBCol md="9">
-
+                  <MDBRow>
+                    <MDBCol md="12 pl-5 pr-5">
                       <MDBRow className="form-group font-weight-bold">
-                        {isEdit ?
-                          <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote} onChange={this.handleChange}/>
-                          :
-                          closeNote && closeNote
-                        }
+                        <MDBCol sm="12">
+                          {isEdit ?
+                            <textarea name="closeNote" className="form-control mt-2 mb-4" rows="8" value={closeNote} onChange={this.handleChange}/>
+                            :
+                            closeNote && closeNote
+                          }
+                        </MDBCol>
                       </MDBRow>
 
                       <MDBRow className="form-group font-weight-bold justify-content-center">
-                        <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"}
-                                  className="send-button second-action-button btn-block z-depth-1a check-file-upload"
+                        <MDBCol sm="12">
+                          <MDBBtn rounded
+                                  className="send-button second-action-button z-depth-1a check-file-upload"
                                   onClick={() => {
                                     this.setState({
                                       isEdit: !this.state.isEdit,
@@ -163,19 +166,15 @@ class CloseProgram extends Component {
                                   }}
                           >
                             Edit
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"}
-                                  className="send-button second-action-button btn-block z-depth-1a check-file-upload"
+                          </MDBBtn>                        
+                          <MDBBtn rounded
+                                  className="send-button second-action-button z-depth-1a check-file-upload"
                                   onClick={this.closeReport}
                           >
                             Save
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol sm="3">
-                          <MDBBtn rounded size={"sm"}
-                                  className="cancel-button second-action-button btn-block z-depth-1a check-file-upload"
+                          </MDBBtn>                        
+                          <MDBBtn rounded
+                                  className="cancel-button second-action-button z-depth-1a check-file-upload"
                                   onClick={event => {
                                     this.props.history.push(`/program/${programId}`);
                                   }}
@@ -185,10 +184,7 @@ class CloseProgram extends Component {
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
-                    <MDBCol md="1" />
                   </MDBRow>
-                  <br />
-
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -210,13 +206,11 @@ class CloseProgram extends Component {
           programId: this.state.programId ? this.state.programId : ''
         },
       ).then((response) => {
-        debugger
         this.setState({
           programData: { ...response.data.program },
           closeNote: response.data.program && response.data.program.program.closeNote,
           dataReceived: true,
         });
-        debugger
       }).catch((error) => {
         this.setState({
           dataReceived: true,
