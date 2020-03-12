@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn, MDBModalFooter } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn } from 'mdbreact';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
@@ -190,9 +190,8 @@ class Login extends Component {
                 <MDBCardBody className="mx-4">
                     <h3 className="dark-grey-text">
                       <strong>Login</strong>
-                    </h3>                  
+                    </h3>
                   <MDBInput
-                    
                     group
                     type="text"
                     validate
@@ -201,7 +200,6 @@ class Login extends Component {
                     onChange={(e) => this.setState({ username: e.target.value })}
                   />
                   <MDBInput
-                    
                     group
                     type="password"
                     validate
@@ -224,7 +222,7 @@ class Login extends Component {
                       className="z-depth-1a"
                       onClick={this.clickLoginBtn}
                     >
-                  Sign in
+                      Sign in
                     </MDBBtn>
                   </div>
                   {/* <div className="font-small justify-content forget-password">

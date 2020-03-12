@@ -4,12 +4,16 @@ import {
   MDBContainer,
   MDBCardBody,
   MDBBtn,
-  MDBRow, MDBCol, MDBCard
+  MDBRow, MDBCol, MDBCard, MDBInput
 } from 'mdbreact';
 import axios from 'axios';
 
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
+import CLUSAlogo from "../../../images/clusaLogo.png";
+import Person from "@material-ui/icons/Person";
+import {Link} from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
 
 class UserAccountManagement extends Component {
   constructor(props) {
@@ -34,7 +38,7 @@ class UserAccountManagement extends Component {
   clickCancel = () => {
     const { history } = this.props;
     history.push('/user-organization-management');
-  }
+  };
 
   validate = (formData) => {
     if (!formData.username) {
@@ -115,81 +119,95 @@ class UserAccountManagement extends Component {
 
   render() {
     const { formData: { username = '', name = '', email = '', role = '' } } = this.state;
+    const { match = {} } = this.props;
+    // this.props.match && this.props.match.params.userId
+
+    const currentPage = [{
+      name: 'userPerson',
+      child: <li key={`userPerson1`} className="breadcrumb-item"><Person/> <Link to={'/user-organization-management'}>User Management</Link></li>,
+    }, {
+      name: 'userOrg',
+      child: <li key={`userInformation2`} className="breadcrumb-item active"><HomeIcon/>Account Information</li>,
+    }];
+    // const BreadCrums = [{
+    //   name: 'dashboard',
+    //   child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/user-organization-management'}>Dashboard</Link></li>,
+    // }, {
+    //   name: 'userAccount',
+    //   child: <li key={`userAccount1`} className="breadcrumb-item"><HomeIcon/> Dashboard </li>,
+    // }];
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent currentPage={currentPage} breadCrums={[]} />
 
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="pb-3 mb-2 mt-2">
+          <img
+            src={CLUSAlogo}
+            className="mx-auto d-block clusalogo mt-3"
+            alt="aligment"
+          />
           <MDBRow>
-            <MDBCol md="12">
-              <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    Add New Account Information
-                  </MDBCol>
-                </MDBRow>
-                <MDBCardBody>
+            <MDBCol md="3" />
+            <MDBCol md="6">
+              <MDBCard className="card-small">
+                <MDBCardBody className="mx-4">
 
-                  <MDBRow>
+                  <h3 className="dark-grey-text">
+                    <strong> {match.params ? match.params.userId ? 'Edit ': 'Add New' : 'Add New'} Account Information</strong>
+                  </h3>
 
-                    <MDBCol md="1" />
 
-                    <MDBCol md="10">
-                      <div className="pt-4 text-left">
-                        <span className="redColor">* </span>
-                        <label
-                          htmlFor="internship-s4-q1"
+
+                      <div className="pt-2 text-left">
+                        <div
                           className="font-weight-bold text-justify"
                           style={{
                             fontSize: 'larger'
                           }}
                         >
+                          <span className="redColor">* </span>
                           Username
-                        </label>
-                        <input className="form-control mt-2" name="username" value={username} onChange={this.handleChange} />
+                        </div>
+                        <input className="form-control" name="username" value={username} onChange={this.handleChange} />
                       </div>
 
-
-                      <div className="pt-4 text-left">
-                        <span className="redColor">* </span>
-                        <label
-                          htmlFor="internship-s4-q1"
+                      <div className="text-left">
+                        <div
                           className="font-weight-bold text-justify"
                           style={{
                             fontSize: 'larger'
                           }}
                         >
+                          <span className="redColor">* </span>
                           Full Name
-                        </label>
-                        <input className="form-control mt-2" name="name" value={name} onChange={this.handleChange} />
+                        </div>
+                        <input className="form-control" name="name" value={name} onChange={this.handleChange} />
                       </div>
 
-                      <div className="pt-4 text-left">
-                        <span className="redColor">* </span>
-                        <label
-                          htmlFor="internship-s4-q1"
+                      <div className="text-left">
+                        <div
                           className="font-weight-bold text-justify"
                           style={{
                             fontSize: 'larger'
                           }}
                         >
+                          <span className="redColor">* </span>
                           Email
-                        </label>
-                        <input className="form-control mt-2" name="email" value={email} onChange={this.handleChange} />
+                        </div>
+                        <input className="form-control" name="email" value={email} onChange={this.handleChange} />
                       </div>
 
-                      <div className="pt-4 text-left">
-                        <span className="redColor">* </span>
-                        <label
-                          htmlFor="internship-s4-q1"
+                      <div className="text-left">
+                        <div
                           className="font-weight-bold text-justify"
                           style={{
                             fontSize: 'larger'
                           }}
                         >
+                          <span className="redColor">* </span>
                           Role
-                        </label>
+                        </div>
                         <select name="role" className="browser-default custom-select" value={role} onChange={this.handleChange}>
                           <option value=''>Choose Role</option>
                           <option value="3">IT Admin</option>
@@ -201,45 +219,30 @@ class UserAccountManagement extends Component {
 
                       <div className="pt-4 text-center">
                         <MDBRow>
-                          <MDBCol md="2"/>
                           <MDBCol md="4">
                             <MDBBtn
                               rounded
                               className="btn-block z-depth-1a"
                               onClick={this.handleUserPost}
-                            >
-                              Submit
-                            </MDBBtn>
+                            >Submit</MDBBtn>
                           </MDBCol>
                           <MDBCol md="4">
                             <MDBBtn
-                              color="red"
                               rounded
+                              color="danger"
                               className="btn-block z-depth-1a"
                               onClick={this.clickCancel}
                             >
                               Cancel
                             </MDBBtn>
                           </MDBCol>
-                          <MDBCol md="2"/>
                         </MDBRow>
                       </div>
-
-                    </MDBCol>
-                    <MDBCol md="1" />
-
-                  </MDBRow>
-
-
-                  
-                  
                 </MDBCardBody>
 
-                <br />
-
-                <br />
               </MDBCard>
             </MDBCol>
+            <MDBCol md="3" />
           </MDBRow>
         </MDBContainer>
 

@@ -163,7 +163,6 @@ class Header extends Component {
                       href="/register"
                     > Register
                     </a>
-                   
                   </div>
                 )}              
             </MDBCol>
@@ -205,12 +204,12 @@ class Header extends Component {
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         {breadCrums.length ? currentPage.map(cP => cP.child) : null}
-                        {!breadCrums.length &&
-                          <>
-                            <li className="breadcrumb-item"><HomeIcon/> <a href="#">Dashboard</a></li>
-                            <li className="breadcrumb-item active">User Management</li>
-                          </>
-                        }
+                        {/*{!breadCrums.length &&*/}
+                        {/*  <>*/}
+                        {/*    <li className="breadcrumb-item"><HomeIcon/> <a href="#">Dashboard</a></li>*/}
+                        {/*    <li className="breadcrumb-item active">User Management</li>*/}
+                        {/*  </>*/}
+                        {/*}*/}
                       </ol>
                     </nav>
                   </MDBCol>
