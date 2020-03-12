@@ -266,7 +266,10 @@ class Checks extends Component {
                           }}>
                           {
                             first.checkFile ? first.checkFile.name :
-                              first.checkFileLink && <a href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {first.checkFileLink.filename} </a>
+                              first.checkFileLink &&
+                              <MDBBtn href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload">
+                                Click to download image
+                              </MDBBtn>
                           }
                           </label>
                         </div>
@@ -279,9 +282,6 @@ class Checks extends Component {
                               </MDBBtn>
                             </>
                           }
-                          <MDBBtn rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
-                                Click to download image
-                          </MDBBtn>                          
                         </div>
                         </MDBRow>
                       </div>
@@ -349,7 +349,10 @@ class Checks extends Component {
                               }}>
                                 {
                                   second.checkFile ? second.checkFile.name :
-                                    second.checkFileLink && <a href={`/${second.checkFileLink.path}`} rel="noopener noreferrer" target="_blank"> {second.checkFileLink.filename} </a>
+                                    second.checkFileLink &&
+                                    <MDBBtn href={`/${second.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload">
+                                      Click to download image
+                                    </MDBBtn>
                                 }
                               </label>
                             </div>
@@ -365,15 +368,11 @@ class Checks extends Component {
                                   </MDBBtn>
                                 </>
                               }
-                              <MDBBtn rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
-                                Click to download image
-                              </MDBBtn>
                             </div>
                           </MDBRow>
                         </div>
 
                         <div className="form-group font-weight-bold">
-                          
                           <div className="col-sm-6 p-0">
                           <label className="col-form-label check-form-label">Check Date:-</label><br></br>
                             {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkDate || ''}</label>

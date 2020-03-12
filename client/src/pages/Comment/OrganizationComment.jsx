@@ -224,12 +224,12 @@ class OrganizationComment extends Component {
                   onChange={this.handleChange}
                   value={formData.note}
                 />
-                  <MDBBtn style={{ width: '60px' }} rounded className="second-action-button z-depth-1a check-file-upload"
+                  <MDBBtn style={{ width: '70px' }} rounded className="second-action-button z-depth-1a check-file-upload"
                           onClick={this.postComment}
                   >
                     Save
                   </MDBBtn>
-                  <MDBBtn style={{ width: '70px' }} rounded color="danger" className="application-info-button second-action-button z-depth-1a check-file-upload "
+                  <MDBBtn style={{ width: '80px' }} rounded color="danger" className="application-info-button second-action-button z-depth-1a check-file-upload "
                           onClick={() => {
                             const { history } = this.props;
                             history.push(`/program/${programId}`);
@@ -282,7 +282,7 @@ class OrganizationComment extends Component {
       </MDBRow>
     </div>;
 
-    const breadCrums = [{
+    const breadCrums = role != '1' && [{
       name: 'dashboard',
       child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
     }, {
@@ -326,9 +326,7 @@ class OrganizationComment extends Component {
             programId: programId,
           },
         ).then((subResponse) => {
-          debugger
           const { program: programData } = subResponse.data.program;
-          debugger
           if (programData.status) {
             this.setState({
               programStatus: programData.status,

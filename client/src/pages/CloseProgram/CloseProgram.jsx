@@ -206,13 +206,11 @@ class CloseProgram extends Component {
           programId: this.state.programId ? this.state.programId : ''
         },
       ).then((response) => {
-        debugger
         this.setState({
           programData: { ...response.data.program },
           closeNote: response.data.program && response.data.program.program.closeNote,
           dataReceived: true,
         });
-        debugger
       }).catch((error) => {
         this.setState({
           dataReceived: true,
