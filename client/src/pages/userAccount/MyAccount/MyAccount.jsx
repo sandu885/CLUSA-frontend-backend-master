@@ -125,118 +125,104 @@ class MyAccount extends Component {
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>Account Detail</h1>
+            </MDBCol>            
+          </MDBRow>            
+        </MDBContainer>
+        <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    My Account Information
-                  </MDBCol>
-                </MDBRow>
                 <MDBCardBody>
                   <MDBRow>
-                    <MDBCol md="1" />
-                    <MDBCol md="10">
-                      <div className="pt-4 text-left">
+                    <MDBCol md="12 pl-5 pr-5">
+                      <div className="pt-2 text-left">
                         <span className="redColor">* </span>
                         <label
                           htmlFor="internship-s4-q1"
-                          className="font-weight-bold text-justify"
                           style={{
-                            fontSize: 'larger'
-                          }}
+                            margin: '0'
+                          }} 
                         >
-                          Username
+                          <strong>Username</strong>
                         </label>
                         <input className="form-control mt-2" name="username" value={username} onChange={this.handleChange} />
                       </div>
-                      <div className="pt-4 text-left">
+                      <div className="pt-2 text-left">
                         <span className="redColor">* </span>
                         <label
                           htmlFor="internship-s4-q1"
-                          className="font-weight-bold text-justify"
                           style={{
-                            fontSize: 'larger'
+                            margin: '0'
                           }}
                         >
-                          Full Name
+                          <strong>Full Name</strong>
                         </label>
                         <input className="form-control mt-2" name="name" value={name} onChange={this.handleChange} />
                       </div>
 
-                      <div className="pt-4 text-left">
+                      <div className="pt-2 text-left">
                         <span className="redColor">* </span>
                         <label
-                          htmlFor="internship-s4-q1"
-                          className="font-weight-bold text-justify"
+                          htmlFor="internship-s4-q1"  
                           style={{
-                            fontSize: 'larger'
-                          }}
+                            margin: '0'
+                          }} 
                         >
-                          Email
+                          <strong>Email</strong>
                         </label>
                         <input className="form-control mt-2" name="email" value={email} onChange={this.handleChange} />
                       </div>
-                      <div className="pt-4 text-left">
+                      <div className="pt-2 text-left">
                         <span className="redColor">* </span>
                         <label
-                          htmlFor="internship-s4-q1"
-                          className="font-weight-bold text-justify"
+                          htmlFor="internship-s4-q1"    
                           style={{
-                            fontSize: 'larger'
+                            margin: '0'
                           }}
                         >
-                          Password
+                          <strong>Password</strong>
                         </label>
                         <input className="form-control mt-2" name="password" value={password} onChange={this.handleChange} />
                       </div>
-                      <div className="pt-4 text-left">
+                      <div className="pt-2 text-left">
                         <span className="redColor">* </span>
                         <label
                           htmlFor="internship-s4-q1"
-                          className="font-weight-bold text-justify"
                           style={{
-                            fontSize: 'larger'
+                            margin: '0'
                           }}
                         >
-                          New Password
+                          <strong>New Password</strong>
                         </label>
                         <input className="form-control mt-2" name="newPassword" value={newPassword} onChange={this.handleChange} />
                       </div>
-                      <div className="pt-4 text-center">
-                        <MDBRow>
-                          <MDBCol md="2"/>
-                          <MDBCol md="4">
-                            <MDBBtn
-                              rounded
-                              className="btn-block z-depth-1a"
-                              onClick={this.handleUserPost}
-                            >
-                              Submit
-                            </MDBBtn>
-                          </MDBCol>
-                          <MDBCol md="4">
-                            <MDBBtn
-                              color="red"
-                              rounded
-                              className="btn-block z-depth-1a"
-                              onClick={this.clickCancel}
-                            >
-                              Cancel
-                            </MDBBtn>
-                          </MDBCol>
-                          <MDBCol md="2"/>
-                        </MDBRow>
+                      <div className="pt-2">
+                        <MDBBtn
+                          rounded
+                          color="default"
+                          className="z-depth-1a"
+                          onClick={this.handleUserPost}
+                        >
+                          Submit
+                        </MDBBtn>                         
+                        <MDBBtn
+                          color="danger"
+                          rounded
+                          className="z-depth-1a"
+                          onClick={this.clickCancel}
+                        >
+                          Cancel
+                        </MDBBtn>      
                       </div>
                     </MDBCol>
-                    <MDBCol md="1" />
                   </MDBRow>
-                </MDBCardBody>
-                <br />
-
-                <br />
+                </MDBCardBody>                
               </MDBCard>
             </MDBCol>
           </MDBRow>

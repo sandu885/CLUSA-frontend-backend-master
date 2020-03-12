@@ -10,6 +10,8 @@ import axios from 'axios';
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
 
+import CLUSAlogo from '../../images/clusaLogo.png';
+
 class RecreateLogin extends Component {
   constructor(props) {
     super(props);
@@ -93,72 +95,51 @@ class RecreateLogin extends Component {
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer>
+        <img
+            src={CLUSAlogo}
+            className="mx-auto d-block clusalogo mt-3"
+            alt="aligment"
+          />
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>
-                <MDBRow className="text-center pt-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    {heading}
-                  </MDBCol>
-                </MDBRow>
                 <MDBCardBody>
                   <MDBRow>
-                    <MDBCol md="1" />
-                    <MDBCol md="10" className="text-center">
-                      Please explain why you want to recreate account, and provide the related account information
+                    <MDBCol md="12 pl-5 pr-5">
+                      <h3>{heading}</h3>                      
                     </MDBCol>
-                    <MDBCol md="1" />
-
-                    <MDBCol md="1" />
-                    <MDBCol md="10">
+                    <MDBCol md="12 pl-5 pr-5">
                       <MDBRow>
-                        <MDBCol md="1" />
-                        <MDBCol md="10" className="table-header font-weight-bold">
+                        <MDBCol md="12">
+                          <p><strong>Please explain why you want to recreate account, and provide the related account information</strong></p>
                           <textarea rows={5} className="form-control ml-12 mt-3" name="note" value={formData.note} onChange={this.handleChange} />
                         </MDBCol>
-                        <MDBCol md="1" />
                       </MDBRow>
-                      <MDBCol md="1" />
-
-                      <MDBRow className="pt-4">
-
-                      </MDBRow>
-
                     </MDBCol>
-                    <MDBCol md="1" />
                   </MDBRow>
-
                   <MDBRow>
-
-                    <MDBCol md="2" />
-                    <MDBCol md="8" style={{ display: 'flex' }}>
+                    <MDBCol md="12 pl-5 pr-5" style={{ display: 'flex' }}>
                       <MDBBtn
                         rounded
-                        size={"sm"}
-                        className="second-action-button btn-block z-depth-1a"
-                        style={{ width: '50%' }}
+                        color="default"
+                        className="second-action-button z-depth-1a"
                         onClick={(e) => this.postRecreateLogin(e)}
                       >
                         Submit
                       </MDBBtn>
                       <MDBBtn
                         rounded
-                        size={"sm"}
-                        className="second-action-button btn-block z-depth-1a red-color"
-                        style={{ width: '40%', marginLeft: '30px' }}
+                        color="danger"
+                        className="second-action-button z-depth-1a red-color"
                         onClick={(e) => {
                           this.props.history.push('/');
                         }}
                       >
                         Cancel
                       </MDBBtn>
-                    </MDBCol>
-                    <MDBCol md="2" />
+                    </MDBCol>                    
                   </MDBRow>
-
-                  <br/>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
