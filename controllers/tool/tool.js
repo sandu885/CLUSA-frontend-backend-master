@@ -150,7 +150,44 @@ const sendRecreateLoginEmail = async(emailAddress, note) => {
   }
 }
 
-const programStatusUpdate = async(emailAddress, username) => {
+const programStatusUpdate = async(emailAddress, username, prevStatus, currentStatus, orgName) => {
+  try {
+    console.log("send email request received.");
+    if (!emailAddress)
+      throw new Error("No email");
+    console.log("Receiver email address is " + emailAddress);
+    let options = {
+      auth: {
+        api_key: keys.sendGridKey,
+      }
+    };
+    let client = nodemailer.createTransport(sgTransport(options));
+    let mailContent = {
+      from: {
+        name: 'CLUSA',
+        address: 'grant@clusa.org'
+      },
+      to: emailAddress ? emailAddress : 'catamu@getnada.com',
+      subject: 'Program status Update.',
+      text: username ? `Dear ${username}, \n  
+                \n Thank you for being interested in our Internship Grant Program. Your status have changed from ${prevStatus} to ${currentStatus}, please visit our site to check the updates. \n
+                \n Thank you, \n
+                \n Best Regards, \n CLUSA`
+      : `Dear CLUSA, \n  
+                \n The Organization ${orgName}’s status has changed from ${prevStatus} to ${currentStatus}, please check the detail information on the website. \n
+                \n Thank you \n`,
+    };
+    await client.sendMail(mailContent);
+    const message = 'Your message has been successfully sent.';
+    console.log("Your message has been successfully sent.");
+    return message;
+  } catch(err) {
+    console.log(err.message);
+    throw new Error(err.message);
+  }
+};
+
+const CLUSAUploadAgreement = async(emailAddress, username) => {
   try {
     console.log("send email request received.");
     if (!emailAddress)
@@ -168,10 +205,44 @@ const programStatusUpdate = async(emailAddress, username) => {
         address: 'grant@clusa.org'
       },
       to: emailAddress,
-      subject: 'Program status Update.',
-      text: `Dear ${username}, \n  
-                \n Your program status is been updated \n  
+      subject: 'CLUSA upload agreement.',
+      text: `Dear ${username}: \n  
+                \n Thank you for being interested in our Internship Grant Program. CLUSA had upload the Agreement, please visit our site and sign this agreement, \n
+                Thank you. \n  
                 \n Best Regards, \n CLUSA`,
+    };
+    await client.sendMail(mailContent);
+    const message = 'Your message has been successfully sent.';
+    console.log("Your message has been successfully sent.");
+    return message;
+  } catch(err) {
+    console.log(err.message);
+    throw new Error(err.message);
+  }
+};
+
+const CLUSAUploadAgreementToCLUSA = async(orgName) => {
+  try {
+    console.log("send email request received.");
+    if (!emailAddress)
+      throw new Error("No email");
+    console.log("Receiver email address is grant@clusa.org");
+    let options = {
+      auth: {
+        api_key: keys.sendGridKey,
+      }
+    };
+    let client = nodemailer.createTransport(sgTransport(options));
+    let mailContent = {
+      from: {
+        name: 'CLUSA',
+        address: 'grant@clusa.org'
+      },
+      to: 'grant@clusa.org',
+      subject: 'CLUSA upload agreement.',
+      text: `Dear CLUSA: \n  
+                \n The Organization ${orgName} has uploaded Agreement & Placement, please check the detail information on the website.  
+                \n`,
     };
     await client.sendMail(mailContent);
     const message = 'Your message has been successfully sent.';
@@ -189,4 +260,6 @@ module.exports = {
     sendUserAddEmail,
     sendRecreateLoginEmail,
     programStatusUpdate,
-}
+    CLUSAUploadAgreement,
+    CLUSAUploadAgreementToCLUSA,
+};

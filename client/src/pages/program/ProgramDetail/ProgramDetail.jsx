@@ -11,6 +11,10 @@ import moment from 'moment';
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 import './programDetail.css'
+import Person from "@material-ui/icons/Person";
+import {Link} from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 class ProgramDetail extends Component {
   constructor(props) {
@@ -132,11 +136,26 @@ class ProgramDetail extends Component {
     // const tenthSection = application.find(app => app.sectionIndex === "10");
     const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
 
+    const currentPage = [{
+      name: 'viewProgram',
+      child: <li key={`viewProgram1`} className="breadcrumb-item"><HomeIcon /> <Link to={'/view-program'}>Program Management</Link></li>,
+    }, {
+      name: 'userOrg',
+      child: <li key={`userInformation2`} className="breadcrumb-item active"><AssessmentIcon/>Program Detail</li>,
+    }];
+    const breadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
+    }, {
+      name: 'programView',
+      child: <li key={`programView1`} className="breadcrumb-item active"> Program Detail</li>,
+    }];
+
     let heading = 'Program Detail';
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -335,7 +354,7 @@ class ProgramDetail extends Component {
                             {this.state.role != '1' &&
                               <MDBRow>
                                 <MDBCol md="6">
-                                  Send final check
+                                  Send Final Check
                                 </MDBCol>
                                 <MDBCol md="6">
                                   <MDBBtn
@@ -346,7 +365,7 @@ class ProgramDetail extends Component {
                                       const { programData: { program } } = this.state;
                                       localStorage.setItem('orgId', program.orgId);
                                       if (program) {
-                                        history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                        history.push(`/final-check?orgId=${program.orgId}&programId=${program.objectId}`);
                                       }
                                     }}
                                   >
@@ -361,12 +380,8 @@ class ProgramDetail extends Component {
                       </MDBCol>
                       {this.state.role != '1' &&
                         <>
-
                           <MDBCol md="12" />
-
-                          <MDBCol md="1">
-
-
+                          <MDBCol md="2">
                               <MDBBtn
                                 rounded
                                 color="danger"
@@ -377,8 +392,6 @@ class ProgramDetail extends Component {
                               >
                                 Back
                               </MDBBtn>
-
-
                           </MDBCol>
                         </>
                       }

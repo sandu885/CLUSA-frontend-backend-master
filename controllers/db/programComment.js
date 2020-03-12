@@ -93,17 +93,21 @@ const updateCommentProgramStatus = async (meta) => {
   queryUser.equalTo("orgId", meta.orgId);
   let user = await queryUser.first({ useMasterKey: true });
 
-  program.set('status', meta.status);
-
   let email = '';
   if (user.get('email'))
     email = user.get('email');
   else
     email = user.get('emailAddress');
 
+  const queryOrg = new Parse.Query('Organization');
+  queryOrg.equalTo("objectId", meta.orgId);
+  const orgRecord = await queryOrg.first({ useMasterKey: true });
 
+  await TOOL.programStatusUpdate(email, user.get('username'), program.get('status'), meta.status);
+  await TOOL.programStatusUpdate('', '', program.get('status'), meta.status, orgRecord.get('name'));
+  program.set('status', meta.status);
   const programSave = await program.save(null,{useMasterKey: true});
-  await TOOL.programStatusUpdate(email, user.get('username'));
+
   console.log('\n\n Program Status from the database program status', '\n\n');
   return programSave;
 };

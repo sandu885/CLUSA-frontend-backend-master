@@ -19,6 +19,8 @@ import CLUSAEssayContest from '../../images/CLUSA-Essay-Contest.xlsx';
 import CLUSAInternInformation from '../../images/CLUSA-Intern-Information.xlsx';
 
 import './programReport.css'
+import HomeIcon from "@material-ui/icons/Home";
+import {Link} from "react-router-dom";
 
 const reportType  = [
   { value: '1', name: 'Student Training' },
@@ -224,13 +226,24 @@ class ProgramReport extends Component {
   }
 
   render() {
-    const { formData, programReportData = [], role } = this.state;
+    const { formData, programReportData = [], role, programId } = this.state;
 
     let heading = 'Program Report';
 
+    const breadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard0`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
+    }, {
+      name: 'programView',
+      child: <li key={`programView1`} className="breadcrumb-item"><Link to={`/program/${programId}`}> Program Detail</Link></li>,
+    }, {
+      name: 'finalReport',
+      child: <li key={`programReport2`} className="breadcrumb-item active"> {heading}</li>,
+    }];
+
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -243,7 +256,7 @@ class ProgramReport extends Component {
         <MDBContainer>
           <MDBRow>
             <MDBCol md={12}>
-              <MDBCard>
+              <MDBCard className="card-padding">
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol md={12}>
@@ -350,22 +363,6 @@ class ProgramReport extends Component {
                           Report requirement sort introduction
                         </MDBCol>
                         <MDBCol md={4} className="table-header font-weight-bold text-center">
-                          <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
-                                  href={CLUSAInternInformation}
-                          >
-                            Download Template File
-                          </MDBBtn>
-                        </MDBCol>
-                      </MDBRow>
-
-                      <MDBRow style={{ alignItems: 'center'}} className="pt-3">
-                        <MDBCol md={4} className="table-header font-weight-bold">
-                          Intern Information
-                        </MDBCol>
-                        <MDBCol md={4} className="text-center">
-                          Report requirement sort introduction
-                        </MDBCol>
-                        <MDBCol md={4} className="table-header font-weight-bold text-center">
                           <MDBBtn rounded size={"sm"} className="application-info-button second-action-button btn-block z-depth-1a check-file-upload white-button"
                                   href={CLUSAInternInformation}
                           >
@@ -390,10 +387,10 @@ class ProgramReport extends Component {
                       </MDBRow>
                     </MDBCol>
 
-                    <MDBCol md={1} />
-                    <MDBCol md={11}>
+
+                    <MDBCol md={12}>
                       <MDBRow>
-                        <MDBCol md={11}>
+                        <MDBCol md={12}>
                           <MDBRow>
 
                             <MDBCol md={role == '1' ? 2 : 7} className="table-header font-weight-bold">Report File</MDBCol>
@@ -436,25 +433,45 @@ class ProgramReport extends Component {
                         </MDBCol>
                         {/*<MDBCol md={2} />*/}
 
-                        {role == '1' &&
+                        {role &&
                           <>
-                            <MDBCol md={1}/>
-                            <MDBCol md={9} className="pt-4">
-                              <MDBCol md={4}>
-                                <MDBBtn
-                                  rounded
-                                  size={"sm"}
-                                  className="second-action-button z-depth-1a"
-                                  onClick={() => {
-                                    this.setState({ formData: {} });
-                                    this.toggleModal()
-                                  }}
-                                >
-                                  Upload Report
-                                </MDBBtn>
-                              </MDBCol>
+                            <MDBCol md={4} className="pt-4">
+                              <MDBBtn
+                                rounded
+                                size={"sm"}
+                                className="second-action-button z-depth-1a"
+                                onClick={() => {
+                                  this.setState({ formData: {} });
+                                  this.toggleModal()
+                                }}
+                                style={{ width: '150px' }}
+                              >
+                                Upload Report
+                              </MDBBtn>
                             </MDBCol>
                             <MDBCol md={2}/>
+                            <MDBCol md={3} className="pt-4">
+                              <MDBBtn
+                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color btn-block"
+                                onClick={() => {
+                                  if (role !== '1')
+                                    this.props.history.push('/view-program')
+                                }}
+                              >
+                                Back to Account Dashboard
+                              </MDBBtn>
+                            </MDBCol>
+                            <MDBCol md={3} className="pt-4">
+                              <MDBBtn
+                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color btn-block"
+                                onClick={() => {
+                                  if (role !== '1')
+                                    this.props.history.push(`/program/${programId}`)
+                                }}
+                              >
+                                Back to Program Detail
+                              </MDBBtn>
+                            </MDBCol>
                           </>
                         }
                       </MDBRow>

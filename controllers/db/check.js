@@ -1,4 +1,5 @@
 const PROGRAM = require('./program');
+const TOOL = require('../tool/tool');
 
 const createNewCheck = async (meta, file) => {
   // Validation Section STARTS
@@ -25,9 +26,21 @@ const createNewCheck = async (meta, file) => {
   queryProgram.equalTo("objectId", meta.programId);
 
   let programRecord = await queryProgram.first({ useMasterKey: true });
+  let queryUser = new Parse.Query('User');
+  queryUser.equalTo("orgId", meta.orgId);
+  let userRecord = await queryUser.first({ useMasterKey: true });
+
+  const queryOrg = new Parse.Query('Organization');
+  queryOrg.equalTo("objectId", meta.orgId);
+  const orgRecord = await queryOrg.first({ useMasterKey: true });
+
   if (meta.checkType == '1') {
+    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'firstCheckSent');
+    await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'firstCheckSent', orgRecord.get('name'));
     programRecord.set("status", 'firstCheckSent');
   } else if (meta.checkType == '2') {
+    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'finalCheckSent');
+    await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'finalCheckSent', orgRecord.get('name'));
     programRecord.set("status", 'finalCheckSent');
   }
   await programRecord.save(null, { useMasterKey: true });

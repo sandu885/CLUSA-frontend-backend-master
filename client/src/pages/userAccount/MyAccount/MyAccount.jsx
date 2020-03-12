@@ -131,8 +131,8 @@ class MyAccount extends Component {
               md="12"
             >
               <h1>Account Detail</h1>
-            </MDBCol>            
-          </MDBRow>            
+            </MDBCol>
+          </MDBRow>
         </MDBContainer>
         <MDBContainer>
           <MDBRow>
@@ -147,7 +147,7 @@ class MyAccount extends Component {
                           htmlFor="internship-s4-q1"
                           style={{
                             margin: '0'
-                          }} 
+                          }}
                         >
                           <strong>Username</strong>
                         </label>
@@ -169,10 +169,10 @@ class MyAccount extends Component {
                       <div className="pt-2 text-left">
                         <span className="redColor">* </span>
                         <label
-                          htmlFor="internship-s4-q1"  
+                          htmlFor="internship-s4-q1"
                           style={{
                             margin: '0'
-                          }} 
+                          }}
                         >
                           <strong>Email</strong>
                         </label>
@@ -181,7 +181,7 @@ class MyAccount extends Component {
                       <div className="pt-2 text-left">
                         <span className="redColor">* </span>
                         <label
-                          htmlFor="internship-s4-q1"    
+                          htmlFor="internship-s4-q1"
                           style={{
                             margin: '0'
                           }}
@@ -210,7 +210,7 @@ class MyAccount extends Component {
                           onClick={this.handleUserPost}
                         >
                           Submit
-                        </MDBBtn>                         
+                        </MDBBtn>
                         <MDBBtn
                           color="danger"
                           rounded
@@ -218,11 +218,11 @@ class MyAccount extends Component {
                           onClick={this.clickCancel}
                         >
                           Cancel
-                        </MDBBtn>      
+                        </MDBBtn>
                       </div>
                     </MDBCol>
                   </MDBRow>
-                </MDBCardBody>                
+                </MDBCardBody>
               </MDBCard>
             </MDBCol>
           </MDBRow>

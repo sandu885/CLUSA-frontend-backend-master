@@ -157,8 +157,6 @@ class UserAccountManagement extends Component {
                     <strong> {match.params ? match.params.userId ? 'Edit ': 'Add New' : 'Add New'} Account Information</strong>
                   </h3>
 
-
-
                       <div className="pt-2 text-left">
                         <div
                           className="font-weight-bold text-justify"

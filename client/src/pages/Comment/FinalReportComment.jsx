@@ -14,6 +14,8 @@ import FinalReportView from '../FinalReport/FinalReportView';
 
 import './comment.css';
 import moment from "moment";
+import HomeIcon from "@material-ui/icons/Home";
+import {Link} from "react-router-dom";
 
 class FinalReportComment extends Component {
   constructor(props) {
@@ -213,9 +215,20 @@ class FinalReportComment extends Component {
       </MDBRow>
     </div>;
 
+    const breadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
+    }, {
+      name: 'programView',
+      child: <li key={`programView1`} className="breadcrumb-item"><Link to={`/program/${programId}`}> Program Detail</Link></li>,
+    }, {
+      name: 'finalReport',
+      child: <li key={`finalReport`} className="breadcrumb-item active"> Final Report</li>,
+    }];
+
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent breadCrums={breadCrums} />
 
         <FinalReportView {...this.props} fixFooter={fixFooter} />
 

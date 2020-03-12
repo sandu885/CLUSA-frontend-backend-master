@@ -135,11 +135,11 @@ class Program extends Component {
 
     const currentPage = [{
       name: 'viewProgram',
-      child: <li key={`viewProgram1`} className="breadcrumb-item"><Person/> <Link to={'/view-program'}>Program Management</Link></li>,
+      child: <li key={`viewProgram1`} className="breadcrumb-item"><HomeIcon /> <Link to={'/view-program'}>Program Management</Link></li>,
     }];
     const breadCrums = [{
       name: 'dashboard',
-      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Dashboard</Link></li>,
+      child: <li key={`dashboard1`} className="breadcrumb-item active"><HomeIcon /> <Link to={'/view-program'}>Program Dashboard</Link></li>,
     }];
 
     return (

@@ -81,7 +81,7 @@ class UserOrganizationManagement extends Component {
           orgAll.splice(orgIndex, 1, { ...orgAll[orgIndex], isSuspended: !orgAll[orgIndex].isSuspended });
         }
 
-        alert('Save successfully');
+        alert('Save Successfully');
         this.toggleSuspend();
         this.setState({
           orgAll: [ ...orgAll ]
