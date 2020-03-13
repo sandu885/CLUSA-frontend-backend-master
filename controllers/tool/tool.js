@@ -167,7 +167,7 @@ const programStatusUpdate = async(emailAddress, username, prevStatus, currentSta
         name: 'CLUSA',
         address: 'grant@clusa.org'
       },
-      to: emailAddress ? emailAddress : 'catamu@getnada.com',
+      to: emailAddress ? emailAddress : 'grant@clusa.org',
       subject: 'Program status Update.',
       text: username ? `Dear ${username}, \n  
                 \n Thank you for being interested in our Internship Grant Program. Your status have changed from ${prevStatus} to ${currentStatus}, please visit our site to check the updates. \n
