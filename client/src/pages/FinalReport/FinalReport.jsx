@@ -184,7 +184,7 @@ class FinalReport extends Component {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>

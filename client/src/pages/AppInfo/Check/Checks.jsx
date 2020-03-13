@@ -298,13 +298,13 @@ class Checks extends Component {
                         <MDBRow className="form-group font-weight-bold">
                           <MDBCol sm="12">
 
-                            <MDBBtn rounded style={{ width: '60px' }}
+                            <MDBBtn rounded 
                                     className="send-button second-action-button z-depth-1a check-file-upload"
                                     onClick={this.saveFirstCheck}>
                               Send
                             </MDBBtn>
 
-                            <MDBBtn rounded style={{ width: '80px' }}
+                            <MDBBtn rounded
                                     color="danger"
                                     className="cancel-button second-action-button  z-depth-1a check-file-upload"
                                     onClick={event => {
@@ -397,12 +397,12 @@ class Checks extends Component {
                           </div>
                           :
                           <div className="form-group font-weight-bold">
-                              <MDBBtn rounded  style={{ width: '60px' }}
+                              <MDBBtn rounded  
                                       className="send-button second-action-button z-depth-1a check-file-upload"
                                       onClick={this.saveSecondCheck}>
                                 Send
                               </MDBBtn>
-                              <MDBBtn rounded  style={{ width: '80px' }}
+                              <MDBBtn rounded 
                                       color="danger"
                                       className="cancel-button second-action-button z-depth-1a check-file-upload"
                                       onClick={event => {
