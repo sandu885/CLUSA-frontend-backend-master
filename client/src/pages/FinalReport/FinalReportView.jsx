@@ -10,6 +10,8 @@ import { cloneDeep } from 'lodash';
 import './finalReport.css'
 import { questionList } from './questionList'
 import { queryStringToJSON } from "../../utils/util";
+import HomeIcon from "@material-ui/icons/Home";
+import {Link} from "react-router-dom";
 
 class FinalReportView extends Component {
   constructor(props) {
@@ -23,8 +25,6 @@ class FinalReportView extends Component {
       role: localStorage.getItem('clusa-role'),
     };
   }
-
-
 
   handleChange = (e) => {
     const { formData } = this.state;

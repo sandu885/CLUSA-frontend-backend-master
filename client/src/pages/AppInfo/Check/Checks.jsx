@@ -12,6 +12,8 @@ import { queryStringToJSON } from '../../../utils/util'
 import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 import './checks.css'
+import HomeIcon from "@material-ui/icons/Home";
+import {Link} from "react-router-dom";
 
 class Checks extends Component {
   constructor(props) {
@@ -113,8 +115,8 @@ class Checks extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      alert('🦄Save successfully');
 
+      alert('Save Successfully');
       // this.fetchCheckData('1');
       console.warn('reponse message', response.data);
       this.props.history.push(`/program/${programId}`);
@@ -167,7 +169,7 @@ class Checks extends Component {
       postProgram,
       formData,
     ).then((response) => {
-      alert('🦄Save successfully');
+      alert('🦄Save Successfully');
       // this.fetchCheckData('2');
       console.warn('reponse message', response.data);
       this.props.history.push(`/program/${programId}`);
@@ -206,12 +208,23 @@ class Checks extends Component {
   };
 
   render() {
-    const { formData: { first = {}, second = {} }, role } = this.state;
+    const { formData: { first = {}, second = {} }, role, programId, } = this.state;
     let heading = 'Send Check';
+
+    const breadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
+    }, {
+      name: 'programView',
+      child: <li key={`programView2`} className="breadcrumb-item"><Link to={`/program/${programId}`}> Program Detail</Link></li>,
+    }, {
+      name: 'checks',
+      child: <li key={`checks1`} className="breadcrumb-item active"> Send Check</li>,
+    }];
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -224,7 +237,7 @@ class Checks extends Component {
         <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
-              <MDBCard>
+              <MDBCard className="card-padding">
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol md="5" className="pt-3 font-weight-bold check-sub-header">
@@ -284,12 +297,15 @@ class Checks extends Component {
                       {role == '0' ? null :
                         <MDBRow className="form-group font-weight-bold">
                           <MDBCol sm="12">
-                            <MDBBtn rounded
+
+                            <MDBBtn rounded style={{ width: '60px' }}
                                     className="send-button second-action-button z-depth-1a check-file-upload"
                                     onClick={this.saveFirstCheck}>
                               Send
                             </MDBBtn>
-                            <MDBBtn rounded
+
+                            <MDBBtn rounded style={{ width: '80px' }}
+                                    color="danger"
                                     className="cancel-button second-action-button  z-depth-1a check-file-upload"
                                     onClick={event => {
                                       this.props.history.goBack();
@@ -382,12 +398,12 @@ class Checks extends Component {
                           </div>
                           :
                           <div className="form-group font-weight-bold">
-                              <MDBBtn rounded
+                              <MDBBtn rounded  style={{ width: '60px' }}
                                       className="send-button second-action-button z-depth-1a check-file-upload"
                                       onClick={this.saveSecondCheck}>
                                 Send
                               </MDBBtn>
-                              <MDBBtn rounded
+                              <MDBBtn rounded  style={{ width: '80px' }}
                                       color="danger"
                                       className="cancel-button second-action-button z-depth-1a check-file-upload"
                                       onClick={event => {

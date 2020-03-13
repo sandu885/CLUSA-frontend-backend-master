@@ -140,7 +140,7 @@ class Header extends Component {
                     >
                     Sign Out
                     </MDBBtn>
-                    <Link to="#"
+                    <Link to="/my-account"
                     className="profile-link"
                     > 
                       <div className="profile-pic">
@@ -203,7 +203,7 @@ class Header extends Component {
                   <MDBCol md="12">
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
-                        {breadCrums.length ? currentPage.map(cP => cP.child) : null}
+                        {breadCrums.length ? breadCrums.map(cP => cP.child) : null}
                         {/*{!breadCrums.length &&*/}
                         {/*  <>*/}
                         {/*    <li className="breadcrumb-item"><HomeIcon/> <a href="#">Dashboard</a></li>*/}

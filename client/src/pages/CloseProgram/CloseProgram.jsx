@@ -96,7 +96,7 @@ class CloseProgram extends Component {
         ...postData
       },
     ).then(() => {
-      alert('Save successfully');
+      alert('Save Successfully');
       history.push(`/program/${programId}`);
       // history.goBack();
     }).catch((error) => {
