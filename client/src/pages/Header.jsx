@@ -174,7 +174,7 @@ class Header extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="7">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" className="breadcrumb-main">
                       <ol className="breadcrumb">
                         {currentPage.length ?
                           currentPage.map(cP => cP.child) : null
