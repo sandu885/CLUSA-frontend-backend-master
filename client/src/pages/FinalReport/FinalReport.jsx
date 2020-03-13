@@ -175,61 +175,60 @@ class FinalReport extends Component {
     return (
       <div className="bg-withImage">
         <HeaderComponent />
-
-        <MDBContainer className="pt-5 mb-5">
+        <MDBContainer className="title-section">
+          <MDBRow>
+            <MDBCol
+              md="12"
+            >
+              <h1>Final Report</h1>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+        <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>
-                <MDBRow className="text-center p-3 user-org-management-header font-weight-bold">
-                  <MDBCol>
-                    Final Report
-                  </MDBCol>
-                </MDBRow>
                 <MDBCardBody>
-
                   <MDBRow>
-
-                    <MDBCol md="1" />
-
-                    <MDBCol md="10">
+                    <MDBCol md="12">
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question1-1']}
                         </label>
-                        <input type="number" className="form-control ml-4 final-report-input" name="q1-first" value={q1['first']} onChange={this.handleChange} />
+                        <input type="number" className="form-control final-report-input" name="q1-first" value={q1['first']} onChange={this.handleChange} />
                       </div>
 
 
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question1-2']}
                         </label>
-                        <input type="number" className="form-control ml-4 final-report-input" name="q1-second" value={q1['second']} onChange={this.handleChange} />
+                        <input type="number" className="form-control final-report-input" name="q1-second" value={q1['second']} onChange={this.handleChange} />
                       </div>
 
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question1-3']}
                         </label>
-                        <textarea className="form-control ml-4 final-report-input" name="q1-third" value={q1['third']} onChange={this.handleChange} />
+                        <textarea className="form-control final-report-input" name="q1-third" value={q1['third']} onChange={this.handleChange} />
                       </div>
 
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question2-1']}
                         </label>
-                        <input type="number" className="form-control ml-4 final-report-input" name="q2-first" value={q2['first']} onChange={this.handleChange} />
+                        <input type="number" className="form-control final-report-input" name="q2-first" value={q2['first']} onChange={this.handleChange} />
                       </div>
 
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question2-2']}
                         </label>
-                        <input type="number" className="form-control ml-4 final-report-input" name="q2-second" value={q2['second']} onChange={this.handleChange} />
+                        <input type="number" className="form-control final-report-input" name="q2-second" value={q2['second']} onChange={this.handleChange} />
                       </div>
 
                       <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" style={{ width: '100%' }} className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" style={{ width: '100%' }} className="font-weight-bold">
                           {questionList['question2-3']}
                         </label>
 
@@ -237,9 +236,9 @@ class FinalReport extends Component {
                           fileLink &&
                           <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank">Click to download Expense Template</a>
                         }
-                        <input type="file" className="form-control ml-4 final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
+                        <input type="file" className="form-control final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
                         <br/>
-                        <MDBBtn rounded size={"sm"} style={{ width: '50%' }}  className="application-info-button second-action-button btn-block z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
+                        <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
                           Click to Upload Template
                         </MDBBtn>
                         <span style={{ paddingLeft: '10px' }}>
@@ -252,67 +251,62 @@ class FinalReport extends Component {
                       </div>
 
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question3-1']}
                         </label>
-                        <textarea className="form-control ml-4 final-report-input" name="q3-first" value={q3['first']} onChange={this.handleChange} />
+                        <textarea className="form-control final-report-input" name="q3-first" value={q3['first']} onChange={this.handleChange} />
                       </div>
 
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question3-2']}
                         </label>
-                        <textarea className="form-control ml-4 final-report-input" name="q3-second" value={q3['second']} onChange={this.handleChange} />
+                        <textarea className="form-control final-report-input" name="q3-second" value={q3['second']} onChange={this.handleChange} />
                       </div>
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question3-3']}
                         </label>
-                        <textarea className="form-control ml-4 final-report-input" name="q3-third" value={q3['third']} onChange={this.handleChange} />
+                        <textarea className="form-control final-report-input" name="q3-third" value={q3['third']} onChange={this.handleChange} />
                       </div>
                       <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold text-justify large-font-size">
+                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
                           {questionList['question3-4']}
                         </label>
-                        <textarea className="form-control ml-4 final-report-input" name="q3-forth" value={q3['forth']} onChange={this.handleChange} />
+                        <textarea className="form-control final-report-input" name="q3-forth" value={q3['forth']} onChange={this.handleChange} />
                       </div>
 
-                      <div className="pt-4 text-center">
+                      <div className="pt-4">
                         <MDBRow>
-                          <MDBCol md="2"/>
-                          <MDBCol md="3">
+                         
+                          <MDBCol md="12">
                             <MDBBtn
                               rounded
-                              className="application-info-button second-action-button btn-block z-depth-1a check-file-upload light-green-color"
+                              className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
                               onClick={() => this.handleFinalReportPost(false)}
                             >
                               Save
-                            </MDBBtn>
-                          </MDBCol>
-                          <MDBCol md="3">
+                            </MDBBtn>                          
                             <MDBBtn
                               rounded
-                              className="application-info-button second-action-button btn-block z-depth-1a check-file-upload"
+                              className="application-info-button second-action-button z-depth-1a check-file-upload"
                               onClick={() => this.handleFinalReportPost(true)}
                             >
                               Submit
                             </MDBBtn>
-                          </MDBCol>
-                          <MDBCol md="3">
                             <MDBBtn
-                              color="red"
+                              color="danger"
                               rounded
-                              className="application-info-button second-action-button btn-block z-depth-1a check-file-upload red-color"
+                              className="application-info-button second-action-button z-depth-1a check-file-upload red-color"
                               onClick={this.clickCancel}
                             >
                               Cancel
                             </MDBBtn>
                           </MDBCol>
-                          <MDBCol md="1"/>
+                         
                         </MDBRow>
                       </div>
                     </MDBCol>
-                    <MDBCol md="1" />
                   </MDBRow>
                 </MDBCardBody>
 

@@ -167,22 +167,22 @@ class FinalCheck extends Component {
                     <MDBCol md="12 pl-5 pr-5">
                       <MDBRow className="form-group font-weight-bold">                        
                         <div className="col-sm-12">
-                        <label className="col-form-label check-form-label">Check Amount:-</label>
+                        <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Amount:-</label><br></br>
                           {role == '0' ? formData && <label className="col-form-label check-form-label font-weight-light">{formData.checkAmount || ''}</label>
                             : <input type="number" className="form-control" name="checkAmount" value={formData.checkAmount} onChange={this.handleChange}/>
                           }
                         </div>
                         
                         <div className="col-sm-12">
-                          <label className="col-form-label">Check #:-</label>
+                          <label className="col-form-label">Check #:-</label><br></br>
                           {role == '0' ? formData && <label
-                            className="col-form-label check-form-label font-weight-light">{formData.checkId || ''}</label>
+                            className="col-form-label check-form-label font-weight-light" style={{ padding: '0' }}>{formData.checkId || ''}</label>
                             : <input type="text" className="form-control" name="checkId" value={formData.checkId} onChange={this.handleChange}/>
                           }
                         </div>
                         
                         <div className="col-sm-12">
-                        <label className="col-form-label check-form-label">Check Image:-</label>
+                        <label className="col-form-label check-form-label">Check Image:-</label><br></br>
                           <label className="col-form-label" style={{                            
                           }}>
                             {
@@ -207,7 +207,7 @@ class FinalCheck extends Component {
                       <MDBRow className="form-group font-weight-bold">
                         
                         <div className="col-sm-12">
-                        <label className="col-form-label check-form-label">Check Date:-</label>
+                        <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Date:-</label><br></br>
                           {role == '0' ? formData && <label
                             className="col-form-label check-form-label font-weight-light">{formData.checkDate || ''}</label>
                             : <input type="text" className="form-control" name="checkDate" value={formData.checkDate} onChange={this.handleChange}/>
