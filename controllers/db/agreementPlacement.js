@@ -1,5 +1,6 @@
 const moment = require('moment');
 const PROGRAM = require('./program');
+const TOOL = require('../tool/tool');
 
 const createNewAgreementPlacement = async (meta, files) => {
   // Validation Section STARTS
@@ -33,6 +34,10 @@ const createNewAgreementPlacement = async (meta, files) => {
       throw new Error('Please Provide status');
   }
 
+  let queryUser = new Parse.Query('User');
+  queryUser.equalTo("orgId", meta.orgId);
+  let userRecord = await queryUser.first({ useMasterKey: true });
+
   let AgreementPlacement = Parse.Object.extend("AgreementPlacement"), agreementPlacement = new AgreementPlacement();
   agreementPlacement.set("programId", meta.programId);
   agreementPlacement.set("orgId", meta.orgId);
@@ -63,12 +68,32 @@ const createNewAgreementPlacement = async (meta, files) => {
     queryProgram.equalTo("objectId", meta.programId);
 
     let programRecord = await queryProgram.first({ useMasterKey: true });
-    programRecord.set("status", meta.status == '1' ? 'approved' : 'preparingAgreement');
+
+    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement');
+
+    const queryOrg = new Parse.Query('Organization');
+    queryOrg.equalTo("objectId", meta.orgId);
+    const orgRecord = await queryOrg.first({ useMasterKey: true });
+    await TOOL.programStatusUpdate('', '', programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement', orgRecord.get('name'));
+    programRecord.set("status", meta.status === '1' ? 'approved' : 'preparingAgreement');
 
     await programRecord.save(null, { useMasterKey: true });
   }
 
   const agreementPlacementSaved = await agreementPlacement.save(null,{useMasterKey: true});
+
+  if (meta.role === '2' || meta.role === '3' || meta.role === '0') {
+    await TOOL.CLUSAUploadAgreement(userRecord.get('emailAddress'), userRecord.get('username'));
+  }
+  if (meta.role === '1') {
+    let queryOrg = new Parse.Query('Organization');
+
+    queryOrg.equalTo("objectId", meta.orgId);
+    let orgRecord = await queryOrg.first({ useMasterKey: true });
+
+    await TOOL.CLUSAUploadAgreementToCLUSA(orgRecord.get('name'));
+  }
+
   console.log('\n\nAgreement Placement saved in the database agreementPlacementSaved', agreementPlacementSaved, '\n\n');
   return agreementPlacementSaved;
 };
@@ -106,6 +131,10 @@ const updateAgreementPlacementById = async (meta, files) => {
   await PROGRAM.closeFinalCheckProgramValidationById(meta.programId);
   // Validation Section ENDS
 
+  let queryUser = new Parse.Query('User');
+  queryUser.equalTo("orgId", meta.orgId);
+  let userRecord = await queryUser.first({ useMasterKey: true });
+
   let queryAgreementPlacement = new Parse.Query('AgreementPlacement');
   queryAgreementPlacement.equalTo("objectId", meta.objectId);
   let agreementPlacement = await queryAgreementPlacement.first({ useMasterKey: true });
@@ -138,12 +167,29 @@ const updateAgreementPlacementById = async (meta, files) => {
     queryProgram.equalTo("objectId", meta.programId);
 
     let programRecord = await queryProgram.first({ useMasterKey: true });
+    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement');
+    const queryOrg = new Parse.Query('Organization');
+    queryOrg.equalTo("objectId", meta.orgId);
+    const orgRecord = await queryOrg.first({ useMasterKey: true });
+    await TOOL.programStatusUpdate('', '', programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement', orgRecord.get('name'));
+
     programRecord.set("status", meta.status == '1' ? 'approved' : 'preparingAgreement');
 
     await programRecord.save(null, { useMasterKey: true });
   }
 
   const agreementPlacementSaved = await agreementPlacement.save(null,{useMasterKey: true});
+  if (meta.role === '2' || meta.role === '3' || meta.role === '0') {
+    await TOOL.CLUSAUploadAgreement(userRecord.get('emailAddress'), userRecord.get('username'));
+  }
+  if (meta.role === '1') {
+    let queryOrg = new Parse.Query('Organization');
+    queryOrg.equalTo("objectId", meta.orgId);
+    let orgRecord = await queryOrg.first({ useMasterKey: true });
+
+    await TOOL.CLUSAUploadAgreementToCLUSA(orgRecord.get('name'));
+  }
+
   console.log('\n\nAgreement Placement saved in the database updated', agreementPlacementSaved, '\n\n');
   return agreementPlacementSaved;
 };

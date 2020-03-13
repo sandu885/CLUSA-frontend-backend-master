@@ -309,10 +309,11 @@ class AgreementPlacement extends Component {
                           }
                         </MDBRow>
                         {role === '0' ?
-                            <MDBBtn rounded  color="danger" className="application-info-button second-action-button  z-depth-1a check-file-upload"
-                                    onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}>
-                              Back
-                            </MDBBtn>
+                          null
+                            // <MDBBtn rounded  color="danger" className="application-info-button second-action-button  z-depth-1a check-file-upload"
+                            //         onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}>
+                            //   Back
+                            // </MDBBtn>
                           :
                           <>
                               <MDBBtn
