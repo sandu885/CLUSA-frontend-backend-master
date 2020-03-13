@@ -160,7 +160,7 @@ class SignedAgreementPlacement extends Component {
   };
 
   render() {
-    const { formData, role } = this.state;
+    const { formData, role, programId } = this.state;
     console.log( 'formData', formData);
 
     let heading = 'Agreement and Placement';
@@ -311,13 +311,17 @@ class SignedAgreementPlacement extends Component {
                         <p className="text-right">
                           <MDBBtn
                             rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
-                            onClick={this.handlePostAgreementPlacementClick}
+                            onClick={() => {
+                              this.props.history.push('/account')
+                            }}
                           >
                             Back to Account Dashboard
                           </MDBBtn>
                           <MDBBtn
                             rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
-                            onClick={this.handlePostAgreementPlacementClick}
+                            onClick={() => {
+                              this.props.history.push(`/program/${programId}`)
+                            }}
                           >
                             Back to Program Detail
                           </MDBBtn>

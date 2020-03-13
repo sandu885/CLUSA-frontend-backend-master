@@ -128,7 +128,7 @@ class ProgramDetail extends Component {
   };
 
   render() {
-    const { programData: { program = {}, application = [], checks = [], agreementPlacement = [], organization = {} }, programType, dataReceived, closeNote } = this.state;
+    const { programData: { program = {}, application = [], checks = [], agreementPlacement = [], organization = {} }, programType, dataReceived, role } = this.state;
     const programName = programType.find(pT => pT.value === program.programType);
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
@@ -143,7 +143,7 @@ class ProgramDetail extends Component {
       name: 'userOrg',
       child: <li key={`userInformation2`} className="breadcrumb-item active"><AssessmentIcon/>Program Detail</li>,
     }];
-    const breadCrums = [{
+    const breadCrums = role != '1' && [{
       name: 'dashboard',
       child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
     }, {
