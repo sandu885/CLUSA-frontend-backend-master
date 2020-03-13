@@ -95,7 +95,6 @@ class App extends Component {
           <Route
             path="/account/"
             component={UserAccount}
-
           />
           {/* ------------------ organization register info section ------------------ */}
           <Route

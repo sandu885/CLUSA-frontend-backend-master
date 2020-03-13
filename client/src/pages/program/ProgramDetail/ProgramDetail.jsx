@@ -50,44 +50,6 @@ class ProgramDetail extends Component {
     };
   }
 
-  closeReport = () => {
-    const { sessionToken, role, closeNote = '' } = this.state;
-    const { history } = this.props;
-    const programId = this.props.match.params.id;
-
-    if (!closeNote.trim()) {
-      return alert('Please enter close report to close this program.')
-    }
-
-    const postData = {
-      programId, role, closeNote, sessionToken
-    };
-
-    let closeProgramURL = '/api/updateProgramCloseStatusById';
-
-    axios.post(
-      closeProgramURL,
-      {
-        ...postData
-      },
-    ).then(() => {
-      alert('Program is closed');
-      history.goBack();
-    }).catch((error) => {
-      if(error.response !== null && error.response !== undefined) {
-        if( error.response.data !== null && error.response.data !== undefined ) {
-          if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
-            localStorage.clear();
-            alert('Your login status was expired. Please login again.');
-            this.props.history('/')
-          } else {
-            alert('Something went wrong please contact our support system');
-          }
-        }
-      }
-    });
-  };
-
   handleAppCommentClick = () => {
     const { history } = this.props;
     const { programData: { program = {} },  } = this.state;
