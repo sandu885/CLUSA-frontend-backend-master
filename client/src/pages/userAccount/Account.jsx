@@ -13,6 +13,7 @@ import 'mdbreact/dist/css/mdb.css';
 
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
+import HomeIcon from "@material-ui/icons/Home";
 
 class Account extends Component {
   constructor(props) {
@@ -258,10 +259,14 @@ class Account extends Component {
     // let buttonText = '';
     // if (status === 'not applied') { buttonText = 'APPLY'; } else if (status === 'applying') buttonText = 'Continue Application';
     // else buttonText = 'Review Application';
+    const breadCrums = [{
+      name: 'orgDashboard',
+      child: <li key={`agreementAndPlacement2`} className="breadcrumb-item active"> Dashboard</li>,
+    }];
 
     return (
       <div className="bg-lightcolor">
-        <HeaderComponent />
+        <HeaderComponent breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol

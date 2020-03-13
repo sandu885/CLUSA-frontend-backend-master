@@ -906,6 +906,7 @@ class RegisterInfo extends Component {
                             className={this.state.usernameInputError ? 'form-control errorInput' : 'form-control'}
                             value={this.state.username}
                             onChange={(e) => { this.handleChange(e); this.setState({ usernameInputError: false }); }}
+                            disabled={this.state.role !== '1'}
                             required
                           />
                         </label>
@@ -923,6 +924,7 @@ class RegisterInfo extends Component {
                             className={this.state.passwordInputError ? 'form-control errorInput' : 'form-control'}
                             value={this.state.password}
                             onChange={(e) => { this.handleChange(e); this.setState({ passwordInputError: false }); }}
+                            disabled={this.state.role !== '1'}
                             required
                           />
                         </label>
@@ -940,6 +942,7 @@ class RegisterInfo extends Component {
                             className="form-control"
                             value={this.state.newpassword}
                             onChange={(e) => { this.handleChange(e); }}
+                            disabled={this.state.role !== '1'}
                             required
                           />
                         </label>
@@ -961,6 +964,7 @@ class RegisterInfo extends Component {
                                 color="default"
                                 rounded
                                 className="z-depth-1a"
+                                disabled={this.state.role !== '1'}
                                 onClick={this.clickSubmitBtn}
                               >
                                 Save My Updates
@@ -993,6 +997,7 @@ class RegisterInfo extends Component {
                             className={this.state.orgNameInputError ? 'form-control errorInput' : 'form-control'}
                             defaultValue={this.state.orgName}
                             onChange={(e) => this.setState({ orgName: e.target.value })}
+                            disabled={this.state.role !== '1'}
                           />
                         </label>
                         <br />
@@ -1007,6 +1012,7 @@ class RegisterInfo extends Component {
                             name="parentOrg"
                             className="form-control"
                             defaultValue={this.state.parentOrg}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => this.setState({ parentOrg: e.target.value })}
                           />
                         </label>
@@ -1022,6 +1028,7 @@ class RegisterInfo extends Component {
                             name="orgRegion"
                             className={this.state.orgRegionInputError ? 'form-control errorInput' : 'form-control'}
                             defaultValue={this.state.orgRegion}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => this.setState({ orgRegion: e.target.value })}
                           />
                         </label>
@@ -1110,6 +1117,7 @@ class RegisterInfo extends Component {
                             className="form-control"
                             name="orgTypeNote"
                             // disabled={this.checkUpload()}
+                            disabled={this.state.role !== '1'}
                             value={this.state.orgTypeNote}
                             onChange={(e) => this.setState({ orgType: '3', selectedFile1: null, selectedFile2: null, orgTypeNote: e.target.value })}
                           />
@@ -1126,6 +1134,7 @@ class RegisterInfo extends Component {
                             className={this.state.address1InputError ? 'form-control errorInput' : 'form-control'}
                             name="address1"
                             defaultValue={this.state.address1}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ address1InputError: false }); }}
                           />
                         </label>
@@ -1139,6 +1148,7 @@ class RegisterInfo extends Component {
                             className="form-control"
                             name="address2"
                             defaultValue={this.state.address2}
+                            disabled={this.state.role !== '1'}
                             onChange={this.handleChange.bind(this)}
                           />
                         </label>
@@ -1152,6 +1162,7 @@ class RegisterInfo extends Component {
                             className={this.state.cityInputError ? 'form-control errorInput' : 'form-control'}
                             name="city"
                             defaultValue={this.state.city}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ cityInputError: false }); }}
                             required
                           />
@@ -1166,6 +1177,7 @@ class RegisterInfo extends Component {
                             className={this.state.stateInputError ? 'form-control errorInput' : 'form-control'}
                             name="state"
                             defaultValue={this.state.state}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ stateInputError: false }); }}
                             required
                           />
@@ -1180,6 +1192,7 @@ class RegisterInfo extends Component {
                             className={this.state.zipcodeInputError ? 'form-control errorInput' : 'form-control'}
                             name="zipcode"
                             defaultValue={this.state.zipcode}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ zipcodeInputError: false }); }}
                             required
                           />
@@ -1199,6 +1212,7 @@ class RegisterInfo extends Component {
                             className={this.state.firstNameInputError ? 'form-control errorInput' : 'form-control'}
                             name="firstName"
                             defaultValue={this.state.firstName}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ firstNameInputError: false }); }}
                             required
                           />
@@ -1213,6 +1227,7 @@ class RegisterInfo extends Component {
                             className={this.state.lastNameInputError ? 'form-control errorInput' : 'form-control'}
                             name="lastName"
                             defaultValue={this.state.lastName}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ lastNameInputError: false }); }}
                             required
                           />
@@ -1228,6 +1243,7 @@ class RegisterInfo extends Component {
                             className={this.state.titleInputError ? 'form-control errorInput' : 'form-control'}
                             name="title"
                             defaultValue={this.state.title}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ titleInputError: false }); }}
                             required
                           />
@@ -1245,6 +1261,7 @@ class RegisterInfo extends Component {
                             placeholder="123-456-7890"
                             name="phone"
                             defaultValue={this.state.phone}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ phoneInputError: false }); }}
                             required
                           />
@@ -1260,6 +1277,7 @@ class RegisterInfo extends Component {
                             className={this.state.emailInputError ? 'form-control errorInput' : 'form-control'}
                             name="email"
                             defaultValue={this.state.email}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ emailInputError: false }); }}
                             required
                           />
@@ -1294,6 +1312,7 @@ class RegisterInfo extends Component {
                             maxLength="4"
                             name="year"
                             defaultValue={this.state.year}
+                            disabled={this.state.role !== '1'}
                             onChange={(e) => { this.handleChange(e); this.setState({ yearInputError: false }); }}
                             required
                           />
@@ -1383,6 +1402,7 @@ class RegisterInfo extends Component {
                             className="form-control"
                             name="linkedin"
                             defaultValue={this.state.linkedin}
+                            disabled={this.state.role !== '1'}
                             onChange={this.handleChange.bind(this)}
                           />
                         </label>
@@ -1397,6 +1417,7 @@ class RegisterInfo extends Component {
                             className="form-control"
                             name="web"
                             defaultValue={this.state.web}
+                            disabled={this.state.role !== '1'}
                             onChange={this.handleChange.bind(this)}
                           />
                         </label>
@@ -1524,6 +1545,7 @@ class RegisterInfo extends Component {
                             color="default"
                             rounded
                             className=" z-depth-1a"
+                            disabled={this.state.role !== '1'}
                             onClick={this.clickSubmitBtn}
                           >
                             Save My Updates

@@ -24,6 +24,7 @@ class WholeApplicatoin extends Component {
       // sessionToken in local storage
       sessionToken: localStorage.getItem('sessionToken'),
       orgId: localStorage.getItem('orgId'),
+      role: localStorage.getItem('clusa-role'),
       // get response info detail =============
       getOrgName: '',
       s1q101: '',
@@ -481,6 +482,7 @@ class WholeApplicatoin extends Component {
 
   render() {
     if (this.state.redirectToLogin === true) return <Redirect to="/login" />;
+    console.log('localStorage=>orgId', localStorage.getItem('orgId'));
 
     return (
       <div className="bg-lightcolor">
@@ -572,7 +574,7 @@ class WholeApplicatoin extends Component {
                       </form>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -624,7 +626,7 @@ class WholeApplicatoin extends Component {
                       </form>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -660,7 +662,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor">{this.state.s3q2}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -688,7 +690,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor"> {this.state.s4q1}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -755,7 +757,7 @@ class WholeApplicatoin extends Component {
                       </div>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -812,7 +814,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor"> {this.state.s6q4}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -841,7 +843,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor">{this.state.s7q1}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -870,7 +872,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor"> {this.state.s8q1}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -897,7 +899,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor"> {this.state.s9q1}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -961,7 +963,7 @@ class WholeApplicatoin extends Component {
                       </MDBCol>
                     </MDBRow>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -991,7 +993,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor">{this.state.s11q1}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -1092,7 +1094,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor"> {this.state.s12q11 === true ? 'Agree' : null}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
@@ -1158,7 +1160,7 @@ class WholeApplicatoin extends Component {
                       <h5 className="darkblueColor"> {this.state.s13q3}</h5>
                     </div>
                     {
-                      localStorage.getItem('orgId') === null ? (
+                      this.state.role === '1' ? (
                         <MDBBtn
                           gradient="blue"
                           rounded
