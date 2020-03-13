@@ -236,6 +236,7 @@ class Account extends Component {
       this.setState({
         redirectToNewApply: true,
       });
+      this.props.history.push('/internship-application-section01');
     } else if (this.state.status === 'applied') {
       console.warn('applied');
       this.props.history.push('/organization-application-information');
@@ -332,25 +333,27 @@ class Account extends Component {
                     </MDBRow>
                   </MDBCol>
                         
-                  {/*<div className="offer-box-row">*/}
-                  {/*  <h3>ALL GRANTS PROGRAM</h3>*/}
-                  {/*  <MDBRow>*/}
-                  {/*    <MDBCol md="3">*/}
-                  {/*      <div className="offer-box">*/}
-                  {/*          <p>Internship Program Grant</p>*/}
-                  {/*          <h5*/}
-                  {/*                id="current-status"*/}
-                  {/*                className="blue-text"*/}
-                  {/*            ><strong>{status}</strong>*/}
-                  {/*            </h5>*/}
-                  {/*            <p><a*/}
-                  {/*                className="instruction-link"*/}
-                  {/*                href="/internship-information"*/}
-                  {/*            >*/}
-                  {/*                Internship Program Grant Instruction*/}
-                  {/*                </a></p>*/}
-                  {/*      </div>*/}
-                  {/*    </MDBCol>*/}
+                  <div className="offer-box-row">
+                    <h3>ALL GRANTS PROGRAM</h3>
+                    <MDBRow>
+                      <MDBCol md="3">
+                        <div style={{ cursor: 'pointer' }} className="offer-box" onClick={this.clickApplyBtn}>
+                            <p>Internship Program Grant</p>
+                            <h5
+                                  id="current-status"
+                                  className="blue-text"
+                              ><strong>{status}</strong>
+                              </h5>
+                              <p><Link
+                                  className="instruction-link"
+                                  to="/internship-information"
+                              >
+                                  Internship Program Grant Instruction
+                                  </Link></p>
+                        </div>
+                      </MDBCol>
+                    </MDBRow>
+                  </div>
                   {/*    <MDBCol md="3">*/}
                   {/*      <div className="offer-box">*/}
                   {/*          <p>Civic Leadership Forum Grant<br></br>*/}
