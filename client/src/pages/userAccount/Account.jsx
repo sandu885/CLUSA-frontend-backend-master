@@ -261,7 +261,7 @@ class Account extends Component {
     // else buttonText = 'Review Application';
     const breadCrums = [{
       name: 'orgDashboard',
-      child: <li key={`agreementAndPlacement2`} className="breadcrumb-item active"> Dashboard</li>,
+      child: <li key={`agreementAndPlacement2`} className="breadcrumb-item active"> <HomeIcon/> Dashboard</li>,
     }];
 
     return (

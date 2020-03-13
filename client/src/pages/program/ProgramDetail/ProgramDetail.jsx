@@ -105,12 +105,18 @@ class ProgramDetail extends Component {
       name: 'userOrg',
       child: <li key={`userInformation2`} className="breadcrumb-item active"><AssessmentIcon/>Program Detail</li>,
     }];
-    const breadCrums = role != '1' && [{
+    const breadCrums = role != '1' ? [{
       name: 'dashboard',
       child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
     }, {
       name: 'programView',
       child: <li key={`programView1`} className="breadcrumb-item active"> Program Detail</li>,
+    }] : [{
+      name: 'orgDashboard0',
+      child: <li key={`orgDashboard0`} className="breadcrumb-item"><HomeIcon/> <Link to={'/account'}> Dashboard </Link></li>,
+    }, {
+      name: 'orgProgramDetails1',
+      child: <li key={`orgProgramDetail2`} className="breadcrumb-item active"> Program Detail</li>,
     }];
 
     let heading = 'Program Detail';
@@ -373,7 +379,7 @@ class ProgramDetail extends Component {
                                     this.props.history.push('/account')
                                   }}
                                 >
-                                  Back to Organization
+                                  Back to Dashboard
                                 </MDBBtn>
                               </div>
                             </MDBCol>
