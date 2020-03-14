@@ -192,7 +192,7 @@ class SignedAgreementPlacement extends Component {
         <MDBContainer>
           <MDBRow>
             <MDBCol md="12">
-              <MDBCard>
+              <MDBCard className="card-padding">
                 <MDBCardBody>
                 <MDBRow className="user-org-management-header sub-management-header">
                   <MDBCol>
@@ -318,7 +318,7 @@ class SignedAgreementPlacement extends Component {
                     <MDBCol md="12">
                         <p className="text-right">
                           <MDBBtn
-                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color btn-secondary"
                             onClick={() => {
                               this.props.history.push('/account')
                             }}
@@ -326,7 +326,7 @@ class SignedAgreementPlacement extends Component {
                             Back to Account Dashboard
                           </MDBBtn>
                           <MDBBtn
-                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color btn-secondary"
                             onClick={() => {
                               this.props.history.push(`/program/${programId}`)
                             }}

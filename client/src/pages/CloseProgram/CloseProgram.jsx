@@ -37,7 +37,7 @@ class CloseProgram extends Component {
     const { location, history } = this.props;
     const queryData = queryStringToJSON(location.search);
     if (!queryData.orgId && !queryData.programId) {
-      alert('Not having proper data to access this route')
+      alert('Not having proper data to access this route');
       history.goBack();
     }
     this.setState({
@@ -77,7 +77,7 @@ class CloseProgram extends Component {
   };
 
   closeReport = () => {
-    const { sessionToken, role, closeNote = '', programId } = this.state;
+    const { sessionToken, role, closeNote = '', programId, orgId } = this.state;
     const { history } = this.props;
 
     if (!closeNote.trim()) {
@@ -85,7 +85,7 @@ class CloseProgram extends Component {
     }
 
     const postData = {
-      programId, role, closeNote, sessionToken
+      programId, role, closeNote, sessionToken, orgId,
     };
 
     let closeProgramURL = '/api/updateProgramCloseStatusById';
@@ -121,10 +121,9 @@ class CloseProgram extends Component {
   };
 
   render() {
-    const { formData, programId, isEdit, closeNote = '' } = this.state;
-    console.log(this.state, closeNote);
+    const { programId, isEdit, closeNote = '' } = this.state;
 
-    let heading = 'Program Closing Report a';
+    let heading = 'Program Closing Report ';
 
     return (
       <div className="bg-withImage">
@@ -174,6 +173,7 @@ class CloseProgram extends Component {
                             Save
                           </MDBBtn>                        
                           <MDBBtn rounded
+                                  color='danger'
                                   className="cancel-button second-action-button z-depth-1a check-file-upload"
                                   onClick={event => {
                                     this.props.history.push(`/program/${programId}`);

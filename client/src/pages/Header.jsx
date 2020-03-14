@@ -179,12 +179,12 @@ class Header extends Component {
                         {currentPage.length ?
                           currentPage.map(cP => cP.child) : null
                         }
-                        {!currentPage.length &&
-                          <>
-                            <li className="breadcrumb-item"><Person/> <a href="#">User Management</a></li>
-                            <li className="breadcrumb-item active"><HomeIcon/> Organization Management</li>
-                          </>
-                        }
+                        {/*{!currentPage.length &&*/}
+                        {/*  <>*/}
+                        {/*    <li className="breadcrumb-item"><Person/> <a href="#">User Management</a></li>*/}
+                        {/*    <li className="breadcrumb-item active"><HomeIcon/> Organization Management</li>*/}
+                        {/*  </>*/}
+                        {/*}*/}
                       </ol>
                     </nav>
                   </MDBCol>

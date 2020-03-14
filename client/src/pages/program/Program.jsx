@@ -126,7 +126,7 @@ class Program extends Component {
         heading = 'Grant Manager';
         break;
       case '3':
-        heading = 'Admin Program View';
+        heading = 'It Admin';
         break;
       default:
         heading = '';
@@ -139,12 +139,12 @@ class Program extends Component {
     }];
     const breadCrums = [{
       name: 'dashboard',
-      child: <li key={`dashboard1`} className="breadcrumb-item active"><HomeIcon /> <Link to={'/view-program'}>Program Dashboard</Link></li>,
+      child: <li key={`dashboard1`} className="breadcrumb-item active"><HomeIcon /> <Link to={'/view-program'}>{heading} Dashboard</Link></li>,
     }];
 
     return (
       <div className="bg-withImage">
-        <HeaderComponent currentPage={currentPage} breadCrums={breadCrums} />
+        <HeaderComponent currentPage={[]} breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -173,7 +173,7 @@ class Program extends Component {
             <MDBCol md="2">
               <input type="text" name="organizationName" placeholder="Organization Name" onChange={this.handleChange} className="form-control mt-2" value={organizationName} />
             </MDBCol>
-            <MDBCol md="2">
+            <MDBCol md="3">
               <select name="programType" className="browser-default custom-select form-control mt-2" value={programType} onChange={this.handleChange}>
                 <option value="">Choose Program</option>
                 <option value="0">Internship Grant</option>
@@ -184,7 +184,7 @@ class Program extends Component {
                 <option value="5">Strategic Planning Grant</option>
               </select>
             </MDBCol>                
-            <MDBCol md="2">
+            <MDBCol md="3">
               <select name="status" className="browser-default custom-select form-control mt-2" value={status} onChange={this.handleChange}>
                 <option value="">Select Status</option>
                 <option value="applying">Applying</option>
@@ -201,7 +201,7 @@ class Program extends Component {
             <MDBCol md="2">
               <input type="number" placeholder="Year" name="year" onChange={this.handleChange} className="form-control mt-2" value={year} />
             </MDBCol>
-            <MDBCol md="2">
+            <MDBCol md="2" className="text-center">
               <MDBBtn
                 rounded
                 className="z-depth-1a"

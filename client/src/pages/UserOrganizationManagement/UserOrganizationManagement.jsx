@@ -222,7 +222,7 @@ class UserOrganizationManagement extends Component {
         <MDBContainer className="">
           <MDBRow>
             <MDBCol md="12">
-              <MDBCard>                
+              <MDBCard className="card-padding">
                 {dataReceived ?
                   <div style={{ textAlign: 'center' }}>
                     <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />

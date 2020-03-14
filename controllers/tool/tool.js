@@ -153,9 +153,9 @@ const sendRecreateLoginEmail = async(emailAddress, note) => {
 const programStatusUpdate = async(emailAddress, username, prevStatus, currentStatus, orgName) => {
   try {
     console.log("send email request received.");
-    if (!emailAddress)
-      throw new Error("No email");
-    console.log("Receiver email address is " + emailAddress);
+    // if (!emailAddress)
+    //   throw new Error("No email");
+    // console.log("Receiver email address is " + emailAddress);
     let options = {
       auth: {
         api_key: keys.sendGridKey,

@@ -497,17 +497,19 @@ class ProgramReport extends Component {
                     {role &&
                       <>
                         <MDBCol md={4} className="pt-4">
-                          <MDBBtn
-                            rounded
-                            className="second-action-button z-depth-1a"
-                            onClick={() => {
-                              this.setState({ formData: {} });
-                              this.toggleModal()
-                            }}
-                            style={{ width: '150px' }}
-                          >
-                            Upload Report
-                          </MDBBtn>
+                          {role === '1' &&
+                            <MDBBtn
+                              rounded
+                              className="second-action-button z-depth-1a"
+                              onClick={() => {
+                                this.setState({formData: {}});
+                                this.toggleModal()
+                              }}
+                              style={{width: '150px'}}
+                            >
+                              Upload Report
+                            </MDBBtn>
+                          }
                         </MDBCol>
                         <MDBCol md={8} className="pt-4 text-right">
                           <MDBBtn

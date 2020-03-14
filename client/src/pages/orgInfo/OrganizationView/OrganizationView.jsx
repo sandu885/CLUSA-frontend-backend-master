@@ -13,6 +13,7 @@ import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 
 import './organizationView.css'
+import HomeIcon from "@material-ui/icons/Home";
 
 class OrganizationView extends Component {
   constructor(props) {
@@ -49,13 +50,34 @@ class OrganizationView extends Component {
   }
 
   render() {
-    const { dataReceived, programData, organization = {}, user = {} } = this.state;
+    const { dataReceived, programData, organization = {}, user = {}, role } = this.state;
 
     let heading = 'Organization Home Page';
 
+    let crumbHeading = '';
+    switch (role) {
+      case '0':
+        crumbHeading = 'Grant Reviewer';
+        break;
+      case '2':
+        crumbHeading = 'Grant Manager';
+        break;
+      default:
+        crumbHeading = '';
+        break;
+    }
+
+    const breadCrums = [{
+      name: 'dashboard',
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon /> <Link to={'/view-program'}>{crumbHeading} Dashboard</Link></li>,
+    },{
+      name: 'orgInformation',
+      child: <li key={`orgInformation1`} className="breadcrumb-item active"> Organization Info</li>,
+    }];
+
     return (
       <div className="bg-withImage">
-        <HeaderComponent />
+        <HeaderComponent  breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
@@ -74,16 +96,16 @@ class OrganizationView extends Component {
                   <MDBCardBody>
                     <div className="grey-bg" style={{ padding: '15px 30px 15px 30px' }}>
                     <MDBRow>
-                      <MDBCol md="2" className="pt-2">
+                      <MDBCol md="3" className="pt-2">
                         <strong>Organization Name: </strong><span> {organization.name} </span>
                       </MDBCol>
-                      <MDBCol md="2" className="pt-2">
+                      <MDBCol md="3" className="pt-2">
                       <strong>Conant Name: </strong><span> {user.username} </span>
                       </MDBCol>
-                      <MDBCol md="2" className="pt-2">
+                      <MDBCol md="3" className="pt-2">
                       <strong>Email: </strong><span> {user.emailAddress || user.email} </span>
                       </MDBCol>
-                      <MDBCol md="2">
+                      <MDBCol md="3">
                         <MDBBtn
                           rounded
                           style={{ margin: '0' }}

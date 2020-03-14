@@ -286,16 +286,16 @@ class Account extends Component {
                 <MDBCardBody className="mx-4">
                   <div className="grey-bg" style={{ padding: '15px 30px 15px 30px' }}>
                     <MDBRow>
-                      <MDBCol md="2" className="pt-2">
+                      <MDBCol md="3" className="pt-2">
                         <strong>Organization Name: </strong><span> {organization.name} </span>
                       </MDBCol>                   
-                      <MDBCol md="2" className="pt-2">
+                      <MDBCol md="3" className="pt-2">
                       <strong>Conant Name: </strong><span> {user.username} </span>
                       </MDBCol>                   
-                      <MDBCol md="2" className="pt-2">
+                      <MDBCol md="3" className="pt-2">
                       <strong>Email: </strong><span> {user.emailAddress || user.email} </span>
                       </MDBCol>
-                      <MDBCol md="2">
+                      <MDBCol md="3">
                       <MDBBtn
                           rounded
                           style={{ margin: '0' }}

@@ -331,9 +331,8 @@ class ProgramDetail extends Component {
                                     onClick={() => {
                                       const { history } = this.props;
                                       const { programData: { program } } = this.state;
-                                      localStorage.setItem('orgId', program.orgId);
                                       if (program) {
-                                        history.push(`/final-check?orgId=${program.orgId}&programId=${program.objectId}`);
+                                        history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
                                       }
                                     }}
                                   >

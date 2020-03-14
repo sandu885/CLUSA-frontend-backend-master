@@ -842,7 +842,7 @@ class RegisterInfo extends Component {
 
 
   render() {
-    const { columns, data, dataReceived } = this.state;
+    const { columns, data, dataReceived, role } = this.state;
     console.log(this.state);
     // const { getMembers } = this.state;
     const { saveSuccess } = this.state;
@@ -894,97 +894,103 @@ class RegisterInfo extends Component {
                       }}
                       >* Required</p>
                     </div>
-                    <div>
-                      <form
-                        id="register-account"
-                        className="form-all"
-                      >
-                        {/* ----------- username ----------- */}
-                        <label
-                          htmlFor="register-username"
-                          className="dark-grey-text font-weight-light"
-                        ><span className="redColor">* </span>Username
-                          <input
-                            type="text"
-                            name="username"
-                            id="register-username"
-                            className={this.state.usernameInputError ? 'form-control errorInput' : 'form-control'}
-                            value={this.state.username}
-                            onChange={(e) => { this.handleChange(e); this.setState({ usernameInputError: false }); }}
-                            disabled={this.state.role !== '1'}
-                            required
-                          />
-                        </label>
-                        <br />
-                        {/* ----------- password ----------- */}
-                        <label
-                          htmlFor="register-password"
-                          className="dark-grey-text
-                          font-weight-light pt-2"
-                        >New Password
-                          <input
-                            type="password"
-                            id="register-password"
-                            name="password"
-                            className={this.state.passwordInputError ? 'form-control errorInput' : 'form-control'}
-                            value={this.state.password}
-                            onChange={(e) => { this.handleChange(e); this.setState({ passwordInputError: false }); }}
-                            disabled={this.state.role !== '1'}
-                            required
-                          />
-                        </label>
-                        <br/>
-                        {/* ----------- new password ----------- */}
-                        <label
-                          htmlFor="register-password"
-                          className="dark-grey-text
-                          font-weight-light pt-2"
-                        >Re-type New Password
-                          <input
-                            type="password"
-                            id="register-password"
-                            name="newpassword"
-                            className="form-control"
-                            value={this.state.newpassword}
-                            onChange={(e) => { this.handleChange(e); }}
-                            disabled={this.state.role !== '1'}
-                            required
-                          />
-                        </label>
-                        <div>
-                          <MDBRow>
-                            <MDBCol md="12">
-                              <MDBBtn
-                                color="danger"
-                                rounded
-                                className="z-depth-1a"
-                                // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
-                                href={this.state.role == '3' ? '/user-organization-management' : (this.state.role == '2' || this.state.role == '0') ? `/${localStorage.getItem('orgId')}` : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
-                                  : '/account'
-                                }
-                              >
-                                {this.state.role != '1' ? 'Go Back' : 'Back To My Account'}
-                              </MDBBtn>
-                              <MDBBtn
-                                color="default"
-                                rounded
-                                className="z-depth-1a"
-                                disabled={this.state.role !== '1'}
-                                onClick={this.clickSubmitBtn}
-                              >
-                                Save My Updates
-                              </MDBBtn>
-                            </MDBCol>
-                          </MDBRow>
+                    {role === '1' &&
+                      <>
+                      <div>
+                        <form
+                          id="register-account"
+                          className="form-all"
+                        >
+                          {/* ----------- username ----------- */}
+                          <label
+                            htmlFor="register-username"
+                            className="dark-grey-text font-weight-light"
+                          ><span className="redColor">* </span>Username
+                            <input
+                              type="text"
+                              name="username"
+                              id="register-username"
+                              className={this.state.usernameInputError ? 'form-control errorInput' : 'form-control'}
+                              value={this.state.username}
+                              onChange={(e) => { this.handleChange(e); this.setState({ usernameInputError: false }); }}
+                              disabled={this.state.role !== '1'}
+                              required
+                            />
+                          </label>
+                          <br />
+                          {/* ----------- password ----------- */}
+                          <label
+                            htmlFor="register-password"
+                            className="dark-grey-text
+                            font-weight-light pt-2"
+                          >New Password
+                            <input
+                              type="password"
+                              id="register-password"
+                              name="password"
+                              className={this.state.passwordInputError ? 'form-control errorInput' : 'form-control'}
+                              value={this.state.password}
+                              onChange={(e) => { this.handleChange(e); this.setState({ passwordInputError: false }); }}
+                              disabled={this.state.role !== '1'}
+                              required
+                            />
+                          </label>
+                          <br/>
+                          {/* ----------- new password ----------- */}
+                          <label
+                            htmlFor="register-password"
+                            className="dark-grey-text
+                            font-weight-light pt-2"
+                          >Re-type New Password
+                            <input
+                              type="password"
+                              id="register-password"
+                              name="newpassword"
+                              className="form-control"
+                              value={this.state.newpassword}
+                              onChange={(e) => { this.handleChange(e); }}
+                              disabled={this.state.role !== '1'}
+                              required
+                            />
+                          </label>
+                          <div>
+                            <MDBRow>
+                              <MDBCol md="12">
+                                <MDBBtn
+                                  color="danger"
+                                  rounded
+                                  className="z-depth-1a"
+                                  // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
+                                  href={this.state.role == '3' ? '/user-organization-management' : (this.state.role == '2' || this.state.role == '0') ? `/${localStorage.getItem('orgId')}` : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
+                                    : '/account'
+                                  }
+                                >
+                                  {this.state.role != '1' ? 'Go Back' : 'Back To My Account'}
+                                </MDBBtn>
+                                <MDBBtn
+                                  color="default"
+                                  rounded
+                                  className="z-depth-1a"
+                                  disabled={this.state.role !== '1'}
+                                  onClick={this.clickSubmitBtn}
+                                >
+                                  Save My Updates
+                                </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
 
+                          </div>
+                        </form>
+                      </div>
+                        {/* ----------- General Organization Information ----------- */}
+                        <div className="pt-2">
+                          <h3>General Organization Information</h3>
                         </div>
-                      </form>
-                    </div>
+                      </>
+                    }
 
-                    {/* ----------- General Organization Information ----------- */}
-                    <div className="pt-2">
-                      <h3>General Organization Information</h3>                      
-                    </div>
+
+
                     <div className="">
                       <form
                         id="register-form"
@@ -1539,22 +1545,29 @@ class RegisterInfo extends Component {
                             rounded
                             className="z-depth-1a"
                             // href={localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}
-                            href={this.state.role == '3' ? '/user-organization-management' : localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
-                              : 'account'
+                            href={
+                              this.state.role === '3' ? '/user-organization-management' :
+                                (this.state.role === '0' || this.state.role === '2') ? `/org/${localStorage.getItem('orgId')}` :
+                                localStorage.getItem('orgId') !== undefined && localStorage.getItem('orgId') !== null ? '/account'
+                              : '/account'
                             }
                           >
-                            {this.state.role == '3' ? 'Go Back' : 'Back To My Account'}
+                            {(this.state.role === '3' || this.state.role === '0' || this.state.role === '2') ? 'Go Back' : 'Back To My Account'}
                           </MDBBtn>
-                        
-                          <MDBBtn
-                            color="default"
-                            rounded
-                            className=" z-depth-1a"
-                            disabled={this.state.role !== '1'}
-                            onClick={this.clickSubmitBtn}
-                          >
-                            Save My Updates
-                          </MDBBtn>
+
+                          {
+                            (this.state.role === '3' || this.state.role === '0' || this.state.role === '2') &&
+                            <MDBBtn
+                              color="default"
+                              rounded
+                              className=" z-depth-1a"
+                              disabled={this.state.role !== '1'}
+                              onClick={this.clickSubmitBtn}
+                            >
+                              Save My Updates
+                            </MDBBtn>
+                          }
+
                         </MDBCol>
                       </MDBRow>
 
