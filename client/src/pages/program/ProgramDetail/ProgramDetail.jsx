@@ -182,7 +182,7 @@ class ProgramDetail extends Component {
                             <MDBCol md="5">Award Amount:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].awardAmount} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
-                            <MDBCol md="5">Org Name:-</MDBCol> <MDBCol md="7"> <span className="span-ellipsis"> {organization && organization.name && organization.name} </span></MDBCol>
+                            <MDBCol md="5">Org Name:-</MDBCol> <MDBCol md="7"> <span> {organization && organization.name && organization.name} </span></MDBCol>
                           </MDBRow>
                         </MDBCol>
                     </MDBRow>
@@ -365,16 +365,14 @@ class ProgramDetail extends Component {
                       }
                       {this.state.role == '1' &&
                         <>
-                          <MDBCol md="1" />
-                            <MDBCol md="10">
-                              <div style={{
-                                justifyContent: 'center',
-                                display: 'flex',
-                              }}>
+                          
+                            <MDBCol md="12 text-right">
+                              <div>
                                 <MDBBtn
                                   rounded
+                                  color="secondary"
                                   style={{ width: '250px' }}
-                                  className="second-action-button z-depth-1a red-color"
+                                  className="second-action-button z-depth-1a"
                                   onClick={() => {
                                     this.props.history.push('/account')
                                   }}
@@ -383,7 +381,7 @@ class ProgramDetail extends Component {
                                 </MDBBtn>
                               </div>
                             </MDBCol>
-                          <MDBCol md="1" />
+                          
                         </>
                       }
 

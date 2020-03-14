@@ -342,7 +342,7 @@ class Account extends Component {
                             <h5
                                   id="current-status"
                                   className="blue-text"
-                              ><strong>{status}</strong>
+                              >
                               </h5>
                               <p><Link
                                   className="instruction-link"

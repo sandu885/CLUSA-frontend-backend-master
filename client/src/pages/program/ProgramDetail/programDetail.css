@@ -15,9 +15,3 @@
 .application-info-button {
     background-color: #2e8ab8 !important;
 }
-.span-ellipsis {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 145px;
-    white-space: nowrap;
-}

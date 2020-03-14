@@ -3,7 +3,7 @@ import {
   MDBContainer,
   MDBCardBody,
   MDBBtn,
-  MDBRow, MDBCol, MDBCard,
+  MDBRow, MDBCol, MDBCard, MDBTable, MDBTableBody, MDBTableHead,
   MDBModal, MDBModalBody
 } from 'mdbreact';
 import axios from 'axios';
@@ -273,7 +273,79 @@ class ProgramReport extends Component {
                     <MDBCol md={12}>
                       <p>Here list all the report type, requirement and template</p>
                     </MDBCol>
-                    <MDBCol md={12}>
+                    <MDBTable responsive>
+                      <MDBTableHead>
+                        <tr>
+                          <th><strong>Report Type</strong></th>
+                          <th><strong>Requirement</strong></th>
+                          <th><strong>Template</strong></th>
+                        </tr>
+                      </MDBTableHead>
+                      <MDBTableBody>
+                        <tr>
+                          <td><strong>Student Training Report</strong></td>
+                          <td>Report requirement sort introduction</td>
+                          <td><MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
+                                  href={CLUSAStudentTrainingReport}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Graduation Ceremony Reports</strong></td>
+                          <td>Report requirement sort introduction</td>
+                          <td><MDBBtn rounded className="application-info-button second-action-button z-depth-1a white-button check-file-upload"
+                                  href={CLUSAGraduationCeremonyReport}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Intern Documentation</strong></td>
+                          <td>Report requirement sort introduction</td>
+                          <td><MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
+                                  href={CLUSAInternshipBudget}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Other Event</strong></td>
+                          <td>Report requirement sort introduction</td>
+                          <td><MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
+                                  href={CLUSAOtherEvent}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Essay Contest</strong></td>
+                          <td>Report requirement sort introduction</td>
+                          <td><MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
+                                  href={CLUSAEssayContest}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Intern Information</strong></td>
+                          <td>Report requirement sort introduction</td>
+                          <td><MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload white-button"
+                                  href={CLUSAInternInformation}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
+                        </tr>
+
+                       
+                      </MDBTableBody>
+                    </MDBTable>
+                    <MDBRow className="pt-4">
+                      <MDBCol md={12}>
+                        <p><strong>Reports note:</strong> Please submit all Student Training, Graduation Ceremony Reports, Intern Documentation, Other Event, Essay Contest and Intern Information</p><br></br>
+                      </MDBCol>
+                    </MDBRow>
+                    {/* <MDBCol md={12}>
                       <MDBRow>
                         <MDBCol md={4} className="table-header font-weight-bold">
                           Report Type
@@ -285,7 +357,6 @@ class ProgramReport extends Component {
                           Template
                         </MDBCol>
                       </MDBRow>
-
                       <MDBRow style={{ alignItems: 'center'}} className="pt-3">
                         <MDBCol md={4} className="table-header font-weight-bold">
                           Student Training Report
@@ -381,115 +452,90 @@ class ProgramReport extends Component {
                           </MDBBtn>
                         </MDBCol>
                       </MDBRow>
-
-                      <MDBRow className="pt-4">
-                        <MDBCol md={12}>
-                          Reports note: Please submit all Student Training, Graduation Ceremony Reports, Intern Documentation, Other Event, Essay Contest and Intern Information
-                        </MDBCol>
-                      </MDBRow>
-
-                    </MDBCol>
+                    </MDBCol> */}
                   </MDBRow>
-
                   <MDBRow>
                     <MDBCol md={12}>
-                      <MDBRow style={{ display: 'block'}}>
-                        <hr/>
-                      </MDBRow>
-                    </MDBCol>
-
-
-                    <MDBCol md={12}>
                       <MDBRow>
-                        <MDBCol md={12}>
-                          <MDBRow>
-
-                            <MDBCol md={role == '1' ? 2 : 7} className="table-header font-weight-bold">Report File</MDBCol>
-                            <MDBCol md={3} className="table-header font-weight-bold">Type</MDBCol>
-                            <MDBCol md={role == '1' ? 7 : 2} className="table-header font-weight-bold">Upload Date</MDBCol>
-                          </MDBRow>
-                          {programReportData.map((pRD, index) =>
-                            <MDBRow key={pRD.objectId + index}>
-                              <MDBCol md={role == '1' ? 2 : 7} className="pt-2 ellipsis">
-                                <a href={pRD.file.path} rel="noopener noreferrer" target="_blank">{pRD.file.filename}</a>
-                              </MDBCol>
-                              <MDBCol md={3} className="pt-2">
-                                {reportType.find(e => e.value == pRD.type).name}
-                              </MDBCol>
-                              <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
-
-                              {role == '1' && <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
-                                <MDBBtn
-                                  rounded
-                                  className="application-info-button second-action-button z-depth-1a"
-                                  style={{ width: '50%' }}
-                                  onClick={(e) => this.selectProgramReport(e, pRD)}
-                                >
-                                  Upload/Replace
-                                </MDBBtn>
-                                <MDBBtn
-                                  rounded
-                                  color="danger"
-                                  className="second-action-button z-depth-1a red-color"
-                                  style={{ width: '40%', marginLeft: '30px' }}
-                                  onClick={(e) => this.selectDeleteProgramReport(e, pRD)}
-                                >
-                                  Delete
-                                </MDBBtn>
-                              </MDBCol>}
-                            </MDBRow>
-                          )}
-
-                        </MDBCol>
-                        {/*<MDBCol md={2} />*/}
-
-                        {role &&
-                          <>
-                            <MDBCol md={4} className="pt-4">
-                              <MDBBtn
-                                rounded
-                                className="second-action-button z-depth-1a"
-                                onClick={() => {
-                                  this.setState({ formData: {} });
-                                  this.toggleModal()
-                                }}
-                                style={{ width: '150px' }}
-                              >
-                                Upload Report
-                              </MDBBtn>
-                            </MDBCol>
-                            <MDBCol md={2}/>
-                            <MDBCol md={3} className="pt-4">
-                              <MDBBtn
-                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color btn-block"
-                                onClick={() => {
-                                  if (role !== '1')
-                                    this.props.history.push('/view-program')
-                                  else
-                                    this.props.history.push('/account')
-                                }}
-                              >
-                                Back to Account Dashboard
-                              </MDBBtn>
-                            </MDBCol>
-                            <MDBCol md={3} className="pt-4">
-                              <MDBBtn
-                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color btn-block"
-                                onClick={() => {
-                                  // if (role !== '1')
-                                    this.props.history.push(`/program/${programId}`)
-                                }}
-                              >
-                                Back to Program Detail
-                              </MDBBtn>
-                            </MDBCol>
-                          </>
-                        }
+                        <MDBCol md={role == '1' ? 2 : 7} className="table-header font-weight-bold">Report File</MDBCol>
+                        <MDBCol md={3} className="table-header font-weight-bold">Type</MDBCol>
+                        <MDBCol md={role == '1' ? 7 : 2} className="table-header font-weight-bold">Upload Date</MDBCol>
                       </MDBRow>
+                      {programReportData.map((pRD, index) =>
+                        <MDBRow key={pRD.objectId + index}>
+                          <MDBCol md={role == '1' ? 2 : 7} className="pt-2 ellipsis">
+                            <a href={pRD.file.path} rel="noopener noreferrer" target="_blank">{pRD.file.filename}</a>
+                          </MDBCol>
+                          <MDBCol md={3} className="pt-2">
+                            {reportType.find(e => e.value == pRD.type).name}
+                          </MDBCol>
+                          <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
+
+                          {role == '1' && <MDBCol md={5} style={{ display: 'flex' }} className="pt-2">
+                            <MDBBtn
+                              rounded
+                              className="application-info-button second-action-button z-depth-1a"
+                              onClick={(e) => this.selectProgramReport(e, pRD)}
+                            >
+                              Upload/Replace
+                            </MDBBtn>
+                            <MDBBtn
+                              rounded
+                              color="danger"
+                              className="second-action-button z-depth-1a red-color"
+                              onClick={(e) => this.selectDeleteProgramReport(e, pRD)}
+                            >
+                              Delete
+                            </MDBBtn>
+                          </MDBCol>}
+                        </MDBRow>
+                      )}
 
                     </MDBCol>
-                  </MDBRow>
+                    {/*<MDBCol md={2} />*/}
 
+                    {role &&
+                      <>
+                        <MDBCol md={4} className="pt-4">
+                          <MDBBtn
+                            rounded
+                            className="second-action-button z-depth-1a"
+                            onClick={() => {
+                              this.setState({ formData: {} });
+                              this.toggleModal()
+                            }}
+                            style={{ width: '150px' }}
+                          >
+                            Upload Report
+                          </MDBBtn>
+                        </MDBCol>
+                        <MDBCol md={8} className="pt-4 text-right">
+                          <MDBBtn
+                            color="secondary"
+                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                            onClick={() => {
+                              if (role !== '1')
+                                this.props.history.push('/view-program')
+                              else
+                                this.props.history.push('/account')
+                            }}
+                          >
+                            Back to Account Dashboard
+                          </MDBBtn>
+                          <MDBBtn
+                          color="secondary"
+                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                            onClick={() => {
+                              // if (role !== '1')
+                                this.props.history.push(`/program/${programId}`)
+                            }}
+                          >
+                            Back to Program Detail
+                          </MDBBtn>
+                        </MDBCol>
+                      </>
+                    }
+                  </MDBRow>
                   <br/>
                 </MDBCardBody>
               </MDBCard>

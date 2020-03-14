@@ -212,11 +212,9 @@ class SignedAgreementPlacement extends Component {
                             </MDBCol>
                           </MDBRow>
                           <MDBRow className="pt-3">
-                            <MDBCol sm="12 pt-4" className="block-header">
-                            <strong>Signed Agreement</strong>
-                            </MDBCol>
                             {role === '0' ? null :
                               <MDBCol sm="12">
+                                <strong>Signed Agreement</strong><br></br>
                                 <input type="file" className="form-control" style={{ display: 'none' }} name="signedAgreement" onChange={this.handleFileChange}/>
                                 <MDBBtn rounded className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('signedAgreement')}>
                                   Click to Upload/Replace Template File
@@ -235,7 +233,7 @@ class SignedAgreementPlacement extends Component {
                             <MDBCol md="12 pt-4">
                               <MDBRow>
                                 <MDBCol sm="12" className="block-header align-item-center">
-                                  <strong>Award amount :</strong> {formData.awardAmount}
+                                  <strong>Award amount:</strong> {formData.awardAmount}
                                 </MDBCol>
                               </MDBRow>
                             </MDBCol>
@@ -253,10 +251,8 @@ class SignedAgreementPlacement extends Component {
                         <MDBCol sm="12"><a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank" className="btn btn-default">Click to download</a></MDBCol>
                       </MDBRow>
                       <MDBRow className="pt-3">
-                        <MDBCol sm="12" className="block-header">
-                          Filled placement
-                        </MDBCol>
                         <MDBCol sm="12">
+                          <strong>Filled placement</strong><br></br>
                           <input type="file" className="form-control" style={{ display: 'none' }} name="filledPlacement" onChange={this.handleFileChange}/>
                           <MDBBtn rounded className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('filledPlacement')}>
                             Click to Upload/Replace Template File
@@ -270,7 +266,7 @@ class SignedAgreementPlacement extends Component {
                       </MDBRow>
                       <MDBRow className="pt-3">
                         <MDBCol sm="12" className="block-header align-item-center">
-                          <strong>Uploaded Date:-</strong> {formData.placementUploadDate && formData.placementUploadDate}
+                          <strong>Uploaded Date: </strong> {formData.placementUploadDate && formData.placementUploadDate}
                         </MDBCol>                        
                       </MDBRow>
                     </MDBCol>
@@ -278,7 +274,7 @@ class SignedAgreementPlacement extends Component {
                   <div>
                     <MDBRow>
                       <MDBCol md="10 pt-4">
-                        <h3>Result:-</h3>                                              
+                        <h3>Result:</h3>                                              
                       </MDBCol>
                       <MDBCol sm="10" className="blue-font-color">
                         <strong><span style={{ color: '#17a44c' }}>{formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'APPROVED') : 'Under Review'}</span></strong>

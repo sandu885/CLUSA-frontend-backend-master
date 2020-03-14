@@ -7,7 +7,10 @@ body{
   font-size: 14px;
   font-weight: 400;
 }
-
+strong{
+  color: #000000;
+  font-weight: 700;
+}
 a:hover{
   color: #000;
 }
@@ -158,6 +161,9 @@ select{
   transform: translateY(7px);
   left: 12px;
 }
+.font-weight-bold{
+  color: #000;
+}
 .btn {
   margin: 0 15px 15px 0;
   padding: .40rem 1.14rem;
@@ -168,6 +174,10 @@ select{
 }
 .btn-default{ 
   background-color: rgb(85, 110, 230) !important;  
+  color: #fff !important;
+}
+.btn-secondary{ 
+  background-color:#32448c !important;  
   color: #fff !important;
 }
 .btn-danger{
