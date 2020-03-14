@@ -200,6 +200,16 @@ class FinalReportComment extends Component {
             }
             <MDBRow className="text-right">
               <MDBCol md="12" className="">
+                <MDBBtn
+                  color="secondary"
+                  rounded className="second-action-button z-depth-1a check-file-upload mt-2"
+                  onClick={() => {
+                    const { history } = this.props;
+                    history.push(`/view-program`);
+                  }}
+                >
+                  Back to Account Dashboard
+                </MDBBtn>
                 <MDBBtn 
                 color="secondary"
                 rounded className="second-action-button z-depth-1a check-file-upload mt-2"

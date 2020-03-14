@@ -69,7 +69,29 @@ const createNewAgreementPlacement = async (meta, files) => {
 
     let programRecord = await queryProgram.first({ useMasterKey: true });
 
-    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement');
+    if (meta.role === '2') {
+      let message = `Dear ${userRecord.get('username')}, \n  \n
+                \n The agreement draft has been uploaded to your CLUSA account, please log in and
+                    review it carefully. If everything is OK, please sign the agreement and provide
+                    internship placement confirmation using the placement confirmation template on
+                    the same page. \n
+                \n Thank you, \n
+                \n Best Regards, \n CLUSA`;
+      await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
+      if (status === '1') {
+        message = `Dear ${userRecord.get('username')}, \n  \n
+                \n The agreement has been signed by both of us. Please download the signed
+                    agreement and keep a copy for your reference. The first check will be sent out
+                    shortly. \n
+                \n Thank you, \n
+                \n Best Regards, \n CLUSA`;
+        await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
+      }
+
+    } else {
+      await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement');
+    }
+
 
     const queryOrg = new Parse.Query('Organization');
     queryOrg.equalTo("objectId", meta.orgId);
@@ -82,9 +104,9 @@ const createNewAgreementPlacement = async (meta, files) => {
 
   const agreementPlacementSaved = await agreementPlacement.save(null,{useMasterKey: true});
 
-  if (meta.role === '2' || meta.role === '3' || meta.role === '0') {
-    await TOOL.CLUSAUploadAgreement(userRecord.get('emailAddress'), userRecord.get('username'));
-  }
+  // if (meta.role === '2' || meta.role === '3' || meta.role === '0') {
+    // await TOOL.CLUSAUploadAgreement(userRecord.get('emailAddress'), userRecord.get('username'));
+  // }
   if (meta.role === '1') {
     let queryOrg = new Parse.Query('Organization');
 
@@ -179,8 +201,17 @@ const updateAgreementPlacementById = async (meta, files) => {
   }
 
   const agreementPlacementSaved = await agreementPlacement.save(null,{useMasterKey: true});
-  if (meta.role === '2' || meta.role === '3' || meta.role === '0') {
-    await TOOL.CLUSAUploadAgreement(userRecord.get('emailAddress'), userRecord.get('username'));
+  // if (meta.role === '2' || meta.role === '3' || meta.role === '0') {
+  //   await TOOL.CLUSAUploadAgreement(userRecord.get('emailAddress'), userRecord.get('username'));
+  // }
+  if (meta.role === '2' && status === '1') {
+    const message = `Dear ${userRecord.get('username')}, \n  \n
+              \n The agreement has been signed by both of us. Please download the signed
+                  agreement and keep a copy for your reference. The first check will be sent out
+                  shortly. \n
+              \n Thank you, \n
+              \n Best Regards, \n CLUSA`;
+    await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
   }
   if (meta.role === '1') {
     let queryOrg = new Parse.Query('Organization');

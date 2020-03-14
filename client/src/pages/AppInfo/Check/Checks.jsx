@@ -240,7 +240,7 @@ class Checks extends Component {
               <MDBCard className="card-padding">
                 <MDBCardBody>
                   <MDBRow>
-                    <MDBCol md="5" className="pt-3 font-weight-bold check-sub-header">
+                    <MDBCol md="6" className="pt-3 font-weight-bold check-sub-header">
                         <h3>First Check</h3>
                         <div className="form-group font-weight-bold">                        
                           <div className="col-sm-12 p-0 pb-3">
@@ -287,7 +287,7 @@ class Checks extends Component {
                       </div>
                       <div className="form-group font-weight-bold">
                         
-                        <div className="col-sm-6 p-0 pb-3">
+                        <div className="col-sm-6 p-0">
                         <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Date:-</label><br></br>
                           {role == '0' ? first && <label className="col-form-label check-form-label font-weight-light">{first.checkDate || ''}</label>
                             : <input type="text" className="form-control" name="first-checkDate" value={first.checkDate} onChange={this.handleChange}/>
@@ -319,20 +319,20 @@ class Checks extends Component {
                         </MDBRow>
                       }
                     </MDBCol>
-                    <MDBCol md="5" className="pt-3 font-weight-bold check-sub-header">
+                    <MDBCol md="6" className="pt-3 font-weight-bold check-sub-header">
                       <h3>Second check</h3>
 
                         <div className="form-group font-weight-bold">
                          
-                          <div className="col-sm-6 p-0">
-                          <label className="col-form-label check-form-label">Check Amount:-</label><br></br>
+                          <div className="col-sm-12 p-0 pb-3">
+                          <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Amount:-</label><br></br>
                             {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkAmount || ''}</label>
                               : <input type="number" className="form-control" name="second-checkAmount" value={second.checkAmount} onChange={this.handleChange}/>
                             }
                           </div>
                           
                           <div className="col-sm-12 p-0">
-                          <label className="col-form-label">Check #:-</label><br></br>
+                          <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check #:-</label><br></br>
                             {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkId || ''}</label>
                               : <input type="text" className="form-control" name="second-checkId" value={second.checkId} onChange={this.handleChange}/>
                             }
@@ -340,7 +340,7 @@ class Checks extends Component {
                         </div>
 
                         <div className="form-group font-weight-bold">
-                          <label className="col-form-label check-form-label">Check Image:-</label>
+                          <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Image:-</label><br></br>
                           <MDBRow>
                             <div className="col-sm-12">
                               <label className="col-form-label" style={{
@@ -374,7 +374,7 @@ class Checks extends Component {
 
                         <div className="form-group font-weight-bold">
                           <div className="col-sm-6 p-0">
-                          <label className="col-form-label check-form-label">Check Date:-</label><br></br>
+                          <label className="col-form-label check-form-label" style={{ padding: '0' }}>Check Date:-</label><br></br>
                             {role == '0' ? second && <label className="col-form-label check-form-label font-weight-light">{second.checkDate || ''}</label>
                               : <input type="text" className="form-control" name="second-checkDate" value={second.checkDate} onChange={this.handleChange} />
                             }

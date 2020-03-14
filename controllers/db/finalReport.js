@@ -76,7 +76,14 @@ const updateProgramStatus = async (finalReport) => {
   queryOrg.equalTo("objectId", finalReport.get('orgId'));
   const orgRecord = await queryOrg.first({ useMasterKey: true });
   if (userRecord) {
-    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'reportSubmitted');
+    const message = `Dear ${userRecord.get('username')}, \n  \n
+              \n All your program reports and final report have been submitted to us. We will
+                  review them and send our final check if everything looks fine. \n
+              \n Thank you, \n
+              \n Best Regards, \n CLUSA`;
+    // await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'reportSubmitted');
+    await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
+
     await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'reportSubmitted', orgRecord.get('name'));
   }
 

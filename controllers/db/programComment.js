@@ -103,7 +103,22 @@ const updateCommentProgramStatus = async (meta) => {
   queryOrg.equalTo("objectId", meta.orgId);
   const orgRecord = await queryOrg.first({ useMasterKey: true });
 
-  await TOOL.programStatusUpdate(email, user.get('username'), program.get('status'), meta.status);
+  if (meta.status === 'preparingAgreement') {
+    const message = `Dear ${user.get('username')}, \n  \n
+                \n Congratulations! CLUSA Internship Grant Reviewing Committee has reviewed your
+                    grant application carefully and found your internship program aligning with our
+                    grant goals and meeting our grant requirements. Your grant application has been
+                    approved by CLUSA Board. Now we are preparing the agreement draft between
+                    CLUSA and your organization. You will receive an email once the draft agreement
+                    is uploaded to your CLUSA account. \n
+                \n Thank you, \n
+                \n Best Regards, \n CLUSA`;
+    await TOOL.sendEmailCustomMessage(email, message);
+  } else {
+    await TOOL.programStatusUpdate(email, user.get('username'), program.get('status'), meta.status);
+  }
+
+
   await TOOL.programStatusUpdate('', '', program.get('status'), meta.status, orgRecord.get('name'));
   program.set('status', meta.status);
   const programSave = await program.save(null,{useMasterKey: true});

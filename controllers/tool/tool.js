@@ -187,6 +187,40 @@ const programStatusUpdate = async(emailAddress, username, prevStatus, currentSta
   }
 };
 
+const sendEmailCustomMessage = async(emailAddress, msg) => {
+  try {
+    console.log("send email request received.");
+    // if (!emailAddress)
+    //   throw new Error("No email");
+    // console.log("Receiver email address is " + emailAddress);
+    let options = {
+      auth: {
+        api_key: keys.sendGridKey,
+      }
+    };
+    let client = nodemailer.createTransport(sgTransport(options));
+    let mailContent = {
+      from: {
+        name: 'CLUSA',
+        address: 'grant@clusa.org'
+      },
+      to: emailAddress,
+      subject: 'Program status Update.',
+      text: `Dear ${username}, \n  \n
+                \n Thank you for being interested in our Internship Grant Program. Your status have changed from ${prevStatus} to ${currentStatus}, please visit our site to check the updates. \n
+                \n Thank you, \n
+                \n Best Regards, \n CLUSA`,
+    };
+    await client.sendMail(mailContent);
+    const message = 'Your message has been successfully sent.';
+    console.log("Your message has been successfully sent.");
+    return message;
+  } catch(err) {
+    console.log(err.message);
+    // throw new Error(err.message);
+  }
+};
+
 const CLUSAUploadAgreement = async(emailAddress, username) => {
   try {
     console.log("send email request received.");
@@ -262,4 +296,5 @@ module.exports = {
     programStatusUpdate,
     CLUSAUploadAgreement,
     CLUSAUploadAgreementToCLUSA,
+    sendEmailCustomMessage,
 };

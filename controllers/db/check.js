@@ -35,11 +35,28 @@ const createNewCheck = async (meta, file) => {
   const orgRecord = await queryOrg.first({ useMasterKey: true });
 
   if (meta.checkType == '1') {
-    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'firstCheckSent');
+    const message = `Dear ${userRecord.get('username')}, \n  \n
+              \n The first check has been sent out to you. Please check your mailbox for it. Since
+                your internship program is ongoing now, please provide your program information
+                including training reports, graduation reports, intern information along the way
+                using the templates provided in your account. And once the program finished,
+                please fill out the final report to wrap up. \n
+              \n Thank you, \n
+              \n Best Regards, \n CLUSA`;
+    await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
+    // await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'firstCheckSent');
+
     await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'firstCheckSent', orgRecord.get('name'));
     programRecord.set("status", 'firstCheckSent');
   } else if (meta.checkType == '2') {
-    await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'finalCheckSent');
+    // await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'finalCheckSent');
+    const message = `Dear ${userRecord.get('username')}, \n  \n
+              \n Your Internship program reports have been reviewed and approved by CLUSA. The
+                  final check has been sent to your organization. Congratulations for your great
+                  work. This case is closed successfully now. \n
+              \n Thank you, \n
+              \n Best Regards, \n CLUSA`;
+    await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
     await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'finalCheckSent', orgRecord.get('name'));
     programRecord.set("status", 'finalCheckSent');
   }
