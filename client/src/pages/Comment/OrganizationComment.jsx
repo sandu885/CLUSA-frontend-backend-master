@@ -224,7 +224,7 @@ class OrganizationComment extends Component {
                   onChange={this.handleChange}
                   value={formData.note}
                 />
-                  <MDBBtn style={{ width: '70px' }} rounded className="second-action-button z-depth-1a check-file-upload"
+                  <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload"
                           onClick={this.postComment}
                   >
                     Save
@@ -246,7 +246,7 @@ class OrganizationComment extends Component {
                     <option value="preparingAgreement">Preparing Agreement</option>
                     <option value="turnDown">Turn Down</option>
                   </select>
-                  <MDBBtn style={{ width: '60px' }} rounded className="second-action-button z-depth-1a check-file-upload mt-2" onClick={this.postProgramUpdateStatus}>
+                  <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2" onClick={this.postProgramUpdateStatus}>
                     Save
                   </MDBBtn>
                 </MDBCol>
@@ -256,7 +256,9 @@ class OrganizationComment extends Component {
             <MDBRow>
               <MDBCol md="3" />
               <MDBCol md="3">
-                <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2 btn-block"
+                <MDBBtn rounded
+                  color="secondary"
+                className="second-action-button z-depth-1a check-file-upload mt-2 btn-block"
                         onClick={() => {
                           const { history } = this.props;
                           history.push(`/program/${programId}`);
@@ -267,7 +269,9 @@ class OrganizationComment extends Component {
               </MDBCol>
               <MDBCol md="3" />
               <MDBCol md="3" className="text-right">
-                <MDBBtn rounded className="second-action-button z-depth-1a check-file-upload mt-2 btn-block"
+                <MDBBtn rounded
+                  color="secondary"
+                className="second-action-button z-depth-1a check-file-upload mt-2 btn-block"
                         onClick={() => {
                           const { history } = this.props;
                           history.push(`/view-program`);

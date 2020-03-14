@@ -887,7 +887,12 @@ class RegisterInfo extends Component {
                       <h3 className="">
                         <strong>Organization Information</strong>
                       </h3>
-                      <p className="redColor text-right">* Required</p>
+                      <p className="redColor text-right text-top"
+                      style={{
+                        margin: '-50px 0 0 0',
+                        padding: '0 0 20px 0',
+                      }}
+                      >* Required</p>
                     </div>
                     <div>
                       <form

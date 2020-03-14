@@ -100,7 +100,7 @@ a:hover{
 .card-padding .card-body {
   padding: 2.25rem 2.80rem;
 }
-.card-body h3, .sub-heading{
+.card-body h3, .sub-heading, .card-body h3 strong{
     font-size: 17px;
     font-family: "Roboto";
     color: rgb(85, 110, 230) !important;
@@ -180,18 +180,30 @@ select{
   background-color:#32448c !important;  
   color: #fff !important;
 }
+.btn-primary{ 
+  background-color:#993441 !important;  
+  color: #fff !important;
+}
 .btn-danger{
   background-color: #ea4d60 !important;
   color: #fff !important;
 }
 .btn-success{  
-  background-color: #34ba6d !important;
+  background-color: #287d4b !important;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: #00e25b;
 }
 .btn.disabled, .btn:disabled {
   opacity: 1;
   background-color: #bdbdbd !important;
   color: #747474 !important;
   box-shadow: none;
+}
+.text-top{
+  margin: -50px 0px 0px;
+  padding: 0px 0px 20px;
 }
 .program-detail-sub-header span {
   color: #5f5f5f;
@@ -456,5 +468,9 @@ table td {
   .comment-container {
     padding: 20px 20px 30px 20px;
     margin: 30px 0 0 0;
+  }
+  .text-top{
+    margin: 0px 0px 1rem 0;
+    padding: 0;
   }
 }

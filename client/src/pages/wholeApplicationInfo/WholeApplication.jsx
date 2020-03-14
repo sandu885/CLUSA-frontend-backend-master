@@ -1178,7 +1178,7 @@ class WholeApplicatoin extends Component {
                     <MDBRow>
                       <MDBCol md="6">
                         <MDBBtn
-                          color="blue-grey"
+                          color="secondary"
                           rounded
                           className="btn-block z-depth-1a"
                           href={localStorage.getItem('orgId') !== null ? '/clusa-account' : '/account'}

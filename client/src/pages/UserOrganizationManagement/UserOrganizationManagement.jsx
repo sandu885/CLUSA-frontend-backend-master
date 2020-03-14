@@ -351,7 +351,7 @@ class UserOrganizationManagement extends Component {
                 <MDBCol md="12">
                   <MDBBtn
                     rounded
-                    color="default"
+                    color="secondary"
                     className="first-action-button z-depth-1a"
                     onClick={() => {
                       localStorage.setItem('orgId', e.objectId);
@@ -411,7 +411,7 @@ class UserOrganizationManagement extends Component {
               <MDBRow>
                  <MDBCol md="12">
                   <MDBBtn 
-                    color="default"
+                    color="secondary"
                     rounded
                     className="first-action-button z-depth-1a"
                     onClick={() => {

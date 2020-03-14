@@ -232,7 +232,7 @@ class AgreementPlacement extends Component {
                       <MDBRow>
                         <MDBCol md="12" className="block-header align-item-center">
                           <p>
-                            <strong>Award Amount :- </strong>
+                            <strong>Award Amount: </strong>
                             {role === '0' ? formData.awardAmount :
                               <input type="number" style={{ width: 'auto', display: 'unset' }}  className="form-control" name="awardAmount" value={formData.awardAmount} onChange={this.handleChange} />
                             }
@@ -281,7 +281,7 @@ class AgreementPlacement extends Component {
                               </p>
                             </MDBCol>
                             <MDBCol sm="12" className="pt-2">
-                              <p><strong>Uploaded Date:- </strong>{formData.placementUploadDate && formData.placementUploadDate}</p>
+                              <p><strong>Uploaded Date: </strong>{formData.placementUploadDate && formData.placementUploadDate}</p>
                             </MDBCol>
                           </MDBRow>
                         </MDBCol>
@@ -354,6 +354,7 @@ class AgreementPlacement extends Component {
                       <MDBCol md="12">
                         <p className="text-right">
                           <MDBBtn
+                          color="secondary"
                             rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-3"
                             onClick={() => {
                               if (role !== '1')
@@ -363,6 +364,7 @@ class AgreementPlacement extends Component {
                             Back to Account Dashboard
                           </MDBBtn>
                           <MDBBtn
+                          color="secondary"
                             rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-3"
                             onClick={() => {
                               if (role !== '1')
