@@ -14,7 +14,7 @@ import HeaderComponent from '../../Header';
 import { queryStringToJSON } from "../../../utils/util";
 
 import './agreementPlacement.css'
-import CLUSAAgreementPlacement from "../../../images/CLUSA-Agreement-Placement.xlsx";
+import CLUSAAgreementPlacement from "../../../images/Internship-Placement-Confirmation-Template.xlsx";
 import HomeIcon from "@material-ui/icons/Home";
 import {Link} from "react-router-dom";
 
@@ -196,25 +196,31 @@ class SignedAgreementPlacement extends Component {
                 <MDBCardBody>
                 <MDBRow className="user-org-management-header sub-management-header">
                   <MDBCol>
-                    <h4>A description about the agreement and placement</h4>
+                    <h4>Congratulations to being awarded by CLUSA Internship Grant! Please download
+                      the agreement template below and review it. If everything is fine, please sign and
+                      upload your signed agreement below. Please also provide the internship
+                      placement confirmation information using the template in the second section on
+                      this page. Please note, the placement confirmation is needed before CLUSA sign
+                      the agreement.</h4>
                   </MDBCol>
                 </MDBRow>
 
-                  <MDBRow>
-                    <MDBCol md="5" className="block-header">
+                  <MDBRow className="pt-2">
+                    <MDBCol md="6" className="block-header">
                       <MDBRow>
                         <MDBCol>
                           <h3>Agreement</h3>
                           <MDBRow>
                             <MDBCol sm="12">
-                              <p><strong>Agreement Template file name show here if CLUSA uploaded Agreement template</strong></p>
+                              <p><strong>Draft Agreement</strong></p>
                               {formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? <a href={`/${formData.agreementTemplateLink.path}`} rel="noopener noreferrer" target="_blank" className="btn btn-default">Download Agreement</a> : 'Agreement file is not uploaded'}
+                              <div>Please click here to download the agreement template. </div>
                             </MDBCol>
                           </MDBRow>
                           <MDBRow className="pt-3">
                             {role === '0' ? null :
                               <MDBCol sm="12">
-                                <strong>Signed Agreement</strong><br></br>
+                                <strong>Signed Agreement (by applicant)</strong><br></br>
                                 <input type="file" className="form-control" style={{ display: 'none' }} name="signedAgreement" onChange={this.handleFileChange}/>
                                 <MDBBtn rounded className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('signedAgreement')}>
                                   Click to Upload/Replace Template File
@@ -222,8 +228,9 @@ class SignedAgreementPlacement extends Component {
                                 {
                                   formData.signedAgreement ? formData.signedAgreement.name : formData.signedAgreementLink ?
                                     <a href={formData.signedAgreementLink && formData.signedAgreementLink.filename ? `/${formData.signedAgreementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.signedAgreementLink && formData.signedAgreementLink.filename}</a>
-                                    : 'Image file details over here'
+                                    : 'File not uploaded'
                                 }
+                                <div>Please upload your signed agreement here. If you want to change it, please re-upload it again.</div>
                               </MDBCol>
                             }
 
@@ -241,14 +248,18 @@ class SignedAgreementPlacement extends Component {
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
-                    <MDBCol md="5" className="block-header">
+                    <MDBCol md="6" className="block-header">
                       <h3>Placement Confirmation Template</h3>
                       <MDBRow>
                         <MDBCol sm="12">
-                          <p><strong>Placement template file name shows here</strong></p>
+                          <p><strong>Placement template</strong></p>
                           {/*{formData.placementTemplateLink && formData.placementTemplateLink.filename ? <a href={`/${formData.placementTemplateLink.path}`} rel="noopener noreferrer" target="_blank">Click to download the agreement template.</a> : 'Placement file is not uploaded'}*/}
                         </MDBCol>
-                        <MDBCol sm="12"><a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank" className="btn btn-default">Click to download</a></MDBCol>
+                        <MDBCol sm="12">
+                          <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank">Internship Placement Confirmation Template.xlsx</a>
+                          <div>Please click here to download the template for the placement Confirmation
+                            information</div>
+                        </MDBCol>
                       </MDBRow>
                       <MDBRow className="pt-3">
                         <MDBCol sm="12">
@@ -260,8 +271,9 @@ class SignedAgreementPlacement extends Component {
                           {
                             formData.filledPlacement ? formData.filledPlacement.name : formData.filledPlacementLink ?
                               <a href={formData.filledPlacementLink && formData.filledPlacementLink.filename ? `/${formData.filledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank">{formData.filledPlacementLink && formData.filledPlacementLink.filename}</a>
-                              : 'Image file details over here'
+                              : 'File not uploaded'
                           }
+                          <div>Please upload your placement confirmation file here. If you want to change it, please re-upload it again.</div>
                         </MDBCol>
                       </MDBRow>
                       <MDBRow className="pt-3">
@@ -273,15 +285,25 @@ class SignedAgreementPlacement extends Component {
                   </MDBRow>                  
                   <div>
                     <MDBRow>
-                      <MDBCol md="10 pt-4">
+                      <MDBCol md="12 pt-4">
                         <h3>Result:</h3>                                              
                       </MDBCol>
-                      <MDBCol sm="10" className="blue-font-color">
-                        <strong><span style={{ color: '#17a44c' }}>{formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'APPROVED') : 'Under Review'}</span></strong>
+                      <MDBCol sm="10" className="blue-font-color" style={{ paddingBottom: '10px' }}>
+                        <strong><span style={{ color: '#556ee6' }}>{formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'APPROVED') : 'Under Review'}</span></strong>
+                      </MDBCol>
+                      <MDBCol md="12">
+                        <strong style={{ textTransform: 'uppercase' }}>Final Agreement (Signed by CLUSA and applicant)</strong>
                       </MDBCol>
                       <MDBCol sm="12" className="pt-2">
                         {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="btn btn-default">Download Placement File</a>}
-                      </MDBCol> 
+                      </MDBCol>
+                      <MDBCol sm="12">
+                        <div style={{ paddingBottom: '10px' }}>This is the final agreement signed by both parties. You can download to keep a
+                        copy for your reference
+                        </div>
+                        <div>Click SAVE to save your changes</div>
+                      </MDBCol>
+
                     </MDBRow>
                   </div>
                   <MDBRow className="pt-4">
