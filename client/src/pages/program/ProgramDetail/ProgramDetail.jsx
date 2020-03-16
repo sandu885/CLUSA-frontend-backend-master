@@ -15,6 +15,7 @@ import Person from "@material-ui/icons/Person";
 import {Link} from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import {roleBaseBreadCrumbHeading} from "../../../utils/util";
 
 class ProgramDetail extends Component {
   constructor(props) {
@@ -98,6 +99,8 @@ class ProgramDetail extends Component {
     // const tenthSection = application.find(app => app.sectionIndex === "10");
     const actualAwardAmount = checks.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0);
 
+    const headingBreadCrumbs = roleBaseBreadCrumbHeading(role);
+
     const currentPage = [{
       name: 'viewProgram',
       child: <li key={`viewProgram1`} className="breadcrumb-item"><HomeIcon /> <Link to={'/view-program'}>Program Management</Link></li>,
@@ -107,7 +110,7 @@ class ProgramDetail extends Component {
     }];
     const breadCrums = role != '1' ? [{
       name: 'dashboard',
-      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>{headingBreadCrumbs} Dashboard</Link></li>,
     }, {
       name: 'programView',
       child: <li key={`programView1`} className="breadcrumb-item active"> Program Detail</li>,

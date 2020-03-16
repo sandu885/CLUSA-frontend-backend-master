@@ -8,7 +8,7 @@ import axios from 'axios';
 import { cloneDeep } from 'lodash';
 import moment from 'moment';
 
-import { queryStringToJSON } from '../../utils/util'
+import {queryStringToJSON, roleBaseBreadCrumbHeading} from '../../utils/util'
 import FooterComponent from '../Footer';
 import HeaderComponent from '../Header';
 import WholeApplicationCommentView from '../wholeApplicationInfo/WholeApplicationCommentView';
@@ -286,9 +286,10 @@ class OrganizationComment extends Component {
       </MDBRow>
     </div>;
 
+    const headingBreadCrumbs = roleBaseBreadCrumbHeading(role);
     const breadCrums = role != '1' ? [{
       name: 'dashboard',
-      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>Program Management</Link></li>,
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>{headingBreadCrumbs} Dashboard</Link></li>,
     }, {
       name: 'programView',
       child: <li key={`programView1`} className="breadcrumb-item"><Link to={`/program/${programId}`}> Program Detail</Link></li>,

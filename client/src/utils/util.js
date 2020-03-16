@@ -25,3 +25,22 @@ export const queryStringToJSON = (qs) => {
 
   return JSON.parse(JSON.stringify(result));
 };
+
+export const roleBaseBreadCrumbHeading = (role) => {
+  let heading = '';
+  switch (role) {
+    case '0':
+      heading = 'Grant Reviewer';
+      break;
+    case '2':
+      heading = 'Grant Manager';
+      break;
+    case '3':
+      heading = 'It Admin';
+      break;
+    default:
+      heading = '';
+      break;
+  }
+  return heading
+};

@@ -5,3 +5,7 @@
     align-items: center;
     display: inherit;
 }
+
+button.btn-danger.btn.Ripple-parent.third-action-button.z-depth-1a.suspend-btn {
+    background: #993441 !important;
+}

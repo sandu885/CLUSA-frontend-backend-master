@@ -391,7 +391,7 @@ class UserOrganizationManagement extends Component {
                   <MDBBtn
                     color="danger"
                     rounded
-                    className="third-action-button z-depth-1a"
+                    className="third-action-button z-depth-1a suspend-btn"
                     onClick={(event) => this.toggleSuspend(event, { ...e, userData: userDataByOrg })}
                   >
                     {e.isSuspended ? 'Suspended' : 'Suspend'}
