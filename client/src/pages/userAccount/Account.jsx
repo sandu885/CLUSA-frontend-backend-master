@@ -135,7 +135,7 @@ class Account extends Component {
         const rows = (response.data.data.programs || []).map(row => {
           return {
             ...row,
-            programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
+            programType: <Link to={`/program/${row.objectId}`} className="link-under-line"> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
           }
         })
         this.setState({

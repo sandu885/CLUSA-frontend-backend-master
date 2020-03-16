@@ -450,6 +450,22 @@ table td {
     padding: 20px 20px 25px 20px;
     min-height: 144px;
 }
+.link-under-line {
+  text-decoration: underline !important;
+  color: #5772e3 !important;
+}
+.link-under-line:hover {
+  text-decoration: underline !important;
+  color: #5772e3 !important;
+}
+table.table a {
+  color: #5772e3 !important;
+  text-decoration: underline !important;
+}
+table.table a {
+  color: #5772e3 !important;
+  text-decoration: underline !important;
+}
 .offer-box-row .offer-box p{
     font-size: 17px;
     color: rgb(85, 110, 230);
@@ -460,9 +476,9 @@ table td {
 .offer-box-row .offer-box p span{
   font-size: 14px;
 }
-  .container, .container-lg, .container-md, .container-sm, .container-xl {
-      max-width: 1400px !important;
-  }
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1400px !important;
+}
 
 @media (max-width: 767px){
   .comment-container {

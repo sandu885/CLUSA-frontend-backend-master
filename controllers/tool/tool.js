@@ -206,10 +206,7 @@ const sendEmailCustomMessage = async(emailAddress, msg) => {
       },
       to: emailAddress,
       subject: 'Program status Update.',
-      text: `Dear ${username}, \n  \n
-                \n Thank you for being interested in our Internship Grant Program. Your status have changed from ${prevStatus} to ${currentStatus}, please visit our site to check the updates. \n
-                \n Thank you, \n
-                \n Best Regards, \n CLUSA`,
+      text: msg,
     };
     await client.sendMail(mailContent);
     const message = 'Your message has been successfully sent.';

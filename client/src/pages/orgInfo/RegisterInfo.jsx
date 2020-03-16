@@ -843,7 +843,7 @@ class RegisterInfo extends Component {
 
   render() {
     const { columns, data, dataReceived, role } = this.state;
-    console.log(this.state);
+
     // const { getMembers } = this.state;
     const { saveSuccess } = this.state;
     if (this.state.redirectToLogin === true) return <Redirect to="/login" />;
@@ -967,15 +967,17 @@ class RegisterInfo extends Component {
                                 >
                                   {this.state.role != '1' ? 'Go Back' : 'Back To My Account'}
                                 </MDBBtn>
-                                <MDBBtn
-                                  color="default"
-                                  rounded
-                                  className="z-depth-1a"
-                                  disabled={this.state.role !== '1'}
-                                  onClick={this.clickSubmitBtn}
-                                >
-                                  Save My Updates
-                                </MDBBtn>
+                                {this.state.role === '1' &&
+                                  <MDBBtn
+                                    color="default"
+                                    rounded
+                                    className="z-depth-1a"
+                                    disabled={this.state.role !== '1'}
+                                    onClick={this.clickSubmitBtn}
+                                  >
+                                    Save My Updates
+                                  </MDBBtn>
+                                }
                               </MDBCol>
                             </MDBRow>
 
@@ -1556,7 +1558,7 @@ class RegisterInfo extends Component {
                           </MDBBtn>
 
                           {
-                            (this.state.role === '3' || this.state.role === '0' || this.state.role === '2') &&
+                            this.state.role === '1' &&
                             <MDBBtn
                               color="default"
                               rounded

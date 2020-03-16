@@ -156,11 +156,9 @@ const updateAgreementPlacementById = async (meta, files) => {
   let queryUser = new Parse.Query('User');
   queryUser.equalTo("orgId", meta.orgId);
   let userRecord = await queryUser.first({ useMasterKey: true });
-
   let queryAgreementPlacement = new Parse.Query('AgreementPlacement');
   queryAgreementPlacement.equalTo("objectId", meta.objectId);
   let agreementPlacement = await queryAgreementPlacement.first({ useMasterKey: true });
-
   agreementPlacement.set("amount", meta.amount);
   if (files && files['signedAgreement'] && files['signedAgreement'].length > 0)
     agreementPlacement.set("signedAgreement", files['signedAgreement'][0]);
@@ -175,7 +173,6 @@ const updateAgreementPlacementById = async (meta, files) => {
   }
   if (files && files['finalFilledPlacement'] && files['finalFilledPlacement'].length > 0)
     agreementPlacement.set("finalFilledPlacement", files['finalFilledPlacement'][0]);
-
   if (meta.role === '1' && agreementPlacement.get('status') === '1') {
     throw new Error('Cannot update the agreement now as it is approved.');
   }
@@ -184,13 +181,12 @@ const updateAgreementPlacementById = async (meta, files) => {
   if (meta.role === '3' || meta.role === '2') {
     // 0 pending and 1 approved
     agreementPlacement.set("status", meta.status || 0);
-
     let queryProgram = new Parse.Query('Program');
     queryProgram.equalTo("objectId", meta.programId);
-
     let programRecord = await queryProgram.first({ useMasterKey: true });
     await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement');
     const queryOrg = new Parse.Query('Organization');
+
     queryOrg.equalTo("objectId", meta.orgId);
     const orgRecord = await queryOrg.first({ useMasterKey: true });
     await TOOL.programStatusUpdate('', '', programRecord.get('status'), meta.status === '1' ? 'approved' : 'preparingAgreement', orgRecord.get('name'));
@@ -204,7 +200,7 @@ const updateAgreementPlacementById = async (meta, files) => {
   // if (meta.role === '2' || meta.role === '3' || meta.role === '0') {
   //   await TOOL.CLUSAUploadAgreement(userRecord.get('emailAddress'), userRecord.get('username'));
   // }
-  if (meta.role === '2' && status === '1') {
+  if (meta.role === '2' && meta.status === '1') {
     const message = `Dear ${userRecord.get('username')}, \n  \n
               \n The agreement has been signed by both of us. Please download the signed
                   agreement and keep a copy for your reference. The first check will be sent out
@@ -217,11 +213,10 @@ const updateAgreementPlacementById = async (meta, files) => {
     let queryOrg = new Parse.Query('Organization');
     queryOrg.equalTo("objectId", meta.orgId);
     let orgRecord = await queryOrg.first({ useMasterKey: true });
-
     await TOOL.CLUSAUploadAgreementToCLUSA(orgRecord.get('name'));
   }
 
-  console.log('\n\nAgreement Placement saved in the database updated', agreementPlacementSaved, '\n\n');
+  console.log('\n\nAgreement Placement saved in the database updated \n\n');
   return agreementPlacementSaved;
 };
 

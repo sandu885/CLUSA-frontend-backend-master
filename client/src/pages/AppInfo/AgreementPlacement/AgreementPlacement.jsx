@@ -191,14 +191,14 @@ class AgreementPlacement extends Component {
                 <MDBCardBody>
                   <MDBRow className="user-org-management-header sub-management-header">
                     <MDBCol>
-                      <h4>
-                        Congratulations to being awarded by CLUSA Internship Grant! Please download
-                        the agreement template below and review it. If everything is fine, please sign and
-                        upload your signed agreement below. Please also provide the internship
-                        placement confirmation information using the template in the second section on
-                        this page. Please note, the placement confirmation is needed before CLUSA sign
-                        the agreement.
-                      </h4>
+                      <div style={{ fontSize: 'initial' }}>
+                        Congratulations to being awarded by
+                        CLUSA Internship Grant! Please download the agreement template below and
+                        review it. If everything is fine, please sign and upload your signed agreement
+                        below. Please also provide the internship placement confirmation information
+                        using the template in the second section on this page. Please note, the
+                        placement confirmation is needed before CLUSA sign the agreement.
+                      </div>
                     </MDBCol>
                   </MDBRow>
                   <MDBRow className="pt-2">
@@ -357,7 +357,9 @@ class AgreementPlacement extends Component {
                             // </MDBBtn>
                           :
                           <>
-                            <div>Click SAVE to save your changes</div>
+                          <MDBRow>
+                            <MDBCol md="5">
+                            <span className="pr-2">Click SAVE to save your changes</span>
                               <MDBBtn
                                 rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color mt-2"
                                 onClick={this.handlePostAgreementPlacementClick}
@@ -372,32 +374,32 @@ class AgreementPlacement extends Component {
                               >
                                 Cancel
                               </MDBBtn>
+                            </MDBCol>
+                            <MDBCol md="7" className="text-right">
+                              <MDBBtn
+                                color="secondary"
+                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-5"
+                                onClick={() => {
+                                  if (role !== '1')
+                                    this.props.history.push('/view-program')
+                                }}
+                              >
+                                Back to Account Dashboard
+                              </MDBBtn>
+                              <MDBBtn
+                                color="secondary"
+                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-5"
+                                onClick={() => {
+                                  if (role !== '1')
+                                    this.props.history.push(`/program/${programId}`)
+                                }}
+                              >
+                                Back to Program Detail
+                              </MDBBtn>
+                            </MDBCol>
+                          </MDBRow>
                           </>
                         }
-                      </MDBCol>
-                      <MDBCol md="12">
-                        <p className="text-right">
-                          <MDBBtn
-                          color="secondary"
-                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-3"
-                            onClick={() => {
-                              if (role !== '1')
-                                this.props.history.push('/view-program')
-                            }}
-                          >
-                            Back to Account Dashboard
-                          </MDBBtn>
-                          <MDBBtn
-                          color="secondary"
-                            rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-3"
-                            onClick={() => {
-                              if (role !== '1')
-                                this.props.history.push(`/program/${programId}`)
-                            }}
-                          >
-                            Back to Program Detail
-                          </MDBBtn>
-                        </p>
                       </MDBCol>
                     </MDBRow>
                   </div>

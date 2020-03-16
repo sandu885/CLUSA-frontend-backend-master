@@ -247,17 +247,17 @@ class FinalReport extends Component {
 
                         {
                           fileLink &&
-                          <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank">Click to download Expense Template</a>
+                          <label><a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Click to download Expense Template</a></label>
                         }
                         <input type="file" className="form-control final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
                         <br/>
-                        <MDBBtn rounded className="application-info-button second-action-button z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
+                        <MDBBtn rounded className="application-info-button pt-2 second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
                           Click to Upload Template
                         </MDBBtn>
                         <span style={{ paddingLeft: '10px' }}>
                           {
                             q2['third'] && q2['third'] ? q2['third'].name : fileLink ?
-                              <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank">{fileLink.filename}</a>
+                              <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">{fileLink.filename}</a>
                               : ''
                           }
                         </span>

@@ -394,7 +394,7 @@ class UserOrganizationManagement extends Component {
                     className="third-action-button z-depth-1a"
                     onClick={(event) => this.toggleSuspend(event, { ...e, userData: userDataByOrg })}
                   >
-                    {e.isSuspended ? 'Restore' : 'Suspend'}
+                    {e.isSuspended ? 'Suspended' : 'Suspend'}
                   </MDBBtn>
                 </MDBCol>
               </MDBRow>
@@ -455,7 +455,7 @@ class UserOrganizationManagement extends Component {
                     className="third-action-button z-depth-1a"
                     onClick={(e) => this.toggle(e, u)}
                   >
-                    Deleted
+                    Delete
                   </MDBBtn>
                   </MDBCol>
               </MDBRow>
