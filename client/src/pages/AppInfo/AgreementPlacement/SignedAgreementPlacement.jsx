@@ -165,6 +165,7 @@ class SignedAgreementPlacement extends Component {
     const { formData, role, programId } = this.state;
 
     let heading = 'Agreement and Placement';
+    console.log('formData.agreementTemplateLink', formData.agreementTemplateLink);
 
     const breadCrums = [{
       name: 'dashboard',
@@ -215,7 +216,9 @@ class SignedAgreementPlacement extends Component {
                           <MDBRow>
                             <MDBCol sm="12">
                               <p><strong>Draft Agreement</strong></p>
-                              {formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? <a href={`/${formData.agreementTemplateLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Download Agreement</a> : 'Agreement file is not uploaded'}
+                              {formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? <a href={`/${formData.agreementTemplateLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">
+                                {formData.agreementTemplateLink.filename}
+                              </a> : 'Agreement file is not uploaded'}
                               <div>Please click here to download the agreement template. </div>
                             </MDBCol>
                           </MDBRow>
@@ -296,8 +299,10 @@ class SignedAgreementPlacement extends Component {
                       <MDBCol md="12">
                         <strong style={{ textTransform: 'uppercase' }}>Final Agreement (Signed by CLUSA and applicant)</strong>
                       </MDBCol>
-                      <MDBCol sm="12" className="pt-2">
-                        {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Download Placement File</a>}
+                      <MDBCol sm="12" className="pt-2 pb-2">
+                        {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">
+                          {formData.finalFilledPlacementLink.filename}
+                        </a>}
                       </MDBCol>
                       <MDBCol sm="12">
                         <div style={{ paddingBottom: '10px', borderBottom: '1px solid #bcbcbc', }}>

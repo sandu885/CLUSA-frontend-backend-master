@@ -221,7 +221,7 @@ class AgreementPlacement extends Component {
                             formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ?
                               // <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'} rel="noopener noreferrer" className="file-upload-name" target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
                               <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'}>
-                                Download Agreement
+                                {formData.agreementTemplateLink.filename}
                               </a>
                               : ''
                           }
@@ -235,10 +235,10 @@ class AgreementPlacement extends Component {
                           <p><strong>Signed Agreement (by applicant)</strong><br></br>
                             {formData.signedAgreementLink ?
                               <a href={`/${formData.signedAgreementLink.path}`} rel="noopener noreferrer" className="file-upload-name" target="_blank">
-                                Download Signed Agreement
+                                {formData.signedAgreementLink.filename}
                               </a>
                               : 'File is not uploaded'}
-                            <div>Please click here to download  the signed agreement.</div>
+                            <div>Please click here to download the signed agreement.</div>
                           </p>
                         </div>
                       </div>
@@ -285,7 +285,7 @@ class AgreementPlacement extends Component {
                               <p><strong>Filled placement</strong><br></br>
                                 {formData.filledPlacementLink ?
                                   <a href={`/${formData.filledPlacementLink.path}`} rel="noopener noreferrer" target="_blank">
-                                    Download Sign Placement File
+                                    {formData.filledPlacementLink.filename}
                                   </a>
                                   // <a href={`/${formData.filledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="btn btn-default">Download Placement Confirmation</a>
                                   : 'File is not uploaded'}
@@ -318,7 +318,7 @@ class AgreementPlacement extends Component {
                           {role === '0' ?
                             <MDBCol sm="12" className="pt-2">
                               {formData.finalFilledPlacementLink ? <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}` : '#'}>
-                                    Download Agreement
+                                    {formData.finalFilledPlacementLink.filename}
                                   </a> : 'File not uploaded'
                               }
                               <div style={{ marginBottom: '10px' }}>This is the final agreement signed by both parties. You can download to keep a copy for your reference</div>
@@ -335,7 +335,7 @@ class AgreementPlacement extends Component {
 
                                   formData.finalFilledPlacement ? formData.finalFilledPlacement.name : formData.finalFilledPlacementLink ?
                                     <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}`: '#'}>
-                                      Download Agreement
+                                      {formData.finalFilledPlacementLink.filename}
                                     </a>
                                     // <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank" className="file-upload-name">{formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename}</a>
                                     : ''

@@ -5,7 +5,8 @@ import {
   MDBCardBody,
   MDBBtn,
   MDBDataTable,
-  MDBRow, MDBCol, MDBCard, MDBModalHeader, MDBModalBody, MDBModal
+  MDBRow, MDBCol, MDBCard, MDBModalHeader, MDBModalBody, MDBModal,
+  MDBIcon,
 } from 'mdbreact';
 import Loader from 'react-loader-spinner'
 import axios from 'axios';
@@ -194,8 +195,8 @@ class UserOrganizationManagement extends Component {
           className={`nav-link Ripple-parent ${activeTab === 'user' ? ' active': ''}`}
           data-test="nav-link"
           onClick={(lEvent) => this.toggleTab(lEvent, 'user')}
-          to="#">            
-          <AddBox /> User Management
+          to="#">
+          <MDBIcon icon="user-alt" /> User Management
           <div className="Ripple " style={{ top: '0px', left: '0px', width: '0px', height: '0px' }}/>
         </Link>
       </li>
@@ -206,7 +207,7 @@ class UserOrganizationManagement extends Component {
           data-test="nav-link"
           onClick={(lEvent) => this.toggleTab(lEvent, 'org')}
           to="#">
-          <AddBox /> Organization Management
+          <MDBIcon icon="sitemap" /> Organization Management
           <div className="Ripple " style={{ top: '0px', left: '0px', width: '0px', height: '0px' }}/>
         </Link>
       </li>
