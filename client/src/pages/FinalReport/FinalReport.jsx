@@ -287,6 +287,7 @@ class FinalReport extends Component {
                           {questionList['question3-4']}
                         </label>
                         <textarea className="form-control final-report-input" name="q3-forth" value={q3['forth']} onChange={this.handleChange} />
+                        <p>Each time when you edit your input, please click Save button to save your changes. After you submit this final report, you are not allowed to edit any parts any more.</p>
                       </div>
 
                       <div className="pt-4">

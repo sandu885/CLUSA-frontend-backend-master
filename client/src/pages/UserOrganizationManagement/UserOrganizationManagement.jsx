@@ -194,8 +194,8 @@ class UserOrganizationManagement extends Component {
           className={`nav-link Ripple-parent ${activeTab === 'user' ? ' active': ''}`}
           data-test="nav-link"
           onClick={(lEvent) => this.toggleTab(lEvent, 'user')}
-          to="#">
-          User Management
+          to="#">            
+          <AddBox /> User Management
           <div className="Ripple " style={{ top: '0px', left: '0px', width: '0px', height: '0px' }}/>
         </Link>
       </li>
@@ -206,7 +206,7 @@ class UserOrganizationManagement extends Component {
           data-test="nav-link"
           onClick={(lEvent) => this.toggleTab(lEvent, 'org')}
           to="#">
-          Organization Management
+          <AddBox /> Organization Management
           <div className="Ripple " style={{ top: '0px', left: '0px', width: '0px', height: '0px' }}/>
         </Link>
       </li>
@@ -381,18 +381,18 @@ class UserOrganizationManagement extends Component {
             lastLogin: userDataByOrg && userDataByOrg.lastLogin ? moment(userDataByOrg.lastLogin).format('MM-DD-YYYY') : '',
             email: userDataByOrg ? userDataByOrg.email || userDataByOrg.emailAddress || '' : '',
             functions: <div>
-              <MDBRow>
+              <MDBRow className={e.isSuspended ? 'suspended-row' : ''}>
                 <MDBCol md="12">
                   <MDBBtn
                     rounded
-                    color="secondary"
+                    color="default"
                     className="first-action-button z-depth-1a"
                     onClick={() => {
                       localStorage.setItem('orgId', e.objectId);
                       this.props.history.push('/organization-information/');
                     }}
                   >
-                    Edit
+                    View
                   </MDBBtn>
                   <MDBBtn
                     rounded
@@ -425,7 +425,7 @@ class UserOrganizationManagement extends Component {
                   <MDBBtn
                     color="danger"
                     rounded
-                    className="third-action-button z-depth-1a suspend-btn"
+                    className="third-action-button z-depth-1a"
                     onClick={(event) => this.toggleSuspend(event, { ...e, userData: userDataByOrg })}
                   >
                     {e.isSuspended ? 'Suspended' : 'Suspend'}
@@ -445,7 +445,7 @@ class UserOrganizationManagement extends Component {
               <MDBRow>
                  <MDBCol md="12">
                   <MDBBtn 
-                    color="secondary"
+                    color="default"
                     rounded
                     className="first-action-button z-depth-1a"
                     onClick={() => {
