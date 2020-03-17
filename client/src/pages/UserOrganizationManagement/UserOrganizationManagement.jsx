@@ -29,6 +29,7 @@ class UserOrganizationManagement extends Component {
       userResponse: [],
       sessionToken: localStorage.getItem('sessionToken'),
       suspensionModal: false,
+      activeTab: 'user',
     };
   }
 
@@ -37,6 +38,14 @@ class UserOrganizationManagement extends Component {
       open: !this.state.open,
       selectedUserData: userData,
     })
+  };
+
+  toggleTab = (e, activeTab) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState({
+      activeTab,
+    });
   };
 
   toggleSuspend = (e, orgData) => {
@@ -93,7 +102,8 @@ class UserOrganizationManagement extends Component {
   };
 
   render() {
-    const { orgAll, userAll = [], dataReceived } = this.state;
+    const { orgAll, userAll = [], dataReceived, activeTab } = this.state;
+    console.log(this.state);
 
     const orgTableData = {
       columns: [
@@ -177,13 +187,30 @@ class UserOrganizationManagement extends Component {
       ]
     };
 
-    const currentPage = [{
-      name: 'userPerson',
-      child: <li key={`userPerson1`} className="breadcrumb-item"><Person/> <Link to={'/user-organization-management'}>User Management</Link></li>,
-    }, {
-      name: 'userOrg',
-      child: <li key={`userOrg2`} className="breadcrumb-item active"><HomeIcon/> Organization Management</li>,
-    }];
+    const currentPage = <ul className="nav nav-tabs" style={{borderBottom: 'unset'}}>
+      <li className="nav-item">
+        <Link
+          aria-current="page"
+          className={`nav-link Ripple-parent ${activeTab === 'user' ? ' active': ''}`}
+          data-test="nav-link"
+          onClick={(lEvent) => this.toggleTab(lEvent, 'user')}
+          to="#">
+          User Management
+          <div className="Ripple " style={{ top: '0px', left: '0px', width: '0px', height: '0px' }}/>
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          aria-current="page"
+          className={`nav-link Ripple-parent ${activeTab === 'org' ? ' active': ''}`}
+          data-test="nav-link"
+          onClick={(lEvent) => this.toggleTab(lEvent, 'org')}
+          to="#">
+          Organization Management
+          <div className="Ripple " style={{ top: '0px', left: '0px', width: '0px', height: '0px' }}/>
+        </Link>
+      </li>
+    </ul>;
     const BreadCrums = [{
       name: 'dashboard',
       child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/user-organization-management'}>Dashboard</Link></li>,
@@ -192,126 +219,133 @@ class UserOrganizationManagement extends Component {
     return (
       <div className="bg-withImage">
         <HeaderComponent currentPage={currentPage} breadCrums={BreadCrums} />
-        <MDBContainer className="title-section">
-          <MDBRow>
-            <MDBCol
-              md="8"
-
-            >
-              <h1>User Management</h1>
-            </MDBCol>
-            <MDBCol
-              md="4"
-              className="text-right"
-              style={{ display: 'block' }}
-            >
-              <MDBBtn
-                rounded
-                className="second-action-button z-depth-1a add-new-user "
-                style={{ float: 'right' }}
-                onClick={() => {
-                  this.props.history.push(`/user-account`);
-                }}
-              >
-                <AddBox /> Add New User
-              </MDBBtn>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-
-        <MDBContainer className="">
-          <MDBRow>
-            <MDBCol md="12">
-              <MDBCard className="card-padding">
-                {dataReceived ?
-                  <div style={{ textAlign: 'center' }}>
-                    <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
-                  </div>
-                  :
-                  <MDBCardBody>
-                    <div className="table-responsive">
-                      <MDBDataTable
-                        className="custom-table program-table"
-                        striped
-                        borderless
-                        data={userTableData}
-                        searching={true}
-                        noBottomColumns
-                        info={false}
-                      />
+        {activeTab === 'user' &&
+          <>
+            <MDBContainer className="title-section">
+              <MDBRow>
+                <MDBCol
+                  md="8"
+                >
+                  <h1>User Management</h1>
+                </MDBCol>
+                <MDBCol
+                  md="4"
+                  className="text-right"
+                  style={{ display: 'block' }}
+                >
+                  <MDBBtn
+                    rounded
+                    className="second-action-button z-depth-1a add-new-user "
+                    style={{ float: 'right' }}
+                    onClick={() => {
+                      this.props.history.push(`/user-account`);
+                    }}
+                  >
+                    <AddBox /> Add New User
+                  </MDBBtn>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+            <MDBContainer className="">
+            <MDBRow>
+              <MDBCol md="12">
+                <MDBCard className="card-padding">
+                  {dataReceived ?
+                    <div style={{ textAlign: 'center' }}>
+                      <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
                     </div>
-                  </MDBCardBody>
-                }
-                
-                <br />
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>         
-        <MDBContainer className="title-section">
-          <MDBRow>
-            <MDBCol
-              md="12"
-            >
-              <h1>Organization Management</h1>
-            </MDBCol>            
-          </MDBRow>
-        </MDBContainer>
-        <MDBContainer className="">
-          <MDBRow>
-            <MDBCol md="12">
-              <MDBCard> 
-                {dataReceived ?
-                  <div style={{ textAlign: 'center' }}>
-                    <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
-                  </div>
-                  :
-                  <MDBCardBody>
-                    <div className="table-responsive">
-                      <MDBDataTable
-                        className="custom-table program-table"
-                        striped
-                        borderless
-                        data={orgTableData}
-                        searching={true}
-                        noBottomColumns
-                        info={false}
-                      />
-                    </div>
-                  </MDBCardBody>
-                }
-              </MDBCard>
-              <MDBModal isOpen={this.state.open} toggle={this.toggle}>
-                <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
-                <MDBModalBody className="text-center">
-                  <MDBRow>
-                    <MDBCol className='mb-3'>
-                      <div>
-                        {this.state.selectedUserData && this.state.selectedUserData.username}
+                    :
+                    <MDBCardBody>
+                      <div className="table-responsive">
+                        <MDBDataTable
+                          className="custom-table program-table"
+                          striped
+                          borderless
+                          data={userTableData}
+                          searching={true}
+                          noBottomColumns
+                          info={false}
+                        />
                       </div>
-                    </MDBCol>
-                  </MDBRow>
-                  <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
-                  <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggle}>Cancel</MDBBtn>
-                </MDBModalBody>
-              </MDBModal>
-              <MDBModal isOpen={this.state.suspensionModal} toggle={this.toggleSuspend}>
-                <MDBModalHeader>Are you sure you want to {this.state.selectedOrgData && this.state.selectedOrgData.isSuspended ? 'restore' : 'suspend' } organization</MDBModalHeader>
-                <MDBModalBody className="text-center">
-                  <MDBRow>
-                    <MDBCol className='mb-3'>
-                      <div>
-                        {this.state.selectedOrgData && this.state.selectedOrgData.name}
+                    </MDBCardBody>
+                  }
+
+                  <br />
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+          </>
+        }
+        {activeTab === 'org' &&
+          <>
+            <MDBContainer className="title-section">
+              <MDBRow>
+                <MDBCol
+                  md="12"
+                >
+                  <h1>Organization Management</h1>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+            <MDBContainer className="">
+              <MDBRow>
+                <MDBCol md="12">
+                  <MDBCard>
+                    {dataReceived ?
+                      <div style={{ textAlign: 'center' }}>
+                        <Loader type="BallTriangle" color="#4f4f4f" height={80} width={80} />
                       </div>
-                    </MDBCol>
-                  </MDBRow>
-                  <MDBBtn className="modal-success-button" color="primary" onClick={this.suspendOrg}>Yes</MDBBtn>
-                  <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggleSuspend}>Cancel</MDBBtn>
-                </MDBModalBody>
-              </MDBModal>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+                      :
+                      <MDBCardBody>
+                        <div className="table-responsive">
+                          <MDBDataTable
+                            className="custom-table program-table"
+                            striped
+                            borderless
+                            data={orgTableData}
+                            searching={true}
+                            noBottomColumns
+                            info={false}
+                          />
+                        </div>
+                      </MDBCardBody>
+                    }
+                  </MDBCard>
+                  <MDBModal isOpen={this.state.open} toggle={this.toggle}>
+                    <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
+                    <MDBModalBody className="text-center">
+                      <MDBRow>
+                        <MDBCol className='mb-3'>
+                          <div>
+                            {this.state.selectedUserData && this.state.selectedUserData.username}
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
+                      <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggle}>Cancel</MDBBtn>
+                    </MDBModalBody>
+                  </MDBModal>
+                  <MDBModal isOpen={this.state.suspensionModal} toggle={this.toggleSuspend}>
+                    <MDBModalHeader>Are you sure you want to {this.state.selectedOrgData && this.state.selectedOrgData.isSuspended ? 'restore' : 'suspend' } organization</MDBModalHeader>
+                    <MDBModalBody className="text-center">
+                      <MDBRow>
+                        <MDBCol className='mb-3'>
+                          <div>
+                            {this.state.selectedOrgData && this.state.selectedOrgData.name}
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBBtn className="modal-success-button" color="primary" onClick={this.suspendOrg}>Yes</MDBBtn>
+                      <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggleSuspend}>Cancel</MDBBtn>
+                    </MDBModalBody>
+                  </MDBModal>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+          </>
+        }
+
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );

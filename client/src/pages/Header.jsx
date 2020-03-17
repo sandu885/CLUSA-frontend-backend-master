@@ -3,7 +3,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import './style.css';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBNavItem, MDBNav, MDBNavLink } from 'mdbreact';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -97,11 +97,11 @@ class Header extends Component {
         redirectToAccount: true,
       });
     }
-  }
+  };
 
   render() {
     const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin, sessionToken, displayRole } = this.state;
-    const { currentPage = [], breadCrums = [] } = this.props;
+    const { currentPage, breadCrums = [] } = this.props;
 
     if (clickLogOut === true || redirectToLogin === true) return <Redirect to="/login" />;
     if (redirectToCLUSAccount === true) return <Redirect to="/clusa-account" />;
@@ -176,9 +176,12 @@ class Header extends Component {
                   <MDBCol md="7">
                     <nav aria-label="breadcrumb" className="breadcrumb-main">
                       <ol className="breadcrumb">
-                        {currentPage.length ?
-                          currentPage.map(cP => cP.child) : null
-                        }
+                        {/*{currentPage.length ?*/}
+                        {/*  currentPage.map(cP => cP.child) : null*/}
+                        {/*}*/}
+                        {currentPage}
+
+
                         {/*{!currentPage.length &&*/}
                         {/*  <>*/}
                         {/*    <li className="breadcrumb-item"><Person/> <a href="#">User Management</a></li>*/}

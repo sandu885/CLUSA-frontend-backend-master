@@ -480,6 +480,10 @@ table.table a {
     max-width: 1400px !important;
 }
 
+.nav-tabs .nav-link {
+  border-radius: .25rem !important;
+}
+
 @media (max-width: 767px){
   .comment-container {
     padding: 20px 20px 30px 20px;
