@@ -330,7 +330,6 @@ class AgreementPlacement extends Component {
                                 <MDBBtn rounded className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('finalFilledPlacement')}>
                                   Click to Upload/Replace Template Files
                                 </MDBBtn>
-                                <div style={{ marginBottom: '10px' }}>This is the final agreement signed by both parties. You can download to keep a copy for your reference</div>
                                 {
 
                                   formData.finalFilledPlacement ? formData.finalFilledPlacement.name : formData.finalFilledPlacementLink ?
@@ -340,6 +339,7 @@ class AgreementPlacement extends Component {
                                     // <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank" className="file-upload-name">{formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename}</a>
                                     : ''
                                 }
+                                <div style={{ marginBottom: '10px' }}>This is the final agreement signed by both parties. You can download to keep a copy for your reference</div>
                                 <div>
                                 {
                                   (role === '3' || role === '2') &&
