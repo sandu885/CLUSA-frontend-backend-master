@@ -220,7 +220,7 @@ class AgreementPlacement extends Component {
                           {
                             formData.agreementTemplate ? formData.agreementTemplate.name : formData.agreementTemplateLink ?
                               // <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'} rel="noopener noreferrer" className="file-upload-name" target="_blank">{formData.agreementTemplateLink && formData.agreementTemplateLink.filename}</a>
-                              <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'}>
+                              <a href={formData.agreementTemplateLink && formData.agreementTemplateLink.filename ? `/${formData.agreementTemplateLink.path}`: '#'} rel="noopener noreferrer" target="_blank" className="link-under-line">
                                 {formData.agreementTemplateLink.filename}
                               </a>
                               : ''
@@ -234,7 +234,7 @@ class AgreementPlacement extends Component {
                         <div className="block-header">
                           <p><strong>Signed Agreement (by applicant)</strong><br></br>
                             {formData.signedAgreementLink ?
-                              <a href={`/${formData.signedAgreementLink.path}`} rel="noopener noreferrer" className="file-upload-name" target="_blank">
+                              <a href={`/${formData.signedAgreementLink.path}`} rel="noopener noreferrer" className="link-under-line" target="_blank">
                                 {formData.signedAgreementLink.filename}
                               </a>
                               : 'File is not uploaded'}
@@ -258,9 +258,9 @@ class AgreementPlacement extends Component {
 
                         <div className="mb-4">
                           <p><strong>Placement template file shows here</strong></p>
-                          {role === '0' ? <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank" className="">Internship Placement Confirmation Template.xlsx</a> :
+                          {role === '0' ? <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank" className="link-under-line">Internship Placement Confirmation Template.xlsx</a> :
                             <>
-                              <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank" className="">Internship Placement Confirmation Template.xlsx</a>
+                              <a href={CLUSAAgreementPlacement} rel="noopener noreferrer" target="_blank" className="link-under-line">Internship Placement Confirmation Template.xlsx</a>
                               {/*<input type="file" className="form-control" style={{ display: 'none' }} name="placementTemplate" onChange={this.handleFileChange}/>*/}
                               {/*<MDBBtn rounded className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('placementTemplate')}>*/}
                               {/*  Click to Upload/Replace Template Files*/}
@@ -284,7 +284,7 @@ class AgreementPlacement extends Component {
                             <MDBCol sm="12" className="block-header">
                               <p><strong>Filled placement</strong><br></br>
                                 {formData.filledPlacementLink ?
-                                  <a href={`/${formData.filledPlacementLink.path}`} rel="noopener noreferrer" target="_blank">
+                                  <a href={`/${formData.filledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">
                                     {formData.filledPlacementLink.filename}
                                   </a>
                                   // <a href={`/${formData.filledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="btn btn-default">Download Placement Confirmation</a>
@@ -317,7 +317,7 @@ class AgreementPlacement extends Component {
                           
                           {role === '0' ?
                             <MDBCol sm="12" className="pt-2">
-                              {formData.finalFilledPlacementLink ? <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}` : '#'}>
+                              {formData.finalFilledPlacementLink ? <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}` : '#'} rel="noopener noreferrer" target="_blank" className="link-under-line">
                                     {formData.finalFilledPlacementLink.filename}
                                   </a> : 'File not uploaded'
                               }
@@ -334,7 +334,7 @@ class AgreementPlacement extends Component {
                                 {
 
                                   formData.finalFilledPlacement ? formData.finalFilledPlacement.name : formData.finalFilledPlacementLink ?
-                                    <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}`: '#'}>
+                                    <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank" className="link-under-line pb-2">
                                       {formData.finalFilledPlacementLink.filename}
                                     </a>
                                     // <a href={formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename ? `/${formData.finalFilledPlacementLink.path}`: '#'} rel="noopener noreferrer" target="_blank" className="file-upload-name">{formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename}</a>
@@ -353,11 +353,30 @@ class AgreementPlacement extends Component {
                           }
                         </MDBRow>
                         {role === '0' ?
-                          null
-                            // <MDBBtn rounded  color="danger" className="application-info-button second-action-button  z-depth-1a check-file-upload"
-                            //         onClick={() => this.state.programId && this.props.history.push(`/program/${this.state.programId}`)}>
-                            //   Back
-                            // </MDBBtn>
+                          <MDBRow>
+                            <MDBCol className="text-right">
+                              <MDBBtn
+                                color="secondary"
+                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-3"
+                                onClick={() => {
+                                  if (role !== '1')
+                                    this.props.history.push('/view-program')
+                                }}
+                              >
+                                Back to Account Dashboard
+                              </MDBBtn>
+                              <MDBBtn
+                                color="secondary"
+                                rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color col-md-3"
+                                onClick={() => {
+                                  if (role !== '1')
+                                    this.props.history.push(`/program/${programId}`)
+                                }}
+                              >
+                                Back to Program Detail
+                              </MDBBtn>
+                            </MDBCol>
+                          </MDBRow>
                           :
                           <>
                           <MDBRow>
