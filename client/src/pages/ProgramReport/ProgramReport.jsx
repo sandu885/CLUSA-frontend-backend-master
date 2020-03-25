@@ -228,7 +228,7 @@ class ProgramReport extends Component {
   render() {
     const { formData, programReportData = [], role, programId } = this.state;
 
-    let heading = 'Program Report';
+    let heading = 'Ongoing Reports';
 
     const headingBreadCrumbs = roleBaseBreadCrumbHeading(role);
     const breadCrums = role != '1' ? [{
@@ -329,7 +329,7 @@ class ProgramReport extends Component {
                           </MDBBtn></td>
                         </tr>
                         <tr>
-                          <td><strong>Intern Information</strong></td>
+                          <td><strong>Event Attendee Sign In Sheet</strong></td>
                           <td>Report requirement sort introduction</td>
                           <td><MDBBtn rounded className="program-report-template"
                                   href={CLUSAInternInformation}
