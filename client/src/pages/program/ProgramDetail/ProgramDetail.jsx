@@ -12,10 +12,10 @@ import FooterComponent from '../../Footer';
 import HeaderComponent from '../../Header';
 import './programDetail.css'
 import Person from "@material-ui/icons/Person";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from '@material-ui/icons/Assessment';
-import {roleBaseBreadCrumbHeading} from "../../../utils/util";
+import { roleBaseBreadCrumbHeading } from "../../../utils/util";
 
 class ProgramDetail extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class ProgramDetail extends Component {
 
   handleAppCommentClick = () => {
     const { history } = this.props;
-    const { programData: { program = {} },  } = this.state;
+    const { programData: { program = {} }, } = this.state;
     if (program.orgId) {
       localStorage.setItem('orgId', program.orgId);
       // final-report-comment
@@ -76,8 +76,8 @@ class ProgramDetail extends Component {
   };
 
   handleFinalReportClick = () => {
-    const {history} = this.props;
-    const {programData: {program}} = this.state;
+    const { history } = this.props;
+    const { programData: { program } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
       history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}`);
@@ -106,17 +106,17 @@ class ProgramDetail extends Component {
       child: <li key={`viewProgram1`} className="breadcrumb-item"><HomeIcon /> <Link to={'/view-program'}>Program Management</Link></li>,
     }, {
       name: 'userOrg',
-      child: <li key={`userInformation2`} className="breadcrumb-item active"><AssessmentIcon/>Program Detail</li>,
+      child: <li key={`userInformation2`} className="breadcrumb-item active"><AssessmentIcon />Program Detail</li>,
     }];
     const breadCrums = role != '1' ? [{
       name: 'dashboard',
-      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/view-program'}>{headingBreadCrumbs} Dashboard</Link></li>,
+      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon /> <Link to={'/view-program'}>{headingBreadCrumbs} Dashboard</Link></li>,
     }, {
       name: 'programView',
       child: <li key={`programView1`} className="breadcrumb-item active"> Program Detail</li>,
     }] : [{
       name: 'orgDashboard0',
-      child: <li key={`orgDashboard0`} className="breadcrumb-item"><HomeIcon/> <Link to={'/account'}> Dashboard </Link></li>,
+      child: <li key={`orgDashboard0`} className="breadcrumb-item"><HomeIcon /> <Link to={'/account'}> Dashboard </Link></li>,
     }, {
       name: 'orgProgramDetails1',
       child: <li key={`orgProgramDetail2`} className="breadcrumb-item active"> Program Detail</li>,
@@ -133,8 +133,8 @@ class ProgramDetail extends Component {
               md="12"
             >
               <h1>{heading}</h1>
-            </MDBCol>            
-          </MDBRow>            
+            </MDBCol>
+          </MDBRow>
         </MDBContainer>
         <MDBContainer className="mb-5">
           {dataReceived &&
@@ -147,60 +147,60 @@ class ProgramDetail extends Component {
                         <h3>Program Info</h3>
                       </MDBCol>
                     </MDBRow>
-                    <div className="grey-bg">
-                    <MDBRow>
-                      <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
-                        <MDBRow>
-                          <MDBCol md="5">Program:-</MDBCol> <MDBCol md="7"><span> {programName && programName.name} </span></MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                          <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('DD/MM/YYYY') : ''} </span></MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                          <MDBCol md="5">1st Check Date:-</MDBCol> <MDBCol md="7"> <span> {checks[0] ? checks[0].date : ''} </span></MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                          <MDBCol md="5">Inter Placement #:-</MDBCol> <MDBCol md="7"> <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span></MDBCol>
-                        </MDBRow>
-                      </MDBCol>
-                      <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
-                        <MDBRow>
-                          <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span></MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                          <MDBCol md="5">Award Date:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span></MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                          <MDBCol md="5">2nd Check Date:-</MDBCol> <MDBCol md="7"> <span> {checks[1] ? checks[1].date : ''} </span></MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                          <MDBCol md="5">Actual Award Amount:-</MDBCol> <MDBCol md="7"> <span> {actualAwardAmount && actualAwardAmount} </span></MDBCol>
-                        </MDBRow>
-                      </MDBCol>
-                      <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
+                    <div className="program-info">
+                      <MDBRow>
+                        <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                           <MDBRow>
-                            <MDBCol md="5">Status:-</MDBCol> <MDBCol md="7"> <span style={{ textTransform: 'capitalize' }}> {program.status ? program.status.replace( /([A-Z])/g, " $1" ) : ''} </span></MDBCol>
+                            <MDBCol md="5">Org Name:-</MDBCol> <MDBCol md="7"> <span> {organization && organization.name && organization.name} </span></MDBCol>
+                          </MDBRow>
+                          <MDBRow>
+                            <MDBCol md="5">Program:-</MDBCol> <MDBCol md="7"><span> {programName && programName.name} </span></MDBCol>
+                          </MDBRow>
+                          <MDBRow>
+                            <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('DD/MM/YYYY') : ''} </span></MDBCol>
+                          </MDBRow>
+                          <MDBRow>
+                            <MDBCol md="5">Intern #:-</MDBCol> <MDBCol md="7"> <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span></MDBCol>
+                          </MDBRow>
+                        </MDBCol>
+                        <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
+                          <MDBRow>
+                            <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span></MDBCol>
+                          </MDBRow>
+                          <MDBRow>
+                            <MDBCol md="5">Award Date:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span></MDBCol>
+                          </MDBRow>
+                          <MDBRow>
+                            <MDBCol md="5">1st Check Date:-</MDBCol> <MDBCol md="7"> <span> {checks[0] ? checks[0].date : ''} </span></MDBCol>
+                          </MDBRow>
+                          <MDBRow>
+                            <MDBCol md="5">Actual Award Amount:-</MDBCol> <MDBCol md="7"> <span> {actualAwardAmount && actualAwardAmount} </span></MDBCol>
+                          </MDBRow>
+                        </MDBCol>
+                        <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
+                          <MDBRow>
+                            <MDBCol md="5">Status:-</MDBCol> <MDBCol md="7"> <span style={{ textTransform: 'capitalize' }}> {program.status ? program.status.replace(/([A-Z])/g, " $1") : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
                             <MDBCol md="5">Award Amount:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].awardAmount} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
-                            <MDBCol md="5">Org Name:-</MDBCol> <MDBCol md="7"> <span> {organization && organization.name && organization.name} </span></MDBCol>
+                            <MDBCol md="5">2nd Check Date:-</MDBCol> <MDBCol md="7"> <span> {checks[1] ? checks[1].date : ''} </span></MDBCol>
                           </MDBRow>
                         </MDBCol>
-                    </MDBRow>
+                      </MDBRow>
                     </div>
                     <MDBRow>
                       <MDBCol md="12">
                         <h3>Application Info</h3>
                       </MDBCol>
-                     
+
                       <MDBCol md="11" className="program-detail-sub-header font-weight-bold app-info">
                         <MDBRow>
                           <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
-                                Application Information
+                                Application
                               </MDBCol>
                               <MDBCol md="6">
                                 <MDBBtn
@@ -214,7 +214,7 @@ class ProgramDetail extends Component {
                             </MDBRow>
                             <MDBRow>
                               <MDBCol md="6">
-                                Agreement & Placement
+                                Agreement
                               </MDBCol>
                               <MDBCol md="6">
                                 <MDBBtn
@@ -263,32 +263,32 @@ class ProgramDetail extends Component {
                             }
                           </MDBCol>
                           <MDBCol md="4">
-                            
-                              {this.state.role != '1' &&
-                                <MDBRow>
-                                  <MDBCol md="6">
-                                    Send 1st Check
+
+                            {this.state.role != '1' &&
+                              <MDBRow>
+                                <MDBCol md="6">
+                                  1st Check
                                   </MDBCol>
-                                  <MDBCol md="6">
-                                    <MDBBtn
-                                      rounded
-                                      className="application-info-button second-action-button btn-block z-depth-1a"
-                                      onClick={() => {
-                                        const { history } = this.props;
-                                        const { programData: { program } } = this.state;
-                                        if (program) {
-                                          history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
-                                        }
-                                      }}
-                                    >
-                                      Review
+                                <MDBCol md="6">
+                                  <MDBBtn
+                                    rounded
+                                    className="application-info-button second-action-button btn-block z-depth-1a"
+                                    onClick={() => {
+                                      const { history } = this.props;
+                                      const { programData: { program } } = this.state;
+                                      if (program) {
+                                        history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      }
+                                    }}
+                                  >
+                                    Review
                                     </MDBBtn>
-                                  </MDBCol>
-                                </MDBRow>
-                              }
+                                </MDBCol>
+                              </MDBRow>
+                            }
                             <MDBRow>
                               <MDBCol md="6">
-                                Program Report
+                              Ongoing Reports
                               </MDBCol>
                               <MDBCol md="6">
                                 <MDBBtn
@@ -325,7 +325,7 @@ class ProgramDetail extends Component {
                             {this.state.role != '1' &&
                               <MDBRow>
                                 <MDBCol md="6">
-                                  Send Final Check
+                                Final Check
                                 </MDBCol>
                                 <MDBCol md="6">
                                   <MDBBtn
@@ -352,38 +352,38 @@ class ProgramDetail extends Component {
                         <>
                           <MDBCol md="12" />
                           <MDBCol md="2">
-                              <MDBBtn
-                                rounded
-                                color="danger"
-                                className="second-action-button btn-block z-depth-1a light-green-color"
-                                onClick={() => {
-                                  this.props.history.goBack();
-                                }}
-                              >
-                                Back
+                            <MDBBtn
+                              rounded
+                              color="danger"
+                              className="second-action-button btn-block z-depth-1a light-green-color"
+                              onClick={() => {
+                                this.props.history.goBack();
+                              }}
+                            >
+                              Back
                               </MDBBtn>
                           </MDBCol>
                         </>
                       }
                       {this.state.role == '1' &&
                         <>
-                          
-                            <MDBCol md="12 text-right">
-                              <div>
-                                <MDBBtn
-                                  rounded
-                                  color="secondary"
-                                  style={{ width: '250px' }}
-                                  className="second-action-button z-depth-1a"
-                                  onClick={() => {
-                                    this.props.history.push('/account')
-                                  }}
-                                >
-                                  Back to Dashboard
+
+                          <MDBCol md="12 text-right">
+                            <div>
+                              <MDBBtn
+                                rounded
+                                color="secondary"
+                                style={{ width: '250px' }}
+                                className="second-action-button z-depth-1a"
+                                onClick={() => {
+                                  this.props.history.push('/account')
+                                }}
+                              >
+                                Back to Dashboard
                                 </MDBBtn>
-                              </div>
-                            </MDBCol>
-                          
+                            </div>
+                          </MDBCol>
+
                         </>
                       }
 
@@ -459,8 +459,8 @@ class ProgramDetail extends Component {
         this.setState({
           dataReceived: true,
         });
-        if(error.response !== null && error.response !== undefined) {
-          if( error.response.data !== null && error.response.data !== undefined ) {
+        if (error.response !== null && error.response !== undefined) {
+          if (error.response.data !== null && error.response.data !== undefined) {
             if (error.response.data.message === 'sessionToken expired' || error.response.data.message === 'No sessionToken') {
               localStorage.clear();
               alert('Your login status was expired. Please login again.');
