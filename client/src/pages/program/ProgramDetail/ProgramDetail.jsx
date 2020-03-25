@@ -197,7 +197,8 @@ class ProgramDetail extends Component {
 
                       <MDBCol md="11" className="program-detail-sub-header font-weight-bold app-info">
                         <MDBRow>
-                          <MDBCol md="4">
+
+                          <MDBCol md="3">
                             <MDBRow>
                               <MDBCol md="6">
                                 Application
@@ -212,6 +213,9 @@ class ProgramDetail extends Component {
                                 </MDBBtn>
                               </MDBCol>
                             </MDBRow>
+                          </MDBCol>
+
+                          <MDBCol md="3">
                             <MDBRow>
                               <MDBCol md="6">
                                 Agreement
@@ -238,57 +242,37 @@ class ProgramDetail extends Component {
                                 </MDBBtn>
                               </MDBCol>
                             </MDBRow>
-                            {(this.state.role != '1' && this.state.role != '0') &&
-                              <MDBRow>
-                                <MDBCol md="6">
-                                  Program Closing Report
-                                </MDBCol>
-                                <MDBCol md="6">
-                                  <MDBBtn
-                                    rounded
-                                    className="application-info-button second-action-button z-depth-1a btn-block"
-                                    onClick={() => {
-                                      const { history } = this.props;
-                                      const { programData: { program } } = this.state;
-                                      localStorage.setItem('orgId', program.orgId);
-                                      if (program) {
-                                        history.push(`/close-program?orgId=${program.orgId}&programId=${program.objectId}`);
-                                      }
-                                    }}
-                                  >
-                                    Review
-                                  </MDBBtn>
-                                </MDBCol>
-                              </MDBRow>
-                            }
                           </MDBCol>
-                          <MDBCol md="4">
 
-                            {this.state.role != '1' &&
-                              <MDBRow>
-                                <MDBCol md="6">
-                                  1st Check
-                                  </MDBCol>
-                                <MDBCol md="6">
-                                  <MDBBtn
-                                    rounded
-                                    className="application-info-button second-action-button btn-block z-depth-1a"
-                                    onClick={() => {
-                                      const { history } = this.props;
-                                      const { programData: { program } } = this.state;
-                                      if (program) {
-                                        history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
-                                      }
-                                    }}
-                                  >
-                                    Review
-                                    </MDBBtn>
-                                </MDBCol>
-                              </MDBRow>
-                            }
+
+                          {this.state.role != '1' && <MDBCol md="3">
                             <MDBRow>
                               <MDBCol md="6">
-                              Ongoing Reports
+                                1st Check
+                                    </MDBCol>
+                              <MDBCol md="6">
+                                <MDBBtn
+                                  rounded
+                                  className="application-info-button second-action-button btn-block z-depth-1a"
+                                  onClick={() => {
+                                    const { history } = this.props;
+                                    const { programData: { program } } = this.state;
+                                    if (program) {
+                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                    }
+                                  }}
+                                >
+                                  Review
+                                      </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
+                          </MDBCol>
+                          }
+
+                          <MDBCol md="3">
+                            <MDBRow>
+                              <MDBCol md="6">
+                                Ongoing Reports
                               </MDBCol>
                               <MDBCol md="6">
                                 <MDBBtn
@@ -307,7 +291,8 @@ class ProgramDetail extends Component {
                               </MDBCol>
                             </MDBRow>
                           </MDBCol>
-                          <MDBCol md="4">
+
+                          <MDBCol md="3">
                             <MDBRow>
                               <MDBCol md="6">
                                 Final Report
@@ -322,30 +307,58 @@ class ProgramDetail extends Component {
                                 </MDBBtn>
                               </MDBCol>
                             </MDBRow>
-                            {this.state.role != '1' &&
-                              <MDBRow>
-                                <MDBCol md="6">
-                                Final Check
-                                </MDBCol>
-                                <MDBCol md="6">
-                                  <MDBBtn
-                                    rounded
-                                    className="application-info-button second-action-button btn-block z-depth-1a"
-                                    onClick={() => {
-                                      const { history } = this.props;
-                                      const { programData: { program } } = this.state;
-                                      if (program) {
-                                        history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
-                                      }
-                                    }}
-                                  >
-                                    Review
-                                  </MDBBtn>
-                                </MDBCol>
-                              </MDBRow>
-                            }
-
                           </MDBCol>
+
+                          {this.state.role != '1' && <MDBCol md="4">
+                            <MDBRow>
+                              <MDBCol md="6">
+                                Final Check
+                                  </MDBCol>
+                              <MDBCol md="6">
+                                <MDBBtn
+                                  rounded
+                                  className="application-info-button second-action-button btn-block z-depth-1a"
+                                  onClick={() => {
+                                    const { history } = this.props;
+                                    const { programData: { program } } = this.state;
+                                    if (program) {
+                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                    }
+                                  }}
+                                >
+                                  Review
+                                    </MDBBtn>
+                              </MDBCol>
+                            </MDBRow>
+                          </MDBCol>
+                          }
+
+                         {(this.state.role != '1' && this.state.role != '0') &&
+                            <MDBCol md="3">
+                                <MDBRow>
+                                  <MDBCol md="6">
+                                    Program Closing Report
+                                  </MDBCol>
+                                  <MDBCol md="6">
+                                    <MDBBtn
+                                      rounded
+                                      className="application-info-button second-action-button z-depth-1a btn-block"
+                                      onClick={() => {
+                                        const { history } = this.props;
+                                        const { programData: { program } } = this.state;
+                                        localStorage.setItem('orgId', program.orgId);
+                                        if (program) {
+                                          history.push(`/close-program?orgId=${program.orgId}&programId=${program.objectId}`);
+                                        }
+                                      }}
+                                    >
+                                      Review
+                                    </MDBBtn>
+                                  </MDBCol>
+                                </MDBRow>
+                            </MDBCol>
+                          }
+
                         </MDBRow>
                       </MDBCol>
                       {this.state.role != '1' &&

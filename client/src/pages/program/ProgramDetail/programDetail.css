@@ -4,6 +4,10 @@
 .sub-header {
     font-size: 1.3rem;
 }
+.col-md-6 {
+    flex: 0 0 40%;
+    max-width: 45%;
+}
 .program-detail-sub-header div {
     padding-bottom: .5rem;
 }
