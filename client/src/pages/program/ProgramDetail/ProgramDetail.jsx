@@ -198,7 +198,7 @@ class ProgramDetail extends Component {
                       <MDBCol md="11" className="program-detail-sub-header font-weight-bold app-info">
                         <MDBRow>
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Application
@@ -215,7 +215,7 @@ class ProgramDetail extends Component {
                             </MDBRow>
                           </MDBCol>
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Agreement
@@ -245,7 +245,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
 
 
-                          {this.state.role != '1' && <MDBCol md="3">
+                          {this.state.role != '1' && <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 1st Check
@@ -269,7 +269,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
                           }
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Ongoing Reports
@@ -292,7 +292,7 @@ class ProgramDetail extends Component {
                             </MDBRow>
                           </MDBCol>
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Final Report
@@ -334,10 +334,10 @@ class ProgramDetail extends Component {
                           }
 
                          {(this.state.role != '1' && this.state.role != '0') &&
-                            <MDBCol md="3">
+                            <MDBCol md="4">
                                 <MDBRow>
                                   <MDBCol md="6">
-                                    Program Closing Report
+                                    Closing Comment
                                   </MDBCol>
                                   <MDBCol md="6">
                                     <MDBBtn

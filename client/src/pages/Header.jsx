@@ -179,7 +179,10 @@ class Header extends Component {
                         {/*{currentPage.length ?*/}
                         {/*  currentPage.map(cP => cP.child) : null*/}
                         {/*}*/}
-                        {currentPage}
+                        {console.log(currentPage)}
+                        {Array.isArray(currentPage) ? 
+                          currentPage.map(page => page.child)
+                        : currentPage}
 
 
                         {/*{!currentPage.length &&*/}
