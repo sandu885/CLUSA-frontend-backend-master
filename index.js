@@ -24,7 +24,7 @@ if (app.get('env') === 'development') {
   console.log("In development env...");
 }
 
-databaseUri = "mongodb://localhost:27017/intern_grand_db";
+// databaseUri = "mongodb://localhost:27017/intern_grand_db";
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
