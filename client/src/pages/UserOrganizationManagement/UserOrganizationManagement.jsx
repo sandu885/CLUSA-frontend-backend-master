@@ -73,6 +73,7 @@ class UserOrganizationManagement extends Component {
         })
       })
     } catch (e) {
+      console.log(e)
       this.toggle()
     }
   };
@@ -273,6 +274,34 @@ class UserOrganizationManagement extends Component {
 
                   <br />
                 </MDBCard>
+                <MDBModal isOpen={this.state.open} toggle={this.toggle}>
+                    <MDBModalHeader>Are you sure to delete user</MDBModalHeader>
+                    <MDBModalBody className="text-center">
+                      <MDBRow>
+                        <MDBCol className='mb-3'>
+                          <div>
+                            {this.state.selectedUserData && this.state.selectedUserData.username}
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBBtn className="modal-success-button" color="primary" onClick={this.deleteUser}>Yes</MDBBtn>
+                      <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggle}>Cancel</MDBBtn>
+                    </MDBModalBody>
+                  </MDBModal>
+                  <MDBModal isOpen={this.state.suspensionModal} toggle={this.toggleSuspend}>
+                    <MDBModalHeader>Are you sure you want to {this.state.selectedOrgData && this.state.selectedOrgData.isSuspended ? 'restore' : 'suspend' } organization</MDBModalHeader>
+                    <MDBModalBody className="text-center">
+                      <MDBRow>
+                        <MDBCol className='mb-3'>
+                          <div>
+                            {this.state.selectedOrgData && this.state.selectedOrgData.name}
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBBtn className="modal-success-button" color="primary" onClick={this.suspendOrg}>Yes</MDBBtn>
+                      <MDBBtn className="modal-cancel-button" color="danger" onClick={this.toggleSuspend}>Cancel</MDBBtn>
+                    </MDBModalBody>
+                  </MDBModal>
               </MDBCol>
             </MDBRow>
           </MDBContainer>
@@ -488,7 +517,7 @@ class UserOrganizationManagement extends Component {
                     color="danger"
                     rounded
                     className="third-action-button z-depth-1a"
-                    onClick={(e) => this.toggle(e, u)}
+                    onClick={ (e) => {this.toggle(e, u); } }
                   >
                     Delete
                   </MDBBtn>

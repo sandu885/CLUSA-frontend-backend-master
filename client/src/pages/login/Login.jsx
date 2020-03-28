@@ -187,7 +187,7 @@ class Login extends Component {
               md="6"              
             >
               <MDBCard className="card-small">
-                <MDBCardBody className="mx-4">
+                <MDBCardBody className="mx-4 text-center">
                     <h3 className="dark-grey-text">
                       <strong>Login</strong>
                     </h3>

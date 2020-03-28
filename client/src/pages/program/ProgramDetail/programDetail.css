@@ -4,7 +4,7 @@
 .sub-header {
     font-size: 1.3rem;
 }
-.col-md-6 {
+.program-detail-sub-header  .col-md-6 {
     flex: 0 0 40%;
     max-width: 45%;
     text-align: right;
