@@ -144,7 +144,7 @@ class ProgramReport extends Component {
 
   postProgramReport = () => {
     const { history } = this.props;
-    const { formData: postData, sessionToken, role, orgId, programId, disableAllPostButton, orgName } = this.state;
+    const { formData: postData, sessionToken, role, orgId, programId, disableAllPostButton } = this.state;
     if (disableAllPostButton) {
       return alert('You can not perform this action now as report is submitted.');
     }
@@ -169,7 +169,7 @@ class ProgramReport extends Component {
     formData.append('sessionToken', sessionToken);
     formData.append('type', postData.type);
     formData.append('role', role);
-    formData.append('path', 'orgName');
+    formData.append('path', 'program-report');
 
     try {
       axios.post(

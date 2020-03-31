@@ -102,7 +102,7 @@ class FinalReport extends Component {
   
   handleFinalReportPost = async (isSubmitted) => {
     const { history } = this.props;
-    const { formData: postData, sessionToken, role, programId, orgId, orgName } = this.state;
+    const { formData: postData, sessionToken, role, programId, orgId } = this.state;
 
     if (postData.objectId) {
       if (postData.isSubmitted && postData.isSubmitted == '1') {
@@ -145,7 +145,7 @@ class FinalReport extends Component {
     formData.append('sessionToken', sessionToken);
     formData.append('role', role);
     formData.append('isSubmitted', isSubmitted);
-    formData.append('path', 'orgName');
+    formData.append('path', 'final-report');
 
 
     try {

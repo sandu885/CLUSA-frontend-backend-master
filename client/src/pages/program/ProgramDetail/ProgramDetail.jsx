@@ -77,10 +77,10 @@ class ProgramDetail extends Component {
 
   handleFinalReportClick = () => {
     const { history } = this.props;
-    const { programData: { program = {}, organization = {} } } = this.state;
+    const { programData: { program } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
-      history.push(`/final-report?orgName=${organization.name}&orgId=${program.orgId}&programId=${program.objectId}`);
+      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}`);
     }
   };
 
@@ -227,12 +227,12 @@ class ProgramDetail extends Component {
                                   onClick={() => {
                                     const { history } = this.props;
 
-                                    const { programData: { program = {}, organization = {} }, role } = this.state;
+                                    const { programData: { program = {} }, role } = this.state;
                                     if (program && program.objectId && program.orgId) {
                                       if (role === '1') {
-                                        return history.push(`/signed-agreement-placement?orgName=${organization.name}&orgId=${program.orgId}&programId=${program.objectId}`);
+                                        return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
                                       }
-                                      history.push(`/agreement-placement?orgName=${organization.name}&orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
                                     } else {
                                       return alert('Not having proper detail to access this information.')
                                     }
@@ -280,9 +280,9 @@ class ProgramDetail extends Component {
                                   className="application-info-button second-action-button btn-block z-depth-1a"
                                   onClick={() => {
                                     const { history } = this.props;
-                                    const { programData: { program = {}, organization = {} } } = this.state;
+                                    const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/program-report?orgName=${organization.name}&orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}`);
                                     }
                                   }}
                                 >

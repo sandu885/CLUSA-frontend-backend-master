@@ -85,7 +85,7 @@ class AgreementPlacement extends Component {
   };
 
   handlePostAgreementPlacementClick = () => {
-    const { formData: postData, orgId, programId, role, orgName } = this.state;
+    const { formData: postData, orgId, programId, role } = this.state;
 
     const formData = new FormData();
     if (!postData.objectId && this.validate(postData)) {
@@ -117,7 +117,6 @@ class AgreementPlacement extends Component {
     formData.append('programId', programId);
     formData.append('sessionToken', this.state.sessionToken);
     formData.append('role', role);
-    formData.append('path', 'orgName');
 
     axios.post(
       postProgram,
