@@ -230,14 +230,14 @@ class ProgramDetail extends Component {
                                     const { programData: { program = {} }, role } = this.state;
                                     if (program && program.objectId && program.orgId) {
                                       if (role === '1') {
-                                        return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                        return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                       }
-                                      history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                     } else {
                                       return alert('Not having proper detail to access this information.')
-                                    }
-                                  }}
-                                >
+                                      }
+                                    }}
+                                  >
                                   Review
                                 </MDBBtn>
                               </MDBCol>

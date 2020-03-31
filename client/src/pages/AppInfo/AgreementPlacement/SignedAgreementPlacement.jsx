@@ -109,12 +109,13 @@ class SignedAgreementPlacement extends Component {
       postProgram = '/api/updateAgreementPlacementById';
       // delete first.checkFile
       formData.append('objectId', postData.objectId);
+      formData.append('path', `${localStorage.getItem('orgName')}/agreement`);
       formData.append('signedAgreement', postData.signedAgreement);
       formData.append('filledPlacement', postData.filledPlacement);
 
     } else {
       postProgram = '/api/createNewAgreementPlacement';
-
+      formData.append('path', `${localStorage.getItem('orgName')}/agreement`);
       formData.append('signedAgreement', postData.signedAgreement);
       formData.append('filledPlacement', postData.filledPlacement);
     }
@@ -122,6 +123,7 @@ class SignedAgreementPlacement extends Component {
     formData.append('programId', programId);
     formData.append('sessionToken', this.state.sessionToken);
     formData.append('role', role);
+    formData.append('orgName', localStorage.getItem('orgName'));
 
     axios.post(
       postProgram,
