@@ -282,7 +282,7 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${agreementPlacement[0] && agreementPlacement[0].status}`);
                                     }
                                   }}
                                 >
@@ -297,15 +297,20 @@ class ProgramDetail extends Component {
                               <MDBCol md="6">
                                 Final Report
                               </MDBCol>
-                              <MDBCol md="6">
-                                <MDBBtn
-                                  rounded
-                                  className="application-info-button second-action-button btn-block z-depth-1a"
-                                  onClick={this.state.role === '1' ? this.handleFinalReportClick : this.handleFinalReportCommentClick}
-                                >
-                                  Review
-                                </MDBBtn>
-                              </MDBCol>
+                            <MDBCol md="6">
+                              <MDBBtn
+                                rounded
+                                disabled={!agreementPlacement[0] || agreementPlacement[0].status != 1}
+                                className="application-info-button second-action-button btn-block z-depth-1a"
+                                onClick={(e) => {
+                                if(agreementPlacement[0] && agreementPlacement[0].status == 1) {
+                                  this.state.role === '1' ? this.handleFinalReportClick(e) : this.handleFinalReportCommentClick(e)
+                                }
+                                }}
+                              >
+                              Review
+                              </MDBBtn>
+                            </MDBCol>
                             </MDBRow>
                           </MDBCol>
 

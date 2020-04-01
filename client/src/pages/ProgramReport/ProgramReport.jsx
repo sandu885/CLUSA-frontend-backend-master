@@ -162,14 +162,13 @@ class ProgramReport extends Component {
     } else {
       postProgramReportURL = '/api/createNewProgramReport';
     }
-
+    formData.append('path', `${this.state.orgName}/program-report`);
     formData.append('file', postData.file);
     formData.append('orgId', orgId);
     formData.append('programId', programId);
     formData.append('sessionToken', sessionToken);
     formData.append('type', postData.type);
     formData.append('role', role);
-    formData.append('path', 'program-report');
 
     try {
       axios.post(
@@ -463,55 +462,64 @@ class ProgramReport extends Component {
                         <MDBCol md={role == '1' ? 6 : 2} className="table-header font-weight-bold">Upload Date</MDBCol>
                       </MDBRow>
                       {programReportData.map((pRD, index) =>
-                        <MDBRow key={pRD.objectId + index}>
-                          <MDBCol md={role == '1' ? 3 : 7} className="pt-2 ellipsis">
-                            <a href={pRD.file.path} rel="noopener noreferrer" target="_blank" className="link-under-line">{pRD.file.filename}</a>
-                          </MDBCol>
-                          <MDBCol md={3} className="pt-2">
-                            {reportType.find(e => e.value == pRD.type).name}
-                          </MDBCol>
-                          <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
+                      <MDBRow key={pRD.objectId + index}>
+                        <MDBCol md={role == '1' ? 3 : 7} className="pt-2 ellipsis">
+                          <a href={pRD.file.path} rel="noopener noreferrer" target="_blank" className="link-under-line">{pRD.file.filename}</a>
+                        </MDBCol>
+                        <MDBCol md={3} className="pt-2">
+                          {reportType.find(e => e.value == pRD.type).name}
+                        </MDBCol>
+                        <MDBCol md={2} className="pt-2">{pRD.uploadDate}</MDBCol>
 
-                          {role == '1' && <MDBCol md={4} style={{ display: 'flex' }} className="pt-2">
-                            <MDBBtn
-                              rounded
-                              className="application-info-button second-action-button z-depth-1a"
-                              onClick={(e) => this.selectProgramReport(e, pRD)}
-                            >
-                              Upload/Replace
-                            </MDBBtn>
-                            <MDBBtn
-                              rounded
-                              color="danger"
-                              className="second-action-button z-depth-1a red-color"
-                              onClick={(e) => this.selectDeleteProgramReport(e, pRD)}
-                            >
-                              Delete
-                            </MDBBtn>
-                          </MDBCol>}
-                        </MDBRow>
-                      )}
+                        {role == '1' && <MDBCol md={4} style={{ display: 'flex' }} className="pt-2">
+                        <MDBBtn
+                          rounded
+                          disabled={this.state.status != "1"}
+                          className="application-info-button second-action-button z-depth-1a"
+                          onClick={(e) => {
+                            if(this.state.status == "1") this.selectProgramReport(e, pRD)
+                          }}
+                          >
+                          Upload/Replace
+                        </MDBBtn>
+                      <MDBBtn
+                        rounded
+                        disabled={this.state.status != "1"}
+                        color="danger"
+                        className="second-action-button z-depth-1a red-color"
+                        onClick={(e) => {
+                          if(this.state.status == "1") this.selectDeleteProgramReport(e, pRD)
+                        }}
+                        >
+                        Delete
+                      </MDBBtn>
+                    </MDBCol>}
+                    </MDBRow>
+                    )}
 
                     </MDBCol>
                     {/*<MDBCol md={2} />*/}
 
                     {role &&
-                      <>
-                        <MDBCol md={4} className="pt-4">
-                          {role === '1' &&
-                            <MDBBtn
-                              rounded
-                              className="second-action-button z-depth-1a"
-                              onClick={() => {
-                                this.setState({formData: {}});
-                                this.toggleModal()
-                              }}
-                              style={{width: '150px'}}
-                            >
-                              Upload Report
-                            </MDBBtn>
+                    <>
+                    <MDBCol md={4} className="pt-4">
+                      {role === '1' &&
+                      <MDBBtn
+                        rounded
+                        disabled={this.state.status != "1"}
+                        className="second-action-button z-depth-1a"
+                        onClick={() => {
+                          if(this.state.status == "1") {
+                            this.setState({formData: {}});
+                            this.toggleModal()
                           }
-                        </MDBCol>
+                        }}
+                        style={{width: '150px'}}
+                        >
+                        Upload Report
+                      </MDBBtn>
+                      }
+                    </MDBCol>
                         <MDBCol md={8} className="pt-4 text-right">
                           <MDBBtn
                             color="secondary"
