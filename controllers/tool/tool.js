@@ -190,6 +190,7 @@ const programStatusUpdate = async(emailAddress, username, prevStatus, currentSta
 const sendEmailCustomMessage = async(emailAddress, msg) => {
   try {
     console.log("send email request received.");
+    console.log(emailAddress, msg)
     // if (!emailAddress)
     //   throw new Error("No email");
     // console.log("Receiver email address is " + emailAddress);
@@ -208,6 +209,7 @@ const sendEmailCustomMessage = async(emailAddress, msg) => {
       subject: 'Program status Update.',
       text: msg,
     };
+    console.log(emailAddress, msg)
     await client.sendMail(mailContent);
     const message = 'Your message has been successfully sent.';
     console.log("Your message has been successfully sent.");
@@ -255,8 +257,6 @@ const CLUSAUploadAgreement = async(emailAddress, username) => {
 const CLUSAUploadAgreementToCLUSA = async(orgName) => {
   try {
     console.log("send email request received.");
-    if (!emailAddress)
-      throw new Error("No email");
     console.log("Receiver email address is grant@clusa.org");
     let options = {
       auth: {
