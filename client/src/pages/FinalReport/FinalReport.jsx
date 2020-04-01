@@ -173,10 +173,10 @@ class FinalReport extends Component {
 
   render() {
     const { formData: { q1 = {}, q2 = {}, q3 = {}, fileLink }, programId } = this.state;
-
+    
     const breadCrums = [{
-      name: 'dashboard',
-      child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/account'}>Dashboard</Link></li>,
+     name: 'dashboard',
+     child: <li key={`dashboard1`} className="breadcrumb-item"><HomeIcon/> <Link to={'/account'}>Dashboard</Link></li>,
     }, {
       name: 'programView',
       child: <li key={`programView1`} className="breadcrumb-item"><Link to={`/program/${programId}`}> Program Detail</Link></li>,
@@ -184,156 +184,158 @@ class FinalReport extends Component {
       name: 'appView',
       child: <li key={`appView1`} className="breadcrumb-item active"> Final Report</li>,
     }];
-
+    
     return (
       <div className="bg-withImage">
         <HeaderComponent breadCrums={breadCrums} />
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
-              md="12"
+            md="12"
             >
               <h1>Final Report</h1>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-        <MDBContainer>
-          <MDBRow>
-            <MDBCol md="12">
-              <MDBCard>
-                <MDBCardBody>
-                  <MDBRow>
-                    <MDBCol md="12">
-                      <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question1-1']}
-                        </label>
-                        <input type="number" className="form-control final-report-input" name="q1-first" value={q1['first']} onChange={this.handleChange} />
-                      </div>
-
-
-                      <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question1-2']}
-                        </label>
-                        <input type="number" className="form-control final-report-input" name="q1-second" value={q1['second']} onChange={this.handleChange} />
-                      </div>
-
-                      <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question1-3']}
-                        </label>
-                        <textarea className="form-control final-report-input" name="q1-third" value={q1['third']} onChange={this.handleChange} />
-                      </div>
-
-                      <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question2-1']}
-                        </label>
-                        <input type="number" className="form-control final-report-input" name="q2-first" value={q2['first']} onChange={this.handleChange} />
-                      </div>
-
-                      <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question2-2']}
-                        </label>
-                        <input type="number" className="form-control final-report-input" name="q2-second" value={q2['second']} onChange={this.handleChange} />
-                      </div>
-
-                      <div className="pt-second text-left">
-                        <label htmlFor="internship-s4-q1" style={{ width: '100%' }} className="font-weight-bold">
-                          {questionList['question2-3']}
-                        </label>
-
-                        {
-                          fileLink &&
-                          <label><a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Click to download Expense Template</a></label>
-                        }
-                        <input type="file" className="form-control final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
-                        <br/>
-                        <MDBBtn rounded className="application-info-button pt-2 second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
-                          Click to Upload Template
+      <MDBContainer>
+      <MDBRow>
+       <MDBCol md="12">
+          <MDBCard>
+            <MDBCardBody>
+              <MDBRow>
+                <MDBCol md="12">
+                  <div className="pt-2 text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question1-1']}
+                    </label>
+                    <input disabled={this.state.status !== "1"} type="number" className="form-control final-report-input" name="q1-first" value={q1['first']} onChange={this.handleChange} />
+                  </div>
+      
+      
+                  <div className="pt-2 text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question1-2']}
+                    </label>
+                    <input disabled={this.state.status !== "1"} type="number" className="form-control final-report-input" name="q1-second" value={q1['second']} onChange={this.handleChange} />
+                  </div>
+      
+                  <div className="pt-second text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question1-3']}
+                    </label>
+                    <textarea disabled={this.state.status !== "1"} className="form-control final-report-input" name="q1-third" value={q1['third']} onChange={this.handleChange} />
+                  </div>
+                  
+                  <div className="pt-second text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question2-1']}
+                    </label>
+                    <input disabled={this.state.status !== "1"} type="number" className="form-control final-report-input" name="q2-first" value={q2['first']} onChange={this.handleChange} />
+                  </div>
+      
+                  <div className="pt-second text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question2-2']}
+                    </label>
+                    <input disabled={this.state.status !== "1"} type="number" className="form-control final-report-input" name="q2-second" value={q2['second']} onChange={this.handleChange} />
+                  </div>
+                  
+                  <div className="pt-second text-left">
+                    <label htmlFor="internship-s4-q1" style={{ width: '100%' }} className="font-weight-bold">
+                      {questionList['question2-3']}
+                    </label>
+      
+                    {
+                    fileLink &&
+                    <label><a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Click to download Expense Template</a></label>
+                    }
+                    <input disabled={this.state.status !== "1"} type="file" className="form-control final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
+                    <br/>
+                    <MDBBtn disabled={this.state.status !== "1"} rounded className="application-info-button pt-2 second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
+                      Click to Upload Template
+                    </MDBBtn>
+                    <span style={{ paddingLeft: '10px' }}>
+                      {
+                      q2['third'] && q2['third'] ? q2['third'].name : fileLink ?
+                      <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">{fileLink.filename}</a>
+                      : ''
+                      }
+                    </span>
+                  </div>
+                  
+                  <div className="pt-2 text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question3-1']}
+                    </label>
+                    <textarea disabled={this.state.status !== "1"} className="form-control final-report-input" name="q3-first" value={q3['first']} onChange={this.handleChange} />
+                  </div>
+                  
+                  <div className="pt-2 text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question3-2']}
+                    </label>
+                    <textarea disabled={this.state.status !== "1"} className="form-control final-report-input" name="q3-second" value={q3['second']} onChange={this.handleChange} />
+                  </div>
+                  <div className="pt-2 text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question3-3']}
+                    </label>
+                    <textarea disabled={this.state.status !== "1"} className="form-control final-report-input" name="q3-third" value={q3['third']} onChange={this.handleChange} />
+                  </div>
+                  <div className="pt-2 text-left">
+                    <label htmlFor="internship-s4-q1" className="font-weight-bold">
+                      {questionList['question3-4']}
+                    </label>
+                    <textarea disabled={this.state.status !== "1"} className="form-control final-report-input" name="q3-forth" value={q3['forth']} onChange={this.handleChange} />
+                    <p>Each time when you edit your input, please click Save button to save your changes. After you submit this final report, you are not allowed to edit any parts any more.</p>
+                  </div>
+      
+                  <div className="pt-4">
+                    <MDBRow>
+      
+                      <MDBCol md="12">
+                        <MDBBtn
+                          rounded
+                          disabled={this.state.status !== "1"}
+                          className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
+                          onClick={() => this.handleFinalReportPost(false)}
+                        >
+                        Save
                         </MDBBtn>
-                        <span style={{ paddingLeft: '10px' }}>
-                          {
-                            q2['third'] && q2['third'] ? q2['third'].name : fileLink ?
-                              <a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">{fileLink.filename}</a>
-                              : ''
-                          }
-                        </span>
-                      </div>
-
-                      <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question3-1']}
-                        </label>
-                        <textarea className="form-control final-report-input" name="q3-first" value={q3['first']} onChange={this.handleChange} />
-                      </div>
-
-                      <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question3-2']}
-                        </label>
-                        <textarea className="form-control final-report-input" name="q3-second" value={q3['second']} onChange={this.handleChange} />
-                      </div>
-                      <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question3-3']}
-                        </label>
-                        <textarea className="form-control final-report-input" name="q3-third" value={q3['third']} onChange={this.handleChange} />
-                      </div>
-                      <div className="pt-2 text-left">
-                        <label htmlFor="internship-s4-q1" className="font-weight-bold">
-                          {questionList['question3-4']}
-                        </label>
-                        <textarea className="form-control final-report-input" name="q3-forth" value={q3['forth']} onChange={this.handleChange} />
-                        <p>Each time when you edit your input, please click Save button to save your changes. After you submit this final report, you are not allowed to edit any parts any more.</p>
-                      </div>
-
-                      <div className="pt-4">
-                        <MDBRow>
-                         
-                          <MDBCol md="12">
-                            <MDBBtn
-                              rounded
-                              className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
-                              onClick={() => this.handleFinalReportPost(false)}
-                            >
-                              Save
-                            </MDBBtn>                          
-                            <MDBBtn
-                              rounded
-                              className="application-info-button second-action-button z-depth-1a check-file-upload"
-                              onClick={() => this.handleFinalReportPost(true)}
-                            >
-                              Submit
-                            </MDBBtn>
-                            <MDBBtn
-                              color="danger"
-                              rounded
-                              className="application-info-button second-action-button z-depth-1a check-file-upload red-color"
-                              onClick={this.clickCancel}
-                            >
-                              Cancel
-                            </MDBBtn>
-                          </MDBCol>
-                         
-                        </MDBRow>
-                      </div>
-                    </MDBCol>
-                  </MDBRow>
-                </MDBCardBody>
-
-                <br />
-
-                <br />
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-
-        <FooterComponent className="mt-5 pt-5" />
-      </div>
+                        <MDBBtn
+                          rounded
+                          disabled={this.state.status !== "1"}
+                          className="application-info-button second-action-button z-depth-1a check-file-upload"
+                          onClick={() => this.handleFinalReportPost(true)}
+                        >
+                        Submit
+                        </MDBBtn>
+                        <MDBBtn
+                          color="danger"
+                          rounded
+                          className="application-info-button second-action-button z-depth-1a check-file-upload red-color"
+                          onClick={this.clickCancel}
+                        >
+                        Cancel
+                        </MDBBtn>
+                      </MDBCol>
+                      
+                    </MDBRow>
+                  </div>
+                </MDBCol>
+              </MDBRow>
+             </MDBCardBody>
+      
+             <br />
+      
+              <br />
+          </MDBCard>
+        </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    
+      <FooterComponent className="mt-5 pt-5" />
+    </div>
     );
   }
 

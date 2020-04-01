@@ -65,22 +65,22 @@ class ProgramDetail extends Component {
     }
   };
 
-  handleFinalReportCommentClick = () => {
+  handleFinalReportCommentClick = (status) => {
     const { history } = this.props;
     const { programData: { program } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     // final-report-comment
     if (program.objectId && program.orgId) {
-      history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}`);
+      history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}&status=${status}`);
     }
-  };
-
-  handleFinalReportClick = () => {
+    };
+    
+  handleFinalReportClick = (status) => {
     const { history } = this.props;
     const { programData: { program } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
-      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}`);
+      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&status=${status}`);
     }
   };
 
@@ -297,20 +297,18 @@ class ProgramDetail extends Component {
                               <MDBCol md="6">
                                 Final Report
                               </MDBCol>
-                            <MDBCol md="6">
-                              <MDBBtn
+                              <MDBCol md="6">
+                                <MDBBtn
                                 rounded
-                                disabled={!agreementPlacement[0] || agreementPlacement[0].status != 1}
                                 className="application-info-button second-action-button btn-block z-depth-1a"
                                 onClick={(e) => {
-                                if(agreementPlacement[0] && agreementPlacement[0].status == 1) {
-                                  this.state.role === '1' ? this.handleFinalReportClick(e) : this.handleFinalReportCommentClick(e)
-                                }
+                                  const status = agreementPlacement[0] ? agreementPlacement[0].status : "0"
+                                  this.state.role === '1' ? this.handleFinalReportClick(status) : this.handleFinalReportCommentClick(status)
                                 }}
-                              >
-                              Review
-                              </MDBBtn>
-                            </MDBCol>
+                                >
+                                Review
+                                </MDBBtn>
+                              </MDBCol>
                             </MDBRow>
                           </MDBCol>
 
