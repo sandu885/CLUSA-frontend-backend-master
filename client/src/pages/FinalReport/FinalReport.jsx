@@ -101,8 +101,15 @@ class FinalReport extends Component {
   };
   
   handleFinalReportPost = async (isSubmitted) => {
+    
+
     const { history } = this.props;
     const { formData: postData, sessionToken, role, programId, orgId } = this.state;
+
+    var canSubmit = window.confirm("Are you sure you want to submit the Final Report?");
+
+    if(canSubmit == false)
+      return;
 
     if (postData.objectId) {
       if (postData.isSubmitted && postData.isSubmitted == '1') {
