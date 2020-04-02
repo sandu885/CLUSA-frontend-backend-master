@@ -99,8 +99,8 @@ router.post('/saveApplicationContent', upload.array('budget'), applicationContro
 router.post('/createNewAgreementPlacement', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'finalFilledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.createNewAgreementPlacement);
 router.post('/updateAgreementPlacementById', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'finalFilledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.updateAgreementPlacementById);
 // finalReport
-router.post('/createNewFinalReport', upload2.single('file'), finalReport.createNewFinalReport);
-router.post('/updateFinalReportById', upload2.single('file'), finalReport.updateFinalReportById);
+router.post('/createNewFinalReport', upload2.single('finalreportfile'), finalReport.createNewFinalReport);
+router.post('/updateFinalReportById', upload2.single('finalreportfile'), finalReport.updateFinalReportById);
 // programReport
 router.post('/createNewProgramReport', upload2.single('file'), programReportController.createNewProgramReport);
 router.post('/updateProgramReportById', upload2.single('file'), programReportController.updateProgramReportById);

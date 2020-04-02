@@ -117,8 +117,9 @@ class FinalReport extends Component {
     const formData = new FormData();
     let postFinalReportURL = '/api/createNewFinalReport';
 
+    formData.append('path', `${this.state.orgName}/final-report`);
     if (postData && postData.q2 && postData.q2['third']) {
-      postData.q2['third'] && formData.append('file', postData.q2['third']);
+      postData.q2['third'] && formData.append('finalreportfile', postData.q2['third']);
       delete postData.q2['third']
     }
 
@@ -128,7 +129,7 @@ class FinalReport extends Component {
     } else {
       postFinalReportURL = '/api/createNewFinalReport';
     }
-    formData.append('path', `${this.state.orgName}/final-report`);
+
     formData.append("q1[first]", postData.q1 ? postData.q1['first'] || '' : '');
     formData.append("q1[second]", postData.q1 ? postData.q1['second'] || '' : '');
     formData.append("q1[third]", postData.q1 ? postData.q1['third'] || '' : '');

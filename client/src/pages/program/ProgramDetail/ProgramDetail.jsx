@@ -79,7 +79,7 @@ class ProgramDetail extends Component {
     
   handleFinalReportClick = (status) => {
     const { history } = this.props;
-    const { programData: { program } } = this.state;
+    const { programData: { program={}, organization={} } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
       let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
