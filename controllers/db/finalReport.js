@@ -98,7 +98,8 @@ const updateFinalReportById = async (meta, file) => {
     throw new Error('Provided data are not proper.');
 
   if (meta.role === '1') {
-    if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+    let statusToCheck = ["preparingAgreement", "approved", "firstCheckSent", "finalCheckSent"];
+    if (!programRecord.get('status') || statusToCheck.includes(programRecord.get('status')) == false)
       throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   }
   let queryFinalReport = new Parse.Query('FinalReport');

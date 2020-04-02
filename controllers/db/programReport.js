@@ -59,8 +59,10 @@ const updateProgramReportById = async (meta, file) => {
   if (!programRecord)
     throw new Error('Provided data is not proper.');
 
-  if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-    throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
+    let statusToCheck = ["preparingAgreement", "approved", "firstCheckSent", "finalCheckSent"];
+  
+    if (!programRecord.get('status') || statusToCheck.includes(programRecord.get('status')) == false)
+      throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
 
   let queryProgramReport = new Parse.Query('ProgramReport');
   queryProgramReport.equalTo("objectId", meta.objectId);
@@ -84,8 +86,10 @@ const deleteProgramReportById = async (meta) => {
   if (!programRecord)
     throw new Error('Provided data is not proper.');
 
-  if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
-    throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
+    let statusToCheck = ["preparingAgreement", "approved", "firstCheckSent", "finalCheckSent"];
+  
+    if (!programRecord.get('status') || statusToCheck.includes(programRecord.get('status')) == false)
+      throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   // meta.programId
   let queryProgramReport = new Parse.Query('ProgramReport');
   queryProgramReport.equalTo("objectId", meta.objectId);
