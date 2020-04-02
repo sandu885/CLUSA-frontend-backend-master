@@ -159,7 +159,7 @@ const updateAgreementPlacementById = async (meta, files) => {
   let queryAgreementPlacement = new Parse.Query('AgreementPlacement');
   queryAgreementPlacement.equalTo("objectId", meta.objectId);
   let agreementPlacement = await queryAgreementPlacement.first({ useMasterKey: true });
-  agreementPlacement.set("amount", meta.amount);
+  agreementPlacement.set("awardAmount", meta.awardAmount);
   if (files && files['signedAgreement'] && files['signedAgreement'].length > 0)
     agreementPlacement.set("signedAgreement", files['signedAgreement'][0]);
   if (files && files['filledPlacement'] && files['filledPlacement'].length > 0) {

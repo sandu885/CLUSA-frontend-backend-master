@@ -71,7 +71,9 @@ class ProgramDetail extends Component {
     localStorage.setItem('orgId', program.orgId);
     // final-report-comment
     if (program.objectId && program.orgId) {
-      history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}&status=${status}`);
+      let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
+      let currentStatus = (statusToCheck.includes(program.status)) ? "" : "1";
+      history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
     }
     };
     
@@ -80,7 +82,9 @@ class ProgramDetail extends Component {
     const { programData: { program } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
-      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&status=${status}`);
+      let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
+      let currentStatus = (statusToCheck.includes(program.status)) ? "" : "1";
+      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
     }
   };
 
@@ -258,7 +262,7 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                     }
                                   }}
                                 >
@@ -282,7 +286,9 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${agreementPlacement[0] && agreementPlacement[0].status}`);
+                                      let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
+                                      let currentStatus = (statusToCheck.includes(program.status)) ? "" : "1";
+                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
                                     }
                                   }}
                                 >
@@ -325,7 +331,7 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                     }
                                   }}
                                 >

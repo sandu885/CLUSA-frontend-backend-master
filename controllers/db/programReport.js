@@ -11,7 +11,9 @@ const createNewProgramReport = async (meta, file) => {
   if (!programRecord)
     throw new Error('Provided data are not proper.');
 
-  if (!programRecord.get('status') || programRecord.get('status') !== 'preparingAgreement')
+  let statusToCheck = ["preparingAgreement", "approved", "firstCheckSent", "finalCheckSent"];
+  
+  if (!programRecord.get('status') || statusToCheck.includes(programRecord.get('status')) == false)
     throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
 
   let ProgramReport = Parse.Object.extend("ProgramReport"), programReport = new ProgramReport();

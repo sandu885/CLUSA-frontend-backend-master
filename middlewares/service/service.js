@@ -20,6 +20,9 @@ const storage = multer.diskStorage({
 const storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
     let path = `./uploads/checks`;
+    if (req.body.path) {
+      path = `./uploads/${req.body.path}`;
+    }
     fs.mkdirsSync(path);
     cb(null, path)
   },
