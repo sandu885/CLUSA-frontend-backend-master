@@ -128,6 +128,7 @@ class FinalReport extends Component {
     } else {
       postFinalReportURL = '/api/createNewFinalReport';
     }
+    formData.append('path', `${this.state.orgName}/final-report`);
     formData.append("q1[first]", postData.q1 ? postData.q1['first'] || '' : '');
     formData.append("q1[second]", postData.q1 ? postData.q1['second'] || '' : '');
     formData.append("q1[third]", postData.q1 ? postData.q1['third'] || '' : '');
@@ -145,7 +146,6 @@ class FinalReport extends Component {
     formData.append('sessionToken', sessionToken);
     formData.append('role', role);
     formData.append('isSubmitted', isSubmitted);
-    formData.append('path', 'final-report');
 
 
     try {

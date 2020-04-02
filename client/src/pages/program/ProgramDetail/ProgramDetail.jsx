@@ -84,7 +84,7 @@ class ProgramDetail extends Component {
     if (program.objectId && program.orgId) {
       let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
       let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
-      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
+      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
     }
   };
 
