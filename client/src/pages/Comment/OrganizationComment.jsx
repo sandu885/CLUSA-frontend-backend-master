@@ -95,6 +95,7 @@ class OrganizationComment extends Component {
       postCommentProgramStatusURL,
       postData,
     ).then((res) => {
+      alert('Status saved successfully.');
       console.log('created program report successfully', res);
     }).catch((error) => {
       if (error.response !== null && error.response !== undefined) {
@@ -144,6 +145,7 @@ class OrganizationComment extends Component {
         postCommentURL,
         postData,
       ).then((res) => {
+        alert('Comment saved successfully.');
         console.log('created program report successfully', res);
         this.fetchComments();
         this.setState({

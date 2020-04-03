@@ -100,16 +100,17 @@ class FinalReport extends Component {
     return false
   };
   
-  handleFinalReportPost = async (isSubmitted) => {
-    
+  handleFinalReportPost = async (isSubmitted) => {    
 
     const { history } = this.props;
     const { formData: postData, sessionToken, role, programId, orgId } = this.state;
 
-    var canSubmit = window.confirm("Are you sure you want to submit the Final Report?");
+    if(isSubmitted == true) {
+      let canSubmit = window.confirm("Are you sure you want to submit the Final Report?");
 
-    if(canSubmit == false)
-      return;
+      if(canSubmit == false)
+        return;
+    }
 
     if (postData.objectId) {
       if (postData.isSubmitted && postData.isSubmitted == '1') {
@@ -260,7 +261,7 @@ class FinalReport extends Component {
                     <input disabled={this.state.status !== "1"} type="file" className="form-control final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
                     <br/>
                     <MDBBtn disabled={this.state.status !== "1"} rounded className="application-info-button pt-2 second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('q2-third')}>
-                      Click to Upload Template
+                      Click To Upload My Report
                     </MDBBtn>
                     <span style={{ paddingLeft: '10px' }}>
                       {
@@ -295,7 +296,7 @@ class FinalReport extends Component {
                       {questionList['question3-4']}
                     </label>
                     <textarea disabled={this.state.status !== "1"} className="form-control final-report-input" name="q3-forth" value={q3['forth']} onChange={this.handleChange} />
-                    <p>Each time when you edit your input, please click Save button to save your changes. After you submit this final report, you are not allowed to edit any parts any more.</p>
+                    <p>Each time when you edit your input, please click Save button to save your changes. After you finish filling all the questions please click "Submit".</p>
                   </div>
       
                   <div className="pt-4">
