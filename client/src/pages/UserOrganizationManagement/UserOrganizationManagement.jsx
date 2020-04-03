@@ -260,7 +260,7 @@ class UserOrganizationManagement extends Component {
                     <MDBCardBody>
                       <div className="table-responsive">
                         <MDBDataTable
-                          className="custom-table program-table"
+                          className="custom-table"
                           striped
                           borderless
                           data={userTableData}
