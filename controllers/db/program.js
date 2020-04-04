@@ -56,12 +56,24 @@ const fetchProgramDetailById = async(programId) => {
     queryProgram.limit(10000);
     queryProgram.equalTo("objectId", programId);
 
+
     let queryApplication = new Parse.Query("Application");
     queryApplication.limit(10000);
     queryApplication.equalTo("programId", programId);
 
     let element = {};
     element['program'] = await queryProgram.first({useMasterKey: true});
+
+
+    let queryFinalReport = new Parse.Query("FinalReport");
+    queryFinalReport.equalTo("orgId", element['program'].get("orgId"));
+    queryFinalReport.equalTo("programId", programId);
+    let finalReport = await queryFinalReport.first({useMasterKey: true});
+
+    //#intern
+    if(finalReport.get("q1")[0].second) {
+        element['program'].set("intern", finalReport.get("q1")[0].second)
+    }
 
     if(!element['program'].get("appliedDate")) {
         element['program'].set("appliedDate", element['program'].get("createdAt"))
@@ -99,6 +111,7 @@ const fetchAllProgramsByOrgId = async(orgId) => {
     queryProgram.equalTo("orgId", orgId);
 
     const programRecords = await queryProgram.find({useMasterKey: true});
+
 
     let programs = [];
     for (let i in programRecords) {

@@ -167,7 +167,7 @@ class ProgramDetail extends Component {
                             <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate.iso ? moment(program.appliedDate.iso).format('DD/MM/YYYY') : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
-                            <MDBCol md="5">Intern #:-</MDBCol> <MDBCol md="7"> <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span></MDBCol>
+                            <MDBCol md="5">Intern #:-</MDBCol> <MDBCol md="7"> <span> {program.intern} </span></MDBCol>
                           </MDBRow>
                         </MDBCol>
                         <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
