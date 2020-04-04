@@ -78,7 +78,7 @@ const createNewAgreementPlacement = async (meta, files) => {
                 \n Thank you, \n
                 \n Best Regards, \n CLUSA`;
       await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
-      if (status === '1') {
+      if (meta.status === '1') {
         message = `Dear ${userRecord.get('username')}, \n  \n
                 \n The agreement has been signed by both of us. Please download the signed
                     agreement and keep a copy for your reference. The first check will be sent out

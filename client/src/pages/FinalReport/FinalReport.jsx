@@ -255,8 +255,8 @@ class FinalReport extends Component {
                     </label>
       
                     {
-                    fileLink &&
-                    <label><a href={`/${fileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Click to download Expense Template</a></label>
+                    "fileLink" &&
+                    <label><a href={`/${"fileLink.path"}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Click To Download Expense Template</a></label>
                     }
                     <input disabled={this.state.status !== "1"} type="file" className="form-control final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
                     <br/>

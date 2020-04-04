@@ -63,6 +63,11 @@ const fetchProgramDetailById = async(programId) => {
     let element = {};
     element['program'] = await queryProgram.first({useMasterKey: true});
 
+    if(!element['program'].get("appliedDate")) {
+        element['program'].set("appliedDate", element['program'].get("createdAt"))
+    }
+
+
     let queryCheck = new Parse.Query("Check");
     queryCheck.limit(3);
     queryCheck.equalTo("programId", programId);
@@ -80,6 +85,7 @@ const fetchProgramDetailById = async(programId) => {
     queryOrganization.equalTo("objectId", element['program'].get('orgId'));
     let organizationRecord = await queryOrganization.first({useMasterKey: true});
     element["organization"] = organizationRecord;
+    
 
     element['application'] = await queryApplication.find({useMasterKey: true});
     return element;
@@ -126,7 +132,13 @@ const fetchAllProgramsByOrgId = async(orgId) => {
         ele["programType"] = programRecords[i].get("programType");
         ele["createdAt"] = programRecords[i].get("createdAt");
         ele["updatedAt"] = programRecords[i].get("updatedAt");
-        ele["year"] = programRecords[i].get("appliedDate") ? moment(programRecords[i].get("appliedDate")).format('YYYY') : '';
+        if(programRecords[i].get("appliedDate")) {
+            ele["year"] = programRecords[i].get("appliedDate") ? moment(programRecords[i].get("appliedDate")).format('YYYY') : '';
+            ele["appliedDate"] = programRecords[i].get("appliedDate")
+        } else {
+            ele["year"] = programRecords[i].get("createdAt") ? moment(programRecords[i].get("createdAt")).format('YYYY') : '';
+            ele["appliedDate"] = programRecords[i].get("createdAt")
+        }
         programs.push(ele);
     }
     let queryUser = new Parse.Query("User");
@@ -162,7 +174,13 @@ const fetchAllPrograms = async(meta) => {
         }
         let orgRecord = await queryOrg.first({useMasterKey: true});
 
-        ele["year"] = programRecords[i].get("appliedDate") ? moment(programRecords[i].get("appliedDate")).format('YYYY') : '';
+        if(programRecords[i].get("appliedDate")) {
+            ele["year"] = programRecords[i].get("appliedDate").iso ? moment(programRecords[i].get("appliedDate").iso).format('YYYY') : '';
+        } else {
+            ele["year"] = programRecords[i].get("createdAt") ? moment(programRecords[i].get("createdAt")).format('YYYY') : '';
+        }
+
+
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
         ele["status"] = programRecords[i].get("status") ? programRecords[i].get("status").replace( /([A-Z])/g, " $1" ) : '';

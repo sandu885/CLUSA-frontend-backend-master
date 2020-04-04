@@ -244,7 +244,7 @@ class OrganizationComment extends Component {
                 <MDBCol md="3">
                   <select name="programStatus" className="browser-default custom-select form-control" value={programStatus} onChange={this.handleProgramChange}>
                     <option value="">Select Status</option>
-                    <option value="inView">In Review</option>
+                    <option value="inReview">In Review</option>
                     <option value="preparingAgreement">Preparing Agreement</option>
                     <option value="turnDown">Turn Down</option>
                   </select>

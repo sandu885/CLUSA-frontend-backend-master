@@ -71,7 +71,7 @@ class ProgramDetail extends Component {
     localStorage.setItem('orgId', program.orgId);
     // final-report-comment
     if (program.objectId && program.orgId) {
-      let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
+      let statusToCheck = ["approved", "firstCheckSent", "reportSubmitted"];
       let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
       history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
     }
@@ -82,7 +82,7 @@ class ProgramDetail extends Component {
     const { programData: { program={}, organization={} } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
-      let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
+      let statusToCheck = ["approved", "firstCheckSent", "reportSubmitted"];
       let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
       history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
     }
@@ -97,6 +97,9 @@ class ProgramDetail extends Component {
   render() {
     const { programData: { program = {}, application = [], checks = [], agreementPlacement = [], organization = {} }, programType, dataReceived, role } = this.state;
     const programName = programType.find(pT => pT.value === program.programType);
+
+    console.log("program")
+    console.log(JSON.stringify(program))
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
     // const firstSection = application.find(app => app.sectionIndex === "1");
@@ -161,7 +164,7 @@ class ProgramDetail extends Component {
                             <MDBCol md="5">Program:-</MDBCol> <MDBCol md="7"><span> {programName && programName.name} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
-                            <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('DD/MM/YYYY') : ''} </span></MDBCol>
+                            <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate.iso ? moment(program.appliedDate.iso).format('DD/MM/YYYY') : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
                             <MDBCol md="5">Intern #:-</MDBCol> <MDBCol md="7"> <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span></MDBCol>
@@ -169,7 +172,7 @@ class ProgramDetail extends Component {
                         </MDBCol>
                         <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                           <MDBRow>
-                            <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span></MDBCol>
+                            <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate.iso ? moment(program.appliedDate.iso).format('YYYY') : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
                             <MDBCol md="5">Award Date:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span></MDBCol>
@@ -286,7 +289,7 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      let statusToCheck = ["approved", "firstCheckSent", "finalCheckSent"];
+                                      let statusToCheck = ["approved", "firstCheckSent", "reportSubmitted"];
                                       let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
                                       history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
                                     }
