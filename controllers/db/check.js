@@ -47,8 +47,8 @@ const createNewCheck = async (meta, file) => {
     await TOOL.sendEmailCustomMessage(userRecord.get('emailAddress'), message);
     // await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'firstCheckSent');
 
-    await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'firstCheckSent', orgRecord.get('name'));
-    programRecord.set("status", 'firstCheckSent');
+    await TOOL.programStatusUpdate('', '', programRecord.get('status'), 'First CheckSent & Program OnGoing', orgRecord.get('name'));
+    programRecord.set("status", 'FirstCheckSent&ProgramOnGoing');
   } else if (meta.checkType == '2') {
     // await TOOL.programStatusUpdate(userRecord.get('emailAddress'), userRecord.get('username'), programRecord.get('status'), 'finalCheckSent');
     const message = `Dear ${userRecord.get('username')}, \n  \n
@@ -121,7 +121,7 @@ const updateCheckById = async (meta, file) => {
 
   if (meta.checkType == '1') {
     //if (programRecord.get('status') == '1') {
-      programRecord.set("status", 'firstCheckSent');
+      programRecord.set("status", 'FirstCheckSent&ProgramOnGoing');
     //}
   } else if (meta.checkType == '2') {
     programRecord.set("status", 'finalCheckSent');

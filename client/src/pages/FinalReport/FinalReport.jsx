@@ -15,6 +15,7 @@ import { questionList } from './questionList'
 import { queryStringToJSON } from "../../utils/util";
 import HomeIcon from "@material-ui/icons/Home";
 import {Link} from "react-router-dom";
+import CLUSAExpenseReportTemplate from '../../images/CLUSA Expense Report Template 2020.xlsx'
 
 class FinalReport extends Component {
   constructor(props) {
@@ -255,8 +256,8 @@ class FinalReport extends Component {
                     </label>
       
                     {
-                    "fileLink" &&
-                    <label><a href={`/${"fileLink.path"}`} rel="noopener noreferrer" target="_blank" className="link-under-line">Click To Download Expense Template</a></label>
+                    CLUSAExpenseReportTemplate &&
+                    <label><a href={CLUSAExpenseReportTemplate} rel="noopener noreferrer" target="_blank" className="link-under-line">Click To Download Expense Template</a></label>
                     }
                     <input disabled={this.state.status !== "1"} type="file" className="form-control final-report-input" name="q2-third" style={{ display: 'none' }} onChange={this.handleFileChange} />
                     <br/>

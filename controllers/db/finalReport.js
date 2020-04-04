@@ -12,7 +12,7 @@ const createNewFinalReport = async (meta, file) => {
     throw new Error('Provided data are not proper.');
 
   if (meta.role === '1') {
-    let statusToCheck = ["preparingAgreement", "approved", "firstCheckSent", "finalCheckSent"];
+    let statusToCheck = ["preparingAgreement", "approved", "FirstCheckSent&ProgramOnGoing", "finalCheckSent"];
     if (!programRecord.get('status') || statusToCheck.includes(programRecord.get('status')) == false)
       throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   }
@@ -98,7 +98,7 @@ const updateFinalReportById = async (meta, file) => {
     throw new Error('Provided data are not proper.');
 
   if (meta.role === '1') {
-    let statusToCheck = ["preparingAgreement", "approved", "firstCheckSent", "finalCheckSent"];
+    let statusToCheck = ["preparingAgreement", "approved", "FirstCheckSent&ProgramOnGoing", "finalCheckSent"];
     if (!programRecord.get('status') || statusToCheck.includes(programRecord.get('status')) == false)
       throw new Error('Your application and placement is not verified. So, Please wait for the confirmation');
   }

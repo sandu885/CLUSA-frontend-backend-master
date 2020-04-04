@@ -71,7 +71,7 @@ class ProgramDetail extends Component {
     localStorage.setItem('orgId', program.orgId);
     // final-report-comment
     if (program.objectId && program.orgId) {
-      let statusToCheck = ["approved", "firstCheckSent", "reportSubmitted"];
+      let statusToCheck = ["approved", "FirstCheckSent&ProgramOnGoing", "reportSubmitted"];
       let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
       history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
     }
@@ -82,7 +82,7 @@ class ProgramDetail extends Component {
     const { programData: { program={}, organization={} } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
-      let statusToCheck = ["approved", "firstCheckSent", "reportSubmitted"];
+      let statusToCheck = ["approved", "FirstCheckSent&ProgramOnGoing", "reportSubmitted"];
       let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
       history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
     }
@@ -289,7 +289,7 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      let statusToCheck = ["approved", "firstCheckSent", "reportSubmitted"];
+                                      let statusToCheck = ["approved", "FirstCheckSent&ProgramOnGoing", "reportSubmitted"];
                                       let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
                                       history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
                                     }

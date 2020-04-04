@@ -194,7 +194,7 @@ class Program extends Component {
                 <option value="inReview">In Review</option>
                 <option value="preparingAgreement">Preparing Agreement</option>
                 <option value="approve">Approved</option>
-                <option value="firstCheckSent">First Check Sent</option>
+                <option value="FirstCheckSent&ProgramOnGoing">First Check Sent & Program On Going</option>
                 <option value="reportSubmitted">Report Submitted</option>
                 <option value="finalCheckSent">Final Check Sent</option>
                 <option value="closed">Closed</option>
