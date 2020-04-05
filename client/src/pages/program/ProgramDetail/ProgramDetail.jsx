@@ -164,7 +164,7 @@ class ProgramDetail extends Component {
                             <MDBCol md="5">Program:-</MDBCol> <MDBCol md="7"><span> {programName && programName.name} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
-                            <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate.iso ? moment(program.appliedDate.iso).format('DD/MM/YYYY') : ''} </span></MDBCol>
+                            <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {((program.appliedDate) && program.appliedDate.iso) ? moment(program.appliedDate.iso).format('DD/MM/YYYY') : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
                             <MDBCol md="5">Intern #:-</MDBCol> <MDBCol md="7"> <span> {program.intern} </span></MDBCol>
@@ -172,7 +172,7 @@ class ProgramDetail extends Component {
                         </MDBCol>
                         <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                           <MDBRow>
-                            <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate.iso ? moment(program.appliedDate.iso).format('YYYY') : ''} </span></MDBCol>
+                            <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {((program.appliedDate) && program.appliedDate.iso) ? moment(program.appliedDate.iso).format('YYYY') : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
                             <MDBCol md="5">Award Date:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span></MDBCol>
