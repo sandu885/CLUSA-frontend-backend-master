@@ -71,7 +71,7 @@ const fetchProgramDetailById = async(programId) => {
     let finalReport = await queryFinalReport.first({useMasterKey: true});
 
     //#intern
-    if(finalReport.get("q1")[0].second) {
+    if(finalReport && finalReport.get("q1")[0].second) {
         element['program'].set("intern", finalReport.get("q1")[0].second)
     }
 
