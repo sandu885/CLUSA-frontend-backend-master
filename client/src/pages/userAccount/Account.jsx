@@ -195,7 +195,7 @@ class Account extends Component {
   clickApplyBtn = () => {
     let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
     if(!statusToCheck.includes(this.state.status)) {
-      return alert("Not Allowed To Change Your Application In The Current Status");
+      return alert("Not allow to edit application since your application is already approved");
     }
 
     const newApplyAPI = '/api/createNewProgram';

@@ -90,7 +90,7 @@ router.post('/updateCheckById', upload1.single('checkFile'), checkController.upd
 router.post('/createRecreateLogin', userController.createRecreateLogin);
 
 // update org info
-router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
+router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 2 }, { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
 
 // save application
 router.post('/saveApplicationContent', upload.array('budget'), applicationController.saveApplicationContent);

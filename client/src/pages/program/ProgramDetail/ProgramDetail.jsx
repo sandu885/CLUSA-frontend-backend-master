@@ -57,8 +57,10 @@ class ProgramDetail extends Component {
     if (program.orgId) {
       localStorage.setItem('orgId', program.orgId);
       // final-report-comment
+      let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
+      let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
       if (program.objectId && program.orgId) {
-        history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}`);
+        history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
       }
     } else {
       alert('not having proper information to access this route');
