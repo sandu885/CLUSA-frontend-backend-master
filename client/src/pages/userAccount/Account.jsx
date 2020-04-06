@@ -192,11 +192,18 @@ class Account extends Component {
     return data[key] || defaultValue;
   }
 
+  showApplicationWithInfo = () => {
+    let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
+    if(!statusToCheck.includes(this.state.status)) {
+      return alert("Not allow to edit application since your application is already approved");
+    }
+    this.props.history.push('/internship-information');
+  }
+
   clickApplyBtn = () => {
     let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
     if(!statusToCheck.includes(this.state.status)) {
       return alert("Not allow to edit application since your application is already approved");
-      window.event.preventDefault();
     }
 
     const newApplyAPI = '/api/createNewProgram';
@@ -343,19 +350,16 @@ class Account extends Component {
                     <h3>ALL GRANTS PROGRAM</h3>
                     <MDBRow>
                       <MDBCol md="3">
-                        <div style={{ cursor: 'pointer' }} className="offer-box" onClick={this.clickApplyBtn}>
-                            <p>Internship Program Grant</p>
+                        <div className="offer-box" >
+                            <p onClick={this.clickApplyBtn} style={{cursor:'pointer'}}>Internship Program Grant</p>
                             <h5
                                   id="current-status"
                                   className="blue-text"
                               >
                               </h5>
-                              <p><Link
-                                  className="instruction-link"
-                                  to="/internship-information"
-                              >
+                              <p style={{cursor:'pointer'}} onClick={this.showApplicationWithInfo}>
                                   Internship Program Grant Instruction
-                                  </Link></p>
+                              </p>
                         </div>
                       </MDBCol>
                     </MDBRow>
