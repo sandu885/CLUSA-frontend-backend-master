@@ -58,7 +58,7 @@ class ProgramDetail extends Component {
       localStorage.setItem('orgId', program.orgId);
       // final-report-comment
       let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
-      let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
+      let currentStatus = (statusToCheck.includes(program.status)) ? "" : "1";
       if (program.objectId && program.orgId) {
         history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
       }
