@@ -521,6 +521,16 @@ class RegisterInfo extends Component {
     console.warn('current org type = ', this.state.orgType);
   }
 
+
+  onChangeHandler3 = async (event) => {
+    console.warn(event.target.files);
+      await this.setState({
+        selectedFile3: event.target.files[0],
+        orgType: '2',
+        orgTypeNote: '',
+      });
+  }
+
   onChangeHandler2 = async (event) => {
     console.warn(event.target.files);
     await this.setState({
@@ -767,6 +777,7 @@ class RegisterInfo extends Component {
     formData.append('sessionToken', this.state.sessionToken);
     if (localStorage.getItem('orgId') !== null && localStorage.getItem('orgId') !== undefined) formData.append('orgId', localStorage.getItem('orgId'));
     if (orgType === '1' || orgType === '2')formData.append('certificate', this.state.selectedFile1);
+    if (orgType === '1' || orgType === '2')formData.append('certificate', this.state.selectedFile3);
     if (orgType === '2') formData.append('mou', this.state.selectedFile2);
     if (orgType === '3') formData.append('orgTypeNote', this.state.orgTypeNote);
 
@@ -1089,7 +1100,7 @@ class RegisterInfo extends Component {
                               <input
                                 type="file"
                                 name="file"
-                                onChange={(this.onChangeHandler1)}
+                                onChange={(this.onChangeHandler3)}
                               />
                             </div>
                             <div className="vertical-center">

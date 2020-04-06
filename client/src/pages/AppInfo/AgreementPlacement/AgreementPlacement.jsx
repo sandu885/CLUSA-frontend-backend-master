@@ -97,6 +97,7 @@ class AgreementPlacement extends Component {
       postProgram = '/api/updateAgreementPlacementById';
       // delete first.checkFile
       formData.append('objectId', postData.objectId);
+      formData.append('path', `${this.state.orgName}/agreement`);
       formData.append('agreementTemplate', postData.agreementTemplate);
       formData.append('placementTemplate', postData.placementTemplate);
       formData.append('awardAmount', postData.awardAmount);
@@ -105,7 +106,7 @@ class AgreementPlacement extends Component {
       formData.append('status', postData.status || '0');
     } else {
       postProgram = '/api/createNewAgreementPlacement';
-
+      formData.append('path', `${this.state.orgName}/agreement`);
       formData.append('agreementTemplate', postData.agreementTemplate);
       formData.append('placementTemplate', postData.placementTemplate);
       formData.append('awardAmount', postData.awardAmount);

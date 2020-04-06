@@ -156,7 +156,7 @@ class FinalReportView extends Component {
                         </label>
                         {
                           fileLink &&
-                          <a href={`/${fileLink.path}`} className="btn btn-default" rel="noopener noreferrer" target="_blank">Click to download Expense Template</a>
+                          <a href={`/${fileLink.path}`} className="link-under-line" rel="noopener noreferrer" target="_blank">Click To Download Submitted Expense Report</a>
                         }
                       </div>
                       <div className="pt-2 text-left">

@@ -57,30 +57,36 @@ class ProgramDetail extends Component {
     if (program.orgId) {
       localStorage.setItem('orgId', program.orgId);
       // final-report-comment
+      let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
+      let currentStatus = (statusToCheck.includes(program.status)) ? "" : "1";
       if (program.objectId && program.orgId) {
-        history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}`);
+        history.push(`/app-review?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
       }
     } else {
       alert('not having proper information to access this route');
     }
   };
 
-  handleFinalReportCommentClick = () => {
+  handleFinalReportCommentClick = (status) => {
     const { history } = this.props;
     const { programData: { program } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     // final-report-comment
     if (program.objectId && program.orgId) {
-      history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}`);
+      let statusToCheck = ["approved", "FirstCheckSent&ProgramOnGoing", "reportSubmitted"];
+      let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
+      history.push(`/final-report-comment?orgId=${program.orgId}&programId=${program.objectId}&status=${currentStatus}`);
     }
-  };
-
-  handleFinalReportClick = () => {
+    };
+    
+  handleFinalReportClick = (status) => {
     const { history } = this.props;
-    const { programData: { program } } = this.state;
+    const { programData: { program={}, organization={} } } = this.state;
     localStorage.setItem('orgId', program.orgId);
     if (program.objectId && program.orgId) {
-      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}`);
+      let statusToCheck = ["approved", "FirstCheckSent&ProgramOnGoing", "reportSubmitted"];
+      let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
+      history.push(`/final-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
     }
   };
 
@@ -93,6 +99,9 @@ class ProgramDetail extends Component {
   render() {
     const { programData: { program = {}, application = [], checks = [], agreementPlacement = [], organization = {} }, programType, dataReceived, role } = this.state;
     const programName = programType.find(pT => pT.value === program.programType);
+
+    console.log("program")
+    console.log(JSON.stringify(program))
 
     const fifthSection = application.find(app => app.sectionIndex === "5");
     // const firstSection = application.find(app => app.sectionIndex === "1");
@@ -157,15 +166,15 @@ class ProgramDetail extends Component {
                             <MDBCol md="5">Program:-</MDBCol> <MDBCol md="7"><span> {programName && programName.name} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
-                            <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('DD/MM/YYYY') : ''} </span></MDBCol>
+                            <MDBCol md="5">Applied Date:-</MDBCol> <MDBCol md="7"> <span> {((program.appliedDate) && program.appliedDate.iso) ? moment(program.appliedDate.iso).format('MM/DD/YYYY') : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
-                            <MDBCol md="5">Intern #:-</MDBCol> <MDBCol md="7"> <span> {fifthSection && fifthSection.content && fifthSection.content['2'] ? fifthSection.content['2'] : ''} </span></MDBCol>
+                            <MDBCol md="5">Intern #:-</MDBCol> <MDBCol md="7"> <span> {program.intern} </span></MDBCol>
                           </MDBRow>
                         </MDBCol>
                         <MDBCol md="4" className="program-detail-sub-header font-weight-bold">
                           <MDBRow>
-                            <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {program.appliedDate ? moment(program.appliedDate).format('YYYY') : ''} </span></MDBCol>
+                            <MDBCol md="5">Applied Year:-</MDBCol> <MDBCol md="7"> <span> {((program.appliedDate) && program.appliedDate.iso) ? moment(program.appliedDate.iso).format('YYYY') : ''} </span></MDBCol>
                           </MDBRow>
                           <MDBRow>
                             <MDBCol md="5">Award Date:-</MDBCol> <MDBCol md="7"> <span> {agreementPlacement[0] && agreementPlacement[0].placementUploadDate} </span></MDBCol>
@@ -198,7 +207,7 @@ class ProgramDetail extends Component {
                       <MDBCol md="11" className="program-detail-sub-header font-weight-bold app-info">
                         <MDBRow>
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Application
@@ -215,7 +224,7 @@ class ProgramDetail extends Component {
                             </MDBRow>
                           </MDBCol>
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Agreement
@@ -230,14 +239,14 @@ class ProgramDetail extends Component {
                                     const { programData: { program = {} }, role } = this.state;
                                     if (program && program.objectId && program.orgId) {
                                       if (role === '1') {
-                                        return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                        return history.push(`/signed-agreement-placement?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                       }
-                                      history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/agreement-placement?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                     } else {
                                       return alert('Not having proper detail to access this information.')
-                                    }
-                                  }}
-                                >
+                                      }
+                                    }}
+                                  >
                                   Review
                                 </MDBBtn>
                               </MDBCol>
@@ -245,7 +254,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
 
 
-                          {this.state.role != '1' && <MDBCol md="3">
+                          {this.state.role != '1' && <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 1st Check
@@ -258,7 +267,7 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                     }
                                   }}
                                 >
@@ -269,7 +278,7 @@ class ProgramDetail extends Component {
                           </MDBCol>
                           }
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Ongoing Reports
@@ -282,7 +291,9 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      let statusToCheck = ["approved", "FirstCheckSent&ProgramOnGoing", "reportSubmitted"];
+                                      let currentStatus = (statusToCheck.includes(program.status)) ? "1" : "";
+                                      history.push(`/program-report?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}&status=${currentStatus}`);
                                     }
                                   }}
                                 >
@@ -292,18 +303,21 @@ class ProgramDetail extends Component {
                             </MDBRow>
                           </MDBCol>
 
-                          <MDBCol md="3">
+                          <MDBCol md="4">
                             <MDBRow>
                               <MDBCol md="6">
                                 Final Report
                               </MDBCol>
                               <MDBCol md="6">
                                 <MDBBtn
-                                  rounded
-                                  className="application-info-button second-action-button btn-block z-depth-1a"
-                                  onClick={this.state.role === '1' ? this.handleFinalReportClick : this.handleFinalReportCommentClick}
+                                rounded
+                                className="application-info-button second-action-button btn-block z-depth-1a"
+                                onClick={(e) => {
+                                  const status = agreementPlacement[0] ? agreementPlacement[0].status : "0"
+                                  this.state.role === '1' ? this.handleFinalReportClick(status) : this.handleFinalReportCommentClick(status)
+                                }}
                                 >
-                                  Review
+                                Review
                                 </MDBBtn>
                               </MDBCol>
                             </MDBRow>
@@ -322,7 +336,7 @@ class ProgramDetail extends Component {
                                     const { history } = this.props;
                                     const { programData: { program } } = this.state;
                                     if (program) {
-                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}`);
+                                      history.push(`/checks?orgId=${program.orgId}&programId=${program.objectId}&orgName=${organization && organization.name ? organization.name : ""}`);
                                     }
                                   }}
                                 >
@@ -334,10 +348,10 @@ class ProgramDetail extends Component {
                           }
 
                          {(this.state.role != '1' && this.state.role != '0') &&
-                            <MDBCol md="3">
+                            <MDBCol md="4">
                                 <MDBRow>
                                   <MDBCol md="6">
-                                    Program Closing Report
+                                    Closing Comment
                                   </MDBCol>
                                   <MDBCol md="6">
                                     <MDBBtn

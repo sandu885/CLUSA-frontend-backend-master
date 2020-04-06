@@ -98,7 +98,7 @@ class Checks extends Component {
     } else {
       postProgram = '/api/createNewCheck';
     }
-
+    formData.append('path', `${this.state.orgName}/firstCheck`);
     formData.append('sessionToken', this.state.sessionToken);
     formData.append('checkAmount', first.checkAmount);
     formData.append('checkId', first.checkId); //
@@ -154,6 +154,7 @@ class Checks extends Component {
       postProgram = '/api/createNewCheck';
     }
     // formData.append('sessionToken', this.state.sessionToken);
+    formData.append('path', `${this.state.orgName}/finalCheck`);
     formData.append('checkAmount', second.checkAmount);
     formData.append('checkId', second.checkId); //
     formData.append('checkDate', second.checkDate);
@@ -267,11 +268,15 @@ class Checks extends Component {
                             color: '#b6b6b6',
                           }}>
                           {
-                            first.checkFile ? first.checkFile.name :
-                              first.checkFileLink &&
-                              <MDBBtn href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload">
-                                Click to download image
-                              </MDBBtn>
+                            first.checkFile ?
+                              <a href={`${this.state.orgName}/agreement/${first.checkFile.name }`} rel="noopener noreferrer" target="_blank" className="link-under-line">
+                                {first.checkFile.name }
+                              </a>
+                            :
+                            first.checkFileLink &&
+                              <a href={`/${first.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">
+                                {first.checkFileLink.originalname}
+                              </a>
                           }
                           </label>
                         </div>
@@ -279,7 +284,7 @@ class Checks extends Component {
                           {role == '0' ? null :
                             <>
                               <input type="file" className="form-control" style={{ display: 'none' }} name="first-checkFile" onChange={this.handleFileChange}/>
-                              <MDBBtn rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
+                              <MDBBtn rounded color="default" className="application-info-button second-action-button file-upload z-depth-1a check-file-upload" onClick={() => this.handleFileClick('first-checkFile')}>
                                 Click to Upload/Replace Image
                               </MDBBtn>
                             </>
@@ -350,11 +355,15 @@ class Checks extends Component {
                                 color: '#b6b6b6',
                               }}>
                                 {
-                                  second.checkFile ? second.checkFile.name :
-                                    second.checkFileLink &&
-                                    <MDBBtn href={`/${second.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" rounded color="default" className="application-info-button second-action-button z-depth-1a check-file-upload">
-                                      Click to download image
-                                    </MDBBtn>
+                                  second.checkFile ?
+                                    <a href={`uploads/checks/${second.checkFile.name }`} rel="noopener noreferrer" target="_blank" className="link-under-line">
+                                      {second.checkFile.name }
+                                    </a>
+                                  :
+                                  second.checkFileLink &&
+                                    <a href={`/${second.checkFileLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">
+                                      {second.checkFileLink.originalname}
+                                    </a>
                                 }
                               </label>
                             </div>
@@ -364,7 +373,7 @@ class Checks extends Component {
                                   <input type="file" className="form-control" style={{display: 'none'}}
                                         name="second-checkFile" onChange={this.handleFileChange}/>
                                   <MDBBtn rounded
-                                          className="application-info-button second-action-button z-depth-1a check-file-upload"
+                                          className="application-info-button second-action-button file-upload z-depth-1a check-file-upload"
                                           onClick={() => this.handleFileClick('second-checkFile')}>
                                     Click to Upload/Replace Image
                                   </MDBBtn>

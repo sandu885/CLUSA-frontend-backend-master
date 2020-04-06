@@ -6,7 +6,8 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn } from 'mdbreact';
+import {queryStringToJSON} from '../../utils/util'
 import axios from 'axios';
 
 import '../style.css';
@@ -74,6 +75,15 @@ class WholeApplicationCommentView extends Component {
       // session expire redirect to login
       redirectToLogin: false,
     };
+  }
+
+  componentWillMount() {
+    const { location, history } = this.props;
+
+    const queryData = queryStringToJSON(location.search);
+      this.setState({
+      ...queryData,
+    });
   }
 
   async getOrgInfo(caller) {
@@ -455,6 +465,10 @@ class WholeApplicationCommentView extends Component {
     }
   }
 
+  handleClick = () => {
+    this.props.history.push('/internship-application-section01')
+  }
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -485,7 +499,7 @@ class WholeApplicationCommentView extends Component {
             <MDBCol
               md="12"
             >
-              <h1>View detail</h1>
+              <h1>View detail1</h1>
             </MDBCol>
            
           </MDBRow>
@@ -498,9 +512,20 @@ class WholeApplicationCommentView extends Component {
               <MDBCard>
                 <MDBCardBody className="mx-4">
                   <div className="mb-4">
-                    <h3 className="mb-4">
-                      <strong>Organization Application Information</strong>
-                    </h3>
+                    <MDBRow style={{'border-bottom': '1px solid #bcbcbc'}}>
+                    <MDBCol md="12" className="pt-2">
+                      <strong className="custom-header">Organization Application Information</strong>
+                      <MDBBtn
+                        rounded
+                        style={{float:'right', 'margin-bottom': '5px' }}
+                        className="green-button org-view-sub-header-button z-depth-1a"
+                        disabled={this.state.status == "1"}
+                        onClick={() => this.handleClick()}
+                        >
+                        Edit My Application
+                      </MDBBtn>
+                    </MDBCol>                   
+                    </MDBRow>
                   </div>
                   <h5>The current applied organization is: <span className="ans-text">{this.state.getOrgName}</span></h5>
                   <div className="scroll-box">
