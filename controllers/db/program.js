@@ -144,7 +144,11 @@ const fetchAllProgramsByOrgId = async(orgId) => {
        queryAgreementPlacement.equalTo("programId", programRecords[i].id);
      
        let agreementRecord =  await queryAgreementPlacement.find({useMasterKey: true});
-       ele["awardedAmount"] =  agreementRecord[i].get("awardAmount") || 0;
+       if(agreementRecord[i]) {
+        ele["awardedAmount"] =  agreementRecord[i].get("awardAmount") || 0;
+       } else {
+        ele["awardedAmount"] = 0;
+       }
 
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
