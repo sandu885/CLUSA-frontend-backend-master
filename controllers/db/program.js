@@ -185,28 +185,43 @@ const fetchAllPrograms = async(meta) => {
     if (meta.status) {
         queryProgram.equalTo("status", meta.status);
     }
-    if (meta.year && meta.year.length >= 4) {
-        queryProgram.equalTo("appliedYear", meta.year);
-    }
+
     queryProgram.limit(10000);
-    const programRecords = await queryProgram.find({useMasterKey: true});
+    var programRecords = await queryProgram.find({useMasterKey: true});
     let programs = [];
 
+    if (meta.year && meta.year.length >= 4) {
+        programRecords = programRecords.map(function(prg) {
+            if(prg) {
+                if(prg.get("appliedYear") && prg.get("appliedYear") == meta.year) {
+                    return prg;
+                } else if(moment(prg.get("createdAt")).format('YYYY') == meta.year) {
+                    return prg;
+                }
+            }
+
+        })
+    }
+
+
     for (let i in programRecords) {
+        if(!programRecords[i]) {
+            continue;
+        }
+
         let ele = {};
         let queryOrg = new Parse.Query("Organization");
+        programRecords[i].get("_id")
         queryOrg.equalTo("objectId", programRecords[i].get("orgId"));
         if (meta.organizationName) {
             queryOrg.fullText('name', (meta.organizationName || '').trim());
         }
         let orgRecord = await queryOrg.first({useMasterKey: true});
-
         if(programRecords[i].get("appliedDate")) {
             ele["year"] = programRecords[i].get("appliedDate").iso ? moment(programRecords[i].get("appliedDate").iso).format('YYYY') : '';
         } else {
             ele["year"] = programRecords[i].get("createdAt") ? moment(programRecords[i].get("createdAt")).format('YYYY') : '';
         }
-
 
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");

@@ -193,6 +193,11 @@ class Account extends Component {
   }
 
   clickApplyBtn = () => {
+    let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
+    if(!statusToCheck.includes(this.state.status)) {
+      return alert("Not Allowed To Change Your Application In The Current Status");
+    }
+
     const newApplyAPI = '/api/createNewProgram';
     const currentComponent = this;
     // new apply
