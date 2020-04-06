@@ -116,6 +116,7 @@ const fetchAllProgramsByOrgId = async(orgId) => {
     let programs = [];
     for (let i in programRecords) {
         let ele = {};
+        
         let queryApplication = new Parse.Query("Application");
         queryApplication.equalTo("programId", programRecords[i].id);
         let appRecord = await queryApplication.find({useMasterKey: true});
@@ -126,7 +127,7 @@ const fetchAllProgramsByOrgId = async(orgId) => {
             // }
 
             if (app.get('sectionIndex') === '10') {
-                ele["awardedAmount"] = app.get('content') ? app.get('content')['2'] : '0';
+                //ele["awardedAmount"] = app.get('content') ? app.get('content')['2'] : '0';
 
                 let queryCheck = new Parse.Query("Check");
                 queryCheck.equalTo("orgId", orgId);
@@ -136,6 +137,15 @@ const fetchAllProgramsByOrgId = async(orgId) => {
                 ele["actualAmount"] = checkRecord.reduce((check1, check2) => (check1 || 0) + (Number(check2.amount) || 0), 0)
             }
         }
+        
+
+       let queryAgreementPlacement = new Parse.Query("AgreementPlacement");
+       queryAgreementPlacement.equalTo("orgId", orgId);
+       queryAgreementPlacement.equalTo("programId", programRecords[i].id);
+     
+       let agreementRecord =  await queryAgreementPlacement.find({useMasterKey: true});
+       ele["awardedAmount"] =  agreementRecord[i].get("awardAmount") || 0;
+
         ele["userId"] = programRecords[i].get("userId");
         ele["type"] = programRecords[i].get("type");
     // .replace( /([A-Z])/g, " $1" );
