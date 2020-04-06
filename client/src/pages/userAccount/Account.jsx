@@ -66,7 +66,7 @@ class Account extends Component {
       // ======================== success ========================
       if (response.data.message === 'Successfully get organization information') {
         this.setState({
-          status: response.data.info.user.status,
+          //status: response.data.info.user.status,
         });
         console.warn('console org finish');
       }
@@ -147,8 +147,8 @@ class Account extends Component {
           user: response.data.data.userData,
           columns,
           dataReceived: false,
+          status: response.data.data.programs[0].status
         });
-
       }).catch((error) => {
         this.setState({
           dataReceived: false,
@@ -196,6 +196,7 @@ class Account extends Component {
     let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
     if(!statusToCheck.includes(this.state.status)) {
       return alert("Not allow to edit application since your application is already approved");
+      window.event.preventDefault();
     }
 
     const newApplyAPI = '/api/createNewProgram';
