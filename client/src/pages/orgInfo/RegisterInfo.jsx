@@ -171,6 +171,7 @@ class RegisterInfo extends Component {
       orgType: '',
       selectedFile1: null,
       selectedFile2: null,
+      selectedFile3: null,
       address1: '',
       address2: '',
       city: '',
@@ -327,6 +328,11 @@ class RegisterInfo extends Component {
         if (this.state.selectedFile1) {
           await this.getUploadedFile('certificateFiles');
         }
+
+        if (this.state.selectedFile3) {
+          await this.getUploadedFile('fiscalAgentCertificateFiles');
+        }
+
         if (this.state.selectedFile2) {
           await this.getUploadedFile('mou');
         }
@@ -356,6 +362,7 @@ class RegisterInfo extends Component {
             orgTypeNote: response.data.info.organization.note,
             selectedFile1: response.data.info.organization.certificate,
             selectedFile2: response.data.info.organization.mou,
+            selectedFile3: response.data.info.organization.fiscalAgentCertificate,
             // getCertificate: response.data.info.organization.files.description,
             address1: response.data.info.organization.address1,
             address2: response.data.info.organization.address2,
@@ -422,6 +429,9 @@ class RegisterInfo extends Component {
         if (this.state.selectedFile1) {
           await this.getUploadedFile('certificateFiles');
         }
+        if (this.state.selectedFile3) {
+          await this.getUploadedFile('fiscalAgentCertificateFiles');
+        }
         if (this.state.selectedFile2) {
           await this.getUploadedFile('mou');
         }
@@ -433,7 +443,8 @@ class RegisterInfo extends Component {
     console.warn('getUploadedFile start =======');
     let certificatelink = '';
     if (fileType === 'certificateFiles' && this.state.orgType === '1') certificatelink = 'previousTitle'; // type 1
-    if (fileType === 'certificateFiles' && this.state.orgType === '2') certificatelink = 'previousTitle1'; // type 2
+    if (fileType === 'fiscalAgentCertificateFiles') certificatelink = 'previousTitle1'; // type 1
+    if (fileType === 'certificateFiles' && this.state.orgType === '2') certificatelink = 'previousTitle'; // type 2
     if (fileType === 'mou') certificatelink = 'previousTitle2'; // type 2
 
     try {
@@ -458,6 +469,7 @@ class RegisterInfo extends Component {
           filename = matches[1].replace(/['"]/g, '');
         }
       }
+
       link.href = window.URL.createObjectURL(response.data);
       link.download = filename;
       link.innerText = filename;
@@ -777,7 +789,7 @@ class RegisterInfo extends Component {
     formData.append('sessionToken', this.state.sessionToken);
     if (localStorage.getItem('orgId') !== null && localStorage.getItem('orgId') !== undefined) formData.append('orgId', localStorage.getItem('orgId'));
     if (orgType === '1' || orgType === '2')formData.append('certificate', this.state.selectedFile1);
-    if (orgType === '1' || orgType === '2')formData.append('certificate', this.state.selectedFile3);
+    if (orgType === '1' || orgType === '2')formData.append('fiscalAgentCertificate', this.state.selectedFile3);
     if (orgType === '2') formData.append('mou', this.state.selectedFile2);
     if (orgType === '3') formData.append('orgTypeNote', this.state.orgTypeNote);
 

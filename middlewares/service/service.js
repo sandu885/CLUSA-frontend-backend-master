@@ -75,8 +75,8 @@ const programComment = require("../../controllers/service/programComment");
 const applicationController = require("../../controllers/service/application");
 const programReportController = require("../../controllers/service/programReport");
 
-// User Table Public
-router.post('/signup', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), userController.signup);
+// User Table Public 
+router.post('/signup', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'fiscalAgentCertificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), userController.signup);
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 router.post('/forgetPassword', userController.forgetPassword);
@@ -90,7 +90,7 @@ router.post('/updateCheckById', upload1.single('checkFile'), checkController.upd
 router.post('/createRecreateLogin', userController.createRecreateLogin);
 
 // update org info
-router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 2 }, { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
+router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'fiscalAgentCertificate', maxCount: 1 },  { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
 
 // save application
 router.post('/saveApplicationContent', upload.array('budget'), applicationController.saveApplicationContent);

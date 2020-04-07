@@ -13,9 +13,11 @@ const createNewOrg = async (name, region, type, note, files, address1, address2,
     org.set("region", region);
     org.set("type", type);
     org.set("note", note);
-    org.set("address1", address1);
+    org.set("address1", address1); 
     if (files && files['certificate'] && files['certificate'].length > 0)
         org.set("certificateFiles", files['certificate']);
+    if (files && files['fiscalAgentCertificate'] && files['fiscalAgentCertificate'].length > 0)
+        org.set("fiscalAgentCertificateFiles", files['certificate']);
     if (files && files['mou'] && files['mou'].length > 0)
         org.set("mou", files['mou']);
     if (address2 != undefined)
@@ -45,6 +47,10 @@ const updateOrgById = async (orgId, name, region, type, note, files, address1, a
     orgRecord.set("address1", address1);
     if (files && files['certificate'] && files['certificate'].length > 0)
         orgRecord.set("certificateFiles", files['certificate']);
+
+    if (files && files['fiscalAgentCertificate'] && files['fiscalAgentCertificate'].length > 0)
+        orgRecord.set("fiscalAgentCertificateFiles", files['fiscalAgentCertificate']);
+
     if (files && files['mou'] && files['mou'].length > 0)
         orgRecord.set("mou", files['mou']);
     if (address2 != undefined)
@@ -140,6 +146,7 @@ const getOrgInfoById = async(user, orgId) => {
             type: org.get("type"),
             note: org.get("note"),
             certificate: org.get('certificateFiles'),
+            fiscalAgentCertificate: org.get('fiscalAgentCertificateFiles'),
             mou: org.get('mou'),
             address1: org.get("address1"),
             address2: org.get("address2"),
