@@ -193,16 +193,19 @@ class Account extends Component {
   }
 
   showApplicationWithInfo = () => {
-    let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
-    if(!statusToCheck.includes(this.state.status)) {
-      return alert("Not allow to edit application since your application is already approved");
-    }
-    this.props.history.push('/internship-information');
+
+    let statusToCheck = [undefined, "applying", "applied&ProgramOnGoing", "inReview"];
+    let currentStatus = (statusToCheck.includes(this.state.status)) ? "" : "1";
+
+    //if(currentStatus == "1") {
+      //return alert("Not allow to edit application since your application is already approved");
+    //}
+    this.props.history.push(`/internship-information?status=${currentStatus}`);
   }
 
   clickApplyBtn = () => {
-    let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
-    if(!statusToCheck.includes(this.state.status)) {
+    let statusToCheck = [undefined, "applying", "applied&ProgramOnGoing", "inReview"];
+    if(!statusToCheck.includes(this.state.status1)) {
       return alert("Not allow to edit application since your application is already approved");
     }
 
