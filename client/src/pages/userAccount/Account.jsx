@@ -194,7 +194,7 @@ class Account extends Component {
 
   showApplicationWithInfo = () => {
 
-    let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
+    let statusToCheck = [undefined, "applying", "applied&ProgramOnGoing", "inReview"];
     let currentStatus = (statusToCheck.includes(this.state.status)) ? "" : "1";
 
     //if(currentStatus == "1") {
@@ -204,7 +204,7 @@ class Account extends Component {
   }
 
   clickApplyBtn = () => {
-    let statusToCheck = ["applying", "applied&ProgramOnGoing", "inReview"];
+    let statusToCheck = [undefined, "applying", "applied&ProgramOnGoing", "inReview"];
     if(!statusToCheck.includes(this.state.status)) {
       return alert("Not allow to edit application since your application is already approved");
     }
