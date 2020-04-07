@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBIcon } from 'mdbreact';
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import {queryStringToJSON} from '../../utils/util'
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -25,6 +26,15 @@ class InternshipInformation extends Component {
       redirectToNewApply: false,
       redirectToLogin: false,
     };
+  }
+
+  componentWillMount() {
+    const { location, history } = this.props;
+
+    const queryData = queryStringToJSON(location.search);
+      this.setState({
+      ...queryData,
+    });
   }
 
   clickStartBtn = () => {
@@ -187,6 +197,7 @@ class InternshipInformation extends Component {
                   >
                     <MDBBtn
                       gradient="aqua"
+                      disabled={this.state.status == "1"}
                       rounded
                       className="btn-block z-depth-1a"
                       onClick={this.clickStartBtn}

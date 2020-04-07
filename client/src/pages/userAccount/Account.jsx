@@ -66,7 +66,7 @@ class Account extends Component {
       // ======================== success ========================
       if (response.data.message === 'Successfully get organization information') {
         this.setState({
-          status: response.data.info.user.status,
+          //status: response.data.info.user.status,
         });
         console.warn('console org finish');
       }
@@ -147,8 +147,8 @@ class Account extends Component {
           user: response.data.data.userData,
           columns,
           dataReceived: false,
+          status: response.data.data.programs[0].status
         });
-
       }).catch((error) => {
         this.setState({
           dataReceived: false,
@@ -192,7 +192,23 @@ class Account extends Component {
     return data[key] || defaultValue;
   }
 
+  showApplicationWithInfo = () => {
+
+    let statusToCheck = [undefined, "applying", "applied&ProgramOnGoing", "inReview"];
+    let currentStatus = (statusToCheck.includes(this.state.status)) ? "" : "1";
+
+    //if(currentStatus == "1") {
+      //return alert("Not allow to edit application since your application is already approved");
+    //}
+    this.props.history.push(`/internship-information?status=${currentStatus}`);
+  }
+
   clickApplyBtn = () => {
+    let statusToCheck = [undefined, "applying", "applied&ProgramOnGoing", "inReview"];
+    if(!statusToCheck.includes(this.state.status1)) {
+      return alert("Not allow to edit application since your application is already approved");
+    }
+
     const newApplyAPI = '/api/createNewProgram';
     const currentComponent = this;
     // new apply
@@ -337,19 +353,16 @@ class Account extends Component {
                     <h3>ALL GRANTS PROGRAM</h3>
                     <MDBRow>
                       <MDBCol md="3">
-                        <div style={{ cursor: 'pointer' }} className="offer-box" onClick={this.clickApplyBtn}>
-                            <p>Internship Program Grant</p>
+                        <div className="offer-box" >
+                            <p onClick={this.clickApplyBtn} style={{cursor:'pointer'}}>Internship Program Grant</p>
                             <h5
                                   id="current-status"
                                   className="blue-text"
                               >
                               </h5>
-                              <p><Link
-                                  className="instruction-link"
-                                  to="/internship-information"
-                              >
+                              <p style={{cursor:'pointer'}} onClick={this.showApplicationWithInfo}>
                                   Internship Program Grant Instruction
-                                  </Link></p>
+                              </p>
                         </div>
                       </MDBCol>
                     </MDBRow>

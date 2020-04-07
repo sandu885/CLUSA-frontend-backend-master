@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBNavItem, MDBNav, MDBNavLink } from 'mdbreact';
-import { Redirect } from 'react-router';
+import { withRouter, Redirect } from 'react-router';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import AddBox from '@material-ui/icons/AddBox';
@@ -17,15 +17,19 @@ import CLUSAlogo from '../images/clusalogo_white.png';
 const roleData = [{
   userType: '0',
   displayName: 'Grant Reviewer',
+  homePage: "/view-program"
 }, {
   userType: '1',
   displayName: 'Organization',
+  homePage: "/account"
 }, {
   userType: '2',
   displayName: 'Grant Manager',
+  homePage: "/view-program"
 }, {
   userType: '3',
   displayName: 'It Admin',
+  homePage: "/user-organization-management"
 }];
 
 class Header extends Component {
@@ -39,6 +43,8 @@ class Header extends Component {
       clickLogOut: false,
       redirectToCLUSAccount: false,
       redirectToAccount: false,
+      toHome: false,
+      homePage: "",
       displayRole: roleData.find(role => role.userType === localStorage.getItem('clusa-role'))
     };
   }
@@ -87,7 +93,13 @@ class Header extends Component {
   }
 
   goToMyAccount = () => {
+    let displayRole = roleData.find(role => role.userType === localStorage.getItem('clusa-role'))
+
+    if(this.props)
+      this.props.history.push(displayRole.homePage)
+  
     // if status == null >>>> clusa account
+    /*
     if (localStorage.getItem('status') === null) {
       this.setState({
         redirectToCLUSAccount: true,
@@ -97,15 +109,19 @@ class Header extends Component {
         redirectToAccount: true,
       });
     }
+    */
   };
 
   render() {
-    const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin, sessionToken, displayRole } = this.state;
+    const { userName, clickLogOut, redirectToCLUSAccount, redirectToAccount, redirectToLogin, sessionToken, displayRole, homePage, toHome} = this.state;
     const { currentPage, breadCrums = [] } = this.props;
 
     if (clickLogOut === true || redirectToLogin === true) return <Redirect to="/login" />;
-    if (redirectToCLUSAccount === true) return <Redirect to="/clusa-account" />;
-    if (redirectToAccount === true) return <Redirect to="/account" />;
+    //if (redirectToCLUSAccount === true) return <Redirect to={"/clusa-account"} />;
+    //if (redirectToAccount === true) return <Redirect to="/account" />;
+    console.log("before ++++++++++++++")
+    //if(toHome === true)
+      //return <Redirect to={homePage} />
 
     return (
       <div className="header">
@@ -179,7 +195,10 @@ class Header extends Component {
                         {/*{currentPage.length ?*/}
                         {/*  currentPage.map(cP => cP.child) : null*/}
                         {/*}*/}
-                        {currentPage}
+                        {console.log(currentPage)}
+                        {Array.isArray(currentPage) ? 
+                          currentPage.map(page => page.child)
+                        : currentPage}
 
 
                         {/*{!currentPage.length &&*/}
@@ -223,11 +242,10 @@ class Header extends Component {
         }
 
       </div>
-      
     );
   }
 }
 
 
-
-export default Header;
+export default withRouter(Header)
+//export default Header;

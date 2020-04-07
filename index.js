@@ -19,10 +19,12 @@ app.use(bodyParser.json());
 
 
 if (app.get('env') === 'development') {
-  databaseUri = "mongodb://chivalry:chivalry94539@ds233258.mlab.com:33258/intern_grand_db"; //development
-   // databaseUri = "mongodb:27017/intern_grant_db_dev";
+  //databaseUri = "mongodb://chivalry:chivalry94539@ds233258.mlab.com:33258/intern_grand_db"; //development
+  databaseUri = "mongodb:27017/intern_grand_db_prod_2";
   console.log("In development env...");
 }
+
+databaseUri = "mongodb://localhost:27017/intern_grand_db_prod_2";
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');

@@ -95,6 +95,7 @@ class OrganizationComment extends Component {
       postCommentProgramStatusURL,
       postData,
     ).then((res) => {
+      alert('Status saved successfully.');
       console.log('created program report successfully', res);
     }).catch((error) => {
       if (error.response !== null && error.response !== undefined) {
@@ -144,6 +145,7 @@ class OrganizationComment extends Component {
         postCommentURL,
         postData,
       ).then((res) => {
+        alert('Comment saved successfully.');
         console.log('created program report successfully', res);
         this.fetchComments();
         this.setState({
@@ -242,7 +244,7 @@ class OrganizationComment extends Component {
                 <MDBCol md="3">
                   <select name="programStatus" className="browser-default custom-select form-control" value={programStatus} onChange={this.handleProgramChange}>
                     <option value="">Select Status</option>
-                    <option value="inView">In Review</option>
+                    <option value="inReview">In Review</option>
                     <option value="preparingAgreement">Preparing Agreement</option>
                     <option value="turnDown">Turn Down</option>
                   </select>

@@ -41,8 +41,9 @@ const sendEmail = async(emailAddress, username, password, type) => {
         console.log("Your message has been successfully sent.");
         return message;
     } catch(err) {
+        return "done";
         console.log(err.message);
-        throw new Error(err.message);
+        //throw new Error(err.message);
     }
 }
 
@@ -75,8 +76,9 @@ const sendUserAddEmail = async(emailAddress, username, token) => {
     console.log("Your message has been successfully sent.");
     return message;
   } catch(err) {
-    console.log(err.message);
-    throw new Error(err.message);
+      return "done";
+      console.log(err.message);
+      //throw new Error(err.message);
   }
 }
 
@@ -111,8 +113,9 @@ const forgetPassword = async(emailAddress, username, token, originLocation) => {
     console.log("Your message has been successfully sent.");
     return message;
   } catch(err) {
-    console.log(err.message);
-    throw new Error(err.message);
+      return "done";
+      console.log(err.message);
+      //throw new Error(err.message);
   }
 }
 
@@ -145,8 +148,9 @@ const sendRecreateLoginEmail = async(emailAddress, note) => {
     console.log("Your message has been successfully sent.");
     return message;
   } catch(err) {
-    console.log(err.message);
-    throw new Error(err.message);
+      return "done";
+      console.log(err.message);
+      //throw new Error(err.message);
   }
 }
 
@@ -182,14 +186,16 @@ const programStatusUpdate = async(emailAddress, username, prevStatus, currentSta
     console.log("Your message has been successfully sent.");
     return message;
   } catch(err) {
-    console.log(err.message);
-    throw new Error(err.message);
+      return "done";
+      console.log(err.message);
+      //throw new Error(err.message);
   }
 };
 
 const sendEmailCustomMessage = async(emailAddress, msg) => {
   try {
     console.log("send email request received.");
+    console.log(emailAddress, msg)
     // if (!emailAddress)
     //   throw new Error("No email");
     // console.log("Receiver email address is " + emailAddress);
@@ -208,13 +214,15 @@ const sendEmailCustomMessage = async(emailAddress, msg) => {
       subject: 'Program status Update.',
       text: msg,
     };
+    console.log(emailAddress, msg)
     await client.sendMail(mailContent);
     const message = 'Your message has been successfully sent.';
     console.log("Your message has been successfully sent.");
     return message;
   } catch(err) {
-    console.log(err.message);
-    // throw new Error(err.message);
+      return "done";
+      console.log(err.message);
+      //throw new Error(err.message);
   }
 };
 
@@ -247,16 +255,15 @@ const CLUSAUploadAgreement = async(emailAddress, username) => {
     console.log("Your message has been successfully sent.");
     return message;
   } catch(err) {
-    console.log(err.message);
-    throw new Error(err.message);
+      return "done";
+      console.log(err.message);
+      //throw new Error(err.message);
   }
 };
 
 const CLUSAUploadAgreementToCLUSA = async(orgName) => {
   try {
     console.log("send email request received.");
-    if (!emailAddress)
-      throw new Error("No email");
     console.log("Receiver email address is grant@clusa.org");
     let options = {
       auth: {
@@ -280,8 +287,9 @@ const CLUSAUploadAgreementToCLUSA = async(orgName) => {
     console.log("Your message has been successfully sent.");
     return message;
   } catch(err) {
-    console.log(err.message);
-    throw new Error(err.message);
+      return "done";
+      console.log(err.message);
+      //throw new Error(err.message);
   }
 };
 

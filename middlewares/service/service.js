@@ -20,6 +20,9 @@ const storage = multer.diskStorage({
 const storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
     let path = `./uploads/checks`;
+    if (req.body.path) {
+      path = `./uploads/${req.body.path}`;
+    }
     fs.mkdirsSync(path);
     cb(null, path)
   },
@@ -87,7 +90,7 @@ router.post('/updateCheckById', upload1.single('checkFile'), checkController.upd
 router.post('/createRecreateLogin', userController.createRecreateLogin);
 
 // update org info
-router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 1 }, { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
+router.post('/updateOrgInfo', upload.fields([{ name: 'certificate', maxCount: 2 }, { name: 'mou', maxCount: 1 }]), orgController.updateOrgInfo);
 
 // save application
 router.post('/saveApplicationContent', upload.array('budget'), applicationController.saveApplicationContent);
@@ -96,8 +99,8 @@ router.post('/saveApplicationContent', upload.array('budget'), applicationContro
 router.post('/createNewAgreementPlacement', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'finalFilledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.createNewAgreementPlacement);
 router.post('/updateAgreementPlacementById', upload2.fields([{ name: 'signedAgreement', maxCount: 1 }, { name: 'filledPlacement', maxCount: 1 }, { name: 'finalFilledPlacement', maxCount: 1 }, { name: 'agreementTemplate', maxCount: 1 }, { name: 'placementTemplate', maxCount: 1 }]), agreementPlacementController.updateAgreementPlacementById);
 // finalReport
-router.post('/createNewFinalReport', upload2.single('file'), finalReport.createNewFinalReport);
-router.post('/updateFinalReportById', upload2.single('file'), finalReport.updateFinalReportById);
+router.post('/createNewFinalReport', upload2.single('finalreportfile'), finalReport.createNewFinalReport);
+router.post('/updateFinalReportById', upload2.single('finalreportfile'), finalReport.updateFinalReportById);
 // programReport
 router.post('/createNewProgramReport', upload2.single('file'), programReportController.createNewProgramReport);
 router.post('/updateProgramReportById', upload2.single('file'), programReportController.updateProgramReportById);
