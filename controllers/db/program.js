@@ -195,28 +195,9 @@ const fetchAllPrograms = async(meta) => {
         let queryProgram = new Parse.Query("Program");
         queryProgram.equalTo("orgId", orgRecord[j]._getId());
 
-        if (meta.programType) {
-            queryProgram.equalTo("programType", meta.programType);
-        }
-        if (meta.status) {
-            queryProgram.equalTo("status", meta.status);
-        }
 
         queryProgram.limit(10000);
         var programRecords = await queryProgram.find({useMasterKey: true});
-
-        if (meta.year && meta.year.length >= 4) {
-            programRecords = programRecords.map(function(prg) {
-                if(prg) {
-                    if(prg.get("appliedYear") && prg.get("appliedYear") == meta.year) {
-                        return prg;
-                    } else if(moment(prg.get("createdAt")).format('YYYY') == meta.year) {
-                        return prg;
-                    }
-                }
-
-            })
-        }
 
 
         if(programRecords.length > 0) {
@@ -224,8 +205,34 @@ const fetchAllPrograms = async(meta) => {
             for (let i in programRecords) {
                 let ele = {};
 
+                var metCondition = 0;
+               
+                if (meta.year && meta.year.length >= 4) {
+                    metCondition = 1;
+                    if(programRecords[i].get("appliedYear") && programRecords[i].get("appliedYear") == meta.year) {
+                        metCondition = 2;
+                    } else if(moment(programRecords[i].get("createdAt")).format('YYYY') == meta.year) {
+                        metCondition = 2;
+                    } 
+                } else if (meta.programType) {
+                    metCondition = 1;
+                    if(programRecords[i].get("programType") == meta.programType) {
+                        metCondition = 2;
+                    }
+                } else if (meta.status) {
+                    metCondition = 1;
+                    if(programRecords[i].get("status") == meta.status) {
+                        metCondition = 2;
+                    }
+                }
+                
+                if(metCondition ==  1) {
+                    continue;
+                }
+                
+
                 ele["org"] =  orgRecord[j];
-                ele["orgName"] =  orgRecord[j].get('name');    
+                ele["orgName"] =  orgRecord[j].get('name');
                 
                 if(programRecords[i].get("appliedDate")) {
                     ele["year"] = programRecords[i].get("appliedDate").iso ? moment(programRecords[i].get("appliedDate").iso).format('YYYY') : '';
@@ -262,11 +269,14 @@ const fetchAllPrograms = async(meta) => {
 
             }
         } else {
-            let ele = {};
-            ele["org"] =  orgRecord[j];
-            ele["orgName"] =  orgRecord[j].get('name');
-            allOrganizationData.push(ele)
-        }
+            if ((!meta.year == true) && (!meta.programType == true) && (!meta.status == true)) {
+                let ele = {};
+                ele["org"] =  orgRecord[j];
+                ele["orgName"] =  orgRecord[j].get('name');
+                allOrganizationData.push(ele)
+            }
+        }       
+    
     }
   
     return allOrganizationData;
