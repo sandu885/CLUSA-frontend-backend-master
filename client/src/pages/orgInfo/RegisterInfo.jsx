@@ -1325,6 +1325,7 @@ class RegisterInfo extends Component {
                         ><span className="redColor">* </span>Organization’s Mission Statement
                           <textarea
                             id="register-mission"
+                            disabled={this.state.role !== '1'}
                             className={this.state.missionInputError ? 'form-control errorInput' : 'form-control'}
                             rows="4"
                             maxLength="250"
@@ -1417,6 +1418,7 @@ class RegisterInfo extends Component {
                         ><span className="redColor">* </span>Programs, please list all programs your organization has (eg. Internship Program, Civic Leadership Forum, etc.) :
                           <textarea
                             id="register-program"
+                            disabled={this.state.role !== '1'}
                             className={this.state.programInfoInputError ? 'form-control errorInput pt-2' : 'form-control pt-2'}
                             rows="4"
                             maxLength="250"
@@ -1464,6 +1466,7 @@ class RegisterInfo extends Component {
                         >Other Information You Want Us To Know About Your Organization
                           <textarea
                             id="register-other"
+                            disabled={this.state.role !== '1'}
                             className="form-control pt-2"
                             rows="4"
                             maxLength="250"
