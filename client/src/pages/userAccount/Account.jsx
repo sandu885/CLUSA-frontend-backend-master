@@ -307,7 +307,7 @@ class Account extends Component {
                         <strong>Organization Name: </strong><span> {organization.name} </span>
                       </MDBCol>                   
                       <MDBCol md="3" className="pt-2">
-                      <strong>Conant Name1: </strong><span> {user.username} </span>
+                      <strong>Conant Name: </strong><span> {user.username} </span>
                       </MDBCol>                   
                       <MDBCol md="3" className="pt-2">
                       <strong>Email: </strong><span> {user.emailAddress || user.email} </span>
