@@ -515,15 +515,17 @@ class WholeApplicationCommentView extends Component {
                     <MDBRow style={{'border-bottom': '1px solid #bcbcbc'}}>
                     <MDBCol md="12" className="pt-2">
                       <strong className="custom-header">Organization Application Information</strong>
-                      <MDBBtn
-                        rounded
-                        style={{float:'right', 'margin-bottom': '5px' }}
-                        className="green-button org-view-sub-header-button z-depth-1a"
-                        disabled={this.state.status == "1"}
-                        onClick={() => this.handleClick()}
+                      {this.state.role == '1' &&
+                        <MDBBtn
+                          rounded
+                          style={{float:'right', 'margin-bottom': '5px' }}
+                          className="green-button org-view-sub-header-button z-depth-1a"
+                          disabled={this.state.status == "1"}
+                          onClick={() => this.handleClick()}
                         >
-                        Edit My Application
-                      </MDBBtn>
+                          Edit My Application
+                        </MDBBtn>
+                      }
                     </MDBCol>                   
                     </MDBRow>
                   </div>

@@ -205,14 +205,15 @@ class Account extends Component {
 
   clickApplyBtn = () => {
     let statusToCheck = [undefined, "applying", "applied&ProgramOnGoing", "inReview"];
-    if(!statusToCheck.includes(this.state.status1)) {
+    if(!statusToCheck.includes(this.state.status)) {
       return alert("Not allow to edit application since your application is already approved");
     }
 
     const newApplyAPI = '/api/createNewProgram';
     const currentComponent = this;
     // new apply
-    if (this.state.status === 'not applied') {
+    if (this.state.status === 'not applied' || this.state.status == undefined) {
+      console.warn('new start');
       console.warn('new start');
       axios.post(
         newApplyAPI,
