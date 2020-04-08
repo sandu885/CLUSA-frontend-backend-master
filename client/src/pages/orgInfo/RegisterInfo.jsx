@@ -1322,7 +1322,7 @@ class RegisterInfo extends Component {
                         <label
                           htmlFor="register-mission"
                           className="dark-grey-text font-weight-light pt-2"
-                        ><span className="redColor">* </span>Organization’s Mission Statement1
+                        ><span className="redColor">* </span>Organization’s Mission Statement
                           <textarea
                             id="register-mission"
                             disabled={this.state.role !== '1'}
