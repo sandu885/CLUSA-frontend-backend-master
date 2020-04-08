@@ -177,89 +177,109 @@ const fetchAllProgramsByOrgId = async(orgId) => {
     return { programs, organizationData: organizationRecords, userData: userRecords };
 };
 
+
 const fetchAllPrograms = async(meta) => {
-    let queryProgram = new Parse.Query("Program");
-    if (meta.programType) {
-        queryProgram.equalTo("programType", meta.programType);
-    }
-    if (meta.status) {
-        queryProgram.equalTo("status", meta.status);
+
+    let queryOrg = new Parse.Query("Organization");
+    if (meta.organizationName) {
+        queryOrg.fullText('name', (meta.organizationName || '').trim());
     }
 
-    queryProgram.limit(10000);
-    var programRecords = await queryProgram.find({useMasterKey: true});
-    let programs = [];
+    queryOrg.limit(10000);
+    let orgRecord = await queryOrg.find({useMasterKey: true});
 
-    if (meta.year && meta.year.length >= 4) {
-        programRecords = programRecords.map(function(prg) {
-            if(prg) {
-                if(prg.get("appliedYear") && prg.get("appliedYear") == meta.year) {
-                    return prg;
-                } else if(moment(prg.get("createdAt")).format('YYYY') == meta.year) {
-                    return prg;
+
+    let allOrganizationData = [];
+    for (let j in orgRecord) {
+
+        let queryProgram = new Parse.Query("Program");
+        queryProgram.equalTo("orgId", orgRecord[j]._getId());
+
+
+        queryProgram.limit(10000);
+        var programRecords = await queryProgram.find({useMasterKey: true});
+
+
+        if(programRecords.length > 0) {
+
+            for (let i in programRecords) {
+                let ele = {};
+
+                var metCondition = 0;
+               
+                if (meta.year && meta.year.length >= 4) {
+                    metCondition = 1;
+                    if(programRecords[i].get("appliedYear") && programRecords[i].get("appliedYear") == meta.year) {
+                        metCondition = 2;
+                    } else if(moment(programRecords[i].get("createdAt")).format('YYYY') == meta.year) {
+                        metCondition = 2;
+                    } 
+                } else if (meta.programType) {
+                    metCondition = 1;
+                    if(programRecords[i].get("programType") == meta.programType) {
+                        metCondition = 2;
+                    }
+                } else if (meta.status) {
+                    metCondition = 1;
+                    if(programRecords[i].get("status") == meta.status) {
+                        metCondition = 2;
+                    }
                 }
-            }
+                
+                if(metCondition ==  1) {
+                    continue;
+                }
+                
 
-        })
-    }
+                ele["org"] =  orgRecord[j];
+                ele["orgName"] =  orgRecord[j].get('name');
+                
+                if(programRecords[i].get("appliedDate")) {
+                    ele["year"] = programRecords[i].get("appliedDate").iso ? moment(programRecords[i].get("appliedDate").iso).format('YYYY') : '';
+                } else {
+                    ele["year"] = programRecords[i].get("createdAt") ? moment(programRecords[i].get("createdAt")).format('YYYY') : '';
+                }
+        
+                ele["userId"] = programRecords[i].get("userId");
+                ele["type"] = programRecords[i].get("type");
+                ele["status"] = programRecords[i].get("status") ? programRecords[i].get("status").replace( /([A-Z])/g, " $1" ) : '';
+                ele["objectId"] = programRecords[i].id;
+                ele["programType"] = programRecords[i].get("programType");
+                ele["createdAt"] = programRecords[i].get("createdAt");
+                ele["updatedAt"] = programRecords[i].get("updatedAt");
+                if ( orgRecord[j]) {
+                    let queryCheck = new Parse.Query("Check");
+                    queryCheck.limit(3);
+                    queryCheck.equalTo("orgId",  orgRecord[j]._getId());
+                    queryCheck.equalTo("programId", programRecords[i].id);
+                    let checkRecord = await queryCheck.find({useMasterKey: true});
+        
+                    let queryAgreementPlacement = new Parse.Query("AgreementPlacement");
+                    queryAgreementPlacement.equalTo("orgId",  orgRecord[j]._getId());
+                    queryAgreementPlacement.equalTo("programId", programRecords[i].id);
+                    let agreementPlacementRecord = await queryAgreementPlacement.first({useMasterKey: true});
+        
+                    const checkData = JSON.parse(JSON.stringify(checkRecord));
+        
+                    ele["actualAmount"] = checkData.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0) || null;
+                    ele["awardedAmount"] = agreementPlacementRecord ? agreementPlacementRecord.get('awardAmount') : '';
+                }
 
+                allOrganizationData.push(ele);
 
-    for (let i in programRecords) {
-        if(!programRecords[i]) {
-            continue;
-        }
-
-        let ele = {};
-        let queryOrg = new Parse.Query("Organization");
-        programRecords[i].get("_id")
-        queryOrg.equalTo("objectId", programRecords[i].get("orgId"));
-        if (meta.organizationName) {
-            queryOrg.fullText('name', (meta.organizationName || '').trim());
-        }
-        let orgRecord = await queryOrg.first({useMasterKey: true});
-        if(programRecords[i].get("appliedDate")) {
-            ele["year"] = programRecords[i].get("appliedDate").iso ? moment(programRecords[i].get("appliedDate").iso).format('YYYY') : '';
-        } else {
-            ele["year"] = programRecords[i].get("createdAt") ? moment(programRecords[i].get("createdAt")).format('YYYY') : '';
-        }
-
-        ele["userId"] = programRecords[i].get("userId");
-        ele["type"] = programRecords[i].get("type");
-        ele["status"] = programRecords[i].get("status") ? programRecords[i].get("status").replace( /([A-Z])/g, " $1" ) : '';
-        ele["objectId"] = programRecords[i].id;
-        ele["programType"] = programRecords[i].get("programType");
-        ele["org"] = orgRecord;
-        ele["orgName"] = orgRecord ? orgRecord.get('name') : '';
-        ele["createdAt"] = programRecords[i].get("createdAt");
-        ele["updatedAt"] = programRecords[i].get("updatedAt");
-        if (orgRecord) {
-            let queryCheck = new Parse.Query("Check");
-            queryCheck.limit(3);
-            queryCheck.equalTo("orgId", orgRecord.id);
-            queryCheck.equalTo("programId", programRecords[i].id);
-            let checkRecord = await queryCheck.find({useMasterKey: true});
-
-            let queryAgreementPlacement = new Parse.Query("AgreementPlacement");
-            queryAgreementPlacement.equalTo("orgId", orgRecord.id);
-            queryAgreementPlacement.equalTo("programId", programRecords[i].id);
-            let agreementPlacementRecord = await queryAgreementPlacement.first({useMasterKey: true});
-
-            const checkData = JSON.parse(JSON.stringify(checkRecord));
-
-            ele["actualAmount"] = checkData.reduce((t1, t2) => (t1 || 0) + Number(t2.amount), 0) || null;
-            ele["awardedAmount"] = agreementPlacementRecord ? agreementPlacementRecord.get('awardAmount') : '';
-        }
-
-        if ((meta.organizationName || '').trim()) {
-            if (orgRecord) {
-                programs.push(ele);
-                // return
             }
         } else {
-            programs.push(ele);
-        }
+            if ((!meta.year == true) && (!meta.programType == true) && (!meta.status == true)) {
+                let ele = {};
+                ele["org"] =  orgRecord[j];
+                ele["orgName"] =  orgRecord[j].get('name');
+                allOrganizationData.push(ele)
+            }
+        }       
+    
     }
-    return programs;
+  
+    return allOrganizationData;
 };
 
 const updateProgramByIdToCloseStatus = async (meta) => {
