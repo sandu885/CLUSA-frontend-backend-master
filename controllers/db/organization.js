@@ -2,8 +2,8 @@ const PROGRAM = require("../db/program");
 // create new Organization
 const createNewOrg = async (name, region, type, note, files, address1, address2, city, state, zipcode, parentOrg) => {
     console.log("Organization type is " + type);
-    if ((type === '1' || type === '2') && (!files || !files['certificate'] || files['certificate'].length == 0))
-        throw new Error("No certificate");
+    //if ((type === '1' || type === '2') && (!files || !files['certificate'] || files['certificate'].length == 0))
+        //throw new Error("No certificate");
     if (type === '2' && (!files || !files['mou'] || files['mou'].length == 0))
         throw new Error("No enough certificate files, You need to upload both files");
     if (type === '3' && !note)
@@ -34,12 +34,12 @@ const createNewOrg = async (name, region, type, note, files, address1, address2,
 const updateOrgById = async (orgId, name, region, type, note, files, address1, address2, city, state, zipcode, parentOrg) => {
     console.log("Organization type is " + type);
     let orgRecord = await findOrgById(orgId);
-    if ((type === '1' || type === '2') && !orgRecord.get('certificateFiles') && (!files || !files['certificate']))
-        throw new Error("No certificate");
-    if (type === '2' && !orgRecord.get('mou') && (!files || !files['mou']))
-        throw new Error("No enough certificate files, You need to upload both files");
-    if (type === '3' && !note)
-        throw new Error("Missing specific information for organization type");
+    //if ((type === '1' || type === '2') && !orgRecord.get('certificateFiles') && (!files || !files['certificate']))
+        //throw new Error("No certificate");
+    //if (type === '2' && !orgRecord.get('mou') && (!files || !files['mou']))
+        //throw new Error("No enough certificate files, You need to upload both files");
+   // if (type === '3' && !note)
+        //throw new Error("Missing specific information for organization type");
     orgRecord.set("name", name);
     orgRecord.set("region", region);
     orgRecord.set("type", type);
