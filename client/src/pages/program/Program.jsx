@@ -252,8 +252,9 @@ class Program extends Component {
   }
 
   linkToOrgPrograms(e, orgId) {
-    if(e.screenX < 550)
+    if(e.pageX < 400 && e.relatedTarget == null) {
       this.props.history.push(`/org/${orgId}`);
+    }
   }
 
   componentDidMount() {
