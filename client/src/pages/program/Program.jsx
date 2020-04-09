@@ -251,8 +251,9 @@ class Program extends Component {
     );
   }
 
-  linkToOrgPrograms(orgId) {
-    this.props.history.push(`/org/${orgId}`);
+  linkToOrgPrograms(e, orgId) {
+    if(e.screenX < 550)
+      this.props.history.push(`/org/${orgId}`);
   }
 
   componentDidMount() {
@@ -309,7 +310,7 @@ class Program extends Component {
           return {
             ...row,
             orgName: row.orgName,
-            clickEvent: () => this.linkToOrgPrograms(row.org.objectId),
+            clickEvent: (e) => this.linkToOrgPrograms(e, row.org.objectId),
             programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
           }
         })
