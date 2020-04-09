@@ -405,6 +405,12 @@ table td {
   /* max-width: 202px; */
   padding-right: 0;
 }
+
+.custom-table-org tr td:first-child {
+  text-decoration: underline !important;
+  color: #5772e3 !important;
+  cursor: pointer;
+}
 .header-section .btn-default{
   margin: 9px 0 0 0;
   text-transform: capitalize;
