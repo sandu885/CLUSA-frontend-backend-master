@@ -229,7 +229,7 @@ class Program extends Component {
                         :
                         <div className="table-responsive">
                           <MDBDataTable
-                            className="custom-table program-table"
+                            className="custom-table program-table custom-table-org"
                             striped
                             borderless
                             data={programData}
@@ -249,6 +249,12 @@ class Program extends Component {
         <FooterComponent className="mt-5 pt-5" />
       </div>
     );
+  }
+
+  linkToOrgPrograms(e, orgId) {
+    if(e.pageX < 400 && e.relatedTarget == null) {
+      this.props.history.push(`/org/${orgId}`);
+    }
   }
 
   componentDidMount() {
@@ -304,7 +310,8 @@ class Program extends Component {
         const rows = (response.data.programs || []).map(row => {
           return {
             ...row,
-            orgName: row.orgName && <Link to={`/org/${row.org.objectId}`}> {row.orgName} </Link>,
+            orgName: row.orgName,
+            clickEvent: (e) => this.linkToOrgPrograms(e, row.org.objectId),
             programType: <Link to={`/program/${row.objectId}`}> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
           }
         })

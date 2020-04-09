@@ -138,6 +138,13 @@ class Account extends Component {
             programType: <Link to={`/program/${row.objectId}`} className="link-under-line"> { row.programType ? programType.find(pT => pT.value === row.programType).name : ''} </Link>
           }
         })
+
+        if(response.data.data.programs.length > 0) {
+          this.setState({
+            status: response.data.data.programs[0].status
+          })
+        }
+
         this.setState({
           programData: {
             columns: [ ...columns ],
@@ -146,8 +153,7 @@ class Account extends Component {
           organization: response.data.data.organizationData,
           user: response.data.data.userData,
           columns,
-          dataReceived: false,
-          status: response.data.data.programs[0].status
+          dataReceived: false
         });
       }).catch((error) => {
         this.setState({
