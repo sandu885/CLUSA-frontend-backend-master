@@ -277,41 +277,20 @@ class ProgramReport extends Component {
                       <MDBTableHead>
                         <tr>
                           <th><strong>Report Type</strong></th>
-                          <th><strong>Requirement</strong></th>
+                          <th><strong>Template</strong></th>
+                          <th><strong>Report Type</strong></th>
                           <th><strong>Template</strong></th>
                         </tr>
                       </MDBTableHead>
                       <MDBTableBody>
                         <tr>
                           <td><strong>Student Training Report</strong></td>
-                          <td>Report requirement sort introduction</td>
                           <td><MDBBtn rounded className="program-report-template"
                                   href={CLUSAStudentTrainingReport}
                           >
                             Download Template File
                           </MDBBtn></td>
-                        </tr>
-                        <tr>
-                          <td><strong>Graduation Ceremony Reports</strong></td>
-                          <td>Report requirement sort introduction</td>
-                          <td><MDBBtn rounded className="program-report-template"
-                                  href={CLUSAGraduationCeremonyReport}
-                          >
-                            Download Template File
-                          </MDBBtn></td>
-                        </tr>
-                        <tr>
-                          <td><strong>Intern Documentation</strong></td>
-                          <td>Report requirement sort introduction</td>
-                          <td><MDBBtn rounded className="program-report-template"
-                                  href={CLUSAInternshipBudget}
-                          >
-                            Download Template File
-                          </MDBBtn></td>
-                        </tr>
-                        <tr>
                           <td><strong>Other Event</strong></td>
-                          <td>Report requirement sort introduction</td>
                           <td><MDBBtn rounded className="program-report-template"
                                   href={CLUSAOtherEvent}
                           >
@@ -319,8 +298,13 @@ class ProgramReport extends Component {
                           </MDBBtn></td>
                         </tr>
                         <tr>
+                          <td><strong>Graduation Ceremony Reports</strong></td>
+                          <td><MDBBtn rounded className="program-report-template"
+                                  href={CLUSAGraduationCeremonyReport}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
                           <td><strong>Essay Contest</strong></td>
-                          <td>Report requirement sort introduction</td>
                           <td><MDBBtn rounded className="program-report-template"
                                   href={CLUSAEssayContest}
                           >
@@ -328,16 +312,21 @@ class ProgramReport extends Component {
                           </MDBBtn></td>
                         </tr>
                         <tr>
+                          <td><strong>Intern Documentation</strong></td>
+                          <td><MDBBtn rounded className="program-report-template"
+                                  href={CLUSAInternshipBudget}
+                          >
+                            Download Template File
+                          </MDBBtn></td>
                           <td><strong>Event Attendee Sign In Sheet</strong></td>
-                          <td>Report requirement sort introduction</td>
                           <td><MDBBtn rounded className="program-report-template"
                                   href={CLUSAInternInformation}
                           >
                             Download Template File
                           </MDBBtn></td>
                         </tr>
-
                        
+                      
                       </MDBTableBody>
                     </MDBTable>
                     <MDBRow className="pt-4">
@@ -502,10 +491,11 @@ class ProgramReport extends Component {
 
                     {role &&
                     <>
-                    <MDBCol md={4} className="pt-4">
+                    <MDBCol md={12} className="pt-4">
                       {role === '1' &&
                       <MDBBtn
                         rounded
+                        color="danger"
                         disabled={this.state.status != "1"}
                         className="second-action-button z-depth-1a"
                         onClick={() => {
@@ -520,7 +510,7 @@ class ProgramReport extends Component {
                       </MDBBtn>
                       }
                     </MDBCol>
-                        <MDBCol md={8} className="pt-4 text-right">
+                        <MDBCol md={12} className="text-right">
                           <MDBBtn
                             color="secondary"
                             rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color"
