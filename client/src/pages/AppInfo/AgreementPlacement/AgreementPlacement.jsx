@@ -195,6 +195,7 @@ class AgreementPlacement extends Component {
                 <MDBCardBody>
                   <MDBRow className="user-org-management-header sub-management-header">
                     <MDBCol>
+                      <h5 className="section">Section 1</h5>
                       <div style={{ fontSize: 'initial' }}>
                         Congratulations to being awarded by
                         CLUSA Internship Grant! Please download the agreement template below and
@@ -310,10 +311,11 @@ class AgreementPlacement extends Component {
                       <MDBCol md="12">
                         <MDBRow className="pt-3">
                           <MDBCol sm={12} style={{ paddingLeft: '15px' }} className="block-header">
+                            <h5 className="section">Section 2</h5>
                             <h3>Result</h3>
                           </MDBCol>
                           <MDBCol md="12">
-                            <strong>Final Agreement (Signed by CLUSA and applicant)</strong>
+                            <strong>Internship Placement Confirmation</strong>
                           </MDBCol>
                           
                           {role === '0' ?

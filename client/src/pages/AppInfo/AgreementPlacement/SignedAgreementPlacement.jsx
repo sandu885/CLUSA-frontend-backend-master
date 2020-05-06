@@ -199,6 +199,7 @@ class SignedAgreementPlacement extends Component {
                 <MDBCardBody>
                 <MDBRow className="user-org-management-header sub-management-header">
                   <MDBCol>
+                    <h5 className="section">Section 1</h5>
                     <div style={{ fontSize: 'initial' }}>
                       Congratulations to being awarded by
                       CLUSA Internship Grant! Please download the agreement template below and
@@ -293,13 +294,14 @@ class SignedAgreementPlacement extends Component {
                   <div>
                     <MDBRow>
                       <MDBCol md="12 pt-4">
+                        <h5 className="section">Section 2</h5>
                         <h3>Result:</h3>                                              
                       </MDBCol>
                       <MDBCol sm="10" className="blue-font-color" style={{ paddingBottom: '10px' }}>
                         <strong><span style={{ color: '#556ee6' }}>{formData.status ? ((formData.status == '0' || formData.status == 'undefined') ? 'Under Review' : 'APPROVED') : 'Under Review'}</span></strong>
                       </MDBCol>
                       <MDBCol md="12">
-                        <strong style={{ textTransform: 'uppercase' }}>Final Agreement (Signed by CLUSA and applicant)</strong>
+                        <strong style={{ textTransform: 'uppercase' }}>Internship Placement Confirmation</strong>
                       </MDBCol>
                       <MDBCol sm="12" className="pt-2 pb-2">
                         {formData.finalFilledPlacementLink && formData.finalFilledPlacementLink.filename && <a href={`/${formData.finalFilledPlacementLink.path}`} rel="noopener noreferrer" target="_blank" className="link-under-line">

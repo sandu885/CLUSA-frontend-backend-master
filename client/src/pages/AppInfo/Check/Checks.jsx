@@ -317,7 +317,7 @@ class Checks extends Component {
                                     onClick={event => {
                                       this.props.history.goBack();
                                     }}>
-                              Cancel
+                              Back To Program Detail
                             </MDBBtn>
                           </MDBCol>
                           <MDBCol sm="3">
@@ -394,15 +394,15 @@ class Checks extends Component {
                         {role == '0' ?
                           <div className="form-group font-weight-bold">
                             <MDBCol sm="5"/>
-                            <MDBCol sm="3 p-0">
+                            <MDBCol sm="3 p-0" md="5">
                               <MDBBtn rounded
                               color="danger"
-                                      className="send-button second-action-button z-depth-1a check-file-upload"
+                                      className="send-button second-action-button z-depth-1a check-file-upload mt-2"
                                       onClick={event => {
                                         this.props.history.goBack();
                                       }}
                               >
-                                Go Back
+                                Back To Program Detail
                               </MDBBtn>
                             </MDBCol>
                           </div>
@@ -420,7 +420,7 @@ class Checks extends Component {
                                         this.props.history.goBack();
                                       }}
                               >
-                                Cancel
+                                Back To Program Detail
                               </MDBBtn>
                           </div>
                         }
