@@ -497,9 +497,22 @@ class WholeApplicationCommentView extends Component {
         <MDBContainer className="title-section">
           <MDBRow>
             <MDBCol
-              md="12"
+              md="6"
             >
               <h1>View detail1</h1>
+            </MDBCol>
+            <MDBCol
+              md="6"
+            >
+              <MDBBtn
+                color="secondary"
+                  rounded className="application-info-button second-action-button z-depth-1a check-file-upload light-green-color float-right"
+                  onClick={() => {
+                      this.props.history.push(`/program/${this.state.programId}`)
+                  }}
+              >
+                  Back to Program Detail
+              </MDBBtn>
             </MDBCol>
            
           </MDBRow>
