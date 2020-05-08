@@ -18,10 +18,11 @@ export const PrivateRoute = ({ component: Component, roles, ...rest }) => {
 
 export const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   const sessionToken = localStorage.getItem('sessionToken');
+  const mainPage = localStorage.getItem('mainPage');
   return (
     <Route {...rest} render={props => (
       sessionToken ?
-        <Redirect to="/clusa-account" />
+        <Redirect to={mainPage} />
         : <Component {...props} />
     )} />
   );

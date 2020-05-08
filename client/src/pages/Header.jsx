@@ -70,9 +70,6 @@ class Header extends Component {
       // successfully logout ==========
       if (this.getData('message') === 'Logout success') {
         localStorage.clear();
-        this.setState({
-          clickLogOut: true,
-        });
         alert('Logout successfully');
         window.location.reload();
       }
