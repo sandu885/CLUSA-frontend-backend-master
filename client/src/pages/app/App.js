@@ -66,23 +66,23 @@ class App extends Component {
     return (
       <Router>
         <div style={{ height: '100vh' }}>
-          <Route
+          <PublicRoute
             path="/"
             exact
             component={Login}
           />
 
-          <Route
+          <PublicRoute
             path="/login/"
             component={Login}
           />
 
-          <Route
+          <PublicRoute
             path="/register/"
             component={Register}
           />
 
-          <Route
+          <PublicRoute
             path="/forget-password/"
             component={ForgetPassword}
           />

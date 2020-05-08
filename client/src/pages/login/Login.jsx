@@ -114,6 +114,7 @@ class Login extends Component {
         localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);
+        localStorage.setItem('mainPage', '/view-program');
         this.props.history.push('/view-program');
         // this.setState({
         //   redirectCLUSAVerifier: true,
@@ -127,6 +128,7 @@ class Login extends Component {
         localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);
+        localStorage.setItem('mainPage', '/view-program');
         this.props.history.push('/view-program')
       } else if (response.data.userType === '3') {
         // ======================== success, to reviewer account, userType === 3 && Admin========================
@@ -136,8 +138,10 @@ class Login extends Component {
         localStorage.setItem('sessionToken', response.data.sessionToken);
         localStorage.setItem('userName', this.state.username);
         localStorage.setItem('isAuthenticated', true);
+        localStorage.setItem('mainPage', '/view-program');
         this.props.history.push('/user-organization-management')
       }
+      window.location.reload();
     }).catch((error) => {
       console.warn(error.response);
       if(error.response !== null && error.response !== undefined) {
