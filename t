@@ -1,0 +1,1971 @@
+[33mcommit 9d8bbb5029267f9ba9d5100668c3f66c654fcf30[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mnora/master[m[33m)[m
+Merge: cc964b2 5218c50
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Fri May 8 22:12:30 2020 +0800
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 5218c50db0a3f1912a1b93d260fcf4634606f5d7[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri May 8 19:34:09 2020 +0530
+
+    handling back button
+
+[33mcommit cc964b24350e203a8038945ea0d75d8701774155[m
+Merge: 5ddb4d0 6a78c64
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Wed May 6 22:18:59 2020 +0800
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 6a78c642c21af98046558a0af05db8d4aa738a45[m
+Merge: 48453ae f1622c7
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed May 6 17:29:09 2020 +0530
+
+    Merge pull request #15 from nightsky108/productionDB-Testing
+    
+    fixed 5-5 review comments
+
+[33mcommit f1622c7e63baf7f343fab6adc182a548323ddf40[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed May 6 17:28:25 2020 +0530
+
+    fixed 5-5 review comments
+
+[33mcommit 5ddb4d01e514c4e04137c3fa84acb104c3de7c61[m
+Merge: 0ba15f0 48453ae
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Thu Apr 9 23:41:25 2020 +0800
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 48453ae9d72a3e9308eb83b66bb162f3ae7bb4f9[m
+Merge: 6bb6e51 ecf506a
+Author: arunantony <arunram999@gmail.com>
+Date:   Thu Apr 9 20:27:11 2020 +0530
+
+    Merge pull request #14 from nightsky108/productionDB-Testing
+    
+    removed upload validation
+
+[33mcommit ecf506af6bd7acc4c93c0d4fafeaf77ea4e4709a[m[33m ([m[1;31mnora/productionDB-Testing[m[33m, [m[1;32mproductionDB-Testing[m[33m)[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 9 20:26:03 2020 +0530
+
+    removed upload validation
+
+[33mcommit 6bb6e51868eadd3274586e6f13f26bc64b266610[m
+Merge: e7c202c 3e9c5ca
+Author: arunantony <arunram999@gmail.com>
+Date:   Thu Apr 9 16:43:43 2020 +0530
+
+    Merge pull request #13 from nightsky108/productionDB-Testing
+    
+    more accurate on sort and click
+
+[33mcommit 3e9c5ca71ac7f31c4656985af2b3fbec578d1aaa[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 9 16:40:10 2020 +0530
+
+    more accurate on sort and click
+
+[33mcommit e7c202c606ad50b8c09ff1c2ca3411dce6cf661e[m
+Merge: b90f08a c4f28cb
+Author: arunantony <arunram999@gmail.com>
+Date:   Thu Apr 9 16:07:19 2020 +0530
+
+    Merge pull request #12 from nightsky108/productionDB-Testing
+    
+    Production db testing
+
+[33mcommit c4f28cbe388cff322d11e56ed9297896fee97ac2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 9 15:55:12 2020 +0530
+
+    sorting - click fix
+
+[33mcommit dfd910af23f085825dfca60eb36b1d7090aee05f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 9 14:56:44 2020 +0530
+
+    sort issue fixed in organization table
+
+[33mcommit 0ba15f03f9ddd512e5c7b8a55ab4c6e235d9b565[m
+Merge: b3fe619 b90f08a
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Thu Apr 9 01:50:55 2020 +0800
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit b90f08a9de799128fba5a96c13ef99a973b0d181[m
+Merge: 82418ba 4b414b5
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed Apr 8 23:15:15 2020 +0530
+
+    Merge pull request #11 from nightsky108/productionDB-Testing
+    
+    fixed serach
+
+[33mcommit 4b414b580080a7f1e68cec5265c5e19c663b064e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 8 23:14:03 2020 +0530
+
+    fixed serach
+
+[33mcommit 82418ba4d084e5de200bd4d7a20b77f7e391b304[m
+Merge: 64963ad c8666f9
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed Apr 8 21:54:26 2020 +0530
+
+    Merge pull request #10 from nightsky108/productionDB-Testing
+    
+    Production db testing
+
+[33mcommit c8666f90c199c375e0babc5f3693de6c1df70ae4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 8 21:53:13 2020 +0530
+
+    fetch all programs based non org
+
+[33mcommit 29a318715b1aa96391aed7ff9e24814d75dd6176[m
+Merge: 9afa678 7dd4ba8
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 8 20:06:37 2020 +0530
+
+    Merge branch 'productionDB-Testing' of https://github.com/nightsky108/CLUSA-frontend-backend into productionDB-Testing
+
+[33mcommit b3fe6190f7ed4be93f9f168bf61330f39eda6eba[m
+Merge: d1bb919 c02da04
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Wed Apr 8 19:40:44 2020 +0800
+
+    Merge branch 'master' of https://github.com/lq3297401/CLUSA-frontend-backend
+
+[33mcommit d1bb919e3da32510c0d78abec41f8029f2d0c2d3[m
+Merge: ae3c01a 64963ad
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Wed Apr 8 19:40:30 2020 +0800
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 64963ad21185cb9d42ac5ba91922faaff535cb0d[m
+Merge: eb7c405 7dd4ba8
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed Apr 8 17:04:23 2020 +0530
+
+    Merge pull request #9 from nightsky108/productionDB-Testing
+    
+    Update index.js
+
+[33mcommit 7dd4ba86de61d0d9bc2ff7fc395b0093ee91475a[m
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed Apr 8 17:03:24 2020 +0530
+
+    Update index.js
+
+[33mcommit 9afa678bd9a9fb2c2d4795d83502c09463ec91c6[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 8 17:00:44 2020 +0530
+
+    change in db name
+
+[33mcommit ae3c01a6778d21c40865eec385cdfae121fd5c92[m
+Merge: 67698c9 eb7c405
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Wed Apr 8 18:52:43 2020 +0800
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit eb7c405134d099d6cffc800f87925c35f1c8a6da[m
+Merge: 14ff25e 3dc34c7
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed Apr 8 15:25:03 2020 +0530
+
+    Merge pull request #8 from nightsky108/productionDB-Testing
+    
+    role based changes
+
+[33mcommit 3dc34c726cbaa6a553f2c9c63904312efa3ef131[m
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed Apr 8 15:24:39 2020 +0530
+
+    Update Account.jsx
+
+[33mcommit a46581a9f8229414e526b84e9b6b6e5fa9f45e82[m
+Author: arunantony <arunram999@gmail.com>
+Date:   Wed Apr 8 15:23:45 2020 +0530
+
+    Update RegisterInfo.jsx
+
+[33mcommit 87fa3e2ad8dc8dc5d9a691904bbf7374e744d6eb[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 8 15:21:32 2020 +0530
+
+    role based changes
+
+[33mcommit 14ff25ed5a4753d67614f957be37d0dda7cdd31d[m
+Merge: b008ff6 a5e0440
+Author: arunantony <arunram999@gmail.com>
+Date:   Tue Apr 7 23:10:08 2020 +0530
+
+    Merge pull request #7 from nightsky108/productionDB-Testing
+    
+    certificate upload issue
+
+[33mcommit a5e0440309ae3160d5cb7490d7a0df056a335764[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Apr 7 23:09:22 2020 +0530
+
+    certificate upload issue
+
+[33mcommit b008ff628f201be02ab0ce338a295751ac52b09e[m
+Merge: c86cffe f6a2dc7
+Author: arunantony <arunram999@gmail.com>
+Date:   Tue Apr 7 21:36:52 2020 +0530
+
+    Merge pull request #6 from nightsky108/productionDB-Testing
+    
+    status handling for new application
+
+[33mcommit f6a2dc743d05e1e0bee913976b5dc33b0cce63d9[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Apr 7 21:35:28 2020 +0530
+
+    status handling for new application
+
+[33mcommit c86cffe70621c6733479bb51782038338711a7f7[m
+Merge: 987dbeb c1c04cb
+Author: arunantony <arunram999@gmail.com>
+Date:   Tue Apr 7 21:24:13 2020 +0530
+
+    Merge pull request #5 from nightsky108/productionDB-Testing
+    
+    fix new application start
+
+[33mcommit c1c04cb887c6d2ae901067fd709d57ee3910f4ed[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Apr 7 21:21:52 2020 +0530
+
+    fix new application start
+
+[33mcommit 67698c9c39fff4df6f6738b29d8f0e6c4fd95586[m
+Merge: 9b6639d 987dbeb
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Tue Apr 7 23:17:22 2020 +0800
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 987dbeb21abb0ac8bfe992d32e39c3ceb1ebdb96[m
+Merge: 6c9496f 1688e3b
+Author: nightsky108 <softman009@hotmail.com>
+Date:   Tue Apr 7 11:16:18 2020 -0400
+
+    Merge pull request #4 from nightsky108/productionDB-Testing
+    
+    Production db testing
+
+[33mcommit c02da04dea7385199bbc229fcde07b94887669e2[m
+Merge: 9b6639d 1688e3b
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Tue Apr 7 22:34:24 2020 +0800
+
+    Merge pull request #2 from lq3297401/productionDB-Testing
+    
+    Production db testing
+
+[33mcommit 1688e3b584622ee38f239750daaffde17d1cb2e4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Apr 7 19:50:15 2020 +0530
+
+    status undefined handled
+
+[33mcommit 9b6639ddbbc6043a328c25cbda9c9c1bc8400daa[m
+Merge: 6c9496f d385a8d
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Tue Apr 7 01:08:08 2020 +0800
+
+    Merge pull request #1 from lq3297401/productionDB-Testing
+    
+    Production db testing
+
+[33mcommit 34a79cba5ebc61ea25a3eeff41fbe5b9d454b5b4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 22:05:24 2020 +0530
+
+    button disable in instruction page
+
+[33mcommit d385a8d84000a885c1e6d73c39ce550a87719576[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 21:36:15 2020 +0530
+
+    disable information
+
+[33mcommit eb0bc8d7946c23a18dce531bd7b27cb3cf796233[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 21:08:22 2020 +0530
+
+    handle edit button status
+
+[33mcommit 015de516ccdd0e4d0be2c6243fd65600f38b06d9[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 21:06:42 2020 +0530
+
+    fix in status
+
+[33mcommit f52803fc4a491a493ee9c70bee301f39a933889f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 20:24:04 2020 +0530
+
+    edit application button, upload issue
+
+[33mcommit a2a1988018f21dc1f8a1a1dfba51e3c855a46abf[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 16:58:44 2020 +0530
+
+    fixed search issue
+
+[33mcommit 23f9efb16c8acace9fa2ac167d34a2791b456970[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 13:25:52 2020 +0530
+
+    check the agreement is there, added templte into git
+
+[33mcommit ae6e166c5ba58c1aa8e45585b626aaa0d5c66164[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Apr 6 12:10:39 2020 +0530
+
+    corrected awarded amount, now taking firm agreement
+
+[33mcommit 6109388df18ada9be159378a2619d4f91d0086ce[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Apr 5 12:34:53 2020 +0530
+
+    fixed get of undefined
+
+[33mcommit 381c0f81ff917caafb21ec9fa04a987b82bb7473[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Apr 5 12:20:21 2020 +0530
+
+    handled appied date error
+
+[33mcommit 0d54bc065817f286f4afb8c948a1434e74c2852a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Apr 4 21:24:33 2020 +0530
+
+    added intern
+
+[33mcommit beb59efc13970e7eaa801908dd650937e7c83e7b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Apr 4 20:50:23 2020 +0530
+
+    status change, dummy template
+
+[33mcommit ac149552e0927867f8300a17dbf5a0c2c19312d4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Apr 4 13:59:41 2020 +0530
+
+    review 4.04 changes
+
+[33mcommit f6e9f330a7cac5d8cf3bf7a119b04669db877fd7[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Apr 3 16:47:09 2020 +0530
+
+    fixed capital letter issue
+
+[33mcommit d6a284cb615502191cd63be3530fec3ef8cef866[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Apr 3 13:25:06 2020 +0530
+
+    added alert messages
+
+[33mcommit 5a3bca66f61a9e9f9baf4f870eb6ef026eb66dd2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 22:54:23 2020 +0530
+
+    added prompt for submit final report
+
+[33mcommit 56f029b29c8eb545ea82c2b41256b6e7296206dc[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 21:04:43 2020 +0530
+
+    final report upload fixed
+
+[33mcommit 2a821bae2baf058eb60059738cd69af026581c5c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 20:18:14 2020 +0530
+
+    fixed final report upload
+
+[33mcommit 7b637aa4c512d04343aa71860dce66e0fa0057c9[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 19:43:55 2020 +0530
+
+    fixed ongoing report upadte alert
+
+[33mcommit 63a7839b595f32480254ff6d17dbcfe1434b7208[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 19:26:15 2020 +0530
+
+    fixed final report save issue
+
+[33mcommit 6eb219336abceb8517fa5a3ab78216dadece4170[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 18:38:30 2020 +0530
+
+    disable button fixed
+
+[33mcommit 17801e3f0ced3a2de7012871b6d8bf1cfb36848e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 16:59:26 2020 +0530
+
+    button changes
+
+[33mcommit d5556774113809ca4dc7b3dc834307dbd4f4978f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Apr 2 15:50:55 2020 +0530
+
+    review 4/1 testing fixes
+
+[33mcommit 3a3ca05866ca689f2fae03858a6c7a073e7e645a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 1 20:22:20 2020 +0530
+
+    disable ongoing report and final report if not approved
+
+[33mcommit 1e6abebdcdc9a87e3cfe08689345c3bd7a51c452[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 1 18:05:54 2020 +0530
+
+    fixed validation, on going report
+
+[33mcommit ef5fb2b1bfd85e5de1ac7d7ec209ee6698191575[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 1 13:49:12 2020 +0530
+
+    removed sendgrid email error
+
+[33mcommit 6668ca4c8b662c7934836085f23cbaebea252567[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Apr 1 11:28:54 2020 +0530
+
+    fixed email undefined issue
+
+[33mcommit 66dd66df2e6b013b8deb15c946c6cee7e3206f9b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 31 19:25:46 2020 +0530
+
+    fixed upload folder agreement placement, signed agreement
+
+[33mcommit 7d5f4f3ec9d852b038cc79de1c90075fa1f89b6c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 31 19:18:50 2020 +0530
+
+    reverted the folder changes
+
+[33mcommit 6bdb6d1f91f2d03ba650026808a80c817a2edeed[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 31 14:51:08 2020 +0530
+
+    changes to correct upload path
+
+[33mcommit 70853627626fe0d4af9bd91721ec85f50e12603e[m
+Merge: a107fb9 0afcde1
+Author: Josh Nicholas <anandjain.official@gmail.com>
+Date:   Sat Mar 28 22:17:38 2020 +0530
+
+    Merge branch 'productionDB-Testing' of https://github.com/nightsky108/CLUSA-frontend-backend into productionDB-Testing
+
+[33mcommit a107fb9d3c74e93d51319ad8149b776f2bb029aa[m
+Author: Josh Nicholas <anandjain.official@gmail.com>
+Date:   Sat Mar 28 22:16:14 2020 +0530
+
+    db uri
+
+[33mcommit 580376f1ed9e644c0ad5102fe718ed8647a0ea31[m
+Author: Josh Nicholas <anandjain.official@gmail.com>
+Date:   Sat Mar 28 22:14:59 2020 +0530
+
+    28MarFixes
+
+[33mcommit 0afcde1642a234be6c73eaa0da376171d38699b6[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Mar 28 16:48:28 2020 +0530
+
+    correct db connection string
+
+[33mcommit 6ee428a56db53d8e84352ee6b86b718ec93e6646[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Mar 28 16:39:29 2020 +0530
+
+    DB uri change
+
+[33mcommit 8525fb23fbbb8f46cf33efc81ff25a513fd65186[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 27 18:40:36 2020 +0530
+
+    changed db uri
+
+[33mcommit b6f69e0f3600b6a200d167b1fffa5dff7cb11012[m
+Author: Josh Nicholas <anandjain.official@gmail.com>
+Date:   Fri Mar 27 18:24:39 2020 +0530
+
+    fixes-UI
+
+[33mcommit cba84a364e9a3b7e5cfca7e39234f89590aa2b4a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 27 16:45:30 2020 +0530
+
+    change in db uri
+
+[33mcommit 6583df384ca5d7983768f8c4132507e7cb689463[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 27 16:40:17 2020 +0530
+
+    change in readme
+
+[33mcommit 6c9496f9eafa92e13a6c82d2938ad293c2369492[m[33m ([m[1;32mprodb-testing[m[33m, [m[1;32mgrant-manager[m[33m)[m
+Merge: b38e256 857176b
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Thu Mar 26 02:07:57 2020 +0800
+
+    Merge branch 'productionDB-Testing' of https://github.com/nightsky108/CLUSA-frontend-backend into productionDB-Testing
+
+[33mcommit 857176bf4c9eaeffbe5745a33a95dc741ddb011a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 25 22:27:53 2020 +0530
+
+    program page UI/UX changes
+
+[33mcommit c021e25c504a539993f2803b73a4f758dd38d04d[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 25 20:38:55 2020 +0530
+
+    UI/ux changes for program
+
+[33mcommit b38e256ca9ad3d9e44fc09f84b92493d81781c9b[m
+Author: Nora Liu <noraliu3648@gmail.com>
+Date:   Tue Mar 24 09:24:50 2020 +0800
+
+    Revert "Changes the DB url"
+    
+    This reverts commit b58dd9af862a906bf16cff11db84a4a98d7b30d2.
+
+[33mcommit b58dd9af862a906bf16cff11db84a4a98d7b30d2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 22 00:23:56 2020 +0530
+
+    Changes the DB url
+
+[33mcommit 5c43e2dc6e794894ff52ab5ac62fed4446fbbac3[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 19 19:01:34 2020 +0530
+
+    DB structure file modified
+
+[33mcommit ef76999bde751e2f6fa7738f0cb9865bae35b515[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 17 17:23:25 2020 +0530
+
+    little change for the image name and URL view
+
+[33mcommit b6e4d1a3f2bf13b49c524860087011a32d78d7ed[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 17 16:34:29 2020 +0530
+
+    Added underline and button in reviewer and manager in the AgreementPlacement
+
+[33mcommit cb87448981b5ca0830edd8dd7283a114b795843a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 17 15:43:46 2020 +0530
+
+    add link with the file name in agrement and placement
+
+[33mcommit b0d1702503d65c67cc2a9f5b810b116d012b47f5[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 17 15:09:44 2020 +0530
+
+    added design change
+
+[33mcommit 0e7683741069e4df6f97179d2a52b418e4942d82[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 17 12:47:47 2020 +0530
+
+    User management toggle done with tab
+
+[33mcommit f5314b3d807e2e27124abfe574463c1d3c8d192c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 16 18:51:35 2020 +0530
+
+    Tab section is remain
+
+[33mcommit 76dd47eec0e724b0169135e3bc8164a286112c04[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 16 16:59:43 2020 +0530
+
+    15-03-2020 2 Point are remaining.
+
+[33mcommit bf0aa8d9801cd105bd01419243cdde7dc7d34ee2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 15 02:48:19 2020 +0530
+
+    Email notification message changed.
+
+[33mcommit da4552796dc493706a258445fca821df8c5d0dbd[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 15 00:58:47 2020 +0530
+
+    AgreementPlacement UI change is done
+
+[33mcommit 3aefd352e1aca2e222ca6dd83e131ccef00222aa[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Mar 14 18:55:54 2020 +0530
+
+    13-03-2020 UI and new feature bug list done
+
+[33mcommit 15bbb5ad02fc64d024b9b7a33267cecb3c386087[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Mar 14 12:43:07 2020 +0530
+
+    added design change
+
+[33mcommit 13d21e0f2f37d6e74af82df1b1ca91d310d386a7[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Mar 14 11:41:22 2020 +0530
+
+    added design change
+
+[33mcommit e0771b7568d5df39b0c07e494d72ebd26fe661db[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 20:58:34 2020 +0530
+
+    User can apply for the program
+
+[33mcommit 3f741dfd1dc14eedadde767a0bd1beead52c55d3[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 19:32:29 2020 +0530
+
+    Change valid email
+
+[33mcommit e026d7a080a59bc5fa1c8311ae6308d38aa28211[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 19:04:20 2020 +0530
+
+    BreadCrumbs are done in the org
+
+[33mcommit fc03f987227cdc061b6aae73be5d02f34d2a19e6[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 18:34:52 2020 +0530
+
+    Agreement is little done
+
+[33mcommit ccfb83f3fac09718bc5e2a9142cd984b4f6cc0bc[m
+Merge: e6843b0 78304f3
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 17:45:03 2020 +0530
+
+    Merge branch 'new-design'
+
+[33mcommit 78304f36e32b2a3746667553523cd5583d4a80e7[m
+Merge: 073ba27 e6843b0
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 17:39:00 2020 +0530
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend into new-design
+
+[33mcommit e6843b05deae8f5b9ca0f38eb7d832456d08eccb[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 17:28:38 2020 +0530
+
+    Disabled the text box
+
+[33mcommit 073ba27c404fc231694103d3749fc3215fb465ca[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 11:38:49 2020 +0530
+
+    added design change
+
+[33mcommit 05310b620644c597c6032818d6364a55b0499266[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 11:28:26 2020 +0530
+
+    Added design change
+
+[33mcommit bfc80321c4cc74c18fdde41fcf41c46aeeda7ab9[m
+Merge: f83c61d 4efd045
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 10:59:36 2020 +0530
+
+    Merge branch 'master' into new-design
+
+[33mcommit f83c61dd0c325e4f8b2e10a5e4aa5b5f7ca4b256[m
+Merge: 58108cd 211b331
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 10:50:46 2020 +0530
+
+    Added design change
+
+[33mcommit 58108cd6a169b0fd71dfacdc69cd976d24def24e[m
+Merge: 1f0a493 fe63b81
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 10:47:03 2020 +0530
+
+    Merge branch 'master' into new-design
+
+[33mcommit 1f0a4932e24819c0edfee496c8ce4939c76c57bd[m
+Merge: 9085b34 8ee380a
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 10:45:35 2020 +0530
+
+    added design change
+
+[33mcommit 4efd04595d232741e0e66b1efab2047a76839d81[m
+Merge: fe63b81 211b331
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 05:16:22 2020 +0530
+
+    Merge branch 'new-design'
+
+[33mcommit 211b331442d4e6abace25a21a914cf250aad6962[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 05:10:32 2020 +0530
+
+    Made changes in the UI and make condition changes in the UI to hide
+
+[33mcommit d8044d4e56cb746f789c730d39142cf4b9c6116b[m
+Merge: 9085b34 fe63b81
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 03:54:14 2020 +0530
+
+    Merge branch 'master' of into new-design
+    
+    # Conflicts:
+    #       client/src/pages/userAccount/MyAccount/MyAccount.jsx
+
+[33mcommit fe63b81cc1cdde50766a3b0631d5891c2f76e9ba[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 03:43:10 2020 +0530
+
+    Email notification done
+
+[33mcommit 9085b344decfeb99ea2548d2a83409467ef40ad3[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 00:11:41 2020 +0530
+
+    added design change
+
+[33mcommit 5baaa4b78365afbf8594a190a07ab691e1f73287[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 00:03:57 2020 +0530
+
+    added design change
+
+[33mcommit 8ee380af875cbda722bf59d33d12778d323e586f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 13 00:00:50 2020 +0530
+
+    My account and some css issue fixed
+
+[33mcommit 756cc1830dc0aa643317deb002aa7fee45d9be95[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 12 23:36:05 2020 +0530
+
+    added design change
+
+[33mcommit 562129653769df27a7f5a381a143d3082a3be97e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 12 23:04:46 2020 +0530
+
+    added design change
+
+[33mcommit ee64f50d89ec7b69c007f96592404ae38490fd1b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 12 14:23:55 2020 +0530
+
+    Page 3 - 4 done
+
+[33mcommit bd9c7a313f3251d45acd57c6b79dd61a799ecc7f[m
+Merge: 8983014 6a3dcfe
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 12 02:21:25 2020 +0530
+
+    Merge branch 'new-design'
+
+[33mcommit 6a3dcfe1ca72470fc9704cc514e8f11dfab7f4e1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 12 02:16:43 2020 +0530
+
+    Message and view change in the client and server
+
+[33mcommit a84992204ecf11fd5b5e2cfafe9191749525cdb9[m
+Merge: 387a0d9 8983014
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 12 01:13:44 2020 +0530
+
+    Merge branch 'master' into new-design
+
+[33mcommit 387a0d9201c1fadaf5bd9014588216e0941ee6e4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 23:44:09 2020 +0530
+
+    Added design change
+
+[33mcommit b19829f2f3af33591f73f115a5f3d75dd6af4749[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 22:07:54 2020 +0530
+
+    Added design change
+
+[33mcommit f8c6c3ad969f77a90cb2a682aebe1ce891b968d6[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 20:27:47 2020 +0530
+
+    Added design change
+
+[33mcommit 4db91609f096250961e5756954a4f91756185474[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 19:46:03 2020 +0530
+
+    Added design change
+
+[33mcommit 2124381393475ea3e77b191cab34698e2839514d[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 19:08:16 2020 +0530
+
+    Added design change
+
+[33mcommit 4b6613300d163cd745137746b827916adf665737[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 15:56:57 2020 +0530
+
+    Added design change
+
+[33mcommit 4c4b0090edf7a996651e35b37b4bcbe96c774e90[m
+Merge: 964af66 6578667
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 14:59:14 2020 +0530
+
+    Merge branch 'new-design' into new-design
+
+[33mcommit 8983014181c70080a0cd73c055100aa45cf6d341[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 23:43:49 2020 +0530
+
+    Closing header is done and viewed the image upload
+
+[33mcommit 89e0e07c32f4242e3e671deb7e789ca3bfe46400[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 18:47:50 2020 +0530
+
+    Added validation for program edit and deleted
+
+[33mcommit 964af66612b9b089ac64c0e6cfc56c4604e4404d[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 14:44:14 2020 +0530
+
+    Added design change
+
+[33mcommit 7776bd54535e3b61fe98877cb7a43f6c876278b6[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 11 01:38:05 2020 +0530
+
+    Closing report is done
+
+[33mcommit 657866764d41cc83a4bbe03515286b87a0d5b038[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 10 14:59:05 2020 +0530
+
+    Worked on the feature page no 19 and 13
+
+[33mcommit d4e7922f2b39e03defc04cb0ebe1972bc021906e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 10 14:59:05 2020 +0530
+
+    Worked on the feature page no 19 and 13
+
+[33mcommit d760456db4e6152af8c8642e44ef577e00790f2f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 10 04:58:59 2020 +0530
+
+    Alert change
+
+[33mcommit e0b358dd166c2a7447fd14d2635c1a7b9fc5ed9f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 10 04:58:59 2020 +0530
+
+    Alert change
+
+[33mcommit b6a52fd22d23cb6fa018b1fc8d863f66b2702c20[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 10 02:08:46 2020 +0530
+
+    Reset link send to there email id from admin role
+
+[33mcommit 0ad40867a11bce52e38fa6cff38ac19149add995[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 10 02:08:46 2020 +0530
+
+    Reset link send to there email id from admin role
+
+[33mcommit 1add82df2ff92a0242299cc046e43078f27ae56c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 9 23:18:32 2020 +0530
+
+    Org suspension is done
+
+[33mcommit 8c42292419644b22a910d512e04848558e36de13[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 9 23:18:32 2020 +0530
+
+    Org suspension is done
+
+[33mcommit 60fe498f8e003a7c22ec1be1f8c75de31c020f2f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 9 14:17:10 2020 +0530
+
+    Dynamic header in one page
+
+[33mcommit 9d7a3877066079b9e23ccc8dd139dbf19a3e7d32[m[33m ([m[1;32mnew-design[m[33m)[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 9 14:17:10 2020 +0530
+
+    Dynamic header in one page
+
+[33mcommit a423bfec9b1f8dacf4d899ae9c9de697f8cff9d3[m
+Merge: 92746de 319d4aa
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 9 00:35:52 2020 +0530
+
+    Final UI changes
+
+[33mcommit 5c6ae850b38c8be779db30c1472d128181b7fec0[m
+Merge: 5f76222 319d4aa
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 9 00:35:52 2020 +0530
+
+    Final UI changes
+
+[33mcommit 319d4aa4d5fa75515773423ca6711029224f4f93[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 9 00:04:05 2020 +0530
+
+    Added Program page design
+
+[33mcommit 47abc1ed3bb581084a456bf7c7a78af2e8c1c74e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 8 16:47:56 2020 +0530
+
+    Added design change
+
+[33mcommit dd1ab900169d3c6ea94807c797df192cd46b7d01[m
+Merge: e7e0c84 92746de
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 8 15:42:32 2020 +0530
+
+    added design change
+
+[33mcommit e7e0c84600ef3ee99bae2dc47c42ff05dbddcaf4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 8 15:23:51 2020 +0530
+
+    added design change
+
+[33mcommit 92746de2c6e837449f3034b5ff544c811d15aa0e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 8 04:23:32 2020 +0530
+
+    Added Login register password page design change
+
+[33mcommit 5f762228b728250e223b163a513cd27815bff9af[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 8 04:23:32 2020 +0530
+
+    Added Login register password page design change
+
+[33mcommit f98d589d871413b056642f003e288b586631682b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 8 01:45:03 2020 +0530
+
+    Added Login register password page design change
+
+[33mcommit f7dd2e0e2578518252866860a1cbad4f2787ed15[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 6 14:32:32 2020 +0530
+
+    Solve crashing issue in the Whole application
+
+[33mcommit d5377c65cf4d4c61f38a316590b8928f2513bbd1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 6 14:32:32 2020 +0530
+
+    Solve crashing issue in the Whole application
+
+[33mcommit 7f9e5341d1dc9b802161d19fc7c3d84c9e2a66a1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 6 02:06:09 2020 +0530
+
+    Sort the link and changed to gray
+
+[33mcommit 27a19d6b32fee1e17c21c2d8d364a3ba6f47add9[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 6 02:06:09 2020 +0530
+
+    Sort the link and changed to gray
+
+[33mcommit 41dda8bd23acddeb09ad86bfe289186ed498a8cc[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 6 01:47:09 2020 +0530
+
+    Undefined name management
+
+[33mcommit bcab53d870ed1f46e8a6ec46d674bfaf56fb68d4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Mar 6 01:47:09 2020 +0530
+
+    Undefined name management
+
+[33mcommit 0a0bc65d1506d7e32f21cb09b21e6761d44a881d[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 5 23:41:15 2020 +0530
+
+    Removed some important warning and MAde Changes in the css
+
+[33mcommit 6728d5c1e3db237130033cc27398cc1eb9ec1535[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 5 23:41:15 2020 +0530
+
+    Removed some important warning and MAde Changes in the css
+
+[33mcommit 8246bb0a6b815d457ff2c541a0b82c3cdbe03743[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 5 18:47:01 2020 +0530
+
+    03-03-2020 fixed the header name and some other issue
+
+[33mcommit c0d61619dbeafbb43a9e25ed6b74ead9f60b76b5[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Mar 5 18:47:01 2020 +0530
+
+    03-03-2020 fixed the header name and some other issue
+
+[33mcommit 9fba792bea3f397ca2a8e3adce1a018736c478d2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 4 03:11:25 2020 +0530
+
+    Final Report SUBMIT button fix done
+
+[33mcommit 74821ce3ecf7897c83301411b4943e9331e5f2c0[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 4 03:11:25 2020 +0530
+
+    Final Report SUBMIT button fix done
+
+[33mcommit 8f7a8f3fc19a336a406b7e6c3fe2cc3ab2296507[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 4 01:41:53 2020 +0530
+
+    reset password section, Change organization password(submitting remain), IT admin
+
+[33mcommit a59b6f6cfde7bd2f4ac780315dbedccb1431754c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Mar 4 01:41:53 2020 +0530
+
+    reset password section, Change organization password(submitting remain), IT admin
+
+[33mcommit 39b674b59ca11d30c9ef3afeab6fcef2bb85f02b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 05:40:36 2020 +0530
+
+    Alert message change
+
+[33mcommit 2ce8028774bfc0e06075d9cb940b51b44a135f2a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 05:40:36 2020 +0530
+
+    Alert message change
+
+[33mcommit 4b62de8e734c3ba6701cfcfcc67d766ebe6ebdd2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 05:31:53 2020 +0530
+
+    Reset password is been checked and send reset link dynamically
+
+[33mcommit 27a489165f807ffac8f1af757c24aefe60d55e80[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 05:31:53 2020 +0530
+
+    Reset password is been checked and send reset link dynamically
+
+[33mcommit b589de070a96d068bc6c0bc53cbcc61e2281a085[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 04:56:52 2020 +0530
+
+    Org edit password done
+
+[33mcommit 355fff343a0f589a6ff0bf77de89b76afa1ec282[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 04:56:52 2020 +0530
+
+    Org edit password done
+
+[33mcommit a418c1fd68f2b347459c7665cb367d15c7e572fb[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 04:17:58 2020 +0530
+
+    Add edit user in admin
+
+[33mcommit 0862bb7f99627b3ebbd438c42adee7d26f7d95c2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 04:17:58 2020 +0530
+
+    Add edit user in admin
+
+[33mcommit abadebd176d2db921636024d01bc6cd28ccc294a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 03:26:26 2020 +0530
+
+    Delete user done
+
+[33mcommit 412e7518d4497f8ccb412422f472e210f3dda699[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 03:26:26 2020 +0530
+
+    Delete user done
+
+[33mcommit b577f914239d3c01b31fa6b77b2f9b9b7bde259b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 01:32:21 2020 +0530
+
+    Added the loader in the about for the org
+
+[33mcommit 7f8497b59a29548202252fb6d8ec9493c3537af0[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 01:32:21 2020 +0530
+
+    Added the loader in the about for the org
+
+[33mcommit d9c93f481184ce0934388b6e4ad6873108c68afa[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 01:27:17 2020 +0530
+
+    Final report fix
+
+[33mcommit cbed4f75b119f78fc865ec297462d54bf5d61733[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 01:27:17 2020 +0530
+
+    Final report fix
+
+[33mcommit 04689701dd62952ff195e0fe9c892960d35e71de[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 01:06:06 2020 +0530
+
+    Hide comment section when role is org
+
+[33mcommit 7d20608a5e1fd815627bd3aaab1ccaf5780717be[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 01:06:06 2020 +0530
+
+    Hide comment section when role is org
+
+[33mcommit 2e9f9b21484822a9fdd3bef007136217daa4a759[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 00:53:46 2020 +0530
+
+    Program filter in the reviewer and manager home page
+
+[33mcommit 246175310a5ed4167c1181d8ca5a64eabba7e9c8[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Mar 3 00:53:46 2020 +0530
+
+    Program filter in the reviewer and manager home page
+
+[33mcommit d36d9d31cf2b4e5339029a3513462cf61159650d[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 22:14:43 2020 +0530
+
+    Comment CSS fix
+
+[33mcommit fb22fda085595ca189e70c26a1a1dfe2d8ed91e2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 22:14:43 2020 +0530
+
+    Comment CSS fix
+
+[33mcommit cb5d2e25e215268261886869d0df77005e94fde1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 22:08:01 2020 +0530
+
+    Comment CSS fix
+
+[33mcommit 44f61a8f9e518df8965ca8918ade8c6e035d21e1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 22:08:01 2020 +0530
+
+    Comment CSS fix
+
+[33mcommit e4088a82eafc727200cea392db94b792e0ee07e3[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 22:00:17 2020 +0530
+
+    Comment filter fix
+
+[33mcommit 508ed32974daef22b7435b8529e6b4b7f94ea54c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 22:00:17 2020 +0530
+
+    Comment filter fix
+
+[33mcommit 958c6a3c15fdb514ea80298c4850c6bf724a418f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 21:35:35 2020 +0530
+
+    Comment fix
+
+[33mcommit 67be885231df8734b4d8c93d6779e7c4ea980fac[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 21:35:35 2020 +0530
+
+    Comment fix
+
+[33mcommit 47490ab7d2a738d34f3726811abae9bcfb77ad18[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 04:22:27 2020 +0530
+
+    Fixed the 17 page issue
+
+[33mcommit a1c18f5162cb19c93e2956ec7135a6329c802a75[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 04:22:27 2020 +0530
+
+    Fixed the 17 page issue
+
+[33mcommit a6f98921e982e5a3a81e28c43ba1e195a89b3f4b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 01:09:40 2020 +0530
+
+    Removed unused package in client
+
+[33mcommit 06b407118c7e1993a4f8aa6640d58b83a20852fe[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 01:09:40 2020 +0530
+
+    Removed unused package in client
+
+[33mcommit 34d2dc00271e8756d7f6db21fd5a5d204a8086c1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 00:55:08 2020 +0530
+
+    Fix of the 03-01-2020
+
+[33mcommit 0e524eb80ddba2ecc41063342b455780b877ee6d[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Mar 2 00:55:08 2020 +0530
+
+    Fix of the 03-01-2020
+
+[33mcommit 65d8135be7e81d19db313e50e93600843cea275c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 1 12:09:25 2020 +0530
+
+    Added the fixed of the reviewer and org
+
+[33mcommit 546c788427d2b33567c1960c4e153680e58b0361[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 1 12:09:25 2020 +0530
+
+    Added the fixed of the reviewer and org
+
+[33mcommit 6713a6019831110aeae74a8c8a2ad5fd1ba62e14[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 1 03:36:33 2020 +0530
+
+    Added dummy file for Program Report
+
+[33mcommit 63a437d7961fa9279edd0b346fe9e83e88650728[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 1 03:36:33 2020 +0530
+
+    Added dummy file for Program Report
+
+[33mcommit 58e6f550315dff0526184e6301b2088e084e0d43[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 1 02:15:24 2020 +0530
+
+    Show application year in program
+
+[33mcommit 58d9c8d31605080db5e38f2d174ed3376fd8b851[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Mar 1 02:15:24 2020 +0530
+
+    Show application year in program
+
+[33mcommit 299b8010706181c25e7cb181b8584ad066b1abbd[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 20:55:59 2020 +0530
+
+    Page no 22 issue is done
+
+[33mcommit 036a25dd7e991797d9ad246dc190d477fdb55d6a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 20:55:59 2020 +0530
+
+    Page no 22 issue is done
+
+[33mcommit 94d7f101cac53f9d1a82487535e7754816c52550[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 20:50:48 2020 +0530
+
+    Fixed program status issue
+
+[33mcommit 5fd4e6af4bdbe855178b3918ab0600d72a407d4e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 20:50:48 2020 +0530
+
+    Fixed program status issue
+
+[33mcommit af4c038e4dd183dd1333f38633181d907cbbadbc[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 19:45:09 2020 +0530
+
+    Fixed All the issue in as listed
+
+[33mcommit febe6a9bea7a31b1d30fa6cf48085326833d3551[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 19:45:09 2020 +0530
+
+    Fixed All the issue in as listed
+
+[33mcommit 3414982ed30ffaffab5d6161ed2895919b5088c8[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 10:54:23 2020 +0530
+
+    Fixed some issue in the Grant manager as suggested
+
+[33mcommit 60af6558d093ece2b2448bdc8642d3540b17e149[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 10:54:23 2020 +0530
+
+    Fixed some issue in the Grant manager as suggested
+
+[33mcommit 7f0fb532554b2c33f4dea8eee4606a16f0cc9b49[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 03:22:41 2020 +0530
+
+    Added dummy agreement placement
+
+[33mcommit bd01f606bce44ec17e8654ce071f5e21b040c41f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 03:22:41 2020 +0530
+
+    Added dummy agreement placement
+
+[33mcommit b18f9e2389016097f945a87b3defb946782a1000[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 03:10:19 2020 +0530
+
+    Fixed issue of the Forget Password, Page 14, view final report and Page 9 and last login
+
+[33mcommit 9e5fcd566613cce6d508ac7f8e5e6c02365ced67[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 29 03:10:19 2020 +0530
+
+    Fixed issue of the Forget Password, Page 14, view final report and Page 9 and last login
+
+[33mcommit 34c73db222ade86d34d17da639e6aa855a0b8ac3[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 22:42:56 2020 +0530
+
+    Fixed the Agreement issue.
+
+[33mcommit f04703ab9124e674ebefa4f1621c1ea0cadf0154[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 22:42:56 2020 +0530
+
+    Fixed the Agreement issue.
+
+[33mcommit ec08b6e534e7a4e08d2e6777fed2bad011070479[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 19:01:47 2020 +0530
+
+    Role Grant Reviewer home page link changed
+
+[33mcommit 2de6fd1ae0dcf927f8e065ab4e115023b996cfe1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 19:01:47 2020 +0530
+
+    Role Grant Reviewer home page link changed
+
+[33mcommit 5c75583ca60617f2c8eee2bb06b1ca684b9b8fc0[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 17:55:35 2020 +0530
+
+    Fixed Organization role bug and need discussion and take a look in the page no 19 - 20
+
+[33mcommit 092a41b2549451409fd4677e5ab4069769035b19[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 17:55:35 2020 +0530
+
+    Fixed Organization role bug and need discussion and take a look in the page no 19 - 20
+
+[33mcommit 352d1d6473b01beaada475d54ef5931c434e7f48[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 14:36:17 2020 +0530
+
+    Showed user name and email address in organization
+
+[33mcommit 590614b6bf270f040cd9e3b20f94985ab9402250[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 14:36:17 2020 +0530
+
+    Showed user name and email address in organization
+
+[33mcommit 11adc2eb4ae15ee75bcdfa44299805822c8692c3[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 14:10:55 2020 +0530
+
+    user management
+    password reset added
+
+[33mcommit ff0295f13a67fd772e019a2980d3877401b3d794[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 14:10:55 2020 +0530
+
+    user management
+    password reset added
+
+[33mcommit ceb917ea462f33187de045906354042999591ead[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 01:55:47 2020 +0530
+
+    User comment view is done and fixed some issue with final report.
+
+[33mcommit 1fef11cfb04fffa4fb5d73ea12f2fcd997bce313[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 28 01:55:47 2020 +0530
+
+    User comment view is done and fixed some issue with final report.
+
+[33mcommit 241eddf18178c3631ac0fd5187f7ffa79cc9cb06[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 27 18:52:48 2020 +0530
+
+    Comment section is done.
+
+[33mcommit c326068c44c173e912b281900c0cb9946d4c38cc[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 27 18:52:48 2020 +0530
+
+    Comment section is done.
+
+[33mcommit 1a440188f957cbf4d4129a3fccac424220d0ec22[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 26 14:55:11 2020 +0530
+
+    Remove warning form the console
+
+[33mcommit c04416ce867a9b285cc509a1a45db82b04e255f7[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 26 14:55:11 2020 +0530
+
+    Remove warning form the console
+
+[33mcommit 76cd80a73a545a81f235d79dd787236f64c23256[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 26 03:21:40 2020 +0530
+
+    Created the UI for the Recreate Login page
+
+[33mcommit 46a6f9bbfd7447f0c277fcf581979badc92638b1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 26 03:21:40 2020 +0530
+
+    Created the UI for the Recreate Login page
+
+[33mcommit 841615a2da18d54c1566ae6a51dffaac36877fcd[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 26 02:00:24 2020 +0530
+
+    Program agreement page is done
+
+[33mcommit 54ff6cfec44520cc731f99da26c9eb7aae064a7e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 26 02:00:24 2020 +0530
+
+    Program agreement page is done
+
+[33mcommit 8e955200f87733a3656253ea239bd5c86657c99b[m
+Merge: e9a29a7 1fe93aa
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 25 08:36:25 2020 +0530
+
+    Merge branch 'grant-manager' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 7b1fd2c709151eafa2747cc71abfae687a439fa1[m
+Merge: 5b3f83a 27bb670
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 25 08:36:25 2020 +0530
+
+    Merge branch 'grant-manager' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 1fe93aaa7e13f35a68a3f897a7d5e3ef1369aaa2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 25 08:34:34 2020 +0530
+
+    Created UI and api for the Program Report and working on the Configure the created api in the UI
+
+[33mcommit 27bb6701dd6901246387d966aad2f73e1a72e4a9[m[33m ([m[1;31mnora/grant-manager[m[33m)[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 25 08:34:34 2020 +0530
+
+    Created UI and api for the Program Report and working on the Configure the created api in the UI
+
+[33mcommit 1701c21c541ee4d41f112a4e280d04116d3888d8[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Feb 24 08:16:46 2020 +0530
+
+    Added the organization role agreement page
+
+[33mcommit 0ed763c21cb0e279e6bcb9a31fbbe09590c7df17[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Feb 24 08:16:46 2020 +0530
+
+    Added the organization role agreement page
+
+[33mcommit 380055404d320b68b3cc43c1bd91aa11146a5c60[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Feb 24 01:45:00 2020 +0530
+
+    Testing of the agreement is done
+
+[33mcommit 9408d96fbe07ba8d2e84ac1bddb6735b76c64c04[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Mon Feb 24 01:45:00 2020 +0530
+
+    Testing of the agreement is done
+
+[33mcommit 57b9886c6126de9a776ebbff2d268f7ef79ef5c1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 22 06:16:58 2020 +0530
+
+    Send Final report is done
+
+[33mcommit f5634d1ecab6dbe41b20fe42dd40e84ac69cdeb1[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 22 06:16:58 2020 +0530
+
+    Send Final report is done
+
+[33mcommit e9a29a735513ff0323d6697a43884068c525aac4[m
+Merge: a77e218 4b557ec
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Sat Feb 22 02:23:51 2020 +0800
+
+    Merge branch 'master' of https://github.com/lq3297401/CLUSA-frontend-backend
+
+[33mcommit 5b3f83ad07fd7f39604c9a5d2ceaee570dda7de0[m
+Merge: 0b469d4 8d1d113
+Author: Josh Nicholas <softman009@outlook.com>
+Date:   Sat Feb 22 02:23:51 2020 +0800
+
+    Merge branch 'master' of https://github.com/lq3297401/CLUSA-frontend-backend
+
+[33mcommit a77e21852f961b2fcd4d7cf1446c31fbc7cbc285[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 21 23:43:19 2020 +0530
+
+    Update the database
+
+[33mcommit 0b469d4fd064fd79a1431cad96144274ea625fb5[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 21 23:43:19 2020 +0530
+
+    Update the database
+
+[33mcommit eabb698f1ee442cdd40216df2d81de782ea92931[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 21 05:59:47 2020 +0530
+
+    Image link is been managed
+
+[33mcommit 3990cfb97425bf5d8fb9518fd2a0d0da538bd7cc[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 21 05:59:47 2020 +0530
+
+    Image link is been managed
+
+[33mcommit 4b557ec904e9429caff8b14f3ab1620815f85faf[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Feb 21 04:36:01 2020 +0800
+
+    Update README.md
+
+[33mcommit 8d1d113baf68427800bd071ccd72c70c5ea720d3[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Feb 21 04:36:01 2020 +0800
+
+    Update README.md
+
+[33mcommit 99fd8a29105f4151e4f69ee63c0c15526d4b4e1b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 20 05:02:05 2020 +0530
+
+    Little changes in the agreement and check section
+
+[33mcommit fb1465fb29d9702c268060e277555a19487e929f[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 20 05:02:05 2020 +0530
+
+    Little changes in the agreement and check section
+
+[33mcommit cc38d952da77a646e8da1c372069752c7edf84b2[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 20 04:42:58 2020 +0530
+
+    Create agreement and placement api created and configure that with the view
+
+[33mcommit d4ff09eec762f2b39be0549dfe10444fbca35638[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 20 04:42:58 2020 +0530
+
+    Create agreement and placement api created and configure that with the view
+
+[33mcommit 40917412d420fbb0f1322194e3c3130550b0f195[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 19 02:13:20 2020 +0530
+
+    Created new page of agreement and placement
+
+[33mcommit bbe895cb6e796a5d31b62eb89147e1537681554e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 19 02:13:20 2020 +0530
+
+    Created new page of agreement and placement
+
+[33mcommit 2ed03f3d0c89353c2a0223865a2b18100b438527[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 18 04:35:56 2020 +0530
+
+    Config Check with the api call
+
+[33mcommit fecd84bb494afcf2c409bb6fc7790ad2d301a484[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 18 04:35:56 2020 +0530
+
+    Config Check with the api call
+
+[33mcommit a1c409d8516d0629a9aef529bfdb34b04e93ad36[m
+Merge: f480841 eb4d14c
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Feb 16 00:01:45 2020 +0530
+
+    Merge branch 'dev' of https://github.com/nightsky108/CLUSA-frontend-backend into grant-manager
+
+[33mcommit 148e2778e9090a5147264048a6ad2165d8119a3d[m
+Merge: c738c1b 5175ff8
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Feb 16 00:01:45 2020 +0530
+
+    Merge branch 'dev' of https://github.com/nightsky108/CLUSA-frontend-backend into grant-manager
+
+[33mcommit f480841ef3bb9b83e58c37420b91ec83e3b8f9d0[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Feb 16 00:01:27 2020 +0530
+
+    Created UI and Create required UI for checks module
+
+[33mcommit c738c1b4faf637d836ec1f14f85b924e26d69cff[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sun Feb 16 00:01:27 2020 +0530
+
+    Created UI and Create required UI for checks module
+
+[33mcommit eb4d14cf67d578db3856b18496201b4b35aec4fa[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 15 02:07:38 2020 +0530
+
+    Added the loader and manger and fixed with the QA stuff
+
+[33mcommit 5175ff8e778a9327b72930ae3a71f8831029ba21[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Sat Feb 15 02:07:38 2020 +0530
+
+    Added the loader and manger and fixed with the QA stuff
+
+[33mcommit 03a635690326926ea2c8221638b0256efe84953b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 14 04:27:27 2020 +0530
+
+    Added new page to view organization details with there program
+
+[33mcommit 47eb8660ca708f72b427c73b22c737c62426bab0[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Fri Feb 14 04:27:27 2020 +0530
+
+    Added new page to view organization details with there program
+
+[33mcommit 00fd062c2dd7f51d05ecd98ab7e51381f5aa8229[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 13 07:02:26 2020 +0530
+
+    Created api for program details and modify the all ready created program listing api
+
+[33mcommit 8f0a6dcdc84057cad08db6ead4c369fbd317d73b[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 13 07:02:26 2020 +0530
+
+    Created api for program details and modify the all ready created program listing api
+
+[33mcommit b9d3803e0df7a37ad633d8d67aa57ebb731ff631[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 07:25:03 2020 +0530
+
+    Added the DB DOC
+
+[33mcommit 308cf2c637b744c8d25526e0564fdb4d83c7ae00[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 07:25:03 2020 +0530
+
+    Added the DB DOC
+
+[33mcommit 545ec6a9bd6061ab7684afb46a82fc1da99e9f82[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 06:30:03 2020 +0530
+
+    Added teh link in the program view page
+
+[33mcommit adfe287cf71d9b31bcc90a59e02c8256294ef596[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 06:30:03 2020 +0530
+
+    Added teh link in the program view page
+
+[33mcommit 555d2310ae4a42aa8e313bd5f24dd0b8368228f7[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 06:26:55 2020 +0530
+
+    Program Detail UI design is done
+
+[33mcommit c9e1c0f3a65d4dfb7a74420e366ee6577a75026c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 06:26:55 2020 +0530
+
+    Program Detail UI design is done
+
+[33mcommit 8bddc105f29b446ca3ef8f9c5998472c47807360[m
+Merge: 0dc2245 bd78950
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 03:48:12 2020 +0530
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend into grant-manager
+    
+    # Conflicts:
+    #       client/src/pages/UserOrganizationManagement/UserOrganizationManagement.jsx
+
+[33mcommit 250df3e5a0d128a4c21de386cc5acc12c84c2704[m
+Merge: ae1f496 44ce13d
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 03:48:12 2020 +0530
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend into grant-manager
+    
+    # Conflicts:
+    #       client/src/pages/UserOrganizationManagement/UserOrganizationManagement.jsx
+
+[33mcommit bd78950084a20d1ff6ef6790001418e5bf4e5449[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 03:41:17 2020 +0530
+
+    Show default page to the respective user role wise
+
+[33mcommit 44ce13dfc7bb86d8f46a01ebc91ad4589d54858a[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 03:41:17 2020 +0530
+
+    Show default page to the respective user role wise
+
+[33mcommit 77a3fe4797b858e49f15f039cece6178600d59c9[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 03:04:05 2020 +0530
+
+    Fix the after user delete list in the admin view
+
+[33mcommit ffa1f407c2a6712a875b7eb42435f0397a912ab6[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 12 03:04:05 2020 +0530
+
+    Fix the after user delete list in the admin view
+
+[33mcommit 0dc22459a2bd9de7e1d9a657fc3308388991306d[m
+Merge: 6bd468f ebfad1f
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 04:07:46 2020 +0530
+
+    Resolve conflict and merge the master branch
+
+[33mcommit ae1f496c4c5968325ccccfde1fee6e608cdee3cf[m
+Merge: 42c4e1e 8edd8a4
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 04:07:46 2020 +0530
+
+    Resolve conflict and merge the master branch
+
+[33mcommit ebfad1febb95516de62b785b2f91936c9e598711[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 03:58:37 2020 +0530
+
+    Added missing file of my account
+
+[33mcommit 8edd8a4bc179979874e4132e54fc50ff912defb4[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 03:58:37 2020 +0530
+
+    Added missing file of my account
+
+[33mcommit 6bd468fc44247826d166c2a839346e95c19d870c[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 03:47:28 2020 +0530
+
+    Added program in main view
+
+[33mcommit 42c4e1e568cd4d53fe8947dd4f759b201359b135[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 03:47:28 2020 +0530
+
+    Added program in main view
+
+[33mcommit e403d734d21bb01ac3141a63d423b279758ec197[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 03:44:46 2020 +0530
+
+    View of the program in the grant manager and viewer is partially done
+
+[33mcommit 1430c407f2bc07a5e6be5af59b12f0da2892ab9e[m
+Author: Josh Nicholas <joshcooldev@gmail.com>
+Date:   Tue Feb 11 03:44:46 2020 +0530
+
+    View of the program in the grant manager and viewer is partially done
+
+[33mcommit e88a3929dde3163b7b318f284aa301af9b32c1ab[m
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Sun Feb 9 22:45:19 2020 +0530
+
+    Edit and update user I done
+
+[33mcommit 8727f365fc49d2a8f75529831e30e82521c20a9b[m
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Sun Feb 9 22:45:19 2020 +0530
+
+    Edit and update user I done
+
+[33mcommit 1efc6673bee4aaec31e351dccbef4752d92ee73e[m
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Sat Feb 8 05:20:03 2020 +0530
+
+    View the user and org on frontend and backend
+
+[33mcommit ffec49d903b5c94f0742e0940286a898a634e119[m
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Sat Feb 8 05:20:03 2020 +0530
+
+    View the user and org on frontend and backend
+
+[33mcommit 1eb7a11d9548792b0536ade1697e7dca87eb0cbf[m
+Merge: 052d724 aae0b74
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Fri Feb 7 04:12:49 2020 +0530
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit b8729795f1989e2fa4f345825b61eb8ed60bf96c[m
+Merge: 052d724 a79e7ce
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Fri Feb 7 04:12:49 2020 +0530
+
+    Merge branch 'master' of https://github.com/nightsky108/CLUSA-frontend-backend
+
+[33mcommit 052d724c04f4cd9bd651f5280e5274c97a6d934c[m
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Fri Feb 7 04:10:02 2020 +0530
+
+    Reset password and forget password
+
+[33mcommit aae0b745a95e8da04f903c0bbbe48686b79a5916[m
+Author: Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 6 14:20:10 2020 +0800
+
+    conflict solved
+
+[33mcommit a79e7ce45fe9941bd518ebb1a6926469225d7df9[m
+Author: Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 6 14:20:10 2020 +0800
+
+    conflict solved
+
+[33mcommit 32fb755d820085f8981d6ee1cd0171c6cfd3bc7d[m
+Merge: 8b4130b f23dc23
+Author: Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 6 14:11:50 2020 +0800
+
+    merge1-conflict
+
+[33mcommit 232bf7a86cf0a7d76fd08fd026738ced52036bfe[m
+Merge: 8b4130b 2ad4256
+Author: Nicholas <joshcooldev@gmail.com>
+Date:   Thu Feb 6 14:11:50 2020 +0800
+
+    merge1-conflict
+
+[33mcommit 8b4130bf88d10c4a12a9960a4fe40dfd35396845[m
+Author: Dhaval Patel <dhavalptel6040@gmail.com>
+Date:   Thu Feb 6 02:46:20 2020 +0530
+
+    Forget password api created
+
+[33mcommit 1573c0d53637c8c30385a72f0fc819082155002b[m
+Author: Nicholas <joshcooldev@gmail.com>
+Date:   Wed Feb 5 23:57:42 2020 +0800
+
+    2/5/23
+
+[33mcommit f23dc233c6f9ea937ca8cc52ab17336210157ba4[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Jan 31 23:38:00 2020 +0800
+
+    Update README.md
+
+[33mcommit 2ad42567dec29b84b0adf7b24fd6e92910ee9b4f[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Jan 31 23:38:00 2020 +0800
+
+    Update README.md
+
+[33mcommit 1897d450df3e832080c958162755f1bc6b2e2c32[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Jan 31 23:22:09 2020 +0800
+
+    update readme
+
+[33mcommit c81266ee19f3e80d11396cd30080a19dd63083ae[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Jan 31 23:22:09 2020 +0800
+
+    update readme
+
+[33mcommit bb1706b542828d0c3e8ec97c324d1a72e8f28721[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Jan 31 23:15:48 2020 +0800
+
+    update readme
+
+[33mcommit 2d4e0ce81ae4ab3ccda5b4a5b371eca96ab698ef[m
+Author: Qi(Nora) <noraliu3648@gmail.com>
+Date:   Fri Jan 31 23:15:48 2020 +0800
+
+    update readme
+
+[33mcommit ca0b67578644708db0ec14f827b96d3c49ea09a7[m
+Author: Nora Liu <noraliu3648@gmail.com>
+Date:   Fri Jan 31 23:07:39 2020 +0800
+
+    “init”
